@@ -55,6 +55,11 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
+       - family: Roboto
+         fonts:
+           - asset: fontss/Roboto-Regular.ttf
+           - asset: fontss/Roboto-Light.ttf
+             style: normal
        - family: OpenSans
          fonts:
            - asset: fontss/OpenSans-Regular.ttf
@@ -66,6 +71,6 @@ flutter:
            - asset: fontss/Raleway-Regular.ttf
            - asset: fontss/Raleway-Bold.ttf
              weight: 700
-  #
+  
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages

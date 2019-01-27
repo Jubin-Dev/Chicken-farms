@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Screens/Login_page.dart';
 void main() => runApp(MyApp());
@@ -16,11 +15,11 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.amberAccent[450],
         accentColor: Colors.cyan,
         primarySwatch: Colors.blue,
-        fontFamily: 'Raleway',
+        fontFamily: 'Roboto',
         textTheme: TextTheme(
           headline: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
           title: TextStyle(fontSize: 36.0, fontStyle: FontStyle.normal),
-          body1: TextStyle(fontSize: 15.0, fontFamily: 'Raleway'),
+          body1: TextStyle(fontSize: 15.0, fontFamily: 'Roboto'),
           ),
           ),
       home: SplashScreen(),
@@ -36,7 +35,7 @@ class SplashScreen extends StatefulWidget{
   @override
   void initState() {
     super.initState();
-    new Future.delayed(const Duration(seconds: 3),() => Navigator.push(
+    new Future.delayed(const Duration(seconds: 4),() => Navigator.push(
       context, MaterialPageRoute(builder: (context) => LoginPage()),
     )
     );
