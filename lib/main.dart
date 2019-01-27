@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       title: appName,
       theme: ThemeData(
         brightness: Brightness.light,
-        primaryColor: Colors.amberAccent[400],
+        primaryColor: Colors.amberAccent[450],
         accentColor: Colors.cyan,
         primarySwatch: Colors.blue,
         fontFamily: 'Raleway',
