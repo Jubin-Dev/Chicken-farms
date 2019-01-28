@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/Screens/New_User.dart';
+
 
 class LoginPage extends StatefulWidget{
  static String tag ='loginPage';
@@ -40,15 +42,24 @@ class _LoginPageState extends State<LoginPage> {
          )
      ),
    );
+   
+   final forgotLabel = Container(alignment:Alignment(1.0, 0.0),
+     padding: EdgeInsets.only(top:10.0,left: 20.0), 
+     child:FlatButton(
+     child: Text('Forgot password?',style:TextStyle(color:Colors.green,fontSize: 15.0)),
+     onPressed: (){},
+    ), 
+    );
+   
    final loginButton = Padding(
-       padding: EdgeInsets.symmetric(vertical: 90.0),
+       padding: EdgeInsets.symmetric(vertical: 80.0),
      child: Material(
-       borderRadius: BorderRadius.circular(33.0),
+       borderRadius: BorderRadius.circular(30.0),
        shadowColor: Colors.lightBlueAccent.shade100,
         elevation: 6.0,
         child: MaterialButton(
           minWidth: 200.0,
-          height: 45.0,
+          height: 47.0,
           onPressed: (){
 
            },
@@ -58,14 +69,14 @@ class _LoginPageState extends State<LoginPage> {
         ) ,
      ),
    );
-   final forgotLabel = FlatButton(
-     child: Text('Forgot password?',style:TextStyle(color:Colors.green,fontSize: 15.0)),
-     onPressed: (){},
-      );
+   
     final newUser = FlatButton(
      child: Text('New User?',style:TextStyle(color:Colors.green,fontSize: 15.0)),
-     onPressed: (){},
-      );
+     onPressed: ()=> Navigator.push (
+      context, MaterialPageRoute(builder: (context) => NewUser(),
+      ) 
+     ) 
+     );
 
    return Scaffold(
      backgroundColor: Colors.amberAccent,
@@ -75,19 +86,21 @@ class _LoginPageState extends State<LoginPage> {
          padding: EdgeInsets.only(left: 24.0,right: 24.0),
          children: <Widget>[
            logo,
-           SizedBox(height: 45.0),
+           SizedBox(height: 50.0),
            phone,
            SizedBox(height: 15.0),
            password,
-           SizedBox(height: 25.0),
+           forgotLabel,
+           SizedBox(height: 10.5,),
            loginButton,
-           forgotLabel,newUser,
+           SizedBox(height: 5.0),
+           newUser,
            
 
          ],
        ),
      ),
    );
-  }
+     }
 }
   
