@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Screens/New_User.dart';
+import 'package:flutter_app/Screens/forgot_passw.dart';
 
 
 class LoginPage extends StatefulWidget{
@@ -47,7 +48,10 @@ class _LoginPageState extends State<LoginPage> {
      padding: EdgeInsets.only(top:10.0,left: 20.0), 
      child:FlatButton(
      child: Text('Forgot password?',style:TextStyle(color:Colors.green,fontSize: 15.0)),
-     onPressed: (){},
+     onPressed: ()=> Navigator.push (
+      context, MaterialPageRoute(builder: (context) => Forgot_Pass(),
+      ), 
+     ) ,
     ), 
     );
    
