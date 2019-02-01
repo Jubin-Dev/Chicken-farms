@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/Screens/Home_page.dart';
 import 'package:flutter_app/Screens/Login_page.dart';
 void main() => runApp(MyApp());
 
@@ -12,13 +13,13 @@ class MyApp extends StatelessWidget {
       title: appName,
       theme: ThemeData(
         brightness: Brightness.light,
-        primaryColor: Colors.amberAccent[450],
-        accentColor: Colors.cyan,
-        primarySwatch: Colors.blue,
+        primaryColor: Colors.green[450],
+        accentColor: Colors.green,
+        primarySwatch: Colors.green,
         fontFamily: 'Roboto',
         textTheme: TextTheme(
           headline: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-          title: TextStyle(fontSize: 36.0, fontStyle: FontStyle.normal),
+          title: TextStyle(fontSize: 36.0, fontStyle: FontStyle.normal,color: Colors.white),
           body1: TextStyle(fontSize: 15.0, fontFamily: 'Roboto'),
           ),
           ),
@@ -45,7 +46,8 @@ class SplashScreen extends StatefulWidget{
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return MaterialApp(
+    home: new Scaffold(
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
@@ -99,7 +101,8 @@ class SplashScreen extends StatefulWidget{
         ],
       ),
 
-    );
+     )
+      );
   }
 }
 

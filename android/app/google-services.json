@@ -1,0 +1,42 @@
+{
+    "project_info": {
+      "project_number": "566764844270",
+      "firebase_url": "https://chicken-farm-flutter.firebaseio.com",
+      "project_id": "chicken-farm-flutter",
+      "storage_bucket": "chicken-farm-flutter.appspot.com"
+    },
+    "client": [
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:566764844270:android:c3681e6765a4741f",
+          "android_client_info": {
+            "package_name": "surya.flutterapp"
+          }
+        },
+        "oauth_client": [
+          {
+            "client_id": "566764844270-l1mhv8lr6r3s1jlm9eumbk0a1io8uj1a.apps.googleusercontent.com",
+            "client_type": 3
+          }
+        ],
+        "api_key": [
+          {
+            "current_key": "AIzaSyDGl-OVKDX0bBUoXHV40TrbZUjGCOq2Cas"
+          }
+        ],
+        "services": {
+          "analytics_service": {
+            "status": 1
+          },
+          "appinvite_service": {
+            "status": 1,
+            "other_platform_oauth_client": []
+          },
+          "ads_service": {
+            "status": 2
+          }
+        }
+      }
+    ],
+    "configuration_version": "1"
+  }

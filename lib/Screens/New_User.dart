@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Screens/Login_page.dart';
+import 'package:flutter_app/Screens/dialogs.dart';
 class NewUser extends StatefulWidget{
   
   static String tag ='Registration';
@@ -24,10 +25,10 @@ class NewUser extends StatefulWidget{
         decoration: InputDecoration(
           hintText: 'Email ID',
           contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(25.0),
+          // border: OutlineInputBorder(
+          //   borderRadius: BorderRadius.circular(25.0),
             
-          )
+          // )
         ),
       );
       final name = TextFormField(
@@ -37,10 +38,10 @@ class NewUser extends StatefulWidget{
         decoration: InputDecoration(
           hintText: 'Full Name',
           contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(25.0),
+          // border: OutlineInputBorder(
+          //   borderRadius: BorderRadius.circular(25.0),
             
-          )
+          // )
         ),
       );
       final phone = TextFormField(
@@ -50,34 +51,32 @@ class NewUser extends StatefulWidget{
         decoration: InputDecoration(
           hintText: 'Enter Your Mobile No.',
           contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(25.0),
+          // border: OutlineInputBorder(
+          //   borderRadius: BorderRadius.circular(25.0),
             
-          )
+          // )
         ),
       );
    final password = TextFormField(
      autofocus: false,
-     initialValue: 'some password',
      obscureText: true,
      decoration: InputDecoration(
          hintText: 'Password',
          contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-         border: OutlineInputBorder(
-           borderRadius: BorderRadius.circular(25.0),
-         )
+        //  border: OutlineInputBorder(
+        //    borderRadius: BorderRadius.circular(25.0),
+        //  )
      ),
    );
    final rePassword = TextFormField(
      autofocus: false,
-     initialValue: 'some password',
      obscureText: true,
      decoration: InputDecoration(
          hintText: 'Re-Password',
          contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-         border: OutlineInputBorder(
-           borderRadius: BorderRadius.circular(25.0),
-         )
+        //  border: OutlineInputBorder(
+        //    borderRadius: BorderRadius.circular(25.0),
+        //  )
      ),
    );
    
@@ -90,19 +89,22 @@ class NewUser extends StatefulWidget{
         child: MaterialButton(
           minWidth: 200.0,
           height: 47.0,
-          onPressed: (){
+          onPressed: ()  async {
+            final action = await Dialogs.yesAbortDialog(context,'Verify OTP','OTP:');
            },
+           
           color: Colors.yellow,
           child: Text('Sign-Up',style:TextStyle(color:Colors.black,fontSize: 20.0)),
 
         ) ,
      ),
    );
-    return Scaffold(
+    return MaterialApp(
+      home: Scaffold(
      appBar: AppBar(
        title: Text('Registration'),
        centerTitle: true,
-       backgroundColor: Color(0xe5c510),
+       backgroundColor: Colors.amberAccent,
        leading: IconButton(
          icon: Icon(Icons.arrow_back_ios),
          onPressed: () => Navigator.push (
@@ -111,7 +113,7 @@ class NewUser extends StatefulWidget{
      ),
        )
      ),
-     backgroundColor: Colors.amberAccent,
+     backgroundColor: Colors.white,
      body: Center(
        child: ListView(
          shrinkWrap: true,
@@ -136,7 +138,7 @@ class NewUser extends StatefulWidget{
          ],
        ),
      ),
-   );
+     ), );
   }
   }
 
