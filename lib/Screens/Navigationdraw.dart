@@ -1,7 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import 'package:flutter_app/Screens/Chicken_ProfileList/Chicken_ProfileList.dart';
+import 'package:flutter_app/Screens/DashboardItems/ReportsSummary.dart';
+
+import 'package:flutter_app/Screens/Farm_Profile.dart';
 import 'package:flutter_app/Screens/Home_page.dart';
-import 'package:flutter_app/Screens/IconDashboard.dart';
+
 import 'package:flutter_app/Screens/forgot_passw.dart';
 
 void main()=> runApp(new MyNav());
@@ -75,16 +80,14 @@ class Dashboard {
                 title: new Text("Farm Profile"),
                 leading: new Icon(Icons.account_balance),
                 onTap: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => DashIcons())),
+                 context, MaterialPageRoute(builder: (context) => FarmProfile())),
                  
               ),
               new ListTile(
                 title: new Text("Chicken Profile List"),
                 leading: new Icon(Icons.account_balance),
-                 onTap: () { 
-                  Navigator.of(context).pop();
-                  Navigator.of (context).pushNamed("/a");
-                  }
+                  onTap: () => Navigator.push(
+                 context, MaterialPageRoute(builder: (context) => ChickenProfile())),
               ),
               new ListTile(
                 title: new Text("Vaccine"),
@@ -126,10 +129,9 @@ class Dashboard {
               new ListTile(
                 title: new Text("Sales"),
                 leading: new Icon(Icons.account_balance),
-                 onTap: () { 
-                  Navigator.of(context).pop();
-                  Navigator.of (context).pushNamed("/a");
-                  }
+                 onTap: () => Navigator.push(
+                 context, MaterialPageRoute(builder: (context) => ReportSummary())),
+                 
               ),
               new ListTile(
                 title: new Text("Stock out"),
@@ -155,7 +157,7 @@ class Dashboard {
       body: new Container(
         child:new Center(
            
-  child:
+        child:
           new MyHomes(),
         ),
           

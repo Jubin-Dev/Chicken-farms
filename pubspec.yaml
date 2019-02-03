@@ -13,6 +13,8 @@ environment:
   sdk: ">=2.0.0-dev.68.0 <3.0.0"
 
 dependencies:
+  flutter_date_picker: "0.1.8"
+  
   
   
 
@@ -29,7 +31,12 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  flutter_launcher_icons: "^0.6.1"  
 
+flutter_icons:
+  image_path: "lib/images/rooster.png" 
+  android: true
+  ios: true
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
 
@@ -40,7 +47,7 @@ flutter:
   uses-material-design: true
   assets:
         - lib/images/rooster.png
-        - lib/images/
+        - lib/images/photo.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
