@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/Screens/ChickenTreatment/MedicineDetails.dart';
-import 'package:flutter_app/Screens/ChickenTreatment/TreatmentDetail.dart';
-import 'package:flutter_app/Screens/Chicken_ProfileList/ChickenDetailsForm.dart';
-import 'package:flutter_app/Screens/Chicken_ProfileList/DetailForms.dart';
+
 import 'package:flutter_app/Screens/Expanses/ExpenseEntry.dart';
 
-import 'package:flutter_app/Screens/Home_page.dart';
+
 
 class ExpenseEntryList extends StatefulWidget{
   
@@ -21,24 +18,25 @@ class ExpenseEntryList extends StatefulWidget{
 
    
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: new ThemeData(
         accentColor: Colors.amber,
         brightness: Brightness.light,
       ) ,
       home: Scaffold(
         
-     appBar: AppBar(
-       title: Text('Expense Entry'),
-       centerTitle: true,
-       backgroundColor: Colors.amber,
-       leading: IconButton(
-         icon: Icon(Icons.arrow_back_ios),
-         onPressed: () => Navigator.push (
-          context, MaterialPageRoute(builder: (context) => MyHomes(),
-       ),
-     ),
-       )
-     ),
+    //  appBar: AppBar(
+    //    title: Text('Expense Entry'),
+    //    centerTitle: true,
+    //    backgroundColor: Colors.amber,
+    //    leading: IconButton(
+    //      icon: Icon(Icons.arrow_back_ios),
+    //      onPressed: () => Navigator.push (
+    //       context, MaterialPageRoute(builder: (context) => MyHomes(),
+    //    ),
+    //  ),
+    //    )
+    //  ),
      backgroundColor: Colors.white,
      body: BodyWidget(),
           floatingActionButton: new FloatingActionButton(

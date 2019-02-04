@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/Screens/ChickenTreatment/TreatmentDetail.dart';
 
+import 'package:flutter_app/Screens/Sales/PriceDetail.dart';
 
-
-class TreatmentList extends StatefulWidget{
+class PriceList extends StatefulWidget{
   
-  static String tag ='TreatmentList';
+  static String tag ='PriceList';
   @override
- TreatmentListPageState  createState()=> new TreatmentListPageState(); 
+ _PriceListPageState  createState()=> new _PriceListPageState(); 
     
   }
   
-  class TreatmentListPageState extends State<TreatmentList> {
+  class _PriceListPageState extends State<PriceList> {
   @override
   Widget build(BuildContext context) {
 
@@ -25,7 +24,7 @@ class TreatmentList extends StatefulWidget{
       home: Scaffold(
         
     //  appBar: AppBar(
-    //    title: Text('Treatment Entry List'),
+    //    title: Text('Chicken Profile List'),
     //    centerTitle: true,
     //    backgroundColor: Colors.amber,
     //    leading: IconButton(
@@ -44,7 +43,7 @@ class TreatmentList extends StatefulWidget{
             isExtended: true,
             child: new Icon(Icons.add),
             onPressed: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => Treatment())),
+                 context, MaterialPageRoute(builder: (context) => PriceDetail())),
           ), 
           ),
     );

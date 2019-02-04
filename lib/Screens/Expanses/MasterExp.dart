@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app/Screens/Tabs/ExpensesTabs.dart';
 
 void main() => runApp(new MasterExp());
 
@@ -36,9 +37,13 @@ class _MasterExpPageState extends State<MasterExpPage> {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text(widget.title),
-        centerTitle: true,
-        leading: Icon(Icons.arrow_back_ios),
+        centerTitle: true,    
         backgroundColor: Colors.amber,
+        leading: IconButton(icon: Icon(Icons.arrow_back_ios),
+        onPressed: () => Navigator.push(
+                 context, MaterialPageRoute(builder: (context) => ExpTab())),
+        
+      ),
       ),
       body: new SafeArea(
           top: false,

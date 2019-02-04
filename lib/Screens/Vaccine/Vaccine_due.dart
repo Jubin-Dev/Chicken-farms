@@ -7,6 +7,7 @@ class Vaccinedue extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
+      debugShowCheckedModeBanner: false,
       // title: 'Flutter Form Demo',
       theme: new ThemeData(
         primarySwatch: Colors.green,
@@ -47,12 +48,12 @@ Future<Null> _selectedDate(BuildContext context) async {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
-        title: new Text(widget.title),
-        centerTitle: true,
-        leading: Icon(Icons.arrow_back_ios),
-        backgroundColor: Colors.amber,
-      ),
+      // appBar: new AppBar(
+      //   title: new Text(widget.title),
+      //   centerTitle: true,
+      //   leading: Icon(Icons.arrow_back_ios),
+      //   backgroundColor: Colors.amber,
+      // ),
       body: new SafeArea(
           top: false,
           bottom: false,

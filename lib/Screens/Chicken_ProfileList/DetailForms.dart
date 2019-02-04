@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'package:flutter_app/Screens/Tabs/ProfilesTab.dart';
+
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
+      debugShowCheckedModeBanner: false,
       // title: 'Flutter Form Demo',
       theme: new ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
       home: new MyHomePage(title: 'Chicken Details'),
     );
@@ -53,7 +56,14 @@ Future<Null> _selectedDate(BuildContext context) async {
       appBar: new AppBar(
         title: new Text(widget.title),
         centerTitle: true,
-        leading: Icon(Icons.arrow_back_ios),
+        leading: IconButton(
+         icon: Icon(Icons.arrow_back_ios),
+         onPressed: () => Navigator.push (
+      context, MaterialPageRoute(builder: (context) => Profile(),
+       ),
+     ),
+       ),
+        
         backgroundColor: Colors.amber,
       ),
       body: new SafeArea(
@@ -62,26 +72,35 @@ Future<Null> _selectedDate(BuildContext context) async {
           child: new Form(
               key: _formKey,
               autovalidate: true,
-              child: new ListView(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: new ListView( 
+
+                padding: const EdgeInsets.all( 20.0),
                 children: <Widget>[
+                  Hero(tag: 'hero', 
+   
+       child: CircleAvatar(
+         backgroundColor: Colors.yellow,
+         radius: 45.0,
+         child: Image.asset('lib/images/photo.png'),
+       ),
+       ),
                   new TextFormField(
                     decoration: const InputDecoration(
                       
                         hintText: 'Animal Code',
-                       labelText: 'Animal Code',
+                       
                     ),
                   ),
                   new TextFormField(
                     decoration: const InputDecoration(
                       hintText: 'Name',
-                      labelText: 'Name',
+                      
                     ),
                   ),
                   new TextFormField(
                     decoration: const InputDecoration(
                       hintText: 'Symbol',
-                      labelText: 'Symbol',
+                     
                     ),
                   ),
                   
@@ -189,6 +208,9 @@ Future<Null> _selectedDate(BuildContext context) async {
                       );
                     },
                   ),
+                  Divider(
+
+                  ),
                  new TextFormField(
                       autofocus: false,
                     decoration: InputDecoration(
@@ -198,6 +220,10 @@ Future<Null> _selectedDate(BuildContext context) async {
                        borderRadius: BorderRadius.circular(10.0),
                      ) ) 
                      ),
+                      Divider(
+
+                  ),
+
                      new TextFormField(
                       autofocus: false,
                     decoration: InputDecoration(
@@ -208,20 +234,21 @@ Future<Null> _selectedDate(BuildContext context) async {
                      ) ) 
                      ),
                      Divider(
-                       color: Colors.black,
-                       height: 30.0,
+                       
+      
                      ),
                   new TextFormField(
                     decoration: const InputDecoration(
                      hintText: 'Telents',
-                      labelText: 'Telents',
+                      
                     ),
                     keyboardType: TextInputType.text,
                     
                   ),
                   new TextField(
+                    keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
-                        labelText: 'Weight',
+                        
                         hintText: 'Weight',
                       ),
                     ) ,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app/Screens/Tabs/VaccineTab.dart';
 
 void main() => runApp(new Vaccine());
 
@@ -33,9 +34,12 @@ class _VaccinePageState extends State<VaccinePage> {
       appBar: new AppBar(
         title: new Text(widget.title),
         centerTitle: true,
-        leading: Icon(Icons.arrow_back_ios),
         backgroundColor: Colors.amber,
-      ),
+        leading: IconButton(icon: Icon(Icons.arrow_back_ios), 
+        onPressed: () => Navigator.push(
+                 context, MaterialPageRoute(builder: (context) => VaccineTab())),
+        
+       ) ),
       body: new SafeArea(
           top: false,
           bottom: false,

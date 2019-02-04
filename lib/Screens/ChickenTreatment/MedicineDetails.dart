@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app/Screens/Tabs/ChickenTreatmentTabs.dart';
 
 void main() => runApp(new Medicine());
 
@@ -7,6 +8,7 @@ class Medicine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
+      debugShowCheckedModeBanner: false,
       // title: 'Flutter Form Demo',
       theme: new ThemeData(
         primarySwatch: Colors.green,
@@ -56,8 +58,14 @@ Future<Null> _selectedDate(BuildContext context) async {
       appBar: new AppBar(
         title: new Text(widget.title),
         centerTitle: true,
-        leading: Icon(Icons.arrow_back_ios),
+       
         backgroundColor: Colors.amber,
+        leading: IconButton(icon: Icon(Icons.arrow_back_ios),
+        onPressed: () => Navigator.push(
+                 context, MaterialPageRoute(builder: (context) => Chicktreat())),
+        
+
+        ),
       ),
       body: new SafeArea(
           top: false,

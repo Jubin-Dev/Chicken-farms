@@ -19,24 +19,25 @@ class GiveVaccineList extends StatefulWidget{
 
    
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: new ThemeData(
         accentColor: Colors.amber,
         brightness: Brightness.light,
       ) ,
       home: Scaffold(
         
-     appBar: AppBar(
-       title: Text('Given Vaccine'),
-       centerTitle: true,
-       backgroundColor: Colors.amber,
-       leading: IconButton(
-         icon: Icon(Icons.arrow_back_ios),
-         onPressed: () => Navigator.push (
-          context, MaterialPageRoute(builder: (context) => MyHomes(),
-       ),
-     ),
-       )
-     ),
+    //  appBar: AppBar(
+    //    title: Text('Given Vaccine'),
+    //    centerTitle: true,
+    //    backgroundColor: Colors.amber,
+    //    leading: IconButton(
+    //      icon: Icon(Icons.arrow_back_ios),
+    //      onPressed: () => Navigator.push (
+    //       context, MaterialPageRoute(builder: (context) => MyHomes(),
+    //    ),
+    //  ),
+    //    )
+    //  ),
      backgroundColor: Colors.white,
      body: BodyWidget(),
           floatingActionButton: new FloatingActionButton(

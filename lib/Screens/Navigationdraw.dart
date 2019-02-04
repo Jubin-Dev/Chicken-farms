@@ -1,12 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_app/Screens/Chicken_ProfileList/Chicken_ProfileList.dart';
-import 'package:flutter_app/Screens/DashboardItems/ReportsSummary.dart';
-
 import 'package:flutter_app/Screens/Farm_Profile.dart';
 import 'package:flutter_app/Screens/Home_page.dart';
-
+import 'package:flutter_app/Screens/Tabs/ChickenTreatmentTabs.dart';
+import 'package:flutter_app/Screens/Tabs/ExpensesTabs.dart';
+import 'package:flutter_app/Screens/Tabs/ProfilesTab.dart';
+import 'package:flutter_app/Screens/Tabs/SalesTab.dart';
+import 'package:flutter_app/Screens/Tabs/VaccineTab.dart';
 import 'package:flutter_app/Screens/forgot_passw.dart';
 
 void main()=> runApp(new MyNav());
@@ -74,7 +75,7 @@ class Dashboard {
                 title: new Text("Dashboard"),
                 leading: new Icon(Icons.account_balance),
                 onTap: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => MyHomes())),
+                 context, MaterialPageRoute(builder: (context) => Profile())),
               ),
               new ListTile(
                 title: new Text("Farm Profile"),
@@ -92,26 +93,24 @@ class Dashboard {
               new ListTile(
                 title: new Text("Vaccine"),
               leading: new Icon(Icons.account_balance),
-               onTap: () { 
-                  Navigator.of(context).pop();
-                  Navigator.of (context).pushNamed("/a");
-                  }
+               onTap: () => Navigator.push(
+                 context, MaterialPageRoute(builder: (context) => VaccineTab())),
+              
               ),
               new ListTile(
                 title: new Text("Chicken Treatment"),
                 leading: new Icon(Icons.account_balance),
-                 onTap: () { 
-                  Navigator.of(context).pop();
-                  Navigator.of (context).pushNamed("/a");
-                  }
+                 onTap: () => Navigator.push(
+                 context, MaterialPageRoute(builder: (context) => Chicktreat())),
+              
+              
               ),
               new ListTile(
                 title: new Text("Breed List"),
                 leading: new Icon(Icons.account_balance),
-                 onTap: () { 
-                  Navigator.of(context).pop();
-                  Navigator.of (context).pushNamed("/a");
-                  }
+                 onTap: () => Navigator.push(
+                 context, MaterialPageRoute(builder: (context) => Chicktreat())),
+              
               ),
               
               new Divider(color: Colors.yellow,
@@ -121,33 +120,27 @@ class Dashboard {
               new ListTile(
                 title: new Text("Expense"),
                 leading: new Icon(Icons.account_balance),
-                 onTap: () { 
-                  Navigator.of(context).pop();
-                  Navigator.of (context).pushNamed("/a");
-                  }
+                 onTap: () => Navigator.push(
+                 context, MaterialPageRoute(builder: (context) => ExpTab())),
               ),
               new ListTile(
                 title: new Text("Sales"),
                 leading: new Icon(Icons.account_balance),
                  onTap: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => ReportSummary())),
+                 context, MaterialPageRoute(builder: (context) => SalesTab())),
                  
               ),
               new ListTile(
                 title: new Text("Stock out"),
                 leading: new Icon(Icons.account_balance),
-                 onTap: () { 
-                  Navigator.of(context).pop();
-                  Navigator.of (context).pushNamed("/a");
-                  }
+                 onTap: () => Navigator.push(
+                 context, MaterialPageRoute(builder: (context) => Chicktreat())),
               ),
               new ListTile(
                 title: new Text("Logout"),
                 leading: new Icon(Icons.account_balance),
-                onTap: () { 
-                  Navigator.of(context).pop();
-                  Navigator.of (context).pushNamed("/a");
-                  }
+                onTap: () => Navigator.push(
+                 context, MaterialPageRoute(builder: (context) => Chicktreat())),
             ),
             ],
           )

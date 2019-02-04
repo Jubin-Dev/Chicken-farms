@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app/Screens/Tabs/SalesTab.dart';
 
 void main() => runApp(new PriceDetail());
 
@@ -37,8 +38,13 @@ class SalePageState extends State<_PriceDetail> {
       appBar: new AppBar(
         title: new Text(widget.title),
         centerTitle: true,
-        leading: Icon(Icons.arrow_back_ios),
+       
         backgroundColor: Colors.amber,
+        leading: IconButton(icon: Icon(Icons.arrow_back_ios),
+        onPressed: () => Navigator.push(
+                 context, MaterialPageRoute(builder: (context) => SalesTab())),
+        
+      ),
       ),
       body: new SafeArea(
           top: false,

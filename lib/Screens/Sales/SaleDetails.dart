@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app/Screens/Tabs/SalesTab.dart';
 
 void main() => runApp(new SaleDetail());
 
@@ -7,6 +8,7 @@ class SaleDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
+      debugShowCheckedModeBanner: false,
       
       theme: new ThemeData(
         primarySwatch: Colors.green,
@@ -34,8 +36,13 @@ class SellingPageState extends State<_SaleDetail> {
       appBar: new AppBar(
         title: new Text(widget.title),
         centerTitle: true,
-        leading: Icon(Icons.arrow_back_ios),
+        
         backgroundColor: Colors.amber,
+        leading: IconButton(icon: Icon(Icons.arrow_back_ios),
+        onPressed: () => Navigator.push(
+                 context, MaterialPageRoute(builder: (context) => SalesTab())),
+        
+      ),
       ),
       body: new SafeArea(
           top: false,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/Screens/Home_page.dart';
+
+
 class FarmProfile extends StatefulWidget{
   
   static String tag ='Farm Profile';
@@ -129,19 +130,20 @@ class FarmProfile extends StatefulWidget{
      ),
    );
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-     appBar: AppBar(
-       title: Text('Farm Profile'),
-       centerTitle: true,
-       backgroundColor: Colors.amberAccent,
-       leading: IconButton(
-         icon: Icon(Icons.arrow_back_ios),
-         onPressed: () => Navigator.push (
-      context, MaterialPageRoute(builder: (context) => MyHomes(),
-       ),
-     ),
-       )
-     ),
+    //  appBar: AppBar(
+    //    title: Text('Farm Profile'),
+    //    centerTitle: true,
+    //    backgroundColor: Colors.amberAccent,
+    //    leading: IconButton(
+    //      icon: Icon(Icons.arrow_back_ios),
+    //      onPressed: () => Navigator.push (
+    //   context, MaterialPageRoute(builder: (context) => MyHomes(),
+    //    ),
+    //  ),
+    //    )
+    //  ),
      backgroundColor: Colors.white,
      body: Center(
        child: ListView(
