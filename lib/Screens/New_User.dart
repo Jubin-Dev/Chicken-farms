@@ -24,6 +24,7 @@ class NewUser extends StatefulWidget{
         
         decoration: InputDecoration(
           hintText: 'Email ID',
+          suffixIcon: Icon(Icons.email, color: Colors.green,),
           contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
           // border: OutlineInputBorder(
           //   borderRadius: BorderRadius.circular(25.0),
@@ -37,6 +38,7 @@ class NewUser extends StatefulWidget{
         // initialValue: '+91-',
         decoration: InputDecoration(
           hintText: 'Full Name',
+          suffixIcon: Icon(Icons.account_circle, color: Colors.green,),
           contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
           // border: OutlineInputBorder(
           //   borderRadius: BorderRadius.circular(25.0),
@@ -50,6 +52,7 @@ class NewUser extends StatefulWidget{
         initialValue: '+91-',
         decoration: InputDecoration(
           hintText: 'Enter Your Mobile No.',
+          suffixIcon: Icon(Icons.phone_iphone, color: Colors.green,),
           contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
           // border: OutlineInputBorder(
           //   borderRadius: BorderRadius.circular(25.0),
@@ -62,6 +65,7 @@ class NewUser extends StatefulWidget{
      obscureText: true,
      decoration: InputDecoration(
          hintText: 'Password',
+         suffixIcon: Icon(Icons.lock_open, color: Colors.green,),
          contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
         //  border: OutlineInputBorder(
         //    borderRadius: BorderRadius.circular(25.0),
@@ -73,6 +77,7 @@ class NewUser extends StatefulWidget{
      obscureText: true,
      decoration: InputDecoration(
          hintText: 'Re-Password',
+         suffixIcon: Icon(Icons.redo, color: Colors.green,),
          contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
         //  border: OutlineInputBorder(
         //    borderRadius: BorderRadius.circular(25.0),
@@ -93,18 +98,23 @@ class NewUser extends StatefulWidget{
             final action = await Dialogs.yesAbortDialog(context,'Verify OTP','OTP:');
            },
            
-          color: Colors.yellow,
+          color: Colors.amber,
           child: Text('Sign-Up',style:TextStyle(color:Colors.black,fontSize: 20.0)),
 
         ) ,
      ),
    );
     return MaterialApp(
+      theme: ThemeData(
+        primaryColor: Colors.green[450],
+        accentColor: Colors.green,
+        primarySwatch: Colors.green,
+     ),
       home: Scaffold(
      appBar: AppBar(
        title: Text('Registration'),
        centerTitle: true,
-       backgroundColor: Colors.amberAccent,
+       backgroundColor: Colors.amber,
        leading: IconButton(
          icon: Icon(Icons.arrow_back_ios),
          onPressed: () => Navigator.push (

@@ -22,6 +22,7 @@ final description =   Text("To use SMS verification, you need access to the veri
         initialValue: '+91-',
         decoration: InputDecoration(
           hintText: 'Enter Your Mobile No.',
+          suffixIcon: Icon(Icons.phone_iphone, color: Colors.green,),
           contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
           // border: OutlineInputBorder(
           //   borderRadius: BorderRadius.circular(25.0),
@@ -41,18 +42,23 @@ final description =   Text("To use SMS verification, you need access to the veri
           onPressed: () async {
             final action = await Dialogs.yesAbortDialog(context,'Verify OTP','OTP:');
            },
-          color: Colors.yellow,
+          color: Colors.amber,
           child: Text('Continue',style:TextStyle(color:Colors.black,fontSize: 20.0)),
 
         ) ,
      ),
    );
     return MaterialApp(
+      theme: ThemeData(
+        primaryColor: Colors.green[450],
+        accentColor: Colors.green,
+        primarySwatch: Colors.green,
+     ),
     home: new Scaffold(
      appBar: AppBar(
        title: Text('Recover Password'),
        centerTitle: true,
-       backgroundColor: Colors.amberAccent,
+       backgroundColor: Colors.amber,
        leading: IconButton(
          icon: Icon(Icons.arrow_back_ios),
          onPressed: () => Navigator.push (
@@ -73,8 +79,8 @@ final description =   Text("To use SMS verification, you need access to the veri
            SizedBox(height: 20.0),
            phone,
            
-          SizedBox(height: 1.0,),
-           continueButton ,
+            SizedBox(height: 1.0,),
+            continueButton ,
          
            
          ],

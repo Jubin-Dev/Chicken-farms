@@ -35,12 +35,14 @@ String _pass;
          radius: 60.0,
          child: Image.asset('lib/images/rooster.png'),
        ),);
+
       final phone = TextFormField(
         keyboardType: TextInputType.phone ,
         autofocus: false,
         // initialValue: '+91-',
         decoration: InputDecoration(
           hintText: 'Mobile Number',
+          suffixIcon: Icon(Icons.phone_iphone, color: Colors.green,),
           contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
           // border: OutlineInputBorder(
           //   borderRadius: BorderRadius.circular(25.0),
@@ -56,6 +58,7 @@ String _pass;
      obscureText: true,
      decoration: InputDecoration(
          hintText: 'Password',
+         suffixIcon: Icon(Icons.lock, color: Colors.green,),
          contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
         //  border: OutlineInputBorder(
         //    borderRadius: BorderRadius.circular(25.0),
@@ -86,11 +89,11 @@ String _pass;
         child: MaterialButton(
           minWidth: 200.0,
           height: 47.0,
-          onPressed: ()=> Navigator.push (
+          onPressed: () => Navigator.push (
           context, MaterialPageRoute(builder: (context) => MyNav(),
       ) 
       ),
-          color: Colors.yellow,
+          color: Colors.amber,
           child: Text('Login',style:TextStyle(color:Colors.black,fontSize: 20.0)),
 
         ) ,
@@ -105,7 +108,13 @@ String _pass;
      ) 
      );
 
-   return Scaffold(
+   return MaterialApp(
+     theme: ThemeData(
+        primaryColor: Colors.green[450],
+        accentColor: Colors.green,
+        primarySwatch: Colors.green,
+     ),
+      home: Scaffold(
      backgroundColor: Colors.white,
      body: Center(
        child: ListView(
@@ -129,7 +138,7 @@ String _pass;
          ],
        ),
      ),
-   );
+    ), );
      }
 }
   

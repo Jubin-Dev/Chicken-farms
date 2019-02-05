@@ -57,9 +57,11 @@ class Chicktreat extends StatefulWidget {
               tabs: <Widget>[
                 Tab(
                   text: "Chicken Treatment",
+                  icon: Icon(Icons.local_hospital, color: Colors.white,),
                 ),
                 Tab(
                   text: "Purchased Medicine",
+                  icon: Icon(Icons.local_pharmacy, color: Colors.white,),
                 )
               ],
               controller: tabController,

@@ -59,13 +59,18 @@ class SalesTab extends StatefulWidget {
               unselectedLabelColor: Colors.white54,
               tabs: <Widget>[
                 Tab(
+                  icon: Icon(Icons.library_books, color: Colors.white,),
                   text: "Price List",
                 ),
                 Tab(
-                  text: "Animal Sale",
+                  icon: Icon(Icons.pets, color: Colors.white,),
+                  text: "AnimalSale",
                 ),
                 Tab(
+                  
                   text: "Sale Entry",
+                  icon: Icon(Icons.payment, color: Colors.white,),
+                  
                 )
               ],
               controller: tabController,

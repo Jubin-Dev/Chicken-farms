@@ -1,14 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/Screens/Chicken_ProfileList/Chicken_ProfileList.dart';
-import 'package:flutter_app/Screens/Farm_Profile.dart';
+
 import 'package:flutter_app/Screens/Home_page.dart';
 import 'package:flutter_app/Screens/Tabs/ChickenTreatmentTabs.dart';
 import 'package:flutter_app/Screens/Tabs/ExpensesTabs.dart';
 import 'package:flutter_app/Screens/Tabs/ProfilesTab.dart';
 import 'package:flutter_app/Screens/Tabs/SalesTab.dart';
 import 'package:flutter_app/Screens/Tabs/VaccineTab.dart';
-import 'package:flutter_app/Screens/forgot_passw.dart';
+
 
 void main()=> runApp(new MyNav());
 
@@ -17,6 +16,7 @@ class MyNav extends StatelessWidget {
   Widget build(BuildContext context) {
     
     return new MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: new ThemeData(
         primarySwatch: Colors.amber,
         primaryColor: defaultTargetPlatform == TargetPlatform.android
@@ -30,28 +30,16 @@ class MyNav extends StatelessWidget {
       ),
       home: new NavPage(),
     
-      routes: <String, WidgetBuilder>{
-        "/a": (BuildContext context) => new Forgot_Pass(),
-      },
+      
           );
         }
       }
 
-class Dashboard {
-}
-      
-  class NavPage extends StatelessWidget {
+class DrawerOnly extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('Home'),
-        centerTitle: true,
-        // elevation: defaultTargetPlatform == TargetPlatform.android ? 5.0 : 0.0 ,
-      ),
-      
-      drawer: new Drawer(
+    return  new Drawer(
           child: new ListView(
             children: <Widget>[
               new UserAccountsDrawerHeader(
@@ -72,45 +60,53 @@ class Dashboard {
 
               ),
               new ListTile(
-                title: new Text("Dashboard"),
-                leading: new Icon(Icons.account_balance),
-                onTap: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => Profile())),
-              ),
-              new ListTile(
-                title: new Text("Farm Profile"),
-                leading: new Icon(Icons.account_balance),
-                onTap: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => FarmProfile())),
+                title: new Text("Profile"),
+                leading: new Icon(Icons.account_circle, color: Colors.green),
+                onTap: () { Navigator.pop(context);
+               Navigator.push(
+                 context, MaterialPageRoute(builder: (context) => Profile()));
+                 },
+                  ),
+              // new ListTile(
+              //   title: new Text("Farm Profile"),
+              //   leading: new Icon(Icons.account_balance),
+              //   onTap: () => Navigator.push(
+              //    context, MaterialPageRoute(builder: (context) => FarmProfile())),
                  
-              ),
-              new ListTile(
-                title: new Text("Chicken Profile List"),
-                leading: new Icon(Icons.account_balance),
-                  onTap: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => ChickenProfile())),
-              ),
-              new ListTile(
-                title: new Text("Vaccine"),
-              leading: new Icon(Icons.account_balance),
-               onTap: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => VaccineTab())),
-              
-              ),
+              // ),
+              // new ListTile(
+              //   title: new Text("Chicken Profile List"),
+              //   leading: new Icon(Icons.account_balance),
+              //     onTap: () => Navigator.push(
+              //    context, MaterialPageRoute(builder: (context) => ChickenProfile())),
+              // ),
+             
               new ListTile(
                 title: new Text("Chicken Treatment"),
-                leading: new Icon(Icons.account_balance),
-                 onTap: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => Chicktreat())),
+                leading: new Icon(Icons.local_hospital, color: Colors.green),
+                 onTap: () { Navigator.pop(context);
+                   Navigator.push(
+                 context, MaterialPageRoute(builder: (context) => Chicktreat()));
+                 }
               
-              
+              ),
+               new ListTile(
+                title: new Text("Vaccine"),
+              leading: new Icon(Icons.business_center, color: Colors.green),
+               onTap: () { 
+                 Navigator.pop(context);
+                 Navigator.push(
+                 context, MaterialPageRoute(builder: (context) => VaccineTab()));
+               }
               ),
               new ListTile(
                 title: new Text("Breed List"),
-                leading: new Icon(Icons.account_balance),
-                 onTap: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => Chicktreat())),
-              
+                leading: new Icon(Icons.assignment, color: Colors.green),
+                 onTap: () {
+                   Navigator.pop(context);
+                    Navigator.push(
+                 context, MaterialPageRoute(builder: (context) => Chicktreat()));
+                 }
               ),
               
               new Divider(color: Colors.yellow,
@@ -119,32 +115,61 @@ class Dashboard {
               
               new ListTile(
                 title: new Text("Expense"),
-                leading: new Icon(Icons.account_balance),
-                 onTap: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => ExpTab())),
-              ),
+                leading: new Icon(Icons.monetization_on, color: Colors.green,),
+                 onTap: () {
+                    Navigator.pop(context);
+                    Navigator.push(
+                 context, MaterialPageRoute(builder: (context) => ExpTab()));
+            } ),
               new ListTile(
                 title: new Text("Sales"),
-                leading: new Icon(Icons.account_balance),
-                 onTap: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => SalesTab())),
+                leading: new Icon(Icons.assessment, color: Colors.green),
+                 onTap: () {
+                    Navigator.pop(context);
+                    Navigator.push(
+                 context, MaterialPageRoute(builder: (context) => SalesTab()));
                  
-              ),
+                  } ),
               new ListTile(
                 title: new Text("Stock out"),
-                leading: new Icon(Icons.account_balance),
-                 onTap: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => Chicktreat())),
-              ),
+                leading: new Icon(Icons.multiline_chart, color: Colors.green),
+                 onTap: () { 
+                   Navigator.pop(context);
+                   Navigator.push(
+                 context, MaterialPageRoute(builder: (context) => Chicktreat()));
+                  } ),
               new ListTile(
                 title: new Text("Logout"),
-                leading: new Icon(Icons.account_balance),
-                onTap: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => Chicktreat())),
-            ),
+               leading: new Icon(Icons.lock_outline, color: Colors.green),
+                onTap: () {
+                   Navigator.pop(context);
+                   Navigator.push(
+                 context, MaterialPageRoute(builder: (context) => Chicktreat()));
+                }),
             ],
           )
-      ),
+      );
+  }
+
+}
+      
+  class NavPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    
+    return new Scaffold(
+      // appBar: new AppBar(
+      //   title: new Text('Home'),
+      //   centerTitle: true,
+      //    actions: <Widget>[
+      //      new IconButton(icon: Icon(Icons.search),
+      //     onPressed: () {},
+      //       )
+      //     ],
+      //   // elevation: defaultTargetPlatform == TargetPlatform.android ? 5.0 : 0.0 ,
+      // ),
+      
+      
 
       
       body: new Container(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum DialogAction{ yes, abort}
+enum DialogAction{ yes , abort}
 
 class Dialogs{
     static Future<DialogAction>yesAbortDialog(
@@ -24,6 +24,7 @@ class Dialogs{
             autofocus: false,
             decoration: InputDecoration(
               hintText: 'OTP:',
+              
             ),
           ),
           
