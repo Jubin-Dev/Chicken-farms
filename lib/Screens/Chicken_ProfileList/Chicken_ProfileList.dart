@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_app/Screens/Chicken_ProfileList/DetailForms.dart';
 
-import 'package:flutter_app/Screens/Home_page.dart';
+
 
 class ChickenProfile extends StatefulWidget{
   
@@ -45,7 +45,7 @@ class ChickenProfile extends StatefulWidget{
             isExtended: true,
             child: new Icon(Icons.add),
             onPressed: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => MyApp())),
+                 context, MaterialPageRoute(builder: (context) => DetailApp())),
           ), 
           ),
     );

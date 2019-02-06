@@ -3,9 +3,7 @@ import 'package:flutter_app/Screens/Chicken_ProfileList/Chicken_ProfileList.dart
 import 'package:flutter_app/Screens/Farm_Profile.dart';
 import 'package:flutter_app/Screens/Navigationdraw.dart';
 
-void main() {
-  runApp(TabBar(tabs: <Widget>[],));
-}
+
 class Profile extends StatefulWidget {
   @override
   ProfileState createState() => ProfileState();
@@ -48,17 +46,23 @@ class Profile extends StatefulWidget {
        ),
             centerTitle: true,
             pinned: true,
-            floating: true,
+            floating: false,
             forceElevated: boxIsScrolled,
             bottom: new TabBar(
+              indicatorColor: Colors.green,
+              indicator: UnderlineTabIndicator(
+                borderSide: BorderSide(width:1.0),  
+              ), 
               labelStyle: TextStyle(fontSize: 20.0),
               unselectedLabelColor: Colors.white54,
               tabs: <Widget>[
                 Tab(
                   text: "Farm Profile",
+                   icon: Icon(Icons.featured_video, color: Colors.white,),
                 ),
                 Tab(
                   text: "Chicken Profile",
+                   icon: Icon(Icons.copyright, color: Colors.white,),
                 )
               ],
               controller: tabController,

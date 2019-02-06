@@ -43,7 +43,7 @@ String _pass;
         decoration: InputDecoration(
           hintText: 'Mobile Number',
           suffixIcon: Icon(Icons.phone_iphone, color: Colors.green,),
-          contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+          contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
           // border: OutlineInputBorder(
           //   borderRadius: BorderRadius.circular(25.0),
             
@@ -59,7 +59,7 @@ String _pass;
      decoration: InputDecoration(
          hintText: 'Password',
          suffixIcon: Icon(Icons.lock, color: Colors.green,),
-         contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+        contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
         //  border: OutlineInputBorder(
         //    borderRadius: BorderRadius.circular(25.0),
  
@@ -81,7 +81,7 @@ String _pass;
     );
    
    final loginButton = Padding(
-       padding: EdgeInsets.symmetric(vertical: 80.0),
+       padding: EdgeInsets.symmetric(vertical: 20.0),
      child: Material(
        borderRadius: BorderRadius.circular(30.0),
        shadowColor: Colors.lightBlueAccent.shade100,
@@ -115,11 +115,11 @@ String _pass;
         primarySwatch: Colors.green,
      ),
       home: Scaffold(
-     backgroundColor: Colors.white,
-     body: Center(
+      backgroundColor: Colors.white,
+      body: Center(
        child: ListView(
          shrinkWrap: true,
-         padding: EdgeInsets.only(left: 24.0,right: 24.0),
+         padding: EdgeInsets.only(left: 25.0,right: 25.0),
          key: formKey,
          autovalidate: _autoValidate,
          children: <Widget>[

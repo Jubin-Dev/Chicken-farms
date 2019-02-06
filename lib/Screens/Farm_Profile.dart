@@ -1,32 +1,28 @@
 import 'package:flutter/material.dart';
 
-
 class FarmProfile extends StatefulWidget{
   
   static String tag ='Farm Profile';
   @override
- _FarmProfilePageState  createState()=> new _FarmProfilePageState(); 
-    
+ _FarmProfilePageState  createState() => new _FarmProfilePageState();  
   }
-  
   class _FarmProfilePageState extends State<FarmProfile> {
   @override
   Widget build(BuildContext context) {
    final logo = Hero(tag: 'hero', 
-   
-       child: CircleAvatar(
+        child: CircleAvatar(
          backgroundColor: Colors.yellow,
-         radius: 45.0,
+         radius: 40.0,
          child: Image.asset('lib/images/photo.png'),
        ),
        );
       final farmname = TextFormField(
-        keyboardType: TextInputType.text ,
-        autofocus: false,
-        
+          keyboardType: TextInputType.text ,
+          autofocus: false,
         decoration: InputDecoration(
           hintText: 'Farm Name',
-          contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+          suffixIcon: Icon(Icons.account_box, color: Colors.green),
+          contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
           // border: OutlineInputBorder(
           //   borderRadius: BorderRadius.circular(25.0),
             
@@ -39,7 +35,8 @@ class FarmProfile extends StatefulWidget{
         // initialValue: '+91-',
         decoration: InputDecoration(
           hintText: 'Farm Adress',
-          contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+          suffixIcon: Icon(Icons.local_library, color: Colors.green),
+         contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
           // border: OutlineInputBorder(
           //   borderRadius: BorderRadius.circular(25.0),
             
@@ -52,17 +49,19 @@ class FarmProfile extends StatefulWidget{
         initialValue: '+91-',
         decoration: InputDecoration(
           hintText: 'Enter Your Mobile No.',
-          contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+          suffixIcon: Icon(Icons.phone_iphone, color: Colors.green),
+         contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
           
         ),
       );
       final otherphone = TextFormField(
         keyboardType: TextInputType.phone ,
         autofocus: false,
-        initialValue: '+91-',
+        // initialValue: '+91-',
         decoration: InputDecoration(
           hintText: 'Enter Alternate Mobile No.',
-          contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+          suffixIcon: Icon(Icons.phone_iphone, color: Colors.green),
+          contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
           
         ),
       );
@@ -71,16 +70,18 @@ class FarmProfile extends StatefulWidget{
     //  obscureText: true,
      decoration: InputDecoration(
          hintText: 'Line Id',
-         contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+         suffixIcon: Icon(Icons.assignment_ind, color: Colors.green),
+         contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
        
      ),
    );
    final socialpage = TextFormField(
-     autofocus: false,
-    keyboardType: TextInputType.url ,
-     decoration: InputDecoration(
+      autofocus: false,
+      keyboardType: TextInputType.url ,
+      decoration: InputDecoration(
          hintText: 'Social Page',
-         contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+         suffixIcon: Icon(Icons.credit_card, color: Colors.green),
+         contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
         //  border: OutlineInputBorder(
         //    borderRadius: BorderRadius.circular(25.0),
         //  )
@@ -91,7 +92,8 @@ class FarmProfile extends StatefulWidget{
     keyboardType: TextInputType.url ,
      decoration: InputDecoration(
          hintText: 'Any Website',
-         contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+         suffixIcon: Icon(Icons.center_focus_weak, color: Colors.green),
+        contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
         //  border: OutlineInputBorder(
         //    borderRadius: BorderRadius.circular(25.0),
         //  )
@@ -103,7 +105,8 @@ class FarmProfile extends StatefulWidget{
         
         decoration: InputDecoration(
           hintText: 'About Us',
-          contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+           suffixIcon: Icon(Icons.content_paste, color: Colors.green),
+         contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
           // border: OutlineInputBorder(
           //   borderRadius: BorderRadius.circular(35.0),
             
@@ -117,40 +120,37 @@ class FarmProfile extends StatefulWidget{
      child: Material(
        borderRadius: BorderRadius.circular(30.0),
        shadowColor: Colors.lightBlueAccent.shade100,
-        elevation: 6.0,
+        elevation: 7.0,
         child: MaterialButton(
           minWidth: 200.0,
           height: 47.0,
           onPressed: (){},
            
-          color: Colors.yellow,
-          child: Text('Submit',style:TextStyle(color:Colors.black,fontSize: 20.0)),
+          color: Colors.amber,
+          child: Text('Submit',style:TextStyle(color:Colors.white,fontSize: 20.0)),
 
         ) ,
      ),
    );
     return MaterialApp(
+      theme: ThemeData(
+        primaryColor: Colors.green[450],
+        accentColor: Colors.green,
+        primarySwatch: Colors.green,
+     ),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-    //  appBar: AppBar(
-    //    title: Text('Farm Profile'),
-    //    centerTitle: true,
-    //    backgroundColor: Colors.amberAccent,
-    //    leading: IconButton(
-    //      icon: Icon(Icons.arrow_back_ios),
-    //      onPressed: () => Navigator.push (
-    //   context, MaterialPageRoute(builder: (context) => MyHomes(),
-    //    ),
-    //  ),
-    //    )
-    //  ),
      backgroundColor: Colors.white,
-     body: Center(
-       child: ListView(
-         shrinkWrap: true,
+     body: Padding(
          padding: EdgeInsets.only(left: 24.0,right: 24.0),
+         child: new Row(
+         
          children: <Widget>[ 
-           SizedBox(height: 30.0),
+           Flexible(
+             flex: 1,
+             child: new ListView(
+               children: <Widget>[
+           SizedBox(height: 20.0),
            logo,
            SizedBox(height: 20.0),
            farmname,
@@ -164,15 +164,16 @@ class FarmProfile extends StatefulWidget{
            lineId,
            SizedBox(height: 20.0),
            website,
+           SizedBox(height: 20.0),
            socialpage,
+           SizedBox(height: 20.0),
            aboutus,
            SizedBox(height: 1.0,),
            submitButton,
-         
-           
          ],
        ),
      ),
-     ), );
+         ],
+      ))), );
   }
   }

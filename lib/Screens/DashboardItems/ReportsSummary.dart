@@ -102,12 +102,26 @@ Future<Null> _selectedDate(BuildContext context) async {
                     // keyboardType: TextInputType.numberWithOptions(),
                    ) )),
                    Divider(),
+                   new Container(
+                      child: new Padding(
+                      padding: EdgeInsets.symmetric(vertical: 65.0),
+                      child: Material(
+                      borderRadius: BorderRadius.circular(30.0),
+                      shadowColor: Colors.lightBlueAccent.shade100,
+                      elevation: 6.0,
+                  child: MaterialButton(
+                    minWidth: 200.0,
+                    height: 47.0,
+                    onPressed: (){},
+                    color: Colors.amber,
+                    child: Text('Search',style:TextStyle(color:Colors.black,fontSize: 20.0)),
+
+                   ) ,
+                   ),
+                     ),
+                      ),
                     
-                
-                         
-                 
-                       
-                    ],
+                             ],
                       ))),
                 );
               }

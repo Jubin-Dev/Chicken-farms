@@ -12,38 +12,41 @@ class Forgot_Pass extends StatefulWidget{
   class _ForgotPageState extends State<Forgot_Pass> {
   @override
   Widget build(BuildContext context) {
-final description =   Text("To use SMS verification, you need access to the verified, phone number and click to Continue.",
-                      style: TextStyle(color:
-                        Colors.black ,fontSize: 20.0,fontWeight: FontWeight.w400),
+
+  final description =   Text("To use SMS verification, you need access to the verified, phone number and click to Continue.",
+                            style: TextStyle(color:
+                            Colors.black ,fontSize: 20.0,fontWeight: FontWeight.w400, fontFamily: 'Roboto',),
                         );
+  
   final phone = TextFormField(
         keyboardType: TextInputType.phone ,
-        autofocus: false,
+        autofocus: true,
         initialValue: '+91-',
         decoration: InputDecoration(
           hintText: 'Enter Your Mobile No.',
           suffixIcon: Icon(Icons.phone_iphone, color: Colors.green,),
-          contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+          contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
           // border: OutlineInputBorder(
           //   borderRadius: BorderRadius.circular(25.0),
             
           // )
         ),
       );
-      final continueButton = Padding(
-       padding: EdgeInsets.symmetric(vertical: 50.0),
-     child: Material(
-       borderRadius: BorderRadius.circular(30.0),
-       shadowColor: Colors.lightBlueAccent.shade100,
-        elevation: 6.0,
-        child: MaterialButton(
+        final continueButton = Padding(
+        padding: EdgeInsets.symmetric(vertical: 70.0),
+        child: Material(
+                borderRadius: BorderRadius.circular(40.0),
+                shadowColor: Colors.lightBlueAccent.shade100,
+                elevation: 7.0,
+
+          child: MaterialButton(
           minWidth: 200.0,
           height: 47.0,
           onPressed: () async {
             final action = await Dialogs.yesAbortDialog(context,'Verify OTP','OTP:');
            },
           color: Colors.amber,
-          child: Text('Continue',style:TextStyle(color:Colors.black,fontSize: 20.0)),
+          child: Text('Continue',style:TextStyle(color:Colors.white,fontSize: 20.0)),
 
         ) ,
      ),
@@ -62,7 +65,7 @@ final description =   Text("To use SMS verification, you need access to the veri
        leading: IconButton(
          icon: Icon(Icons.arrow_back_ios),
          onPressed: () => Navigator.push (
-      context, MaterialPageRoute(builder: (context) => LoginPage(),
+          context, MaterialPageRoute(builder: (context) => LoginPage(),
        ),
      ),
        )
@@ -71,15 +74,16 @@ final description =   Text("To use SMS verification, you need access to the veri
      body: Center(
        child: ListView(
          shrinkWrap: true,
-         padding: EdgeInsets.only(left: 24.0,right: 24.0),
+         padding: EdgeInsets.only(left: 25.0,right: 25.0),
          children: <Widget>[ 
-           SizedBox(height: 20.0),
-           description,
+
+            SizedBox(height: 10.0),
+            description,
            
-           SizedBox(height: 20.0),
-           phone,
+            SizedBox(height: 20.0),
+             phone,
            
-            SizedBox(height: 1.0,),
+            SizedBox(height: 20.0,),
             continueButton ,
          
            

@@ -44,14 +44,14 @@ class MyHomes extends StatelessWidget {
           
           actions: <Widget>[
            new IconButton(icon: Icon(Icons.search),
-          onPressed: () {},
+           onPressed: () {},
             )
           ],
         ),
           body: Column(
             children: <Widget>[
               Container(
-                padding: EdgeInsets.only(top: 90.0),
+                padding: EdgeInsets.only(top: 80.0),
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height/2,
                 decoration: BoxDecoration(
@@ -79,7 +79,7 @@ class MyHomes extends StatelessWidget {
                         
                          Padding(
                            
-                      padding:const EdgeInsets.only(top: 10.0,left: 155.0 ),
+                      padding:const EdgeInsets.only(top: 0.0,left: 135.0 ),
                       
                         child: CircleAvatar(    
                       backgroundColor: Colors.yellow,

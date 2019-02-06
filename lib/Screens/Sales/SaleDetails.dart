@@ -228,19 +228,19 @@ class SellingPageState extends State<_SaleDetail> {
                
                   // ),
 
-                     new Container(
-                    child: new Padding(
-                     padding: EdgeInsets.symmetric(vertical: 80.0),
-                    child: Material(
-                    borderRadius: BorderRadius.circular(30.0),
-                    shadowColor: Colors.lightBlueAccent.shade100,
-                   elevation: 6.0,
+                  new Container(
+                      child: new Padding(
+                      padding: EdgeInsets.symmetric(vertical: 80.0),
+                      child: Material(
+                      borderRadius: BorderRadius.circular(30.0),
+                      shadowColor: Colors.lightBlueAccent.shade100,
+                      elevation: 6.0,
                   child: MaterialButton(
                     minWidth: 200.0,
-                  height: 47.0,
-                  onPressed: (){},
-                  color: Colors.amber,
-                  child: Text('Add',style:TextStyle(color:Colors.black,fontSize: 20.0)),
+                    height: 47.0,
+                    onPressed: (){},
+                    color: Colors.amber,
+                    child: Text('Add',style:TextStyle(color:Colors.black,fontSize: 20.0)),
 
                    ) ,
                    ),

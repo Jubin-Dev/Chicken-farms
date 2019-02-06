@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_app/Screens/Navigationdraw.dart';
 import 'package:flutter_app/Screens/Vaccine/GiveVaccineLIst.dart';
 import 'package:flutter_app/Screens/Vaccine/PurchasedVaccineLIst.dart';
@@ -20,7 +19,7 @@ class VaccineTab extends StatefulWidget {
   @override
   void initState(){
     super.initState();
-    tabController = TabController(length:4, vsync: this);
+    tabController = TabController(length: 4, vsync: this);
     scrollController = ScrollController();
   }
   @override
@@ -40,8 +39,9 @@ class VaccineTab extends StatefulWidget {
         return<Widget>[
           SliverAppBar(
             backgroundColor: Colors.amber,
-            elevation: 15.0,
+            elevation: 20.0,
             title: Text('VACCINE'),
+            expandedHeight: 180.0,
             leading: IconButton(
             icon: Icon(Icons.arrow_back_ios),
             onPressed: () => Navigator.push (
@@ -51,25 +51,28 @@ class VaccineTab extends StatefulWidget {
        ),
             centerTitle: true,
             pinned: true,
-            floating: true,
+            floating: false,
             forceElevated: boxIsScrolled,
             bottom: new TabBar(
+              indicator: UnderlineTabIndicator(
+                borderSide: BorderSide(width:1.0),  
+              ),
               labelStyle: TextStyle(fontSize: 20.0),
               unselectedLabelColor: Colors.white54,
+              
               tabs: <Widget>[
                 Tab(
-                  text: "Vaccine Schedule",
+                  text: "Vaccine\nSchedule",
                 ),
                 Tab(
-                  text: "Purchased Vaccine",
+                  text: "Purchased\nVaccine",
                 ),
                 Tab(
-                  text: "Give Vaccine",
+                  text: "Give\nVaccine",
                 ),
-
                 Tab(
-                  text: "Vaccine Due",
-                  icon: Icon(Icons.arrow_drop_down),
+                  text: "Vaccine\nDue",
+                  
                 )
               ],
               controller: tabController,
@@ -86,7 +89,7 @@ class VaccineTab extends StatefulWidget {
           child:
           new PurchasedVaccineList(),
         ),
-        new Container(
+          new Container(
           child:
           new GiveVaccineList(),
         ),

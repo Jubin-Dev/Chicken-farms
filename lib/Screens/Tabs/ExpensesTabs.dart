@@ -53,14 +53,20 @@ class ExpTab extends StatefulWidget {
             floating: true,
             forceElevated: boxIsScrolled,
             bottom: new TabBar(
+              indicatorColor: Colors.green,
+              indicator: UnderlineTabIndicator(
+                borderSide: BorderSide(width:1.0),  
+              ), 
               labelStyle: TextStyle(fontSize: 20.0),
               unselectedLabelColor: Colors.white54,
               tabs: <Widget>[
                 Tab(
                   text: "Master Expense",
+                   icon: Icon(Icons.explicit, color: Colors.white,),
                 ),
                 Tab(
                   text: "Expense Entry",
+                   icon: Icon(Icons.event_note, color: Colors.white,),
                 )
               ],
               controller: tabController,

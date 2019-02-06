@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:flutter_app/Screens/Tabs/ProfilesTab.dart';
 
-void main() => runApp(new MyApp());
+void main() => runApp(new DetailApp());
 
-class MyApp extends StatelessWidget {
+class DetailApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -32,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<String> _colors = <String>['', 'Dead on Farm', 'Born On Farm', 'Purchased', 'Sold'];
   String _color = '';
 
-  DateTime _date = new DateTime.now();
+  DateTime  _date = new DateTime.now();
   TimeOfDay _time = new TimeOfDay.now();
 
 Future<Null> _selectedDate(BuildContext context) async {
@@ -40,7 +39,8 @@ Future<Null> _selectedDate(BuildContext context) async {
       context: context,
       initialDate: _date,
       firstDate: new DateTime(2016),
-      lastDate: new DateTime(2019));
+      lastDate: new DateTime(2019)
+      );
 
   if (picked != null && picked != _date) {
     print("Date selected ${_date.toString()}");
@@ -70,10 +70,9 @@ Future<Null> _selectedDate(BuildContext context) async {
           top: false,
           bottom: false,
           child: new Form(
-              key: _formKey,
-              autovalidate: true,
-              child: new ListView( 
-
+                key: _formKey,
+                autovalidate: true,
+                child: new ListView( 
                 padding: const EdgeInsets.all( 20.0),
                 children: <Widget>[
                   Hero(tag: 'hero', 
@@ -86,21 +85,20 @@ Future<Null> _selectedDate(BuildContext context) async {
        ),
                   new TextFormField(
                     decoration: const InputDecoration(
-                      
-                        hintText: 'Animal Code',
-                       
+                       hintText: 'Animal Code', 
+                       contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),     
                     ),
                   ),
                   new TextFormField(
-                    decoration: const InputDecoration(
+                      decoration: const InputDecoration(
                       hintText: 'Name',
-                      
+                      contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                     ),
                   ),
                   new TextFormField(
-                    decoration: const InputDecoration(
+                      decoration: const InputDecoration(
                       hintText: 'Symbol',
-                     
+                     contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                     ),
                   ),
                   
@@ -110,6 +108,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                       return InputDecorator(
                         decoration: InputDecoration(
                           labelText: 'Animal Status',
+                          contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                         ),
                         isEmpty: _color == '',
                         child: new DropdownButtonHideUnderline(
@@ -138,13 +137,12 @@ Future<Null> _selectedDate(BuildContext context) async {
                   new GestureDetector(
                     onTap: () => _selectedDate(context),
                     child: AbsorbPointer(
-                      child:
-                  new TextFormField(
-                    decoration: const InputDecoration(
-                      
-                      icon: const Icon(Icons.calendar_today),
+                    child: new TextFormField(
+                    decoration: const InputDecoration(                     
+                      icon: const Icon(Icons.calendar_today, color: Colors.green,),
                       hintText: 'Enter your date of birth',
                       labelText: 'Dob',
+                      contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                     ),
                     // keyboardType: TextInputType.numberWithOptions(),
                    ) )),
@@ -175,6 +173,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                             }).toList(),
                           ),
                         ),
+                        
                       );
                     },
                   ),
@@ -213,11 +212,11 @@ Future<Null> _selectedDate(BuildContext context) async {
                   ),
                  new TextFormField(
                       autofocus: false,
-                    decoration: InputDecoration(
-                    hintText: 'Sire Code',
-                    contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 10.0, 15.0),
-                     border: OutlineInputBorder(
-                       borderRadius: BorderRadius.circular(10.0),
+                      decoration: InputDecoration(
+                      hintText: 'Sire Code',
+                      contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 10.0, 15.0),
+                      border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
                      ) ) 
                      ),
                       Divider(
@@ -226,30 +225,27 @@ Future<Null> _selectedDate(BuildContext context) async {
 
                      new TextFormField(
                       autofocus: false,
-                    decoration: InputDecoration(
-                    hintText: 'Breeder Code',
-                    contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 10.0, 15.0),
-                     border: OutlineInputBorder(
-                       borderRadius: BorderRadius.circular(10.0),
+                      decoration: InputDecoration(
+                      hintText: 'Breeder Code',
+                      contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 10.0, 15.0),
+                      border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
                      ) ) 
                      ),
-                     Divider(
-                       
-      
-                     ),
+                     Divider( ),
                   new TextFormField(
-                    decoration: const InputDecoration(
-                     hintText: 'Telents',
-                      
+                      decoration: const InputDecoration(
+                      hintText: 'Telents',
+                      contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),                    
                     ),
-                    keyboardType: TextInputType.text,
-                    
+                    keyboardType: TextInputType.text,                  
                   ),
                   new TextField(
-                    keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         
                         hintText: 'Weight',
+                        contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                       ),
                     ) ,
                   new FormField(
@@ -258,6 +254,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                         decoration: InputDecoration(
                           
                           labelText: 'Weight Type',
+                          contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                         ),
                         isEmpty: _color == '',
                         child: new DropdownButtonHideUnderline(
@@ -285,16 +282,18 @@ Future<Null> _selectedDate(BuildContext context) async {
                   ),    
                   new TextFormField(
                     decoration: const InputDecoration(
-                      hintText:    'Fighting Records',
+                      hintText:   'Fighting Records',
                       labelText:  'Fighting Records',
+                      contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                     ),
                     keyboardType: TextInputType.text,
                     
                   ),
                   new TextField(
                       decoration: const InputDecoration(
-                        labelText: 'Weight',
-                        hintText: 'Weight',
+                        labelText:  'Weight',
+                        hintText:   'Weight',
+                        contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                       ),
                     ) ,
                   new FormField(
@@ -302,6 +301,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                       return InputDecorator(
                         decoration: InputDecoration(
                           labelText: 'Weight Type',
+                          contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                         ),
                         isEmpty: _color == '',
                         child: new DropdownButtonHideUnderline(
@@ -329,29 +329,25 @@ Future<Null> _selectedDate(BuildContext context) async {
                   ),    
                   new TextFormField(
                     decoration: const InputDecoration(
-                      hintText: 'Remarks',
-                      labelText: 'Remarks',
+                      hintText:   'Remarks',
+                      labelText:  'Remarks',
+                      contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                     ),
                     keyboardType: TextInputType.multiline,
-                  ),
-                 
-                
-                    
-                    
+                  ),     
                   new Container(
                     child: new Padding(
                      padding: EdgeInsets.symmetric(vertical: 80.0),
                     child: Material(
                     borderRadius: BorderRadius.circular(30.0),
                     shadowColor: Colors.lightBlueAccent.shade100,
-                   elevation: 6.0,
+                   elevation: 7.0,
                   child: MaterialButton(
                     minWidth: 200.0,
                   height: 47.0,
                   onPressed: (){},
                   color: Colors.amber,
-                  child: Text('Add',style:TextStyle(color:Colors.black,fontSize: 20.0)),
-
+                  child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
                    ) ,
                    ),
                      ),

@@ -52,6 +52,10 @@ class Chicktreat extends StatefulWidget {
             floating: true,
             forceElevated: boxIsScrolled,
             bottom: new TabBar(
+              indicatorColor: Colors.green,
+              indicator: UnderlineTabIndicator(
+                borderSide: BorderSide(width:1.0),  
+              ), 
               labelStyle: TextStyle(fontSize: 20.0),
               unselectedLabelColor: Colors.white54,
               tabs: <Widget>[

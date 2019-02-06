@@ -25,7 +25,7 @@ class NewUser extends StatefulWidget{
         decoration: InputDecoration(
           hintText: 'Email ID',
           suffixIcon: Icon(Icons.email, color: Colors.green,),
-          contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+         contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
           // border: OutlineInputBorder(
           //   borderRadius: BorderRadius.circular(25.0),
             
@@ -39,7 +39,7 @@ class NewUser extends StatefulWidget{
         decoration: InputDecoration(
           hintText: 'Full Name',
           suffixIcon: Icon(Icons.account_circle, color: Colors.green,),
-          contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+          contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
           // border: OutlineInputBorder(
           //   borderRadius: BorderRadius.circular(25.0),
             
@@ -53,7 +53,7 @@ class NewUser extends StatefulWidget{
         decoration: InputDecoration(
           hintText: 'Enter Your Mobile No.',
           suffixIcon: Icon(Icons.phone_iphone, color: Colors.green,),
-          contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+          contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
           // border: OutlineInputBorder(
           //   borderRadius: BorderRadius.circular(25.0),
             
@@ -66,7 +66,7 @@ class NewUser extends StatefulWidget{
      decoration: InputDecoration(
          hintText: 'Password',
          suffixIcon: Icon(Icons.lock_open, color: Colors.green,),
-         contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+         contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
         //  border: OutlineInputBorder(
         //    borderRadius: BorderRadius.circular(25.0),
         //  )
@@ -78,7 +78,7 @@ class NewUser extends StatefulWidget{
      decoration: InputDecoration(
          hintText: 'Re-Password',
          suffixIcon: Icon(Icons.redo, color: Colors.green,),
-         contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+         contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
         //  border: OutlineInputBorder(
         //    borderRadius: BorderRadius.circular(25.0),
         //  )
@@ -87,10 +87,10 @@ class NewUser extends StatefulWidget{
    
    final loginButton = Padding(
        padding: EdgeInsets.symmetric(vertical: 50.0),
-     child: Material(
+       child: Material(
        borderRadius: BorderRadius.circular(30.0),
        shadowColor: Colors.lightBlueAccent.shade100,
-        elevation: 6.0,
+        elevation: 7.0,
         child: MaterialButton(
           minWidth: 200.0,
           height: 47.0,
@@ -99,7 +99,7 @@ class NewUser extends StatefulWidget{
            },
            
           color: Colors.amber,
-          child: Text('Sign-Up',style:TextStyle(color:Colors.black,fontSize: 20.0)),
+          child: Text('Sign-Up',style:TextStyle(color:Colors.white,fontSize: 20.0)),
 
         ) ,
      ),
@@ -111,7 +111,7 @@ class NewUser extends StatefulWidget{
         primarySwatch: Colors.green,
      ),
       home: Scaffold(
-     appBar: AppBar(
+      appBar: AppBar(
        title: Text('Registration'),
        centerTitle: true,
        backgroundColor: Colors.amber,
@@ -127,9 +127,9 @@ class NewUser extends StatefulWidget{
      body: Center(
        child: ListView(
          shrinkWrap: true,
-         padding: EdgeInsets.only(left: 24.0,right: 24.0),
+         padding: EdgeInsets.only(left: 25.0,right: 25.0),
          children: <Widget>[ 
-           SizedBox(height: 30.0),
+           SizedBox(height: 20.0),
            logo,
            SizedBox(height: 20.0),
            name,
