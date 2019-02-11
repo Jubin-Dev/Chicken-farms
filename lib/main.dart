@@ -27,16 +27,15 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 class SplashScreen extends StatefulWidget{
   @override
-  _SplashScreenState createState() =>_SplashScreenState() ;
+  _SplashScreenState createState() => _SplashScreenState() ;
   }
   class _SplashScreenState extends State<SplashScreen>{
   @override
   void initState() {
     super.initState();
-    new Future.delayed(const Duration(seconds: 4),() => Navigator.push(
+    new Future.delayed(const Duration(seconds: 3),() => Navigator.push(
       context, MaterialPageRoute(builder: (context) => LoginPage()),
     )
     );
@@ -52,10 +51,10 @@ class SplashScreen extends StatefulWidget{
         fit: StackFit.expand,
         children: <Widget>[
           Container(
-            decoration: BoxDecoration(color: Colors.amberAccent[200]),
+            decoration: BoxDecoration(color: Colors.amber[300]),
           ),
           Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[ 
               Expanded(
                 flex: 2,
@@ -65,16 +64,16 @@ class SplashScreen extends StatefulWidget{
                       children: <Widget>[
                         CircleAvatar(
                           backgroundColor: Colors.white54,
-                          radius: 60.0,
+                          radius: 70.0,
                           child: Image(
-                            image: AssetImage('lib/images/rooster.png'),
+                          image: AssetImage('lib/images/rooster.png'),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(top:10.0),
-                        ),
+                          padding: EdgeInsets.only(top:50.0),
+                            ),
                         Text("CHICKEN FARM",style: TextStyle(color:
-                        Colors.green ,fontSize: 24.0,fontWeight: FontWeight.w500),
+                        Colors.teal,fontSize: 25.0,fontWeight: FontWeight.w500,fontFamily: 'Roboto'),
                         ),
                       ],
                     ),
@@ -85,24 +84,24 @@ class SplashScreen extends StatefulWidget{
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      CircularProgressIndicator(),
+                      CircularProgressIndicator(
+                        valueColor: new AlwaysStoppedAnimation<Color>(Colors.teal),),
                       Padding(
-                        padding: EdgeInsets.only(top: 20.0),
+                        padding: EdgeInsets.only(top: 50.0),
                       ),
                       Text("Smart Care \n For Chickens",
-                      style: TextStyle(color: Colors.green,fontSize: 18.0,fontWeight: FontWeight.w400),
+                      style: TextStyle(color: Colors.teal,fontSize: 18.0,fontWeight: FontWeight.w400),
                       )
                     ],
 
-              ))
-            ],
-
+              )
+              )
+             ],
           )
         ],
       ),
-
      )
-      );
+     );
   }
 }
 

@@ -41,9 +41,8 @@ class MyHomes extends StatelessWidget {
         appBar: AppBar(
           title: Text('Home'),
           centerTitle: true,
-          
           actions: <Widget>[
-           new IconButton(icon: Icon(Icons.search),
+           new IconButton(icon: Icon(Icons.search),color: Colors.black,
            onPressed: () {},
             )
           ],
@@ -51,14 +50,14 @@ class MyHomes extends StatelessWidget {
           body: Column(
             children: <Widget>[
               Container(
-                padding: EdgeInsets.only(top: 80.0),
+                padding: EdgeInsets.only(top: 70.0),
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height/2,
                 decoration: BoxDecoration(
                   color: Colors.amber,
                   boxShadow: <BoxShadow>[
                 BoxShadow(
-                  color: Colors.green,
+                  color: Colors.black45,
                   offset: Offset(1.0, 5.0),
                   blurRadius: 20.0,
                 ),
@@ -79,11 +78,11 @@ class MyHomes extends StatelessWidget {
                         
                          Padding(
                            
-                      padding:const EdgeInsets.only(top: 0.0,left: 135.0 ),
+                      padding:const EdgeInsets.only(top: 5.0,left: 115.0 ),
                       
                         child: CircleAvatar(    
-                      backgroundColor: Colors.yellow,
-                      radius: 50.0,
+                      backgroundColor: Colors.white54,
+                      radius: 70.0,
                     
                      child: Image.asset('lib/images/rooster.png'),
                     ),
@@ -92,17 +91,17 @@ class MyHomes extends StatelessWidget {
                       ],
 
                     ),
-                    Padding(
-                      padding:const EdgeInsets.only(top: 10.0 ),
-                   child :Text('Chicken Farm'.toUpperCase(),
-                   style: TextStyle(
-                     color: Colors.white,
-                     fontSize: 24.0,
-                     fontFamily: 'Roboto',
-                     fontWeight: FontWeight.bold,
-                   ),
-                   ),
-                     ),
+                  //   Padding(
+                  //     padding:const EdgeInsets.only(top: 10.0 ),
+                  //  child :Text('Chicken Farm'.toUpperCase(),
+                  //  style: TextStyle(
+                  //    color: Colors.teal,
+                  //    fontSize: 24.0,
+                  //    fontFamily: 'Roboto',
+                  //    fontWeight: FontWeight.bold,
+                  //  ),
+                  //  ),
+                  //    ),
                     
                      Padding(
                        padding: const EdgeInsets.only(top: 15,bottom: 32),

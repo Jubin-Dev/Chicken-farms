@@ -5,7 +5,7 @@ class NewUser extends StatefulWidget{
   
   static String tag ='Registration';
   @override
- _NewUserPageState  createState()=> new _NewUserPageState(); 
+ _NewUserPageState  createState() => new _NewUserPageState(); 
     
   }
   

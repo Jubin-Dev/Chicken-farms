@@ -71,16 +71,14 @@ Future<Null> _selectedDate(BuildContext context) async {
               child: new ListView (
                 padding: const EdgeInsets.all( 20.0),
                 children: <Widget>[
-                 
-                  
-                        new GestureDetector(
+                new GestureDetector(
                     onTap: () => _selectedDate(context),
                     child: AbsorbPointer(
                       child:
                   new TextFormField(
                     decoration: const InputDecoration(
                       
-                      icon: const Icon(Icons.calendar_today),
+                      icon: const Icon(Icons.calendar_today,color: Colors.green,),
                       hintText: 'please Enter Date',
                       labelText: 'From Date',
                     ),
@@ -95,7 +93,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                   new TextFormField(
                     decoration: const InputDecoration(
                       
-                      icon: const Icon(Icons.calendar_today),
+                      icon: const Icon(Icons.calendar_today,color: Colors.green,),
                       hintText: 'please Enter Date',
                       labelText: 'To Date',
                     ),
@@ -114,7 +112,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                     height: 47.0,
                     onPressed: (){},
                     color: Colors.amber,
-                    child: Text('Search',style:TextStyle(color:Colors.black,fontSize: 20.0)),
+                    child: Text('Search',style:TextStyle(color:Colors.white,fontSize: 20.0)),
 
                    ) ,
                    ),

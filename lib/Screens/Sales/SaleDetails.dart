@@ -240,7 +240,7 @@ class SellingPageState extends State<_SaleDetail> {
                     height: 47.0,
                     onPressed: (){},
                     color: Colors.amber,
-                    child: Text('Add',style:TextStyle(color:Colors.black,fontSize: 20.0)),
+                    child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
 
                    ) ,
                    ),

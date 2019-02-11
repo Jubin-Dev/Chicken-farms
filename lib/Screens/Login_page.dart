@@ -7,8 +7,7 @@ import 'package:flutter_app/Screens/forgot_passw.dart';
 class LoginPage extends StatefulWidget{
  static String tag ='loginPage';
   @override
-  _LoginPageState  createState()=> new _LoginPageState(); 
-   
+  _LoginPageState  createState() => new _LoginPageState();   
 }
 class _LoginPageState extends State<LoginPage> {
 final formKey = new GlobalKey<FormState>();
@@ -94,7 +93,7 @@ String _pass;
       ) 
       ),
           color: Colors.amber,
-          child: Text('Login',style:TextStyle(color:Colors.black,fontSize: 20.0)),
+          child: Text('Login',style:TextStyle(color:Colors.white,fontSize: 20.0)),
 
         ) ,
      ),
@@ -138,7 +137,8 @@ String _pass;
          ],
        ),
      ),
-    ), );
+    ),
+     );
      }
 }
   

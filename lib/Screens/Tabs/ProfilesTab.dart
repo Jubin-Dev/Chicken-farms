@@ -4,6 +4,7 @@ import 'package:flutter_app/Screens/Farm_Profile.dart';
 import 'package:flutter_app/Screens/Navigationdraw.dart';
 
 
+
 class Profile extends StatefulWidget {
   @override
   ProfileState createState() => ProfileState();
@@ -64,6 +65,7 @@ class Profile extends StatefulWidget {
                   text: "Chicken Profile",
                    icon: Icon(Icons.copyright, color: Colors.white,),
                 )
+                
               ],
               controller: tabController,
             ),
@@ -79,6 +81,7 @@ class Profile extends StatefulWidget {
           child:
           new ChickenProfile(),
         ),
+         
     ],
         controller: tabController,
     ),
