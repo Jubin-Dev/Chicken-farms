@@ -28,8 +28,8 @@ class TreatmentPage extends StatefulWidget {
 class _TreatmentPageState extends State<TreatmentPage> {
   
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-  List<String> _colors = <String>['', '123', '111', '347', '921'];
-  String _color = '';
+  List<String> _codes = <String>['', '123', '111', '347', '921'];
+  String _code = '';
 
 
   DateTime _date = new DateTime.now();
@@ -78,23 +78,24 @@ Future<Null> _selectedDate(BuildContext context) async {
                   new FormField(
                     builder: (FormFieldState state) {
                       return InputDecorator(
+                        
                         decoration: InputDecoration(
                           labelText: 'Animal Code',
                         ),
-                        isEmpty: _color == '',
+                        isEmpty: _code == '',
                         child: new DropdownButtonHideUnderline(
                           child: new DropdownButton(
-                            value: _color,
+                            value: _code,
                             isDense: true,
                             onChanged: (String newValue) {
                               setState(() {
                                 var newContact;
                               newContact.favoriteColor = newValue;
-                                _color = newValue;
+                                _code = newValue;
                                 state.didChange(newValue);
                               });
                             },
-                            items: _colors.map((String value) {
+                            items: _codes.map((String value) {
                               return new DropdownMenuItem(
                                 value: value,
                                 child: new Text(value),
@@ -120,7 +121,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                   ), 
                   new TextFormField(
                     decoration: const InputDecoration(
-                      
+                      contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                         hintText: 'Reason',
                        
                     ),
@@ -129,8 +130,10 @@ Future<Null> _selectedDate(BuildContext context) async {
 
                   ), 
                   new TextFormField(
+                    
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
+                      contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                       hintText: 'Quantity',
                       
                     ),
@@ -141,6 +144,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                   new TextFormField(
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
+                      contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                       hintText: 'Units',
                       
                     ),
@@ -156,8 +160,8 @@ Future<Null> _selectedDate(BuildContext context) async {
                       child:
                   new TextFormField(
                     decoration: const InputDecoration(
-                      
-                      icon: const Icon(Icons.calendar_today),
+                      contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
+                      icon: const Icon(Icons.calendar_today,color: Colors.green,),
                       hintText: 'please Enter Date',
                       labelText: 'Start Date',
                     ),
@@ -170,8 +174,8 @@ Future<Null> _selectedDate(BuildContext context) async {
                       child:
                   new TextFormField(
                     decoration: const InputDecoration(
-                      
-                      icon: const Icon(Icons.calendar_today),
+                      contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
+                      icon: const Icon(Icons.calendar_today,color: Colors.green,),
                       hintText: 'please Enter Date',
                       labelText: 'End Date',
                     ),
@@ -184,6 +188,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                   new TextField(
                     keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
+                        contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                         hintText: 'Dosage Per Day',
                        
                       ),
@@ -210,9 +215,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                      ) ) 
                      ), 
                      Divider(
-
-                  ),  
-                 
+                  ),    
                         new Container(
                     child: new Padding(
                      padding: EdgeInsets.symmetric(vertical: 80.0),
@@ -225,7 +228,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                   height: 47.0,
                   onPressed: (){},
                   color: Colors.amber,
-                  child: Text('Add',style:TextStyle(color:Colors.black,fontSize: 20.0)),
+                  child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
 
                    ) ,
                    ),

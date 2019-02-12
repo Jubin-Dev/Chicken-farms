@@ -44,7 +44,7 @@ class GiveVaccineList extends StatefulWidget{
             elevation: 20.0,
             highlightElevation: 20.0,
             isExtended: true,
-            child: new Icon(Icons.add),
+            child: new Icon(Icons.add,color: Colors.white,),
             onPressed: () => Navigator.push(
                  context, MaterialPageRoute(builder: (context) => GiveVaccine())),
           ), 

@@ -28,8 +28,16 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-  List<String> _colors = <String>['', 'Dead on Farm', 'Born On Farm', 'Purchased', 'Sold'];
+    List<String> _colors = <String>['', 'Dead on Farm', 'Born On Farm', 'Purchased', 'Sold'];
+    List<String> _genders = <String>['', 'Male', 'Female', 'Other'];
+    List<String> _breeds = <String>['', 'None', 'Sire', 'Breeder'];
+    List<String> _weights = <String>['', 'Grams','Kilograms'];
+    List<String> _currency = <String>['', 'THB','USD','AUD','INR'];
   String _color = '';
+  String _gender = '';
+  String _breed = '';
+  String _weight = '';
+  String _currencys = '';
 
   DateTime  _date = new DateTime.now();
   TimeOfDay _time = new TimeOfDay.now();
@@ -152,20 +160,20 @@ Future<Null> _selectedDate(BuildContext context) async {
                         decoration: InputDecoration(
                           labelText: 'Gender',
                         ),
-                        isEmpty: _color == '',
+                        isEmpty: _gender == '',
                         child: new DropdownButtonHideUnderline(
                           child: new DropdownButton(
-                            value: _color,
+                            value: _gender,
                             isDense: true,
                             onChanged: (String newValue) {
                               setState(() {
                                 var newContact;
                                 newContact.favoriteColor = newValue;
-                                _color = newValue;
+                                _gender = newValue;
                                 state.didChange(newValue);
                               });
                             },
-                            items: _colors.map((String value) {
+                            items: _genders.map((String value) {
                               return new DropdownMenuItem(
                                 value: value,
                                 child: new Text(value),
@@ -183,20 +191,20 @@ Future<Null> _selectedDate(BuildContext context) async {
                         decoration: InputDecoration(
                           labelText: 'Breed Type',
                         ),
-                        isEmpty: _color == '',
+                        isEmpty: _breed == '',
                         child: new DropdownButtonHideUnderline(
                           child: new DropdownButton(
-                            value: _color,
+                            value: _breed,
                             isDense: true,
                             onChanged: (String newValue) {
                               setState(() {
                                 var newContact;
                                 newContact.favoriteColor = newValue;
-                                _color = newValue;
+                                _breed = newValue;
                                 state.didChange(newValue);
                               });
                             },
-                            items: _colors.map((String value) {
+                            items: _breeds.map((String value) {
                               return new DropdownMenuItem(
                                 value: value,
                                 child: new Text(value),
@@ -256,20 +264,20 @@ Future<Null> _selectedDate(BuildContext context) async {
                           labelText: 'Weight Type',
                           contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                         ),
-                        isEmpty: _color == '',
+                        isEmpty: _weight == '',
                         child: new DropdownButtonHideUnderline(
                           child: new DropdownButton(
-                            value: _color,
+                            value: _weight ,
                             isDense: true,
                             onChanged: (String newValue) {
                               setState(() {
                                 var newContact;
                               newContact.favoriteColor = newValue;
-                                _color = newValue;
+                                _weight  = newValue;
                                 state.didChange(newValue);
                               });
                             },
-                            items: _colors.map((String value) {
+                            items: _weights.map((String value) {
                               return new DropdownMenuItem(
                                 value: value,
                                 child: new Text(value),
@@ -291,8 +299,8 @@ Future<Null> _selectedDate(BuildContext context) async {
                   ),
                   new TextField(
                       decoration: const InputDecoration(
-                        labelText:  'Weight',
-                        hintText:   'Weight',
+                        labelText:  'Standerd Price',
+                        hintText:   'Standerd Price',
                         contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                       ),
                     ) ,
@@ -300,23 +308,23 @@ Future<Null> _selectedDate(BuildContext context) async {
                     builder: (FormFieldState state) {
                       return InputDecorator(
                         decoration: InputDecoration(
-                          labelText: 'Weight Type',
+                          labelText: 'Currency',
                           contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                         ),
-                        isEmpty: _color == '',
+                        isEmpty: _currencys == '',
                         child: new DropdownButtonHideUnderline(
                           child: new DropdownButton(
-                            value: _color,
+                            value: _currencys,
                             isDense: true,
                             onChanged: (String newValue) {
                               setState(() {
                                 var newContact;
                               newContact.favoriteColor = newValue;
-                                _color = newValue;
+                                _currencys = newValue;
                                 state.didChange(newValue);
                               });
                             },
-                            items: _colors.map((String value) {
+                            items: _currency.map((String value) {
                               return new DropdownMenuItem(
                                 value: value,
                                 child: new Text(value),

@@ -52,9 +52,10 @@ class VaccineTab extends StatefulWidget {
             centerTitle: true,
             pinned: true,
             floating: false,
-            forceElevated: boxIsScrolled,
+            forceElevated: boxIsScrolled,            
             bottom: new TabBar(
-              indicator: UnderlineTabIndicator(
+            isScrollable: true,
+            indicator: UnderlineTabIndicator(
                 borderSide: BorderSide(width:1.0),  
               ),
               labelStyle: TextStyle(fontSize: 20.0),
@@ -62,16 +63,16 @@ class VaccineTab extends StatefulWidget {
               
               tabs: <Widget>[
                 Tab(
-                  text: "Vaccine\nSchedule",
+                  text: "Vaccine Schedule",
                 ),
                 Tab(
-                  text: "Purchased\nVaccine",
+                  text: "Purchased Vaccine",
                 ),
                 Tab(
-                  text: "Give\nVaccine",
+                  text: "Give Vaccine",
                 ),
                 Tab(
-                  text: "Vaccine\nDue",
+                  text: "Vaccine Due",
                   
                 )
               ],

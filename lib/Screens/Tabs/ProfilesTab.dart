@@ -50,6 +50,7 @@ class Profile extends StatefulWidget {
             floating: false,
             forceElevated: boxIsScrolled,
             bottom: new TabBar(
+              isScrollable: true,
               indicatorColor: Colors.green,
               indicator: UnderlineTabIndicator(
                 borderSide: BorderSide(width:1.0),  
