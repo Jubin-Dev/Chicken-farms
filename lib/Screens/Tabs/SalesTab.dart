@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-
-
-
 import 'package:flutter_app/Screens/Navigationdraw.dart';
-import 'package:flutter_app/Screens/Sales/AnimalSale.dart';
-import 'package:flutter_app/Screens/Sales/Pricelist.dart';
+import 'package:flutter_app/Screens/Sales/PriceDetail.dart';
+import 'package:flutter_app/Screens/Sales/SaleDetails.dart';
+import 'package:flutter_app/Screens/Sales/SaleEntryDetail.dart';
 import 'package:flutter_app/Screens/Sales/SaleEntrylist.dart';
 
 void main() {
@@ -72,7 +70,6 @@ class SalesTab extends StatefulWidget {
                   text: "AnimalSale",
                 ),
                 Tab(
-                  
                   text: "Sale Entry",
                   icon: Icon(Icons.payment, color: Colors.white,),
                   
@@ -86,7 +83,7 @@ class SalesTab extends StatefulWidget {
       body: TabBarView(children: <Widget>[
           new Container(
           child:
-          new PriceList(),
+          new PriceDetailList(),
         ),
           new Container(
           child:
@@ -94,7 +91,7 @@ class SalesTab extends StatefulWidget {
         ),
         new Container(
           child:
-          new SaleEntryList(),
+          new SaleEntrydetail(),
         ),
     ],
         controller: tabController,

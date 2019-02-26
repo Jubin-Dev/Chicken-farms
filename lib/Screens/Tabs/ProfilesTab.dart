@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Screens/Chicken_ProfileList/Chicken_ProfileList.dart';
+import 'package:flutter_app/Screens/Chicken_ProfileList/DetailForms.dart';
 import 'package:flutter_app/Screens/Farm_Profile.dart';
 import 'package:flutter_app/Screens/Navigationdraw.dart';
 
@@ -47,8 +48,8 @@ class Profile extends StatefulWidget {
        ),
             centerTitle: true,
             pinned: true,
-            floating: false,
-            forceElevated: boxIsScrolled,
+            floating: true,
+            // forceElevated: boxIsScrolled,
             bottom: new TabBar(
               isScrollable: true,
               indicatorColor: Colors.green,
@@ -80,7 +81,7 @@ class Profile extends StatefulWidget {
         ),
           new Container(
           child:
-          new ChickenProfile(),
+          new NextPage(),
         ),
          
     ],

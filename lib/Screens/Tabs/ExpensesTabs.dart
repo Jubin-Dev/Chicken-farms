@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter_app/Screens/Expanses/ExpanseEntryList.dart';
-import 'package:flutter_app/Screens/Expanses/MasterExpLists.dart';
-
+import 'package:flutter_app/Screens/Expanses/ExpenseEntry.dart';
+import 'package:flutter_app/Screens/Expanses/MasterExp.dart';
 import 'package:flutter_app/Screens/Navigationdraw.dart';
 
 void main() {
@@ -78,17 +76,17 @@ class ExpTab extends StatefulWidget {
       body: TabBarView(children: <Widget>[
           new Container(
           child:
-          new MasterExptList(),
+          new ExpList(),
         ),
           new Container(
           child:
-          new ExpenseEntryList(),
+          new ExpEntryList(),
         ),
     ],
         controller: tabController,
     ),
     )
-
-    ) );
+    )
+    );
   }
 }

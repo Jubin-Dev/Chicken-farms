@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app/Screens/Expanses/MasterExp.dart';
 import 'package:flutter_app/Screens/Tabs/SalesTab.dart';
 
 void main() => runApp(new PriceDetail());
 
 class PriceDetail extends StatelessWidget {
+
+  final String sirecode,breedercode,price; 
+ 
+ const PriceDetail(
+ {
+    this.sirecode, this.breedercode, this.price
+  }
+);
+
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -26,6 +36,11 @@ class _PriceDetail extends StatefulWidget {
 }
 
 class SalePageState extends State<_PriceDetail> {
+
+  var _sirecodeController = new TextEditingController();
+  var _priceController = new TextEditingController();
+  var _breedercodeController = new TextEditingController();
+  
  
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   
@@ -58,8 +73,9 @@ class SalePageState extends State<_PriceDetail> {
  
                 children: <Widget>[
                           
-                       new TextFormField(
-                     
+                       new TextField(
+                          controller: _sirecodeController,
+                          onChanged: (value) => _sirecodeController.text = value,
                       keyboardType: TextInputType.number ,
                       autofocus: false,
                       decoration: InputDecoration(
@@ -76,26 +92,28 @@ class SalePageState extends State<_PriceDetail> {
                     Divider(
 
                     ),
-                 new TextFormField(
+                 new TextField(
+                   controller: _breedercodeController,
+                     onChanged: (value) => _breedercodeController.text = value,
                      keyboardType: TextInputType.number ,
                       decoration: InputDecoration(
                         filled: true,
                         hintText: 'Breeder Code',
                         contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0),
+                        borderRadius: BorderRadius.circular(20.0),
                 
                         ) 
                     ),
                       
                   ),
-                  Divider(
+                  Divider(),
 
-                    ),
-
-                    new TextFormField(
-                        keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
+                    new TextField(
+                      controller: _priceController,
+                      onChanged: (value) => _priceController.text = value,
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
                       hintText: 'Price',
                       // labelText: 'Symbol',
                     ),
@@ -105,7 +123,7 @@ class SalePageState extends State<_PriceDetail> {
                     builder: (FormFieldState state) {
                       return InputDecorator(
                         decoration: InputDecoration(
-                          labelText: 'Currency',
+                        labelText: 'Currency',
                         ),
                         isEmpty: _color == ' ',
                         child: new DropdownButtonHideUnderline(
@@ -132,19 +150,20 @@ class SalePageState extends State<_PriceDetail> {
                     },
                   ),
                  
-                        new Container(
+                    new Container(
                     child: new Padding(
-                     padding: EdgeInsets.symmetric(vertical: 80.0),
+                    padding: EdgeInsets.symmetric(vertical: 80.0),
                     child: Material(
                     borderRadius: BorderRadius.circular(30.0),
                     shadowColor: Colors.lightBlueAccent.shade100,
-                   elevation: 6.0,
-                  child: MaterialButton(
+                    elevation: 6.0,
+                    child: MaterialButton(
                     minWidth: 200.0,
                   height: 47.0,
-                  onPressed: (){},
+                  onPressed: () => Navigator.push(
+                 context, MaterialPageRoute(builder: (context) => SalesTab())),
                   color: Colors.amber,
-                  child: Text('Add',style:TextStyle(color:Colors.black,fontSize: 20.0)),
+                  child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
 
                    ) ,
                    ),
@@ -155,3 +174,134 @@ class SalePageState extends State<_PriceDetail> {
                 );
               }
               }
+
+    class PriceDetailList extends StatefulWidget{
+
+    final String value;
+    
+    PriceDetailList({Key key,this.value}): super(key:key);
+    
+      @override
+        
+      _PriceDetailListPageState createState() => _PriceDetailListPageState();
+         
+          }
+  
+  class _PriceDetailListPageState extends State<PriceDetailList> {
+    
+    bool isPriority = false;
+    
+    void _toggleFlag(){
+    setState(() {
+     if(isPriority) {
+       isPriority = false;
+     }else{
+       isPriority = true;
+     }
+    });
+
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    
+    return new  MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: new ThemeData(
+        accentColor: Colors.amber,
+        brightness: Brightness.light,
+      ),
+      
+      home:Scaffold(
+        floatingActionButton: new FloatingActionButton(
+            elevation: 20.0,
+            highlightElevation: 20.0,
+            isExtended: true,
+            child: new Icon(Icons.add, color: Colors.white),
+            onPressed: () => Navigator.push(
+                 context, MaterialPageRoute(builder: (context) => PriceDetail())),
+          ), 
+     
+     body:ListView.builder( itemCount: 20,
+         
+        shrinkWrap: true,
+        itemBuilder: (BuildContext context,int index) => Container(
+        //width: MediaQuery.of(context).size.width,
+        padding: EdgeInsets.symmetric(vertical: 10.0),
+       
+          child: Card(
+        
+          margin: EdgeInsets.only(left: 10.0,right: 10.0),
+          elevation: 10.0,
+          shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(3.5)
+         ),
+          color: Colors.white70,
+          
+          child: Container(decoration: BoxDecoration(
+            color: Colors.transparent,
+            
+          ),
+          
+       
+        //width: MediaQuery.of(context).size.width,
+        margin: EdgeInsets.symmetric(horizontal: 10.0,vertical: 30.0),
+        padding: EdgeInsets.only(right: 80.0),
+
+        
+        child: 
+       
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                // Container(
+                //   width: 80.0,
+                //   height: 80.0,
+                //   color: Colors.white70,
+                //   child: CircleAvatar(
+                //     // backgroundColor: Colors.green,
+                    
+                //     backgroundImage: NetworkImage
+                //     ("https://www.google.com/search?q=chicken+images&rlz=1C1CHBF_enIN815IN815&tbm=isch&source=iu&ictx=1&fir=pQab4VRy_gKVlM%253A%252Cn02ibD9yVjdVZM%252C_&usg=AI4_-kTMhWDVRKAs8u3ox2RVQjz7MFiaWQ&sa=X&ved=2ahUKEwies97Du7jgAhUHf30KHR75CFoQ9QEwCnoECAAQGA#imgrc=pQab4VRy_gKVlM:"),
+                    
+                //     ),
+                  
+                //     ),
+                SizedBox(width: 20.0,),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    
+                    new Text("Sire Code: ${widget.value}"),
+                    Divider(),
+                    new Text("Breeder Code: ${widget.value}"),
+                    Divider(),
+                    new Text("Price: ${widget.value}"),
+                    
+
+                    Divider(color: Colors.teal,indent: 50.0,),
+                    // new IconButton(
+                    // icon: Icon(Icons.delete),
+                    // iconSize: 45.0,
+                    // color:(isPriority)? Colors.red : Colors.green,
+                    // onPressed: _toggleFlag,
+                    //  ),
+
+                    ],
+                 
+                ),
+              
+          ],
+        ),
+        
+          ),
+         
+    ),
+   
+     ),
+      )
+      ),
+      );
+    }
+  }

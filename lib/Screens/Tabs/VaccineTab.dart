@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Screens/Navigationdraw.dart';
-import 'package:flutter_app/Screens/Vaccine/GiveVaccineLIst.dart';
-import 'package:flutter_app/Screens/Vaccine/PurchasedVaccineLIst.dart';
-import 'package:flutter_app/Screens/Vaccine/VaccineScheList.dart';
+import 'package:flutter_app/Screens/Vaccine/GiveVaccine.dart';
+import 'package:flutter_app/Screens/Vaccine/PurchasedVaccine.dart';
+import 'package:flutter_app/Screens/Vaccine/Vaccine_Schedule.dart';
 import 'package:flutter_app/Screens/Vaccine/Vaccine_due.dart';
 
 void main() {
@@ -84,15 +84,15 @@ class VaccineTab extends StatefulWidget {
       body: TabBarView(children: <Widget>[
           new Container(
           child:
-          new VaccineScheduleList(),
+          new VaccineSched(),
         ),
           new Container(
           child:
-          new PurchasedVaccineList(),
+          new PurchVaccineList(),
         ),
           new Container(
           child:
-          new GiveVaccineList(),
+          new GivenVaccineList(),
         ),
           new Container(
           child:

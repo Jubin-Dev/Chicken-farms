@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/Screens/ChickenTreatment/PurchasedMedicine.dart';
-import 'package:flutter_app/Screens/ChickenTreatment/TreatmentEntrylist.dart';
+import 'package:flutter_app/Screens/ChickenTreatment/MedicineDetails.dart';
+import 'package:flutter_app/Screens/ChickenTreatment/TreatmentDetail.dart';
+// import 'package:flutter_app/Screens/ChickenTreatment/PurchasedMedicine.dart';
+
 
 import 'package:flutter_app/Screens/Navigationdraw.dart';
 
@@ -77,11 +79,11 @@ class Chicktreat extends StatefulWidget {
       body: TabBarView(children: <Widget>[
           new Container(
           child:
-          new TreatmentList(),
+          new Treatmentlist(),
         ),
           new Container(
           child:
-          new PurchMediList(),
+          new PurchMedicineList(),
         ),
     ],
         controller: tabController,
