@@ -3,7 +3,7 @@ import 'package:flutter_app/Screens/Navigationdraw.dart';
 import 'package:flutter_app/Screens/Sales/PriceDetail.dart';
 import 'package:flutter_app/Screens/Sales/SaleDetails.dart';
 import 'package:flutter_app/Screens/Sales/SaleEntryDetail.dart';
-import 'package:flutter_app/Screens/Sales/SaleEntrylist.dart';
+
 
 void main() {
   runApp(TabBar(tabs: <Widget>[],));
@@ -41,6 +41,7 @@ class SalesTab extends StatefulWidget {
             backgroundColor: Colors.amber,
             elevation: 15.0,
             title: Text('SALE DETAILS'),
+            expandedHeight: 160.0,
             leading: IconButton(
             icon: Icon(Icons.arrow_back_ios),
             onPressed: () => Navigator.push (
@@ -62,16 +63,16 @@ class SalesTab extends StatefulWidget {
               unselectedLabelColor: Colors.white54,
               tabs: <Widget>[
                 Tab(
-                  icon: Icon(Icons.library_books, color: Colors.white,),
+                  icon: Icon(Icons.filter_list, color: Colors.white,size: 40.0,),
                   text: "Price List",
                 ),
                 Tab(
-                  icon: Icon(Icons.pets, color: Colors.white,),
+                  icon: Icon(Icons.pets, color: Colors.white,size: 40.0,),
                   text: "AnimalSale",
                 ),
                 Tab(
                   text: "Sale Entry",
-                  icon: Icon(Icons.payment, color: Colors.white,),
+                  icon: Icon(Icons.event_note, color: Colors.white,size: 40.0,),
                   
                 )
               ],

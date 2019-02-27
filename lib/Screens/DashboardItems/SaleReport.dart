@@ -21,11 +21,9 @@ class ReportSale extends StatelessWidget {
 class ReportSalePage extends StatefulWidget {
   ReportSalePage({Key key, this.title}) : super(key: key);
   final String title;
-
   @override
   _ReportSalePageState createState() => new _ReportSalePageState();
 }
-
 class _ReportSalePageState extends State<ReportSalePage> {
 
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
@@ -80,13 +78,13 @@ Future<Null> _selectedDate(BuildContext context) async {
                       child:
                   new TextFormField(
                     decoration: const InputDecoration(
-                      
-                      icon: const Icon(Icons.calendar_today,color: Colors.green,),
+                      suffixIcon: const Icon(Icons.calendar_today,color: Colors.green,),
                       hintText: 'please Enter Date',
                       labelText: 'From Date',
                     ),
                     // keyboardType: TextInputType.numberWithOptions(),
                    ) )),
+                   
                    Divider(),
 
                    new GestureDetector(
@@ -94,9 +92,8 @@ Future<Null> _selectedDate(BuildContext context) async {
                     child: AbsorbPointer(
                       child:
                   new TextFormField(
-                    decoration: const InputDecoration(
-                      
-                      icon: const Icon(Icons.calendar_today, color: Colors.green),
+                    decoration: const InputDecoration(   
+                      suffixIcon: const Icon(Icons.calendar_today, color: Colors.green),
                       hintText: 'please Enter Date',
                       labelText: 'To Date',
                     ),
@@ -165,11 +162,9 @@ Future<Null> _selectedDate(BuildContext context) async {
                     },
                   ),
                 
-                         
-                 
-                        new Container(
+                new Container(
                     child: new Padding(
-                     padding: EdgeInsets.symmetric(vertical: 80.0),
+                     padding: EdgeInsets.symmetric(vertical: 40.0),
                     child: Material(
                     borderRadius: BorderRadius.circular(30.0),
                     shadowColor: Colors.lightBlueAccent.shade100,
@@ -189,4 +184,4 @@ Future<Null> _selectedDate(BuildContext context) async {
                       ))),
                 );
               }
-              }
+            }

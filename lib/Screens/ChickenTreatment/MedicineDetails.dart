@@ -98,6 +98,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                      onChanged: (value) => _medicinenameController.text = value,
                     keyboardType: TextInputType.text,
                     decoration: const InputDecoration(
+                       suffixIcon: Icon(Icons.local_pharmacy,color:Colors.green),
                         hintText: 'Medicine Name',
                        
                     ),
@@ -107,7 +108,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                   ), 
                   new TextFormField(
                     decoration: const InputDecoration(
-                      
+                      suffixIcon: Icon(Icons.local_hospital,color:Colors.green),
                         hintText: 'Medicine Type',
                        
                     ),
@@ -118,6 +119,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                   new TextFormField(
                     keyboardType: TextInputType.text,
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.location_city,color:Colors.green),
                       hintText: 'Medicine Company',
                       
                     ),
@@ -136,8 +138,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                       controller: _purchasedDateController,
                       onChanged: (value) => _purchasedDateController.text = value,
                     decoration: const InputDecoration(
-                      
-                      icon: const Icon(Icons.calendar_today),
+                    suffixIcon: Icon(Icons.calendar_today,color:Colors.green),
                       hintText: 'please Enter Date',
                       labelText: 'Purchase Date',
                     ),
@@ -149,9 +150,8 @@ Future<Null> _selectedDate(BuildContext context) async {
                     child: AbsorbPointer(
                       child:
                   new TextField(
-                    decoration: const InputDecoration(
-                      
-                      icon: const Icon(Icons.calendar_today),
+                    decoration: const InputDecoration( 
+                     suffixIcon: Icon(Icons.calendar_today,color:Colors.green),
                       hintText: 'please Enter Date',
                       labelText: 'Expiry Date',
                     ),
@@ -164,6 +164,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                   new TextFormField(
                     keyboardType: TextInputType.text,
                       decoration: const InputDecoration(
+                         suffixIcon: Icon(Icons.format_list_numbered_rtl,color:Colors.green),
                         hintText: 'Batch Number',
                        
                       ),
@@ -175,6 +176,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                     new TextFormField(
                     keyboardType: TextInputType.text,
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.supervised_user_circle,color:Colors.green),
                         hintText: 'Supplied By',
                        
                     ),
@@ -187,7 +189,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                      onChanged: (value) => _quantityController.text = value,
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
-                      
+                      suffixIcon: Icon(Icons.widgets,color:Colors.green),
                         hintText: 'Quantity',
                        
                     ),
@@ -199,6 +201,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                        new TextFormField(
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.format_underlined,color:Colors.green),
                         hintText: 'Unit',
                        
                     ),
@@ -209,7 +212,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                   new TextFormField(
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
-                      
+                      suffixIcon: Icon(Icons.monetization_on,color:Colors.green),
                         hintText: 'Unit Price',
                        
                     ),
@@ -258,6 +261,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                       autofocus: false,
                       keyboardType: TextInputType.number,
                     decoration: InputDecoration(
+                      suffixIcon: Icon(Icons.attach_money,color:Colors.green),
                       filled: true,
                     hintText: 'Purchase Amount',
                     contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 20.0, 40.0),

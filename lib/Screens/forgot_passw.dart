@@ -15,7 +15,7 @@ class Forgot_Pass extends StatefulWidget{
 
   final description =   Text("To use SMS verification, you need access to the verified, phone number and click to Continue.",
                             style: TextStyle(color:
-                            Colors.black ,fontSize: 20.0,fontWeight: FontWeight.w400, fontFamily: 'Roboto',),
+                            Colors.black ,fontSize: 20.0,fontWeight: FontWeight.w400, fontFamily: "Titilium",),
                         );
   
   final phone = TextFormField(
@@ -64,7 +64,7 @@ class Forgot_Pass extends StatefulWidget{
        backgroundColor: Colors.amber,
        leading: IconButton(
          icon: Icon(Icons.arrow_back_ios),
-         onPressed: () => Navigator.push (
+         onPressed: () => Navigator.pop (
           context, MaterialPageRoute(builder: (context) => LoginPage(),
        ),
      ),

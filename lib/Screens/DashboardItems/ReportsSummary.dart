@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Screens/Home_page.dart';
-
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:intl/intl.dart';
 
 void main() => runApp(new ReportSummary());
 
@@ -27,27 +28,30 @@ class ReportSummaryPage extends StatefulWidget {
 }
 
 class _ReportSummaryPageState extends State<ReportSummaryPage> {
+  
+  final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
+  };
+  // DateTime date = new DateTime.now();
+
+  InputType inputType = InputType.date;
+  bool editable = true;
+  DateTime date;
 
   
+// Future<Null> _selectedDate(BuildContext context) async {
+//   final DateTime picked = await showDatePicker(
+//       context: context,
+//       initialDate: _date,
+//       firstDate: new DateTime(2016),
+//       lastDate: new DateTime(2050));
 
-  
-  DateTime _date = new DateTime.now();
-  
-
-Future<Null> _selectedDate(BuildContext context) async {
-  final DateTime picked = await showDatePicker(
-      context: context,
-      initialDate: _date,
-      firstDate: new DateTime(2016),
-      lastDate: new DateTime(2019));
-
-  if (picked != null && picked != _date) {
-    print("Date selected ${_date.toString()}");
-    setState(() {
-      _date = picked;
-    });
-  }
-}
+//   if (picked != null && picked != _date) {
+//     print("Date selected ${_date.toString()}");
+//     setState(() {
+//       _date = picked;
+//     });
+//   }
+// }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +63,7 @@ Future<Null> _selectedDate(BuildContext context) async {
         backgroundColor: Colors.amber,
         leading: IconButton(icon: Icon(Icons.arrow_back_ios),
         onPressed: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => MyHomes())),
+                        context, MaterialPageRoute(builder: (context) => MyHomes())),
         ),
       ),
       body: new SafeArea(
@@ -71,38 +75,56 @@ Future<Null> _selectedDate(BuildContext context) async {
               child: new ListView (
                 padding: const EdgeInsets.all( 20.0),
                 children: <Widget>[
-                new GestureDetector(
-                    onTap: () => _selectedDate(context),
-                    child: AbsorbPointer(
-                      child:
-                  new TextFormField(
+                  // Text('Format:"${formats[inputType].pattern}"'),
+                // new GestureDetector(
+                //     onTap: () => _selectedDate(context),
+                //     child: AbsorbPointer(
+                //       child:
+                  new DateTimePickerFormField(
+                    inputType: inputType,
+                    format: formats[inputType],
+                    editable: editable,
                     decoration: const InputDecoration(
-                      
-                      icon: const Icon(Icons.calendar_today,color: Colors.green,),
-                      hintText: 'please Enter Date',
-                      labelText: 'From Date',
-                    ),
+                    prefixIcon: const Icon(Icons.calendar_today, color: Colors.green), 
+                    labelText: 'From Date',hasFloatingPlaceholder: true
+                    ), 
+                    onChanged: (dt) => setState(()=> date = dt),
+                    // dateOnly: true,
+                    ),// format: null,
                     // keyboardType: TextInputType.numberWithOptions(),
-                   ) )),
+                //  Text('Date value $date'),
+                  //  Divider(),
+                  //  new GestureDetector(
+                  //   onTap: () => _selectedDate(context),
+                  //   child: AbsorbPointer(
+                  //     child:
+                  // new TextFormField(
+                  //   decoration: const InputDecoration(
+                      
+                  //     suffixIcon: const Icon(Icons.calendar_today,color: Colors.green,),
+                  //     hintText: 'please Enter Date',
+                  //     labelText: 'To Date',
+                  //   ),
+                  //   // keyboardType: TextInputType.numberWithOptions(),
+                  //  ) )),
+                   
                    Divider(),
 
-                   new GestureDetector(
-                    onTap: () => _selectedDate(context),
-                    child: AbsorbPointer(
-                      child:
-                  new TextFormField(
+                   new DateTimePickerFormField(
+                    inputType: inputType,
+                    format: formats[inputType],
+                    editable: editable,
                     decoration: const InputDecoration(
-                      
-                      icon: const Icon(Icons.calendar_today,color: Colors.green,),
-                      hintText: 'please Enter Date',
-                      labelText: 'To Date',
+                    prefixIcon: const Icon(Icons.calendar_today, color: Colors.green), 
+                    labelText: 'To Date',hasFloatingPlaceholder: true
+                    ), 
+                    onChanged: (dt) => setState(()=> date = dt),
                     ),
-                    // keyboardType: TextInputType.numberWithOptions(),
-                   ) )),
-                   Divider(),
+
+
                    new Container(
                       child: new Padding(
-                      padding: EdgeInsets.symmetric(vertical: 65.0),
+                      padding: EdgeInsets.symmetric(vertical: 40.0),
                       child: Material(
                       borderRadius: BorderRadius.circular(30.0),
                       shadowColor: Colors.lightBlueAccent.shade100,

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/Screens/Chicken_ProfileList/Chicken_ProfileList.dart';
 import 'package:flutter_app/Screens/Chicken_ProfileList/DetailForms.dart';
 import 'package:flutter_app/Screens/Farm_Profile.dart';
 import 'package:flutter_app/Screens/Navigationdraw.dart';
-
-
 
 class Profile extends StatefulWidget {
   @override
@@ -39,6 +36,7 @@ class Profile extends StatefulWidget {
             backgroundColor: Colors.amber,
             elevation: 15.0,
             title: Text('PROFILES'),
+            expandedHeight: 160.0,
             leading: IconButton(
             icon: Icon(Icons.arrow_back_ios),
             onPressed: () => Navigator.push (
@@ -61,11 +59,12 @@ class Profile extends StatefulWidget {
               tabs: <Widget>[
                 Tab(
                   text: "Farm Profile",
-                   icon: Icon(Icons.featured_video, color: Colors.white,),
+                   icon: Icon(Icons.person_pin, color: Colors.white,size: 40.0,),
+                   
                 ),
                 Tab(
                   text: "Chicken Profile",
-                   icon: Icon(Icons.copyright, color: Colors.white,),
+                   icon: Icon(Icons.copyright, color: Colors.white,size:40.0),
                 )
                 
               ],

@@ -126,6 +126,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                     onChanged: (value) => _medicinenameController.text = value,
                     keyboardType: TextInputType.text,
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.control_point_duplicate,color:Colors.green),
                         hintText: 'Medicine Name',
                        
                     ),
@@ -135,6 +136,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                   ), 
                   new TextFormField(
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.help_outline,color:Colors.green),
                       contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                         hintText: 'Reason',
                        
@@ -148,6 +150,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                     onChanged: (value) => _quantityController.text = value,
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.widgets,color:Colors.green),
                       contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                       hintText: 'Quantity',
                       
@@ -159,6 +162,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                   new TextFormField(
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.format_underlined,color:Colors.green),
                       contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                       hintText: 'Units',
                       
@@ -175,8 +179,9 @@ Future<Null> _selectedDate(BuildContext context) async {
                       child:
                   new TextFormField(
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.calendar_today,color:Colors.green),
                       contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-                      icon: const Icon(Icons.calendar_today,color: Colors.green,),
+                      
                       hintText: 'please Enter Date',
                       labelText: 'Start Date',
                     ),
@@ -189,8 +194,9 @@ Future<Null> _selectedDate(BuildContext context) async {
                       child:
                   new TextFormField(
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.calendar_today,color:Colors.green),
                       contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-                      icon: const Icon(Icons.calendar_today,color: Colors.green,),
+                     
                       hintText: 'please Enter Date',
                       labelText: 'End Date',
                     ),
@@ -204,6 +210,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                     onChanged: (value) => _totalDaysController.text = value,
                     keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
+                        suffixIcon: Icon(Icons.invert_colors,color:Colors.green),
                         contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                         hintText: 'Dosage Per Day',
                        
@@ -222,6 +229,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                       autofocus: false,
                       keyboardType: TextInputType.multiline,
                     decoration: InputDecoration(
+                      suffixIcon: Icon(Icons.edit,color:Colors.green),
                       filled: true,
                     hintText: 'Remark',
                     contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 30.0, 60.0),
@@ -230,9 +238,10 @@ Future<Null> _selectedDate(BuildContext context) async {
                        
                      ) ) 
                      ), 
-                     Divider(
-                  ),    
-                        new Container(
+                     
+                     Divider(),  
+                       
+                    new Container(
                     child: new Padding(
                      padding: EdgeInsets.symmetric(vertical: 80.0),
                     child: Material(

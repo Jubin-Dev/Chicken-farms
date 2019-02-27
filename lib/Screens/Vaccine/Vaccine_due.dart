@@ -26,6 +26,8 @@ class VaccineduePage extends StatefulWidget {
 }
 
 class _VaccineduePageState extends State<VaccineduePage> {
+    
+    int count = 1;
   
   DateTime _date = new DateTime.now();
   
@@ -47,6 +49,7 @@ Future<Null> _selectedDate(BuildContext context) async {
 
   @override
   Widget build(BuildContext context) {
+    // List <Widget> children = new List .generate(count,(int i)=> new VaccinedueList());
     return new Scaffold(
       // appBar: new AppBar(
       //   title: new Text(widget.title),
@@ -63,16 +66,15 @@ Future<Null> _selectedDate(BuildContext context) async {
               child: new ListView(
                 padding: const EdgeInsets.all( 20.0),
                 children: <Widget>[
-                 
-                  
-                        new GestureDetector(
+                    new GestureDetector(
                     onTap: () => _selectedDate(context),
                     child: AbsorbPointer(
-                      child:
-                  new TextFormField(
+                    
+                    child:
+                    new TextFormField(
                     decoration: const InputDecoration(
                       
-                      icon: const Icon(Icons.calendar_today),
+                      suffixIcon: const Icon(Icons.calendar_today,color:Colors.green ,),
                       hintText: 'please Enter Date',
                       labelText: 'From Date',
                     ),
@@ -83,10 +85,10 @@ Future<Null> _selectedDate(BuildContext context) async {
                     onTap: () => _selectedDate(context),
                     child: AbsorbPointer(
                       child:
-                  new TextFormField(
+                    new TextFormField(
                     decoration: const InputDecoration(
                       
-                      icon: const Icon(Icons.calendar_today),
+                       suffixIcon: const Icon(Icons.calendar_today,color:Colors.green ,),
                       hintText: 'please Enter Date',
                       labelText: 'Upto Date',
                     ),
@@ -97,22 +99,37 @@ Future<Null> _selectedDate(BuildContext context) async {
                  
                     new Container(
                     child: new Padding(
-                    padding: EdgeInsets.symmetric(vertical: 80.0),
+                    padding: EdgeInsets.symmetric(vertical: 50.0),
                     child: Material(
                     borderRadius: BorderRadius.circular(30.0),
                     shadowColor: Colors.lightBlueAccent.shade100,
                     elevation: 6.0,
-                  child: MaterialButton(
+                    child: MaterialButton(
                   minWidth: 200.0,
                   height: 47.0,
-                  onPressed: ()=> Navigator.push( 
-                     context, MaterialPageRoute(builder: (context) => VaccinedueList())),
+                  onPressed: (){setState(() {
+                   count = count + 1;
+                  //  new VaccinedueList(), 
+                  });
+                  },
+                  // => Navigator.push( 
+                  //    context, MaterialPageRoute(builder: (context) => VaccinedueList())),
                   color: Colors.amber,
                   child: Text('Search',style:TextStyle(color:Colors.white,fontSize: 20.0)),
 
                    ) ,
                    ),
                      ),
+                      ),
+                      new Container(      
+                        // padding: EdgeInsets.symmetric(vertical: 5.0),
+                        // margin: EdgeInsets.symmetric(vertical: 05.0),
+                        alignment: Alignment.topCenter,
+                        
+                        height: 200.0,
+                        child:
+                        new VaccinedueList(),
+                      
                       ),
                     ],
                       ))),
@@ -123,8 +140,12 @@ Future<Null> _selectedDate(BuildContext context) async {
     class VaccinedueList extends StatefulWidget{
 
     final String value;
+    // final int index;
+    
+    
     
     VaccinedueList({Key key,this.value}): super(key:key);
+    // VaccinedueList(this.index);
     
       @override
         
@@ -133,6 +154,8 @@ Future<Null> _selectedDate(BuildContext context) async {
           }
   
   class _DuePageState extends State<VaccinedueList> {
+
+    
     
     bool isPriority = false;
     
@@ -175,7 +198,6 @@ Future<Null> _selectedDate(BuildContext context) async {
         padding: EdgeInsets.symmetric(vertical: 10.0),
        
           child: Card(
-        
           margin: EdgeInsets.only(left: 10.0,right: 10.0),
           elevation: 10.0,
           shape: RoundedRectangleBorder(
@@ -192,26 +214,25 @@ Future<Null> _selectedDate(BuildContext context) async {
         //width: MediaQuery.of(context).size.width,
         margin: EdgeInsets.symmetric(horizontal: 10.0,vertical: 30.0),
         padding: EdgeInsets.only(right: 80.0),
-
-        
+ 
         child: 
        
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Container(
-                  width: 80.0,
-                  height: 80.0,
-                  color: Colors.white70,
-                  child: CircleAvatar(
-                    // backgroundColor: Colors.green,
+                // Container(
+                //   width: 80.0,
+                //   height: 80.0,
+                //   color: Colors.white70,
+                //   child: CircleAvatar(
+                //     // backgroundColor: Colors.green,
                     
-                    backgroundImage: NetworkImage
-                    ("https://www.google.com/search?q=chicken+images&rlz=1C1CHBF_enIN815IN815&tbm=isch&source=iu&ictx=1&fir=pQab4VRy_gKVlM%253A%252Cn02ibD9yVjdVZM%252C_&usg=AI4_-kTMhWDVRKAs8u3ox2RVQjz7MFiaWQ&sa=X&ved=2ahUKEwies97Du7jgAhUHf30KHR75CFoQ9QEwCnoECAAQGA#imgrc=pQab4VRy_gKVlM:"),
+                //     backgroundImage: NetworkImage
+                //     ("https://www.google.com/search?q=chicken+images&rlz=1C1CHBF_enIN815IN815&tbm=isch&source=iu&ictx=1&fir=pQab4VRy_gKVlM%253A%252Cn02ibD9yVjdVZM%252C_&usg=AI4_-kTMhWDVRKAs8u3ox2RVQjz7MFiaWQ&sa=X&ved=2ahUKEwies97Du7jgAhUHf30KHR75CFoQ9QEwCnoECAAQGA#imgrc=pQab4VRy_gKVlM:"),
                     
-                    ),
+                //     ),
                   
-                    ),
+                //     ),
                 SizedBox(width: 20.0,),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -229,12 +250,12 @@ Future<Null> _selectedDate(BuildContext context) async {
                     new Text("Remark: ${widget.value}"),
 
                     Divider(color: Colors.teal,indent: 50.0,),
-                    new IconButton(
-                    icon: Icon(Icons.delete),
-                    iconSize: 45.0,
-                    color:(isPriority)? Colors.red : Colors.green,
-                    onPressed: _toggleFlag,
-                     ),
+                    // new IconButton(
+                    // icon: Icon(Icons.delete),
+                    // iconSize: 45.0,
+                    // color:(isPriority)? Colors.red : Colors.green,
+                    // onPressed: _toggleFlag,
+                    //  ),
 
                     ],
                  
@@ -250,6 +271,7 @@ Future<Null> _selectedDate(BuildContext context) async {
      ),
       )
       ),
+      
       );
     }
   }

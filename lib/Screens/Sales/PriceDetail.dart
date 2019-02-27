@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_app/Screens/Expanses/MasterExp.dart';
 import 'package:flutter_app/Screens/Tabs/SalesTab.dart';
 
 void main() => runApp(new PriceDetail());
@@ -79,6 +78,7 @@ class SalePageState extends State<_PriceDetail> {
                       keyboardType: TextInputType.number ,
                       autofocus: false,
                       decoration: InputDecoration(
+                        suffixIcon: Icon(Icons.space_bar,color:Colors.green),
                         filled: true,
                         hintText: 'Sire Code',
                         contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
@@ -97,6 +97,7 @@ class SalePageState extends State<_PriceDetail> {
                      onChanged: (value) => _breedercodeController.text = value,
                      keyboardType: TextInputType.number ,
                       decoration: InputDecoration(
+                        suffixIcon: Icon(Icons.space_bar,color:Colors.green),
                         filled: true,
                         hintText: 'Breeder Code',
                         contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
@@ -114,6 +115,7 @@ class SalePageState extends State<_PriceDetail> {
                       onChanged: (value) => _priceController.text = value,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
+                        suffixIcon: Icon(Icons.local_atm,color:Colors.green),
                       hintText: 'Price',
                       // labelText: 'Symbol',
                     ),
@@ -152,7 +154,7 @@ class SalePageState extends State<_PriceDetail> {
                  
                     new Container(
                     child: new Padding(
-                    padding: EdgeInsets.symmetric(vertical: 80.0),
+                    padding: EdgeInsets.symmetric(vertical: 40.0),
                     child: Material(
                     borderRadius: BorderRadius.circular(30.0),
                     shadowColor: Colors.lightBlueAccent.shade100,

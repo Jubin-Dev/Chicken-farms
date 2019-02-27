@@ -161,27 +161,30 @@ Future<Null> _selectedDate(BuildContext context) async {
                     controller: _sellingdateController,
                      onChanged: (value) => _sellingdateController.text = value,
                     decoration: const InputDecoration(
-                      icon: const Icon(Icons.calendar_today,color: Colors.green,),
+                     suffixIcon: Icon(Icons.event_available,color:Colors.green),
                       hintText:   'Selling Date',
                       labelText:  'Selling Date',
                     ),
                     keyboardType: TextInputType.numberWithOptions(),
                    ) )),
                  
-                  
+                  Divider(),
                   new TextField(
                   controller: _buyernameController,
                      onChanged: (value) => _buyernameController.text = value,
-                    decoration: const InputDecoration(                     
+                    decoration: const InputDecoration(   
+                      suffixIcon: Icon(Icons.perm_contact_calendar,color:Colors.green),                  
                        hintText: 'Buyer Name',
                       
                     ),
                   ),
+                  Divider(),
                     new TextField(
                       controller: _buyerAdressController,
                       onChanged: (value) => _buyerAdressController.text = value,
                       keyboardType: TextInputType.multiline,
                       decoration: const InputDecoration(
+                        suffixIcon: Icon(Icons.home,color:Colors.green),
                        hintText: 'Buyer Adress',
                        ),
                   ),
@@ -199,18 +202,21 @@ Future<Null> _selectedDate(BuildContext context) async {
                       )
                       ),
 
-
+                    Divider(),
+                      
                       new TextFormField(
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.local_atm,color:Colors.green),
                       hintText: 'Price',
                       // labelText: 'Symbol',
                     ),
                   ),
-                  
+                  Divider(),
                   new TextFormField(
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.local_offer,color:Colors.green),
                       hintText: 'Discount',
                       // labelText: 'Symbol',
                     ),
@@ -223,7 +229,9 @@ Future<Null> _selectedDate(BuildContext context) async {
                 keyboardType: TextInputType.phone ,
                 autofocus: false,
                 // initialValue: 'Total Rs:',
-                decoration: InputDecoration(filled: true,
+                decoration: InputDecoration(
+                  suffixIcon: Icon(Icons.monetization_on,color:Colors.green),
+                  filled: true,
                   contentPadding: EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 15.0),
                    border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(30.0,),
@@ -232,7 +240,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                     
                     new Container(
                     child: new Padding(
-                    padding: EdgeInsets.symmetric(vertical: 75.0),
+                    padding: EdgeInsets.symmetric(vertical: 40.0),
                     child: Material(
                     borderRadius: BorderRadius.circular(30.0),
                     shadowColor: Colors.lightBlueAccent.shade100,

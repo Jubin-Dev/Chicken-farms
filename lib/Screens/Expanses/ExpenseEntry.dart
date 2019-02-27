@@ -88,22 +88,18 @@ Future<Null> _selectedDate(BuildContext context) async {
               child: new ListView(
                 padding: const EdgeInsets.all( 20.0),
                 children: <Widget>[
-                   
-                  Divider(
-
-                  ),
+            
                   new GestureDetector(
                     onTap: () => _selectedDate(context),
                     child: AbsorbPointer(
                     
                     child:
-                    
                     new TextField(
                       controller: _expdateController,
                      onChanged: (value) => _expdateController.text = value,
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.event,color:Colors.green),
                       
-                      icon: const Icon(Icons.calendar_today),
                       hintText: 'please Enter Date',
                       labelText: 'Expense Date',
                     ),
@@ -149,6 +145,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                     
                     keyboardType: TextInputType.text,
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.perm_contact_calendar,color:Colors.green),
                         hintText: 'Vendor Name',
                        
                     ),
@@ -160,6 +157,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                       autofocus: false,
                       keyboardType: TextInputType.number,
                     decoration: InputDecoration(
+                      suffixIcon: Icon(Icons.home,color:Colors.green),
                       filled: true,
                     hintText: 'Vendor Adress/ Contact Details',
                     contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 20.0, 60.0),
@@ -168,13 +166,12 @@ Future<Null> _selectedDate(BuildContext context) async {
                        
                      ) ) 
                      ), 
-                     Divider(
-
-                  ),
+                     Divider(),
                               
                        new TextFormField(
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.local_atm,color:Colors.green),
                         hintText: 'Amount',
                        
                     ),
@@ -213,18 +210,12 @@ Future<Null> _selectedDate(BuildContext context) async {
                       );
                     },
                   ),
-                   Divider(
-
-                  ), 
-                  Divider(
-
-                  ),   
-                 
-                  
+                   Divider(),                   
                    new TextField(
                       autofocus: false,
                       keyboardType: TextInputType.multiline,
                       decoration: InputDecoration(
+                        suffixIcon: Icon(Icons.edit,color:Colors.green),
                       filled: true,
                       hintText: 'Remarks',
                       contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 20.0, 60.0),
@@ -236,7 +227,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                     
                     new Container(
                     child: new Padding(
-                    padding: EdgeInsets.symmetric(vertical: 80.0),
+                    padding: EdgeInsets.symmetric(vertical: 40.0),
                     child: Material(
                     borderRadius: BorderRadius.circular(30.0),
                     shadowColor: Colors.lightBlueAccent.shade100,

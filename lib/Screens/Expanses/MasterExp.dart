@@ -72,6 +72,7 @@ class _MasterExpPageState extends State<MasterExpPage> {
                      onChanged: (value) => _expcodeController.text = value,
                     keyboardType: TextInputType.text,
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.space_bar,color:Colors.green),
                     hintText: 'Expense Code',
                        
                     ),
@@ -83,7 +84,7 @@ class _MasterExpPageState extends State<MasterExpPage> {
                     controller: _expnameController,
                      onChanged: (value) => _expnameController.text = value,
                     decoration: const InputDecoration(
-                      
+                      suffixIcon: Icon(Icons.explicit,color:Colors.green),
                         hintText: 'Expense Name',
                        
                     ),
@@ -94,6 +95,7 @@ class _MasterExpPageState extends State<MasterExpPage> {
                   new TextFormField(
                     keyboardType: TextInputType.text,
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.euro_symbol,color:Colors.green),
                       hintText: 'Expense Type',
                       
                     ),

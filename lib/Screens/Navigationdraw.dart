@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_app/Screens/Breed/breed_list.dart';
 import 'package:flutter_app/Screens/Home_page.dart';
 import 'package:flutter_app/Screens/Tabs/ChickenTreatmentTabs.dart';
 import 'package:flutter_app/Screens/Tabs/ExpensesTabs.dart';
@@ -102,10 +102,10 @@ class DrawerOnly extends StatelessWidget{
               new ListTile(
                 title: new Text("Breed List"),
                 leading: new Icon(Icons.assignment, color: Colors.green),
-                 onTap: () {
-                   Navigator.pop(context);
-                    Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => Chicktreat()));
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                context, MaterialPageRoute(builder: (context) => BreedEntrydetail()));
                  }
               ),
               
@@ -168,10 +168,6 @@ class DrawerOnly extends StatelessWidget{
       //     ],
       //   // elevation: defaultTargetPlatform == TargetPlatform.android ? 5.0 : 0.0 ,
       // ),
-      
-      
-
-      
       body: new Container(
         child:new Center(
            

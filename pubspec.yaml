@@ -13,7 +13,7 @@ environment:
   sdk: ">=2.0.0-dev.68.0 <3.0.0"
 
 dependencies:
-  flutter_date_picker: "0.1.8"
+  
   
   
   
@@ -25,6 +25,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
+  datetime_picker_formfield: ^0.1.8
   flutter_staggered_grid_view: "^0.2.7"
 
 dev_dependencies:
@@ -75,12 +76,10 @@ flutter:
          fonts:
            - asset: fontss/OpenSans-Regular.ttf
            - asset: fontss/OpenSans-Light.ttf
-             style: normal
-       - family: Raleway
+             style: normal     
+       - family: TitilliumWeb
          fonts:
-           - asset: fontss/Raleway-Black.ttf
-           - asset: fontss/Raleway-Regular.ttf
-           - asset: fontss/Raleway-Bold.ttf
+           - asset: fontss/TitilliumWeb-Regular.ttf
              weight: 700
   
   # For details regarding fonts from package dependencies,

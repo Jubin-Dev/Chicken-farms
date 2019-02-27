@@ -41,7 +41,7 @@ class VaccineTab extends StatefulWidget {
             backgroundColor: Colors.amber,
             elevation: 20.0,
             title: Text('VACCINE'),
-            expandedHeight: 180.0,
+            expandedHeight: 160.0,
             leading: IconButton(
             icon: Icon(Icons.arrow_back_ios),
             onPressed: () => Navigator.push (
@@ -64,15 +64,19 @@ class VaccineTab extends StatefulWidget {
               tabs: <Widget>[
                 Tab(
                   text: "Vaccine Schedule",
+                  icon: Icon(Icons.event_available, color: Colors.white,size: 40.0,),
                 ),
                 Tab(
                   text: "Purchased Vaccine",
+                  icon: Icon(Icons.local_offer, color: Colors.white,size: 40.0,),
                 ),
                 Tab(
                   text: "Give Vaccine",
+                  icon: Icon(Icons.colorize, color: Colors.white,size: 40.0,),
                 ),
                 Tab(
                   text: "Vaccine Due",
+                  icon: Icon(Icons.event_busy, color: Colors.white,size: 40.0,),
                   
                 )
               ],

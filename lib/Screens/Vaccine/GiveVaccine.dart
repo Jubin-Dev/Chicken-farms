@@ -107,6 +107,7 @@ class _GiveVaccinePageState extends State<GiveVaccinePage> {
                      onChanged: (value) => _animalageController.text = value,
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.content_paste,color:Colors.green),
                         hintText: 'Animal Age',
                        
                     ),
@@ -118,7 +119,7 @@ class _GiveVaccinePageState extends State<GiveVaccinePage> {
                      controller: _vaccinenameController,
                     onChanged: (value) => _vaccinenameController.text = value,
                     decoration: const InputDecoration(
-                      
+                      suffixIcon: Icon(Icons.description,color:Colors.green),
                         hintText: 'Vaccine Name',
                        
                     ),
@@ -130,6 +131,7 @@ class _GiveVaccinePageState extends State<GiveVaccinePage> {
                      controller: _vaccinetypeController,
                     onChanged: (value) => _vaccinetypeController.text = value,
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.colorize,color:Colors.green),
                       hintText: 'Vaccine Type',
                       
                     ),
@@ -140,6 +142,7 @@ class _GiveVaccinePageState extends State<GiveVaccinePage> {
                   new TextField(
                     
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.location_city,color:Colors.green),
                       hintText: 'Vaccine Company',
                       
                     ),
@@ -154,6 +157,7 @@ class _GiveVaccinePageState extends State<GiveVaccinePage> {
                      controller: _vaccinemethodController,
                     onChanged: (value) => _vaccinemethodController.text = value,
                       decoration: const InputDecoration(
+                        suffixIcon: Icon(Icons.local_pharmacy,color:Colors.green),
                         hintText: 'Vaccine Method',
                        
                       ),
@@ -166,6 +170,7 @@ class _GiveVaccinePageState extends State<GiveVaccinePage> {
                     onChanged: (value) => _quantityController.text = value,
                      keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.widgets,color:Colors.green),
                       hintText:    'Quantity',
                       
                     ),
@@ -179,6 +184,7 @@ class _GiveVaccinePageState extends State<GiveVaccinePage> {
                       autofocus: false,
                       keyboardType: TextInputType.multiline,
                     decoration: InputDecoration(
+                      suffixIcon: Icon(Icons.edit,color:Colors.green),
                       filled: true,
                     hintText: 'Remark',
                     contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 30.0, 60.0),

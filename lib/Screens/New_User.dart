@@ -117,7 +117,7 @@ class NewUser extends StatefulWidget{
        backgroundColor: Colors.amber,
        leading: IconButton(
          icon: Icon(Icons.arrow_back_ios),
-         onPressed: () => Navigator.push (
+         onPressed: () => Navigator.pop (
       context, MaterialPageRoute(builder: (context) => LoginPage(),
        ),
      ),

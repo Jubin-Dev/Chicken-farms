@@ -85,11 +85,11 @@ Future<Null> _selectedDate(BuildContext context) async {
         title: new Text(widget.title),
         centerTitle: true,
         leading: IconButton(
-         icon: Icon(Icons.arrow_back_ios),
-         onPressed: () => Navigator.push (
-      context, MaterialPageRoute(builder: (context) => Profile(),
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () => Navigator.push(
+          context,MaterialPageRoute(builder: (context) => Profile(),
        ),
-     ),
+        ),
        ),
         
         backgroundColor: Colors.amber,
@@ -105,10 +105,9 @@ Future<Null> _selectedDate(BuildContext context) async {
                 children: <Widget>[
                   Hero(tag: 'hero', 
    
-       child: CircleAvatar(
-         
-         backgroundColor: Colors.yellow,
-         radius: 45.0,
+            child: CircleAvatar(
+            backgroundColor: Colors.yellow,
+            radius: 45.0,
          
          child: Image.asset('lib/images/photo.png'),
        ),
@@ -117,6 +116,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                     controller: _animalcodeController,
                     onChanged: (value) => _animalcodeController.text = value,
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.code,color:Colors.green),
                     hintText: 'Animal Code',
                     contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),     
                     ),
@@ -125,12 +125,14 @@ Future<Null> _selectedDate(BuildContext context) async {
                     controller: _animalnameController,
                     onChanged: (value) => _animalnameController.text = value,
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.perm_identity,color:Colors.green),
                       hintText: 'Name',
                       contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                     ),
                   ),
                   new TextField(
                       decoration: const InputDecoration(
+                        suffixIcon: Icon(Icons.pets,color:Colors.green),
                       hintText: 'Symbol',
                      contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                     ),
@@ -143,6 +145,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                   
                 return InputDecorator(
                         decoration: InputDecoration(
+                          // suffixIcon: Icon(Icons.arrow_drop_down,color:Colors.green),
                           labelText: 'Animal Status',
                           contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                         ),
@@ -175,9 +178,9 @@ Future<Null> _selectedDate(BuildContext context) async {
                   new GestureDetector(
                     onTap: () => _selectedDate(context),
                     child: AbsorbPointer(
-                    child: new TextFormField(
-                    decoration: const InputDecoration(                     
-                      icon: const Icon(Icons.calendar_today, color: Colors.green,),
+                    child: new TextField(
+                    decoration: const InputDecoration(                    
+                      suffixIcon: Icon(Icons.calendar_today, color: Colors.green,),
                       hintText: 'Enter your date of birth',
                       labelText: 'Dob',
                       contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
@@ -253,6 +256,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                       onChanged: (value) => _animalstatusController.text = value,
                       autofocus: false,
                       decoration: InputDecoration(
+                        suffixIcon: Icon(Icons.space_bar,color:Colors.green),
                       hintText: 'Sire Code',
                       contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 10.0, 15.0),
                       border: OutlineInputBorder(
@@ -266,6 +270,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                      new TextFormField(
                       autofocus: false,
                       decoration: InputDecoration(
+                        suffixIcon: Icon(Icons.space_bar,color:Colors.green),
                       hintText: 'Breeder Code',
                       contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 10.0, 15.0),
                       border: OutlineInputBorder(
@@ -275,7 +280,8 @@ Future<Null> _selectedDate(BuildContext context) async {
                      Divider(),
                   new TextFormField(
                       decoration: const InputDecoration(
-                      hintText: 'Telents',
+                        suffixIcon: Icon(Icons.streetview,color:Colors.green),
+                      hintText: 'Talents',
                       contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),                    
                     ),
                     keyboardType: TextInputType.text,                  
@@ -283,7 +289,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                   new TextField(
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
-                        
+                        suffixIcon: Icon(Icons.line_weight,color:Colors.green),
                         hintText: 'Weight',
                         contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                       ),
@@ -322,6 +328,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                   ),    
                   new TextFormField(
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.format_align_right,color:Colors.green),
                       hintText:   'Fighting Records',
                       labelText:  'Fighting Records',
                       contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
@@ -331,6 +338,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                   ),
                   new TextField(
                       decoration: const InputDecoration(
+                        suffixIcon: Icon(Icons.attach_money,color:Colors.green),
                         labelText:  'Standerd Price',
                         hintText:   'Standerd Price',
                         contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
@@ -369,6 +377,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                   ),    
                   new TextFormField(
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.mode_edit,color:Colors.green),
                       hintText:   'Remarks',
                       labelText:  'Remarks',
                       contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
@@ -437,9 +446,11 @@ Future<Null> _selectedDate(BuildContext context) async {
     class NextPage extends StatefulWidget{
 
     final String value;
+    
     NextPage({Key key,this.value}): super(key:key);
       @override
         _NextPageState createState() => _NextPageState();
+          
           }
   
   class _NextPageState extends State<NextPage> {
@@ -472,7 +483,8 @@ Future<Null> _selectedDate(BuildContext context) async {
             isExtended: true,
             child: new Icon(Icons.add, color: Colors.white),
             onPressed: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => DetailApp())),
+                 context, MaterialPageRoute(builder: (context) => DetailApp()),
+                 ),
           ), 
      body:
          ListView.builder(itemCount: 30,
@@ -542,11 +554,8 @@ Future<Null> _selectedDate(BuildContext context) async {
                     new Text("Animal Name : ${widget.value}"),
                     Divider(),
                     new Text("Animal Status : ${widget.value}"),
-
-                    
-
-
-                    Divider(color: Colors.teal,indent: 50.0,),
+                
+                   Divider(color: Colors.teal,indent: 50.0,),
                     new IconButton(
                     icon: Icon(Icons.delete),
                     iconSize: 45.0,

@@ -16,11 +16,11 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.green[450],
         accentColor: Colors.green,
         primarySwatch: Colors.green,
-        fontFamily: 'Roboto',
+        fontFamily: 'TitilliumWeb',
         textTheme: TextTheme(
           headline: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-          title: TextStyle(fontSize: 36.0, fontStyle: FontStyle.normal,color: Colors.white),
-          body1: TextStyle(fontSize: 15.0, fontFamily: 'Roboto'),
+          title: TextStyle(fontSize: 36.0, fontStyle: FontStyle.normal,color: Colors.white,fontFamily: 'TitilliumWeb'),
+          body1: TextStyle(fontSize: 15.0,),
           ),
           ),
       home: SplashScreen(),
@@ -89,8 +89,8 @@ class SplashScreen extends StatefulWidget{
                       Padding(
                         padding: EdgeInsets.only(top: 50.0),
                       ),
-                      Text("Smart Care \n For Chickens",
-                      style: TextStyle(color: Colors.teal,fontSize: 18.0,fontWeight: FontWeight.w400),
+                      Text("Smart Care For Chickens",
+                      style: TextStyle(color: Colors.teal,fontSize: 18.0,fontWeight: FontWeight.w400,fontFamily: 'Roboto'),
                       )
                     ],
 

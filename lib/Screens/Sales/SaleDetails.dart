@@ -82,14 +82,14 @@ class SellingPageState extends State<_SaleDetail> {
                       keyboardType: TextInputType.text ,
                       autofocus: false,
                       decoration: InputDecoration(
-                        suffixIcon: Icon(Icons.search),
-                        filled: true,
+                        suffixIcon: Icon(Icons.branding_watermark,color:Colors.green),
+                        // filled: true,
                         hintText: 'Animal Code',
-                        contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0),
+                        // contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+                        // border: OutlineInputBorder(
+                        //   borderRadius: BorderRadius.circular(20.0),
                           
-                        )
+                        // )
                       ),
                     
                     ),
@@ -101,13 +101,14 @@ class SellingPageState extends State<_SaleDetail> {
                      onChanged: (value) => _animalageController.text = value,
                      keyboardType: TextInputType.text ,
                       decoration: InputDecoration(
-                        filled: true,
+                        suffixIcon: Icon(Icons.pets,color:Colors.green),
+                        // filled: true,
                         hintText: 'Animal Age',
-                        contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0),
+                        // contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+                        // border: OutlineInputBorder(
+                        //   borderRadius: BorderRadius.circular(20.0),
                 
-                        ) 
+                        // ) 
                     ),
                       
                   ),
@@ -117,13 +118,14 @@ class SellingPageState extends State<_SaleDetail> {
                      onChanged: (value) => _typeController.text = value,
                      keyboardType: TextInputType.text ,
                       decoration: InputDecoration(
-                        filled: true,
+                        suffixIcon: Icon(Icons.format_list_numbered,color:Colors.green),
+                        // filled: true,
                         hintText: 'Type',
-                        contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0),
+                        // contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+                        // border: OutlineInputBorder(
+                        //   borderRadius: BorderRadius.circular(20.0),
                 
-                        ) 
+                        // ) 
                     ),   
                   ),
                   Divider(),
@@ -133,6 +135,7 @@ class SellingPageState extends State<_SaleDetail> {
                       keyboardType: TextInputType.number ,
                       autofocus: false,
                       decoration: InputDecoration(
+                        suffixIcon: Icon(Icons.space_bar,color:Colors.green),
                         filled: true,
                         hintText: 'Sire Code',
                         contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
@@ -143,14 +146,13 @@ class SellingPageState extends State<_SaleDetail> {
                       ),
                     
                     ),
-                    Divider(
-
-                    ),
+                    Divider(),
                  new TextField(
                    controller: _breedercodeController,
                      onChanged: (value) => _breedercodeController.text = value,
                      keyboardType: TextInputType.number ,
                       decoration: InputDecoration(
+                        suffixIcon: Icon(Icons.space_bar,color:Colors.green),
                         filled: true,
                         hintText: 'Breeder Code',
                         contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
@@ -170,13 +172,14 @@ class SellingPageState extends State<_SaleDetail> {
                       keyboardType: TextInputType.text ,
                       autofocus: false,
                       decoration: InputDecoration(
-                        filled: true,
+                        suffixIcon: Icon(Icons.streetview,color:Colors.green),
+                        // filled: true,
                         hintText: 'Talents',
-                        contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-                        border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
+                        // contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+                        // border: OutlineInputBorder(
+                        // borderRadius: BorderRadius.circular(20.0),
                           
-                        )
+                        // )
                       ),
                     
                     ),
@@ -188,23 +191,24 @@ class SellingPageState extends State<_SaleDetail> {
                       keyboardType: TextInputType.number ,
                       autofocus: false,
                       decoration: InputDecoration(
-                        filled: true,
+                        suffixIcon: Icon(Icons.receipt,color:Colors.green),
+                        // filled: true,
                         hintText: 'Fighting Records',
-                        contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0),
+                        // contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+                        // border: OutlineInputBorder(
+                        //   borderRadius: BorderRadius.circular(20.0),
                           
-                        )
+                        // )
                       ),
                     
                     ),
-                  Divider(),
-
+                    Divider(),
                     new TextField(
                         controller: _weightController,
                         onChanged: (value) => _weightController.text = value,
                         keyboardType: TextInputType.number,
                         decoration: const InputDecoration(
+                          suffixIcon: Icon(Icons.line_weight,color:Colors.green),
                         hintText: 'Weight',
                       // labelText: 'Symbol',
                     ),
@@ -216,6 +220,7 @@ class SellingPageState extends State<_SaleDetail> {
                       onChanged: (value) => _statusController.text = value,
                         keyboardType: TextInputType.multiline,
                         decoration: const InputDecoration(
+                          suffixIcon: Icon(Icons.note_add,color:Colors.green),
                         hintText: 'Status',
                       // labelText: 'Symbol',
                     ),
@@ -253,7 +258,7 @@ class SellingPageState extends State<_SaleDetail> {
 
                   new Container(
                       child: new Padding(
-                      padding: EdgeInsets.symmetric(vertical: 80.0),
+                      padding: EdgeInsets.symmetric(vertical: 40.0),
                       child: Material(
                       borderRadius: BorderRadius.circular(30.0),
                       shadowColor: Colors.lightBlueAccent.shade100,

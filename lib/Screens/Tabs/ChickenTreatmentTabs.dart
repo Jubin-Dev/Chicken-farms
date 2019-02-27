@@ -42,6 +42,7 @@ class Chicktreat extends StatefulWidget {
             backgroundColor: Colors.amber,
             elevation: 15.0,
             title: Text('TREATMENT DETAILS'),
+            expandedHeight: 160.0,
             leading: IconButton(
             icon: Icon(Icons.arrow_back_ios),
             onPressed: () => Navigator.push (
@@ -54,6 +55,7 @@ class Chicktreat extends StatefulWidget {
             floating: true,
             forceElevated: boxIsScrolled,
             bottom: new TabBar(
+              
               isScrollable: true,
               indicatorColor: Colors.green,
               indicator: UnderlineTabIndicator(
@@ -64,11 +66,11 @@ class Chicktreat extends StatefulWidget {
               tabs: <Widget>[
                 Tab(
                   text: "Chicken Treatment",
-                  icon: Icon(Icons.local_hospital, color: Colors.white,),
+                  icon: Icon(Icons.local_hospital, color: Colors.white,size: 40.0,),
                 ),
                 Tab(
                   text: "Purchased Medicine",
-                  icon: Icon(Icons.local_pharmacy, color: Colors.white,),
+                  icon: Icon(Icons.local_pharmacy, color: Colors.white,size:40.0,),
                 )
               ],
               controller: tabController,

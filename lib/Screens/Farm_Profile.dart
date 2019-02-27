@@ -116,9 +116,9 @@ class FarmProfile extends StatefulWidget{
       
    
    final submitButton = Padding(
-       padding: EdgeInsets.symmetric(vertical: 50.0),
-     child: Material(
-       borderRadius: BorderRadius.circular(30.0),
+        padding: EdgeInsets.symmetric(vertical: 50.0),
+        child: Material(
+        borderRadius: BorderRadius.circular(30.0),
        shadowColor: Colors.lightBlueAccent.shade100,
         elevation: 7.0,
         child: MaterialButton(

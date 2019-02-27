@@ -89,6 +89,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                     controller: _vaccinenameController,
                     onChanged: (value) => _vaccinenameController.text = value,
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.description,color:Colors.green),
                         hintText: 'Vaccine Name',                       
                     ),
                   ),
@@ -99,6 +100,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                     controller: _vaccinetypeController,
                     onChanged: (value) => _vaccinetypeController.text = value,
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.colorize,color:Colors.green),
                       hintText: 'Vaccine Type',                      
                     ),
                   ),
@@ -107,6 +109,7 @@ Future<Null> _selectedDate(BuildContext context) async {
 
                   new TextFormField(
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.location_city,color:Colors.green),
                       hintText: 'Vaccine Company',
                       
                     ),
@@ -124,7 +127,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                     onChanged: (value) => _purchasedateController.text = value,
                     decoration: const InputDecoration(
                       
-                      icon: const Icon(Icons.calendar_today),
+                     suffixIcon: Icon(Icons.date_range,color:Colors.green),
                       hintText: 'please Enter Date of Purchase',
                       labelText: 'Purchase Date',
                     ),
@@ -136,7 +139,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                       child:
                   new TextFormField(
                     decoration: const InputDecoration(
-                      icon: const Icon(Icons.calendar_today),
+                      suffixIcon: Icon(Icons.calendar_today,color:Colors.green),
                       hintText: 'please Enter Date of Expired',
                       labelText: 'Expiry Date',
                     ),
@@ -147,6 +150,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                   
                   new TextFormField(
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.format_list_numbered_rtl,color:Colors.green),
                      hintText: 'Batch Number',
                      
                     ),
@@ -158,6 +162,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                   ), 
                   new TextField(
                       decoration: const InputDecoration(
+                        suffixIcon: Icon(Icons.supervised_user_circle,color:Colors.green),
                         hintText: 'Supplied By',
                        
                       ),
@@ -171,6 +176,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                     onChanged: (value) => _quantityController.text = value,
                      keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.widgets,color:Colors.green),
                       hintText:    'Quantity',
                       
                     ),
@@ -181,6 +187,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                   ), 
                   new TextField(
                       decoration: const InputDecoration(
+                        suffixIcon: Icon(Icons.format_underlined,color:Colors.green),
                         hintText: 'Unit',
                       
                       ),
@@ -192,7 +199,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                       keyboardType: TextInputType.number,
                     
                       decoration: const InputDecoration(
-                        
+                        suffixIcon: Icon(Icons.monetization_on,color:Colors.green),
                         hintText: 'Unit Price',
                         
                       
@@ -236,6 +243,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                     onChanged: (value) => _purchaseamountController.text = value,
                     autofocus: false,
                     decoration: InputDecoration(
+                    suffixIcon: Icon(Icons.local_atm,color:Colors.green),
                     filled: true,
                     hintText: 'Purchased Amount',
                     contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 10.0, 15.0),
@@ -243,9 +251,8 @@ Future<Null> _selectedDate(BuildContext context) async {
                     borderRadius: BorderRadius.circular(10.0),
                      ) ) 
                      ), 
-                     Divider(
-
-                  ),  
+                     
+                     Divider(),  
                  
                     new Container(
                     child: new Padding(

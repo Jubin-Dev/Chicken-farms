@@ -39,6 +39,7 @@ class ExpTab extends StatefulWidget {
             backgroundColor: Colors.amber,
             elevation: 15.0,
             title: Text('EXPENSES'),
+            expandedHeight: 160.0,
             leading: IconButton(
             icon: Icon(Icons.arrow_back_ios),
             onPressed: () => Navigator.push (
@@ -61,11 +62,11 @@ class ExpTab extends StatefulWidget {
               tabs: <Widget>[
                 Tab(
                   text: "Master Expense",
-                   icon: Icon(Icons.explicit, color: Colors.white,),
+                   icon: Icon(Icons.equalizer, color: Colors.white,size: 40.0,),
                 ),
                 Tab(
                   text: "Expense Entry",
-                   icon: Icon(Icons.event_note, color: Colors.white,),
+                   icon: Icon(Icons.event_note, color: Colors.white,size: 40.0,),
                 )
               ],
               controller: tabController,

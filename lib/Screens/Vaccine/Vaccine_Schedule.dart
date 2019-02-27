@@ -55,13 +55,14 @@ class _VaccinePageState extends State<VaccinePage> {
             
               autovalidate: true,
               child: new ListView(
-              padding: const EdgeInsets.all(45.0),
+              padding: const EdgeInsets.all(20.0),
               children: <Widget>[
                   new TextField(
                     controller: _animalAgeController,
                     onChanged: (value) => _animalAgeController.text = value,
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.assignment,color:Colors.green),
                         hintText: 'Animal Age',
                        
                     ),
@@ -73,6 +74,7 @@ class _VaccinePageState extends State<VaccinePage> {
                     onChanged: (value) => _vaccinenameController.text = value,
                     keyboardType: TextInputType.text,
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.local_hospital,color:Colors.green),
                       hintText: 'Vaccine Name',
                       
                     ),
@@ -81,27 +83,26 @@ class _VaccinePageState extends State<VaccinePage> {
                   Divider(),
                   new TextFormField(
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.colorize,color:Colors.green),
                       hintText: 'Vaccine Type',
                       
                     ),
                   ),
-                   Divider(
-
-                  ),
+                   Divider(),
 
                    new TextFormField(
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.location_city,color:Colors.green),
                       hintText: 'Vaccine Company',
                       
                     ),
                   ),
-                   Divider(
-
-                  ),
                   
-                     
+                   Divider(),
+
                   new TextFormField(
                     decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.mode_edit,color:Colors.green),
                       hintText: 'Remarks',
                       
                     ),
@@ -119,7 +120,7 @@ class _VaccinePageState extends State<VaccinePage> {
                     minWidth: 200.0,
                     height: 47.0,
                     onPressed: ()=> Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => VaccineTab())),
+                    context, MaterialPageRoute(builder: (context) => VaccineTab())),
            
                     color: Colors.amber,
                     child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
@@ -140,6 +141,7 @@ class _VaccinePageState extends State<VaccinePage> {
     VaccineSched({Key key,this.value}): super(key:key);
       @override
         _TreatmentlistPageState createState() => _TreatmentlistPageState();
+          
           }
   
   class _TreatmentlistPageState extends State<VaccineSched> {
@@ -151,13 +153,12 @@ class _VaccinePageState extends State<VaccinePage> {
      }else{
        isPriority = true;
      }
-    });
-
+    }
+    );
   }
 
   @override
-  Widget build(BuildContext context) {
-    
+  Widget build(BuildContext context) {  
     return new  MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: new ThemeData(
@@ -174,6 +175,7 @@ class _VaccinePageState extends State<VaccinePage> {
             onPressed: () => Navigator.push(
                  context, MaterialPageRoute(builder: (context) => Vaccine())),
           ), 
+     
      body:
          ListView.builder(itemCount: 20,
          

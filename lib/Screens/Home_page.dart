@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/Screens/Breed/breed_list.dart';
 import 'package:flutter_app/Screens/DashboardItems/ReportsSummary.dart';
 import 'package:flutter_app/Screens/DashboardItems/SaleReport.dart';
 import 'package:flutter_app/Screens/Navigationdraw.dart';
@@ -230,7 +231,7 @@ class MyHomes extends StatelessWidget {
               IconButton(icon: Icon(Icons.assignment, color: Colors.green,),      
                              iconSize: 66.0,
                              onPressed: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => Profile())),        
+                 context, MaterialPageRoute(builder: (context) => BreedEntrydetail())),        
                              ),
                              
               
