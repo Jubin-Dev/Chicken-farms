@@ -1,5 +1,7 @@
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Screens/Home_page.dart';
+import 'package:intl/intl.dart';
 
 
 void main() => runApp(new ReportSale());
@@ -26,145 +28,124 @@ class ReportSalePage extends StatefulWidget {
 }
 class _ReportSalePageState extends State<ReportSalePage> {
 
-  final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-  List<String> _colors = <String>['', '100', '101', '102', '103'];
-  String _color = '';
+  final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
+  };
+  InputType inputType = InputType.date;
+  bool editable = true;
+  DateTime date;
 
-  
-  DateTime _date = new DateTime.now();
-  
-
-Future<Null> _selectedDate(BuildContext context) async {
-  final DateTime picked = await showDatePicker(
-      context: context,
-      initialDate: _date,
-      firstDate: new DateTime(2016),
-      lastDate: new DateTime(2019));
-
-  if (picked != null && picked != _date) {
-    print("Date selected ${_date.toString()}");
-    setState(() {
-      _date = picked;
-    });
-  }
-}
+  // final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+  // List<String> _colors = <String>['', '100', '101', '102', '103'];
+  String dropdownValue = '100';
+  String dropcodedownValue = '100';
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
-        title: new Text(widget.title),
-        centerTitle: true,
+      // appBar: new AppBar(
+      //   title: new Text(widget.title),
+      //   centerTitle: true,
         
-        backgroundColor: Colors.amber,
-        leading: IconButton(icon: Icon(Icons.arrow_back_ios),
-        onPressed: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => MyHomes())),
+      //   backgroundColor: Colors.amber,
+      //   leading: IconButton(icon: Icon(Icons.arrow_back_ios),
+      //   onPressed: () => Navigator.push(
+      //            context, MaterialPageRoute(builder: (context) => MyHomes())),
         
-      ),
-      ),
+      // ),
+      // ),
       body: new SafeArea(
           top: false,
           bottom: false,
           child: new Form(
-              key: _formKey,
+              // key: _formKey,
               autovalidate: true,
               child: new ListView(
                 padding: const EdgeInsets.all( 20.0),
                 children: <Widget>[
-                        new GestureDetector(
-                    onTap: () => _selectedDate(context),
-                    child: AbsorbPointer(
-                      child:
-                  new TextFormField(
+                   new DateTimePickerFormField(
+                    inputType: inputType,
+                    format: formats[inputType],
+                    editable: editable,
                     decoration: const InputDecoration(
-                      suffixIcon: const Icon(Icons.calendar_today,color: Colors.green,),
-                      hintText: 'please Enter Date',
-                      labelText: 'From Date',
+                    prefixIcon: const Icon(Icons.calendar_today, color: Colors.green), 
+                    labelText: 'From Date',hasFloatingPlaceholder: true
+                    ), 
+                    onChanged: (dt) => setState(()=> date = dt),
+                   
                     ),
-                    // keyboardType: TextInputType.numberWithOptions(),
-                   ) )),
+          
                    
                    Divider(),
-
-                   new GestureDetector(
-                    onTap: () => _selectedDate(context),
-                    child: AbsorbPointer(
-                      child:
-                  new TextFormField(
-                    decoration: const InputDecoration(   
-                      suffixIcon: const Icon(Icons.calendar_today, color: Colors.green),
-                      hintText: 'please Enter Date',
-                      labelText: 'To Date',
+                    new DateTimePickerFormField(
+                    inputType: inputType,
+                    format: formats[inputType],
+                    editable: editable,
+                    decoration: const InputDecoration(
+                    prefixIcon: const Icon(Icons.calendar_today, color: Colors.green), 
+                    labelText: 'To Date',hasFloatingPlaceholder: true
+                    ), 
+                    onChanged: (dt) => setState(()=> date = dt),
+                   
                     ),
-                    // keyboardType: TextInputType.numberWithOptions(),
-                   ) )),
+                  
                    Divider(),
-                    new FormField(
-                    builder: (FormFieldState state) {
-                      return InputDecorator(
-                        decoration: InputDecoration(
-                          labelText: 'Sire Code',
+                     InputDecorator(
+                      decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.space_bar,color: Colors.green,),
+                      labelText: 'Sire Code',
+                            ),
+                        child: DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                          value: dropdownValue,
+                          isDense: true,                
+                          onChanged: (String newValue) {
+                        setState(() {
+                        dropdownValue = newValue; 
+                       });
+                     },
+                     items: <String>['100', '101', '102', '103']
+                    
+                     .map<DropdownMenuItem<String>>((String value){
+                       return DropdownMenuItem<String>(value: value,
+                       child: Text(value),
+                       );
+                      
+                     }).toList(),
+                   ),
                         ),
-                        isEmpty: _color == '',
-                        child: new DropdownButtonHideUnderline(
-                          child: new DropdownButton(
-                            value: _color,
-                            isDense: true,
-                            onChanged: (String newValue) {
-                              setState(() {
-                                var newContact;
-                              newContact.favoriteColor = newValue;
-                                _color = newValue;
-                                state.didChange(newValue);
-                              });
-                            },
-                            items: _colors.map((String value) {
-                              return new DropdownMenuItem(
-                                value: value,
-                                child: new Text(value),
-                              );
-                            }).toList(),
-                          ),
                         ),
-                      );
-                    },
-                  ),
                   Divider(),
-                   new FormField(
-                    builder: (FormFieldState state) {
-                      return InputDecorator(
-                        decoration: InputDecoration(
-                          labelText: 'Breeder Code',
+                   
+                     InputDecorator(
+                      decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.space_bar,color: Colors.green,),
+                      labelText: 'Breeder Code',
+                            ),
+                        child: DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                          value: dropcodedownValue ,
+                          isDense: true,                
+                          onChanged: (String newValue) {
+                        setState(() {
+                        dropcodedownValue  = newValue; 
+                       });
+                     },
+                     items: <String>['100', '101', '102', '103']
+                    
+                     .map<DropdownMenuItem<String>>((String value){
+                       return DropdownMenuItem<String>(value: value,
+                       child: Text(value),
+                       );
+                      
+                     }).toList(),
+                   ),
                         ),
-                        isEmpty: _color == '',
-                        child: new DropdownButtonHideUnderline(
-                          child: new DropdownButton(
-                            value: _color,
-                            isDense: true,
-                            onChanged: (String newValue) {
-                              setState(() {
-                                var newContact;
-                              newContact.favoriteColor = newValue;
-                                _color = newValue;
-                                state.didChange(newValue);
-                              });
-                            },
-                            items: _colors.map((String value) {
-                              return new DropdownMenuItem(
-                                value: value,
-                                child: new Text(value),
-                              );
-                            }).toList(),
-                          ),
                         ),
-                      );
-                    },
-                  ),
+                  
                 
                 new Container(
                     child: new Padding(
-                     padding: EdgeInsets.symmetric(vertical: 40.0),
+                    padding: EdgeInsets.symmetric(vertical: 40.0),
                     child: Material(
                     borderRadius: BorderRadius.circular(30.0),
                     shadowColor: Colors.lightBlueAccent.shade100,

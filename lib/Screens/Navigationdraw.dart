@@ -62,6 +62,7 @@ class DrawerOnly extends StatelessWidget{
               new ListTile(
                 title: new Text("Profile"),
                 leading: new Icon(Icons.account_circle, color: Colors.green),
+                trailing: new Icon(Icons.arrow_right,color: Colors.amber),
                 onTap: () { Navigator.pop(context);
                Navigator.push(
                  context, MaterialPageRoute(builder: (context) => Profile()));
@@ -84,6 +85,7 @@ class DrawerOnly extends StatelessWidget{
               new ListTile(
                 title: new Text("Chicken Treatment"),
                 leading: new Icon(Icons.local_hospital, color: Colors.green),
+                trailing: new Icon(Icons.arrow_right,color: Colors.amber),
                  onTap: () { Navigator.pop(context);
                    Navigator.push(
                  context, MaterialPageRoute(builder: (context) => Chicktreat()));
@@ -93,6 +95,7 @@ class DrawerOnly extends StatelessWidget{
                new ListTile(
                 title: new Text("Vaccine"),
               leading: new Icon(Icons.business_center, color: Colors.green),
+              trailing: new Icon(Icons.arrow_right,color: Colors.amber),
                onTap: () { 
                  Navigator.pop(context);
                  Navigator.push(
@@ -102,6 +105,7 @@ class DrawerOnly extends StatelessWidget{
               new ListTile(
                 title: new Text("Breed List"),
                 leading: new Icon(Icons.assignment, color: Colors.green),
+                trailing: new Icon(Icons.arrow_right,color: Colors.amber),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.push(
@@ -116,6 +120,7 @@ class DrawerOnly extends StatelessWidget{
               new ListTile(
                 title: new Text("Expense"),
                 leading: new Icon(Icons.monetization_on, color: Colors.green,),
+                trailing: new Icon(Icons.arrow_right,color: Colors.amber),
                  onTap: () {
                     Navigator.pop(context);
                     Navigator.push(
@@ -124,6 +129,7 @@ class DrawerOnly extends StatelessWidget{
               new ListTile(
                 title: new Text("Sales"),
                 leading: new Icon(Icons.assessment, color: Colors.green),
+                trailing: new Icon(Icons.arrow_right,color: Colors.amber),
                  onTap: () {
                     Navigator.pop(context);
                     Navigator.push(
@@ -133,6 +139,7 @@ class DrawerOnly extends StatelessWidget{
               new ListTile(
                 title: new Text("Stock out"),
                 leading: new Icon(Icons.multiline_chart, color: Colors.green),
+                trailing: new Icon(Icons.arrow_right,color: Colors.amber),
                  onTap: () { 
                    Navigator.pop(context);
                    Navigator.push(
@@ -140,7 +147,8 @@ class DrawerOnly extends StatelessWidget{
                   } ),
               new ListTile(
                 title: new Text("Logout"),
-               leading: new Icon(Icons.lock_outline, color: Colors.green),
+               leading: new Icon(Icons.lock, color: Colors.green),
+               trailing: new Icon(Icons.arrow_back,color: Colors.amber),
                 onTap: () {
                    Navigator.pop(context);
                    Navigator.push(

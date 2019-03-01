@@ -43,8 +43,8 @@ class _GiveVaccinePageState extends State<GiveVaccinePage> {
   var _animalageController = new TextEditingController();
   
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-  List<String> _colors = <String>['', '123', '111', '347', '921'];
-  String _color = '';
+  // List<String> _colors = <String>['', '123', '111', '347', '921'];
+  String code = '123';
   
 
   @override
@@ -69,36 +69,31 @@ class _GiveVaccinePageState extends State<GiveVaccinePage> {
               child: new ListView(
                 padding: const EdgeInsets.all( 20.0),
                 children: <Widget>[
-                  new FormField(
-                    builder: (FormFieldState state) {
-                      return InputDecorator(
-                        decoration: InputDecoration(
-                          labelText: 'Animal Code',
+                  InputDecorator(
+                      decoration: InputDecoration(
+                      // suffixIcon: Icon(Icons.space_bar,color: Colors.green,),
+                      labelText: 'Animal Code',
+                            ),
+                        child: DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                          value: code ,
+                          isDense: true,                
+                          onChanged: (String newValue) {
+                        setState(() {
+                       code  = newValue; 
+                       });
+                     },
+                     items: <String>['123', '111', '347', '921']
+                    
+                     .map<DropdownMenuItem<String>>((String value){
+                       return DropdownMenuItem<String>(value: value,
+                       child: Text(value),
+                       );
+                      
+                     }).toList(),
+                   ),
                         ),
-                        isEmpty: _color == '',
-                        child: new DropdownButtonHideUnderline(
-                          child: new DropdownButton(
-                            value: _color,
-                            isDense: true,
-                            onChanged: (String newValue) {
-                              setState(() {
-                                var newContact;
-                              newContact.favoriteColor = newValue;
-                                _color = newValue;
-                                state.didChange(newValue);
-                              });
-                            },
-                            items: _colors.map((String value) {
-                              return new DropdownMenuItem(
-                                value: value,
-                                child: new Text(value),
-                              );
-                            }).toList(),
-                          ),
                         ),
-                      );
-                    },
-                  ), 
                   Divider(
 
                   ),

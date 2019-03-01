@@ -1,4 +1,6 @@
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 
 void main() => runApp(new Vaccinedue());
@@ -27,25 +29,13 @@ class VaccineduePage extends StatefulWidget {
 
 class _VaccineduePageState extends State<VaccineduePage> {
     
-    int count = 1;
+    // int count = 1;
   
-  DateTime _date = new DateTime.now();
-  
-
-Future<Null> _selectedDate(BuildContext context) async {
-  final DateTime picked = await showDatePicker(
-      context: context,
-      initialDate: _date,
-      firstDate: new DateTime(2016),
-      lastDate: new DateTime(2019));
-
-  if (picked != null && picked != _date) {
-    print("Date selected ${_date.toString()}");
-    setState(() {
-      _date = picked;
-    });
-  }
-}
+  final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
+  };
+  InputType inputType = InputType.date;
+  bool editable = true;
+  DateTime date;
 
   @override
   Widget build(BuildContext context) {
@@ -61,42 +51,34 @@ Future<Null> _selectedDate(BuildContext context) async {
           top: false,
           bottom: false,
           child: new Form(
-              
               autovalidate: true,
               child: new ListView(
                 padding: const EdgeInsets.all( 20.0),
                 children: <Widget>[
-                    new GestureDetector(
-                    onTap: () => _selectedDate(context),
-                    child: AbsorbPointer(
-                    
-                    child:
-                    new TextFormField(
+                     new DateTimePickerFormField(
+                    inputType: inputType,
+                    format: formats[inputType],
+                    editable: editable,
                     decoration: const InputDecoration(
-                      
-                      suffixIcon: const Icon(Icons.calendar_today,color:Colors.green ,),
-                      hintText: 'please Enter Date',
-                      labelText: 'From Date',
+                    prefixIcon: const Icon(Icons.calendar_today, color: Colors.green), 
+                    labelText: 'From Date',hasFloatingPlaceholder: true
+                    ), 
+                    onChanged: (dt) => setState(()=> date = dt),
+                   
                     ),
-                    // keyboardType: TextInputType.numberWithOptions(),
-                   ) )),
 
-                   new GestureDetector(
-                    onTap: () => _selectedDate(context),
-                    child: AbsorbPointer(
-                      child:
-                    new TextFormField(
+                    new DateTimePickerFormField(
+                    inputType: inputType,
+                    format: formats[inputType],
+                    editable: editable,
                     decoration: const InputDecoration(
-                      
-                       suffixIcon: const Icon(Icons.calendar_today,color:Colors.green ,),
-                      hintText: 'please Enter Date',
-                      labelText: 'Upto Date',
+                    prefixIcon: const Icon(Icons.calendar_today, color: Colors.green), 
+                    labelText: 'Upto Date',hasFloatingPlaceholder: true
+                    ), 
+                    onChanged: (dt) => setState(()=> date = dt),
+                   
                     ),
-                    // keyboardType: TextInputType.numberWithOptions(),
-                   ) )),
-                
-                         
-                 
+
                     new Container(
                     child: new Padding(
                     padding: EdgeInsets.symmetric(vertical: 50.0),
@@ -108,7 +90,7 @@ Future<Null> _selectedDate(BuildContext context) async {
                   minWidth: 200.0,
                   height: 47.0,
                   onPressed: (){setState(() {
-                   count = count + 1;
+                  //  count = count + 1;
                   //  new VaccinedueList(), 
                   });
                   },
@@ -141,9 +123,6 @@ Future<Null> _selectedDate(BuildContext context) async {
 
     final String value;
     // final int index;
-    
-    
-    
     VaccinedueList({Key key,this.value}): super(key:key);
     // VaccinedueList(this.index);
     

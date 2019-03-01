@@ -1,0 +1,95 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_app/Screens/Chicken_ProfileList/DetailForms.dart';
+import 'package:flutter_app/Screens/DashboardItems/SaleReport.dart';
+import 'package:flutter_app/Screens/Farm_Profile.dart';
+import 'package:flutter_app/Screens/Navigationdraw.dart';
+import 'package:flutter_app/Screens/Sales/sale_summary.dart';
+
+class SaleSummaryTab extends StatefulWidget {
+  @override
+  SaleSummaryState createState() => SaleSummaryState();
+  }
+  class SaleSummaryState extends State<SaleSummaryTab>with SingleTickerProviderStateMixin {
+
+  TabController tabController;
+  ScrollController scrollController;
+  @override
+  void initState(){
+    super.initState();
+    tabController = TabController(length:2, vsync: this);
+    scrollController = ScrollController();
+  }
+  @override
+  void dispose() {
+    tabController.dispose();
+    scrollController.dispose();
+    super.dispose();
+  }
+  @override
+  Widget build(BuildContext context) {
+   return MaterialApp(
+     debugShowCheckedModeBanner: false,
+     home: Scaffold(
+      body: NestedScrollView(
+      controller: scrollController,
+      headerSliverBuilder: (BuildContext context, bool boxIsScrolled){
+        return<Widget>[
+          SliverAppBar(
+            backgroundColor: Colors.amber,
+            elevation: 20.0,
+            title: Text('Details'),
+            expandedHeight: 120.0,
+            leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            onPressed: () => Navigator.push (
+            context, MaterialPageRoute(builder: (context) => NavPage(),
+             ),
+     ),
+       ),
+            centerTitle: true,
+            pinned: true,
+            floating: true,
+            // forceElevated: boxIsScrolled,
+            bottom: new TabBar(
+              isScrollable: true,
+              indicatorColor: Colors.green,
+              indicator: UnderlineTabIndicator(
+                borderSide: BorderSide(width:1.0),  
+              ), 
+              labelStyle: TextStyle(fontSize: 20.0),
+              unselectedLabelColor: Colors.white54,
+              tabs: <Widget>[
+                Tab(
+                  text: "Sales Report",
+                   icon: Icon(Icons.line_style, color: Colors.white,size: 40.0,),
+                   
+                ),
+                Tab(
+                  text: "Sale  Summary",
+                   icon: Icon(Icons.library_books, color: Colors.white,size:40.0),
+                )
+                
+              ],
+              controller: tabController,
+            ),
+          )
+        ];
+      },
+      body: TabBarView(children: <Widget>[
+          new Container(
+          child:
+          new ReportSale(),
+        ),
+          new Container(
+          child:
+          new SaleSummary(),
+        ),
+         
+    ],
+        controller: tabController,
+    ),
+    )
+
+    ) );
+  }
+}

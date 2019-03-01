@@ -1,6 +1,8 @@
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/Screens/Tabs/ChickenTreatmentTabs.dart';
+import 'package:intl/intl.dart';
 
 void main() => runApp(new Treatment());
 
@@ -38,30 +40,17 @@ class _TreatmentPageState extends State<TreatmentPage> {
   var _animalcodeController = new TextEditingController();
   var _quantityController = new TextEditingController();
   var _totalDaysController = new TextEditingController();
+
+  final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
+  };
+  InputType inputType = InputType.date;
+  bool editable = true;
+  DateTime date;
+
   
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-  List<String> _codes = <String>['', '123', '111', '347', '921'];
-  String _code = '';
-
-
-  DateTime _date = new DateTime.now();
-  
-
-Future<Null> _selectedDate(BuildContext context) async {
-  final DateTime picked = await showDatePicker(
-      context: context,
-      initialDate: _date,
-      firstDate: new DateTime(2016),
-      lastDate: new DateTime(2019));
-
-  if (picked != null && picked != _date) {
-    print("Date selected ${_date.toString()}");
-    setState(() {
-      _date = picked;
-    });
-  }
-}
-  
+  // List<String> _codes = <String>['', '123', '111', '347', '921'];
+  String code = '123';
 
   @override
   Widget build(BuildContext context) {
@@ -69,8 +58,6 @@ Future<Null> _selectedDate(BuildContext context) async {
       appBar: new AppBar(
         title: new Text(widget.title),
         centerTitle: true,
-        
-        
         backgroundColor: Colors.amber,
         leading: IconButton(icon: Icon(Icons.arrow_back_ios),
         onPressed: () => Navigator.push(
@@ -87,40 +74,32 @@ Future<Null> _selectedDate(BuildContext context) async {
               child: new ListView(
                 padding: const EdgeInsets.all( 20.0),
                 children: <Widget>[
-                  new FormField(
-                    builder: (FormFieldState state) {
-                      return InputDecorator(
-                        
-                        decoration: InputDecoration(
-                          labelText: 'Animal Code',
+                  InputDecorator(
+                      decoration: InputDecoration(
+                      // suffixIcon: Icon(Icons.space_bar,color: Colors.green,),
+                      labelText: 'Animal Code',
+                            ),
+                        child: DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                          value: code ,
+                          isDense: true,                
+                          onChanged: (String newValue) {
+                        setState(() {
+                       code  = newValue; 
+                       });
+                     },
+                     items: <String>['123', '111', '347', '921']
+                    
+                     .map<DropdownMenuItem<String>>((String value){
+                       return DropdownMenuItem<String>(value: value,
+                       child: Text(value),
+                       );
+                      
+                     }).toList(),
+                   ),
                         ),
-                        isEmpty: _code == '',
-                        child: new DropdownButtonHideUnderline(
-                          child: new DropdownButton(
-                            value: _code,
-                            isDense: true,
-                            onChanged: (String newValue) {
-                              setState(() {
-                                var newContact;
-                              newContact.favoriteColor = newValue;
-                                _code = newValue;
-                                state.didChange(newValue);
-                              });
-                            },
-                            items: _codes.map((String value) {
-                              return new DropdownMenuItem(
-                                value: value,
-                                child: new Text(value),
-                              );
-                            }).toList(),
-                          ),
                         ),
-                      );
-                    },
-                  ), 
-                  Divider(
-
-                  ),
+                  Divider(),
                   new TextField(
                     controller: _medicinenameController,
                     onChanged: (value) => _medicinenameController.text = value,
@@ -173,35 +152,29 @@ Future<Null> _selectedDate(BuildContext context) async {
                        
                        
                      ),
-                      new GestureDetector(
-                    onTap: () => _selectedDate(context),
-                    child: AbsorbPointer(
-                      child:
-                  new TextFormField(
+                    new DateTimePickerFormField(
+                    inputType: inputType,
+                    format: formats[inputType],
+                    editable: editable,
                     decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.calendar_today,color:Colors.green),
-                      contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-                      
-                      hintText: 'please Enter Date',
-                      labelText: 'Start Date',
+                    prefixIcon: const Icon(Icons.calendar_today, color: Colors.green), 
+                    labelText: 'Start Date',hasFloatingPlaceholder: true
+                    ), 
+                    onChanged: (dt) => setState(()=> date = dt),
+                   
                     ),
-                    // keyboardType: TextInputType.numberWithOptions(),
-                   ) )),
 
-                   new GestureDetector(
-                    onTap: () => _selectedDate(context),
-                    child: AbsorbPointer(
-                      child:
-                  new TextFormField(
+                    new DateTimePickerFormField(
+                    inputType: inputType,
+                    format: formats[inputType],
+                    editable: editable,
                     decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.calendar_today,color:Colors.green),
-                      contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-                     
-                      hintText: 'please Enter Date',
-                      labelText: 'End Date',
+                    prefixIcon: const Icon(Icons.calendar_today, color: Colors.green), 
+                    labelText: 'End Date',hasFloatingPlaceholder: true
+                    ), 
+                    onChanged: (dt) => setState(()=> date = dt),
+                   
                     ),
-                    // keyboardType: TextInputType.numberWithOptions(),
-                   ) )),
                    Divider(), 
 
                    
@@ -243,13 +216,13 @@ Future<Null> _selectedDate(BuildContext context) async {
                        
                     new Container(
                     child: new Padding(
-                     padding: EdgeInsets.symmetric(vertical: 80.0),
+                    padding: EdgeInsets.symmetric(vertical: 40.0),
                     child: Material(
                     borderRadius: BorderRadius.circular(30.0),
                     shadowColor: Colors.lightBlueAccent.shade100,
-                   elevation: 6.0,
+                    elevation: 6.0,
                   child: MaterialButton(
-                    minWidth: 200.0,
+                  minWidth: 200.0,
                   height: 47.0,
                   onPressed: ()=> Navigator.push (
                   context, MaterialPageRoute(builder: (context) => Chicktreat(),

@@ -1,6 +1,8 @@
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/Screens/Tabs/ExpensesTabs.dart';
+import 'package:intl/intl.dart';
 
 void main() => runApp(new ExpenseDetail());
 
@@ -42,28 +44,16 @@ class _ExpenseDetailState extends State<ExpenseDetails> {
   var _vendordetailController = new TextEditingController();
   
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-  List<String> _colors = <String>['', 'Vaccine', 'Medicines',];
-  String _color = '';
-
-
-  DateTime _date = new DateTime.now();
+  // List<String> _colors = <String>['', 'Vaccine', 'Medicines',];
+  String expname = 'Vaccine';
+  String currency = 'THB';
   
 
-Future<Null> _selectedDate(BuildContext context) async {
-  final DateTime picked = await showDatePicker(
-      context: context,
-      initialDate: _date,
-      firstDate: new DateTime(2016),
-      lastDate: new DateTime(2019));
-
-  if (picked != null && picked != _date) {
-    print("Date selected ${_date.toString()}");
-    setState(() {
-      _date = picked;
-    });
-  }
-}
-  
+  final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
+  };
+  InputType inputType = InputType.date;
+  bool editable = true;
+  DateTime date;
 
   @override
   Widget build(BuildContext context) {
@@ -89,53 +79,42 @@ Future<Null> _selectedDate(BuildContext context) async {
                 padding: const EdgeInsets.all( 20.0),
                 children: <Widget>[
             
-                  new GestureDetector(
-                    onTap: () => _selectedDate(context),
-                    child: AbsorbPointer(
-                    
-                    child:
-                    new TextField(
-                      controller: _expdateController,
-                     onChanged: (value) => _expdateController.text = value,
+                   new DateTimePickerFormField(
+                    inputType: inputType,
+                    format: formats[inputType],
+                    editable: editable,
                     decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.event,color:Colors.green),
-                      
-                      hintText: 'please Enter Date',
-                      labelText: 'Expense Date',
+                    prefixIcon: const Icon(Icons.calendar_today, color: Colors.green), 
+                    labelText: 'Purchase Date',hasFloatingPlaceholder: true
+                    ), 
+                    onChanged: (dt) => setState(()=> date = dt),
+                   
                     ),
-                    // keyboardType: TextInputType.numberWithOptions(),
-                   ) )),
-                   new FormField(
-                     
-                    builder: (FormFieldState state) {
-                      return InputDecorator(
-                        decoration: InputDecoration(
-                          labelText: 'Expense Name',
+                   InputDecorator(
+                      decoration: InputDecoration(
+                      // suffixIcon: Icon(Icons.space_bar,color: Colors.green,),
+                      labelText: 'Expense Name',
+                            ),
+                        child: DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                          value: expname ,
+                          isDense: true,                
+                          onChanged: (String newValue) {
+                        setState(() {
+                       expname  = newValue; 
+                       });
+                     },
+                     items: <String>['Vaccine', 'Medicines']
+                    
+                     .map<DropdownMenuItem<String>>((String value){
+                       return DropdownMenuItem<String>(value: value,
+                       child: Text(value),
+                       );
+                      
+                     }).toList(),
+                   ),
                         ),
-                        isEmpty: _color == '',
-                        child: new DropdownButtonHideUnderline(
-                          child: new DropdownButton(
-                            value: _color,
-                            isDense: true,
-                            onChanged: (String newValue) {
-                              setState(() {
-                                var newContact;
-                              newContact.favoriteColor = newValue;
-                                _color = newValue;
-                                state.didChange(newValue);
-                              });
-                            },
-                            items: _colors.map((String value) {
-                              return new DropdownMenuItem(
-                                value: value,
-                                child: new Text(value),
-                              );
-                            }).toList(),
-                          ),
                         ),
-                      );
-                    },
-                  ),
                    
                   Divider(),   
                 
@@ -180,36 +159,32 @@ Future<Null> _selectedDate(BuildContext context) async {
 
                   ), 
                   
-                     new FormField(
-                    builder: (FormFieldState state) {
-                      return InputDecorator(
-                        decoration: InputDecoration(
-                          labelText: 'Currency',
+                     InputDecorator(
+                      decoration: InputDecoration(
+                      // suffixIcon: Icon(Icons.space_bar,color: Colors.green,),
+                      labelText: 'Currency',
+                            ),
+                        child: DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                          value: currency ,
+                          isDense: true,                
+                          onChanged: (String newValue) {
+                          setState(() {
+                        currency = newValue; 
+                       });
+                     },
+                     items: <String>['THB','USD','AUD','INR']
+                    
+                     .map<DropdownMenuItem<String>>((String value){
+                       return DropdownMenuItem<String>(value: value,
+                       child: Text(value),
+                       );
+                      
+                     }).toList(),
+                   ),
                         ),
-                        isEmpty: _color == '',
-                        child: new DropdownButtonHideUnderline(
-                          child: new DropdownButton(
-                            value: _color,
-                            isDense: true,
-                            onChanged: (String newValue) {
-                              setState(() {
-                                var newContact;
-                              newContact.favoriteColor = newValue;
-                                _color = newValue;
-                                state.didChange(newValue);
-                              });
-                            },
-                            items: _colors.map((String value) {
-                              return new DropdownMenuItem(
-                                value: value,
-                                child: new Text(value),
-                              );
-                            }).toList(),
-                          ),
                         ),
-                      );
-                    },
-                  ),
+                   
                    Divider(),                   
                    new TextField(
                       autofocus: false,

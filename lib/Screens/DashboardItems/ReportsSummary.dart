@@ -31,28 +31,9 @@ class _ReportSummaryPageState extends State<ReportSummaryPage> {
   
   final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
   };
-  // DateTime date = new DateTime.now();
-
-  InputType inputType = InputType.date;
+ InputType inputType = InputType.date;
   bool editable = true;
   DateTime date;
-
-  
-// Future<Null> _selectedDate(BuildContext context) async {
-//   final DateTime picked = await showDatePicker(
-//       context: context,
-//       initialDate: _date,
-//       firstDate: new DateTime(2016),
-//       lastDate: new DateTime(2050));
-
-//   if (picked != null && picked != _date) {
-//     print("Date selected ${_date.toString()}");
-//     setState(() {
-//       _date = picked;
-//     });
-//   }
-// }
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -75,11 +56,7 @@ class _ReportSummaryPageState extends State<ReportSummaryPage> {
               child: new ListView (
                 padding: const EdgeInsets.all( 20.0),
                 children: <Widget>[
-                  // Text('Format:"${formats[inputType].pattern}"'),
-                // new GestureDetector(
-                //     onTap: () => _selectedDate(context),
-                //     child: AbsorbPointer(
-                //       child:
+
                   new DateTimePickerFormField(
                     inputType: inputType,
                     format: formats[inputType],
@@ -89,24 +66,9 @@ class _ReportSummaryPageState extends State<ReportSummaryPage> {
                     labelText: 'From Date',hasFloatingPlaceholder: true
                     ), 
                     onChanged: (dt) => setState(()=> date = dt),
-                    // dateOnly: true,
-                    ),// format: null,
-                    // keyboardType: TextInputType.numberWithOptions(),
-                //  Text('Date value $date'),
-                  //  Divider(),
-                  //  new GestureDetector(
-                  //   onTap: () => _selectedDate(context),
-                  //   child: AbsorbPointer(
-                  //     child:
-                  // new TextFormField(
-                  //   decoration: const InputDecoration(
-                      
-                  //     suffixIcon: const Icon(Icons.calendar_today,color: Colors.green,),
-                  //     hintText: 'please Enter Date',
-                  //     labelText: 'To Date',
-                  //   ),
-                  //   // keyboardType: TextInputType.numberWithOptions(),
-                  //  ) )),
+                   
+                    ),
+                    
                    
                    Divider(),
 

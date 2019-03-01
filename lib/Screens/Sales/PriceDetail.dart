@@ -43,8 +43,9 @@ class SalePageState extends State<_PriceDetail> {
  
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   
-  List<String> _colors = <String>[' ', 'THB', 'USD', 'INR', 'AUD'];
-  String _color = ' ';
+  // List<String> _colors = <String>[' ', 'THB', 'USD', 'INR', 'AUD'];
+  
+  String currency = 'THB';
 
 @override
   Widget build(BuildContext context) {
@@ -121,36 +122,31 @@ class SalePageState extends State<_PriceDetail> {
                     ),
                   ),
 
-                   new FormField(
-                    builder: (FormFieldState state) {
-                      return InputDecorator(
-                        decoration: InputDecoration(
-                        labelText: 'Currency',
+                   InputDecorator(
+                      decoration: InputDecoration(
+                      // suffixIcon: Icon(Icons.space_bar,color: Colors.green,),
+                      labelText: 'Currency',
+                            ),
+                        child: DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                          value: currency ,
+                          isDense: true,                
+                          onChanged: (String newValue) {
+                          setState(() {
+                        currency = newValue; 
+                       });
+                     },
+                     items: <String>['THB','USD','AUD','INR']
+                    
+                     .map<DropdownMenuItem<String>>((String value){
+                       return DropdownMenuItem<String>(value: value,
+                       child: Text(value),
+                       );
+                      
+                     }).toList(),
+                   ),
                         ),
-                        isEmpty: _color == ' ',
-                        child: new DropdownButtonHideUnderline(
-                          child: new DropdownButton(
-                            value: _color,
-                            isDense: true,
-                            onChanged: (String newValue) {
-                              setState(() {
-                                var newContact;
-                                newContact.favoriteColor = newValue;
-                                _color = newValue;
-                                state.didChange(newValue);
-                              });
-                            },
-                            items: _colors.map((String value) {
-                              return new DropdownMenuItem(
-                                value: value,
-                                child: new Text(value),
-                              );
-                            }).toList(),
-                          ),
                         ),
-                      );
-                    },
-                  ),
                  
                     new Container(
                     child: new Padding(

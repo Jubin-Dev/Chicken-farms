@@ -6,8 +6,10 @@ import 'package:flutter_app/Screens/Navigationdraw.dart';
 import 'package:flutter_app/Screens/Tabs/ChickenTreatmentTabs.dart';
 import 'package:flutter_app/Screens/Tabs/ExpensesTabs.dart';
 import 'package:flutter_app/Screens/Tabs/ProfilesTab.dart';
+import 'package:flutter_app/Screens/Tabs/SaleSummaryTab.dart';
 import 'package:flutter_app/Screens/Tabs/SalesTab.dart';
 import 'package:flutter_app/Screens/Tabs/VaccineTab.dart';
+import 'package:flutter_app/Screens/Tabs/expSummaryTab.dart';
 
 
 void main() => runApp(MyHomes());
@@ -116,7 +118,7 @@ class MyHomes extends StatelessWidget {
                              IconButton(icon: Icon(Icons.assessment, color: Colors.white, ),
                              iconSize: 66.0,
                              onPressed: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => ReportSale())),
+                 context, MaterialPageRoute(builder: (context) => SaleSummaryTab())),
                              )
                            ],
                          ),
@@ -126,7 +128,7 @@ class MyHomes extends StatelessWidget {
                              IconButton(icon: Icon(Icons.monetization_on, color: Colors.white,  ),
                              iconSize: 66.0,
                              onPressed: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => ReportSale())), 
+                 context, MaterialPageRoute(builder: (context) => ExpSummaryTab())), 
                              )
                            ],
                          ),
