@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/Screens/Chicken_ProfileList/DetailForms.dart';
 import 'package:flutter_app/Screens/DashboardItems/SaleReport.dart';
-import 'package:flutter_app/Screens/Farm_Profile.dart';
 import 'package:flutter_app/Screens/Navigationdraw.dart';
 import 'package:flutter_app/Screens/Sales/sale_summary.dart';
 
@@ -28,8 +26,8 @@ class ExpSummaryTab extends StatefulWidget {
   @override
   Widget build(BuildContext context) {
    return MaterialApp(
-     debugShowCheckedModeBanner: false,
-     home: Scaffold(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
       body: NestedScrollView(
       controller: scrollController,
       headerSliverBuilder: (BuildContext context, bool boxIsScrolled){
@@ -44,29 +42,30 @@ class ExpSummaryTab extends StatefulWidget {
             onPressed: () => Navigator.push (
             context, MaterialPageRoute(builder: (context) => NavPage(),
              ),
-     ),
+          ),
        ),
             centerTitle: true,
             pinned: true,
             floating: true,
             // forceElevated: boxIsScrolled,
-              bottom: new TabBar(
-              isScrollable: true,
-              indicatorColor: Colors.green,
-              indicator: UnderlineTabIndicator(
-                borderSide: BorderSide(width:1.0),  
+            bottom: new TabBar(
+            isScrollable: true,
+            indicatorColor: Colors.green,
+            indicator: UnderlineTabIndicator(
+            borderSide: BorderSide(width:1.0),  
               ), 
-              labelStyle: TextStyle(fontSize: 20.0),
-              unselectedLabelColor: Colors.white54,
-              tabs: <Widget>[
+            labelStyle: TextStyle(fontSize: 20.0),
+            unselectedLabelColor: Colors.white54,
+            tabs: <Widget>[
+                
                 Tab(
                   text: "Expenses Report",
-                   icon: Icon(Icons.line_style, color: Colors.white,size: 40.0,),
+                  icon: Icon(Icons.line_style, color: Colors.white,size: 40.0,),
                    
-                ),
+                    ),
                 Tab(
                   text: "Expenses Summary",
-                   icon: Icon(Icons.library_books, color: Colors.white,size:40.0),
+                  icon: Icon(Icons.library_books, color: Colors.white,size:40.0),
                 )
                 
               ],

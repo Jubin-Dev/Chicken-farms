@@ -19,7 +19,7 @@ class FarmProfile extends StatefulWidget{
       final farmname = TextFormField(
           keyboardType: TextInputType.text ,
           autofocus: false,
-        decoration: InputDecoration(
+          decoration: InputDecoration(
           hintText: 'Farm Name',
           suffixIcon: Icon(Icons.account_box, color: Colors.green),
           contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
@@ -30,13 +30,13 @@ class FarmProfile extends StatefulWidget{
         ),
       );
       final farmAdress = TextFormField(
-        keyboardType: TextInputType.multiline ,
-        autofocus: false,
+          keyboardType: TextInputType.multiline ,
+          autofocus: false,
         // initialValue: '+91-',
-        decoration: InputDecoration(
+          decoration: InputDecoration(
           hintText: 'Farm Adress',
           suffixIcon: Icon(Icons.local_library, color: Colors.green),
-         contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
+          contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
           // border: OutlineInputBorder(
           //   borderRadius: BorderRadius.circular(25.0),
             
@@ -44,21 +44,21 @@ class FarmProfile extends StatefulWidget{
         ),
       );
       final phone = TextFormField(
-        keyboardType: TextInputType.phone ,
-        autofocus: false,
-        initialValue: '+91-',
-        decoration: InputDecoration(
+          keyboardType: TextInputType.phone ,
+          autofocus: false,
+          initialValue: '+91-',
+          decoration: InputDecoration(
           hintText: 'Enter Your Mobile No.',
           suffixIcon: Icon(Icons.phone_iphone, color: Colors.green),
-         contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
+          contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
           
         ),
       );
       final otherphone = TextFormField(
-        keyboardType: TextInputType.phone ,
-        autofocus: false,
+          keyboardType: TextInputType.phone ,
+          autofocus: false,
         // initialValue: '+91-',
-        decoration: InputDecoration(
+          decoration: InputDecoration(
           hintText: 'Enter Alternate Mobile No.',
           suffixIcon: Icon(Icons.phone_iphone, color: Colors.green),
           contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
@@ -66,47 +66,47 @@ class FarmProfile extends StatefulWidget{
         ),
       );
    final lineId = TextFormField(
-     autofocus: false,
+          autofocus: false,
     //  obscureText: true,
-     decoration: InputDecoration(
-         hintText: 'Line Id',
-         suffixIcon: Icon(Icons.assignment_ind, color: Colors.green),
-         contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
+          decoration: InputDecoration(
+          hintText: 'Line Id',
+          suffixIcon: Icon(Icons.assignment_ind, color: Colors.green),
+          contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
        
      ),
    );
    final socialpage = TextFormField(
-      autofocus: false,
-      keyboardType: TextInputType.url ,
-      decoration: InputDecoration(
-         hintText: 'Social Page',
-         suffixIcon: Icon(Icons.credit_card, color: Colors.green),
-         contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
+          autofocus: false,
+          keyboardType: TextInputType.url ,
+          decoration: InputDecoration(
+          hintText: 'Social Page',
+          suffixIcon: Icon(Icons.credit_card, color: Colors.green),
+          contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
         //  border: OutlineInputBorder(
         //    borderRadius: BorderRadius.circular(25.0),
         //  )
      ),
    );
    final website = TextFormField(
-     autofocus: false,
-    keyboardType: TextInputType.url ,
-     decoration: InputDecoration(
+      autofocus: false,
+      keyboardType: TextInputType.url ,
+      decoration: InputDecoration(
          hintText: 'Any Website',
          suffixIcon: Icon(Icons.center_focus_weak, color: Colors.green),
-        contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
+          contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
         //  border: OutlineInputBorder(
         //    borderRadius: BorderRadius.circular(25.0),
         //  )
      ),
    );
    final aboutus = TextFormField(
-        keyboardType: TextInputType.multiline ,
-        autofocus: false,
+          keyboardType: TextInputType.multiline ,
+          autofocus: false,
         
-        decoration: InputDecoration(
+          decoration: InputDecoration(
           hintText: 'About Us',
-           suffixIcon: Icon(Icons.content_paste, color: Colors.green),
-         contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
+            suffixIcon: Icon(Icons.content_paste, color: Colors.green),
+            contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
           // border: OutlineInputBorder(
           //   borderRadius: BorderRadius.circular(35.0),
             
@@ -139,9 +139,9 @@ class FarmProfile extends StatefulWidget{
         primarySwatch: Colors.green,
      ),
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-     backgroundColor: Colors.white,
-     body: Padding(
+      home: Container(
+    //  backgroundColor: Colors.white,
+     child: Padding(
          padding: EdgeInsets.only(left: 24.0,right: 24.0),
          child: new Row(
          

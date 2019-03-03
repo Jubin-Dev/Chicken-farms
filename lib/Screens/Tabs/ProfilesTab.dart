@@ -27,8 +27,8 @@ class Profile extends StatefulWidget {
   Widget build(BuildContext context) {
    return MaterialApp(
      debugShowCheckedModeBanner: false,
-     home: Scaffold(
-      body: NestedScrollView(
+     home: Container(
+      child: NestedScrollView(
       controller: scrollController,
       headerSliverBuilder: (BuildContext context, bool boxIsScrolled){
         return<Widget>[

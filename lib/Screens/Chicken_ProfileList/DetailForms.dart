@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
     String currencys = 'THB';
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return new Container(child: Scaffold(
       appBar: new AppBar(
         title: new Text(widget.title),
         centerTitle: true,
@@ -75,18 +75,18 @@ class _MyHomePageState extends State<MyHomePage> {
           icon: Icon(Icons.arrow_back_ios),
           onPressed: () => Navigator.push(
           context,MaterialPageRoute(builder: (context) => Profile(),
-       ),
+        ),
         ),
        ),
         
         backgroundColor: Colors.amber,
       ),
       body: new SafeArea(
-          top: false,
-          bottom: false,
-          child: new Form(
+          top: true,
+          bottom: true,
+          child: new Container(
                 key: _formKey,
-                autovalidate: true,
+                // autovalidate: true,
                 child: new ListView( 
                 padding: const EdgeInsets.all( 20.0),
                 children: <Widget>[
@@ -386,19 +386,21 @@ class _MyHomePageState extends State<MyHomePage> {
               //         ),
                      ) )],
                       ))),
-                );
+     ), );
               }
               }
 
-    class NextPage extends StatefulWidget{
-
-    final String value;
     
-    NextPage({Key key,this.value}): super(key:key);
-      @override
-        _NextPageState createState() => _NextPageState();
+class NextPage extends StatefulWidget{
+
+final String value;
+    
+NextPage({Key key,this.value}): super(key:key);
+
+@override
+_NextPageState createState() => _NextPageState();
           
-          }
+      }
   
   class _NextPageState extends State<NextPage> {
     bool isPriority = false;
@@ -406,12 +408,13 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
      if(isPriority) {
        isPriority = false;
-     }else{
-       isPriority = true;
      }
-    });
+     else {
+       isPriority = true;
+          }
+      });
 
-  }
+    }
 
   @override
   Widget build(BuildContext context) {
@@ -434,29 +437,23 @@ class _MyHomePageState extends State<MyHomePage> {
                  ),
           ), 
      body:
-         ListView.builder(itemCount: 30,
+         ListView.builder(itemCount: 10,
          
         shrinkWrap: true,
         itemBuilder: (BuildContext context,int index) => Container(
         //width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.symmetric(vertical: 10.0),
-       
         child: Card(
-        
           margin: EdgeInsets.only(left: 10.0,right: 10.0),
           elevation: 10.0,
           shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(3.5)
          ),
-          color: Colors.white70,
-          
+          color: Colors.white70, 
           child: Container(decoration: BoxDecoration(
             color: Colors.transparent,
-            
           ),
-          
-       
-        //width: MediaQuery.of(context).size.width,
+        width: MediaQuery.of(context).size.width,
         margin: EdgeInsets.symmetric(horizontal: 10.0,vertical: 30.0),
         padding: EdgeInsets.only(right: 80.0),
 
