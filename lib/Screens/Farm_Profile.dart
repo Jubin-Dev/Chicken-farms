@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/Screens/blocs/profilebloc.dart';
 
 class FarmProfile extends StatefulWidget{
   
@@ -9,6 +10,9 @@ class FarmProfile extends StatefulWidget{
   class _FarmProfilePageState extends State<FarmProfile> {
   @override
   Widget build(BuildContext context) {
+
+      final bloc = ProfileBloc();
+
    final logo = Hero(tag: 'hero', 
         child: CircleAvatar(
          backgroundColor: Colors.yellow,
@@ -16,47 +20,54 @@ class FarmProfile extends StatefulWidget{
          child: Image.asset('lib/images/photo.png'),
        ),
        );
-      final farmname = TextFormField(
+      final farmname = StreamBuilder<String>(
+            stream: bloc.farmStream,
+            builder:(context, snapshot)=>
+          TextField(
           keyboardType: TextInputType.text ,
           autofocus: false,
+          onChanged: bloc.farmNameChanged,
           decoration: InputDecoration(
           hintText: 'Farm Name',
           suffixIcon: Icon(Icons.account_box, color: Colors.green),
           contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-          // border: OutlineInputBorder(
-          //   borderRadius: BorderRadius.circular(25.0),
-            
-          // )
         ),
-      );
-      final farmAdress = TextFormField(
+    ),);
+      final farmAdress = StreamBuilder<String>(
+            stream: bloc.farmAdressStream,
+            builder:(context, snapshot)=>
+          TextField(
           keyboardType: TextInputType.multiline ,
           autofocus: false,
-        // initialValue: '+91-',
+          onChanged: bloc.farmAdressChanged,
           decoration: InputDecoration(
           hintText: 'Farm Adress',
           suffixIcon: Icon(Icons.local_library, color: Colors.green),
           contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-          // border: OutlineInputBorder(
-          //   borderRadius: BorderRadius.circular(25.0),
-            
-          // )
         ),
-      );
-      final phone = TextFormField(
+      ));
+      final phone = StreamBuilder<String>(
+            stream: bloc.mobileStreem,
+            builder:(context, snapshot)=>
+          TextField(
           keyboardType: TextInputType.phone ,
           autofocus: false,
-          initialValue: '+91-',
+          onChanged: bloc.mobileChanged,
+          // initialValue: '+91-',
           decoration: InputDecoration(
           hintText: 'Enter Your Mobile No.',
           suffixIcon: Icon(Icons.phone_iphone, color: Colors.green),
           contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
           
         ),
-      );
-      final otherphone = TextFormField(
+       ), );
+      final otherphone = StreamBuilder<String>(
+            stream: bloc.alternumberStream,
+            builder:(context, snapshot)=>
+          TextField(
           keyboardType: TextInputType.phone ,
           autofocus: false,
+          onChanged: bloc.alternumberChanged,
         // initialValue: '+91-',
           decoration: InputDecoration(
           hintText: 'Enter Alternate Mobile No.',
@@ -64,33 +75,42 @@ class FarmProfile extends StatefulWidget{
           contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
           
         ),
-      );
-   final lineId = TextFormField(
+       ) );
+   final lineId = StreamBuilder<String>(
+            stream: bloc.lineIdStream,
+            builder:(context, snapshot)=>
+          TextField(
           autofocus: false,
-    //  obscureText: true,
+          onChanged: bloc.lineIdChanged,
+   
           decoration: InputDecoration(
           hintText: 'Line Id',
           suffixIcon: Icon(Icons.assignment_ind, color: Colors.green),
           contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
        
      ),
-   );
-   final socialpage = TextFormField(
+    ) );
+   final socialpage = StreamBuilder<String>(
+            stream: bloc.socialPageStream,
+            builder:(context, snapshot)=>
+          TextField(
           autofocus: false,
-          keyboardType: TextInputType.url ,
+          keyboardType: TextInputType.url,
+          onChanged: bloc.socialPageChanged,
           decoration: InputDecoration(
           hintText: 'Social Page',
           suffixIcon: Icon(Icons.credit_card, color: Colors.green),
           contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-        //  border: OutlineInputBorder(
-        //    borderRadius: BorderRadius.circular(25.0),
-        //  )
      ),
-   );
-   final website = TextFormField(
-      autofocus: false,
-      keyboardType: TextInputType.url ,
-      decoration: InputDecoration(
+    ), );
+   final website = StreamBuilder<String>(
+            stream: bloc.anyWebStream,
+            builder:(context, snapshot)=>
+        TextField(
+        autofocus: false,
+        keyboardType: TextInputType.url,
+        onChanged: bloc.anyWebChanged,
+        decoration: InputDecoration(
          hintText: 'Any Website',
          suffixIcon: Icon(Icons.center_focus_weak, color: Colors.green),
           contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
@@ -98,32 +118,30 @@ class FarmProfile extends StatefulWidget{
         //    borderRadius: BorderRadius.circular(25.0),
         //  )
      ),
-   );
-   final aboutus = TextFormField(
+    ), );
+   final aboutus = StreamBuilder<String>(
+            stream: bloc.aboutusStream,
+            builder:(context, snapshot)=>
+          TextField(
           keyboardType: TextInputType.multiline ,
           autofocus: false,
-        
+          onChanged: bloc.aboutusChanged,
           decoration: InputDecoration(
           hintText: 'About Us',
             suffixIcon: Icon(Icons.content_paste, color: Colors.green),
             contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-          // border: OutlineInputBorder(
-          //   borderRadius: BorderRadius.circular(35.0),
-            
             
           )
-        );
-      
-   
+           ) );
+
    final submitButton = Padding(
         padding: EdgeInsets.symmetric(vertical: 50.0),
-        child: Material(
-        borderRadius: BorderRadius.circular(30.0),
-       shadowColor: Colors.lightBlueAccent.shade100,
-        elevation: 7.0,
-        child: MaterialButton(
-          minWidth: 200.0,
-          height: 47.0,
+        child:StreamBuilder<bool>(
+            stream: bloc.submitbutton,
+            builder:(context, snapshot)=>
+        RaisedButton(
+          // minWidth: 200.0,
+          // height: 47.0,
           onPressed: (){},
            
           color: Colors.amber,

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/Screens/Forgot_passw.dart';
 import 'package:flutter_app/Screens/Navigationdraw.dart';
 import 'package:flutter_app/Screens/New_User.dart';
 import 'package:flutter_app/Screens/blocs/bloc.dart';
-import 'package:flutter_app/Screens/forgot_passw.dart';
+
 
 class LoginPage extends StatefulWidget{
   final String tag ='loginPage';
@@ -15,9 +16,7 @@ class _LoginPageState extends State<LoginPage> {
    Navigator.of(context).push
           ( MaterialPageRoute(builder: (context) => MyNav(),
     ) ); 
-
-  }
-
+}
   @override
   Widget build(BuildContext context) {
 
@@ -38,23 +37,16 @@ class _LoginPageState extends State<LoginPage> {
         onChanged: bloc.phoneChanged,        
         keyboardType: TextInputType.phone ,
         autofocus: false,
-        // initialValue: '+91-',
         decoration: InputDecoration(
           hintText: 'Mobile Number',
           errorText: snapshot.error,
           suffixIcon: Icon(Icons.phone_iphone, color: Colors.green,),
-          contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-          // border: OutlineInputBorder(
-          //   borderRadius: BorderRadius.circular(25.0),
-            
-          // )
+          contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0), 
         ),
-        // validator: (value)=> value.isEmpty ? 'Field is not Empty': null,
-        // onSaved: (value)=> _phone = value,
         ),
         );
    final password =  StreamBuilder<String>(
-             stream: bloc.passwordStream,
+            stream: bloc.passwordStream,
             builder:(context, snapshot)=>TextField(
      onChanged: bloc.passwordChanged,  
      autofocus: false,
@@ -65,13 +57,8 @@ class _LoginPageState extends State<LoginPage> {
       errorText: snapshot.error,
          suffixIcon: Icon(Icons.lock, color: Colors.green,),
         contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-        //  border: OutlineInputBorder(
-        //    borderRadius: BorderRadius.circular(25.0),
- 
-        //  ) 
+        
      ),
-      // validator: (value) => value.isEmpty ? 'Field is not Empty': null,
-      // onSaved: (value)=> _pass = value,
     ), );
    
    final forgotLabel = Container(alignment:Alignment(1.0, 0.0),
@@ -79,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
      child:FlatButton(
      child: Text('Forgot password?',style:TextStyle(color:Colors.deepOrangeAccent,fontSize: 15.0)),
      onPressed: ()=> Navigator.push (
-      context, MaterialPageRoute(builder: (context) => Forgot_Pass(),
+      context, MaterialPageRoute(builder: (context) => ForgotPass(),
       ), 
       ),
       ), 
@@ -89,15 +76,8 @@ class _LoginPageState extends State<LoginPage> {
     padding: EdgeInsets.symmetric(vertical: 20.0),
      child:StreamBuilder<bool>(
             stream: bloc.submitcheck,
-            builder:(context,snapshot)=> 
-      //       Material(
-      //  borderRadius: BorderRadius.circular(30.0),
-      //  shadowColor: Colors.lightBlueAccent.shade100,
-      //   elevation: 6.0,
-        // child:StreamBuilder<bool>(
-        //     stream: bloc.submitcheck,
-        //     builder:(context,snapshot)=>
-         RaisedButton(
+            builder:(context,snapshot)=>
+          RaisedButton(
            highlightElevation: 20.0,
            color: Colors.amber,
           // minWidth: 200.0,
@@ -110,8 +90,7 @@ class _LoginPageState extends State<LoginPage> {
 
           ),  ) ,
      );
-   
-   
+
     final newUser = FlatButton(
      child: Text('New User?',style:TextStyle(color:Colors.deepOrange,fontSize: 15.0)),
      onPressed: ()=> Navigator.push (
@@ -145,8 +124,6 @@ class _LoginPageState extends State<LoginPage> {
             loginButton,
            SizedBox(height: 5.0),
             newUser,           //flatebutton for newUserPage
-           
-
          ],
        ),
       ),

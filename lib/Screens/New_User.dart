@@ -1,41 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Screens/Login_page.dart';
+import 'package:flutter_app/Screens/blocs/bloc.dart';
 import 'package:flutter_app/Screens/dialogs.dart';
 class NewUser extends StatefulWidget{
   
   static String tag ='Registration';
   @override
- _NewUserPageState  createState() => new _NewUserPageState(); 
-    
+ _NewUserPageState  createState() => new _NewUserPageState();    
   }
-  
   class _NewUserPageState extends State<NewUser> {
   @override
   Widget build(BuildContext context) {
+    final bloc = Bloc();
    final logo = Hero(tag: 'hero', 
        child: CircleAvatar(
          backgroundColor: Colors.yellow,
          radius: 60.0,
          child: Image.asset('lib/images/rooster.png'),
        ),);
-      final email = TextFormField(
+      final email = StreamBuilder<String>(
+             stream: bloc.emailStream,
+             builder:(context, snapshot)=>
+        TextField(
         keyboardType: TextInputType.emailAddress ,
         autofocus: false,
-        
+        onChanged: bloc.emailChanged,
         decoration: InputDecoration(
           hintText: 'Email ID',
           suffixIcon: Icon(Icons.email, color: Colors.green,),
-         contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
+          contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
           // border: OutlineInputBorder(
-          //   borderRadius: BorderRadius.circular(25.0),
-            
+          //   borderRadius: BorderRadius.circular(25.0), 
           // )
         ),
-      );
-      final name = TextFormField(
+      ));
+      final name = StreamBuilder<String>(
+              stream: bloc.fullnameStream,
+              builder:(context, snapshot)=>
+        TextField(
         keyboardType: TextInputType.text ,
         autofocus: false,
-        // initialValue: '+91-',
+        onChanged: bloc.nameChanged,
         decoration: InputDecoration(
           hintText: 'Full Name',
           suffixIcon: Icon(Icons.account_circle, color: Colors.green,),
@@ -45,25 +50,31 @@ class NewUser extends StatefulWidget{
             
           // )
         ),
-      );
-      final phone = TextFormField(
-        keyboardType: TextInputType.phone ,
-        autofocus: false,
-        initialValue: '+91-',
-        decoration: InputDecoration(
+       ),
+       );
+      final phone = StreamBuilder<String>(
+            stream: bloc.phoneStream,
+            builder:(context, snapshot)=>
+        TextField(
+          keyboardType: TextInputType.phone ,
+          autofocus: false,
+          maxLength: 10,
+          onChanged: bloc.phoneChanged,
+          decoration: InputDecoration(
           hintText: 'Enter Your Mobile No.',
           suffixIcon: Icon(Icons.phone_iphone, color: Colors.green,),
           contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-          // border: OutlineInputBorder(
-          //   borderRadius: BorderRadius.circular(25.0),
-            
-          // )
-        ),
-      );
-   final password = TextFormField(
-     autofocus: false,
-     obscureText: true,
-     decoration: InputDecoration(
+                ),
+            ),
+            );
+   final password = StreamBuilder<String>(
+            stream: bloc.passwordStream,
+            builder:(context, snapshot)=>
+      TextField(
+      autofocus: false,
+      obscureText: true,
+      onChanged: bloc.passwordChanged,  
+      decoration: InputDecoration(
          hintText: 'Password',
          suffixIcon: Icon(Icons.lock_open, color: Colors.green,),
          contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
@@ -71,39 +82,43 @@ class NewUser extends StatefulWidget{
         //    borderRadius: BorderRadius.circular(25.0),
         //  )
      ),
-   );
-   final rePassword = TextFormField(
+    ),
+     );
+   final rePassword = StreamBuilder<String>(
+            stream: bloc.passwordStream,
+            builder:(context, snapshot)=>
+     TextField(
      autofocus: false,
      obscureText: true,
+     onChanged: bloc.repassChanged,
      decoration: InputDecoration(
-         hintText: 'Re-Password',
+         hintText: 'Confirmed Password',
          suffixIcon: Icon(Icons.redo, color: Colors.green,),
          contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
         //  border: OutlineInputBorder(
         //    borderRadius: BorderRadius.circular(25.0),
         //  )
      ),
-   );
+    )
+     );
    
    final loginButton = Padding(
        padding: EdgeInsets.symmetric(vertical: 50.0),
-       child: Material(
-       borderRadius: BorderRadius.circular(30.0),
-       shadowColor: Colors.lightBlueAccent.shade100,
-        elevation: 7.0,
-        child: MaterialButton(
-          minWidth: 200.0,
-          height: 47.0,
-          onPressed: ()  async {
+       child: StreamBuilder<bool>(
+            stream: bloc.signupcheck,
+            builder:(context,snapshot)=> 
+         RaisedButton(
+          // minWidth: 200.0,
+          // height: 47.0,
+          highlightElevation: 20.0,
+          color: Colors.amber,
+          onPressed: snapshot.hasData ? null :()  async {
             final action = await Dialogs.yesAbortDialog(context,'Verify OTP','OTP:');
            },
-           
-          color: Colors.amber,
           child: Text('Sign-Up',style:TextStyle(color:Colors.white,fontSize: 20.0)),
-
         ) ,
      ),
-   );
+     ); 
     return MaterialApp(
       theme: ThemeData(
         primaryColor: Colors.green[450],
@@ -137,7 +152,7 @@ class NewUser extends StatefulWidget{
            email,
            SizedBox(height: 20.0),
            phone,
-           SizedBox(height: 20.0),
+           SizedBox(height: 10.0),
            password,
            SizedBox(height: 20.0),
            rePassword,
@@ -148,10 +163,12 @@ class NewUser extends StatefulWidget{
          ],
        ),
      ),
-     ), );
+    
+     ),
+    
+   );
   }
   }
-
     
   
  
