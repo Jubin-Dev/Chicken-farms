@@ -47,7 +47,7 @@ class FarmProfile extends StatefulWidget{
         ),
       ));
       final phone = StreamBuilder<String>(
-            stream: bloc.mobileStreem,
+            stream: bloc.mobileStream,
             builder:(context, snapshot)=>
           TextField(
           keyboardType: TextInputType.phone ,

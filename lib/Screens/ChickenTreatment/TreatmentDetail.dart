@@ -2,18 +2,19 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/Screens/Tabs/ChickenTreatmentTabs.dart';
+import 'package:flutter_app/Screens/blocs/chic_bloc_Treatment.dart';
 import 'package:intl/intl.dart';
 
 void main() => runApp(new Treatment());
 
 class Treatment extends StatelessWidget {
-   final String animalcode, medicineName, quantity, totalDays;
+  //  final String animalcode, medicineName, quantity, totalDays;
 
-const Treatment(
-  {
-    this.animalcode, this.medicineName, this.quantity, this.totalDays
-  }
-);
+// const Treatment(
+//   {
+//     this.animalcode, this.medicineName, this.quantity, this.totalDays
+//   }
+// );
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -36,11 +37,6 @@ class TreatmentPage extends StatefulWidget {
 
 class _TreatmentPageState extends State<TreatmentPage> {
   
-  var _medicinenameController = new TextEditingController();
-  var _animalcodeController = new TextEditingController();
-  var _quantityController = new TextEditingController();
-  var _totalDaysController = new TextEditingController();
-
   final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
   };
   InputType inputType = InputType.date;
@@ -54,28 +50,33 @@ class _TreatmentPageState extends State<TreatmentPage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text(widget.title),
-        centerTitle: true,
-        backgroundColor: Colors.amber,
-        leading: IconButton(icon: Icon(Icons.arrow_back_ios),
-        onPressed: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => Chicktreat())),
-        
-      ),
-      ),
-      body: new SafeArea(
-          top: false,
-          bottom: false,
-          child: new Form(
-              key: _formKey,
-              autovalidate: true,
-              child: new ListView(
-                padding: const EdgeInsets.all( 20.0),
-                children: <Widget>[
+    final bloc = TreatmentBloc();
+        return new Scaffold(
+          appBar: new AppBar(
+            title: new Text(widget.title),
+            centerTitle: true,
+            backgroundColor: Colors.amber,
+            leading: IconButton(icon: Icon(Icons.arrow_back_ios),
+            onPressed: () => Navigator.push(
+                     context, MaterialPageRoute(builder: (context) => Chicktreat())),
+            
+          ),
+          ),
+          body: new SafeArea(
+              top: false,
+              bottom: false,
+              child: new Form(
+                  key: _formKey,
+                  autovalidate: true,
+                  child: new ListView(
+                    padding: const EdgeInsets.all( 20.0),
+                    children: <Widget>[
+                      StreamBuilder<String>(
+                          stream: bloc.anicodeStream,
+                      builder:(context, snapshot)=>
                   InputDecorator(
                       decoration: InputDecoration(
+                        errorText: snapshot.error,
                       // suffixIcon: Icon(Icons.space_bar,color: Colors.green,),
                       labelText: 'Animal Code',
                             ),
@@ -83,11 +84,11 @@ class _TreatmentPageState extends State<TreatmentPage> {
                         child: DropdownButton<String>(
                           value: code ,
                           isDense: true,                
-                          onChanged: (String newValue) {
-                        setState(() {
-                       code  = newValue; 
-                       });
-                     },
+                    //       onChanged: (String newValue) {
+                    //     setState(() {
+                    //    code  = newValue; 
+                    //    });
+                    //  },
                      items: <String>['123', '111', '347', '921']
                     
                      .map<DropdownMenuItem<String>>((String value){
@@ -96,142 +97,158 @@ class _TreatmentPageState extends State<TreatmentPage> {
                        );
                       
                      }).toList(),
+                     onChanged: bloc.anicodeChanged,
+                    //  value:snapshot.data,
                    ),
                         ),
-                        ),
+                       ), ),
                   Divider(),
-                  new TextField(
-                    controller: _medicinenameController,
-                    onChanged: (value) => _medicinenameController.text = value,
+                  StreamBuilder<String>(
+                      stream: bloc.medinameStream,
+                      builder:(context, snapshot)=>
+                    TextField(
+                    onChanged: bloc.medicChanged,
                     keyboardType: TextInputType.text,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
+                      errorText: snapshot.error,
                       suffixIcon: Icon(Icons.control_point_duplicate,color:Colors.green),
                         hintText: 'Medicine Name',
                        
                     ),
-                  ),
+                   ), ),
                   Divider(
 
                   ), 
-                  new TextFormField(
-                    decoration: const InputDecoration(
+                  StreamBuilder<String>(
+                      stream: bloc.reasonStream,
+                      builder:(context, snapshot)=>
+                    TextField(
+                      onChanged: bloc.reasonChanged,
+                      decoration: InputDecoration(
+                      errorText: snapshot.error,
                       suffixIcon: Icon(Icons.help_outline,color:Colors.green),
                       contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-                        hintText: 'Reason',
+                      hintText: 'Reason',
                        
                     ),
-                  ),
-                  Divider(
-
-                  ), 
-                  new TextField(
-                  controller: _quantityController,
-                    onChanged: (value) => _quantityController.text = value,
+                  ),),
+                  Divider(), 
+                  StreamBuilder<String>(
+                      stream: bloc.quantityStream,
+                      builder:(context, snapshot)=>
+                      TextField(
+                    onChanged: bloc.quantityChanged,
                     keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
+                      errorText: snapshot.error,
                       suffixIcon: Icon(Icons.widgets,color:Colors.green),
                       contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                       hintText: 'Quantity',
                       
                     ),
-                  ),
-                  Divider(
-
-                  ), 
-                  new TextFormField(
-                    keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
+                  ),),
+                  Divider(), 
+                  StreamBuilder<String>(
+                      stream: bloc.unitsStream,
+                      builder:(context, snapshot)=>
+                      TextField(
+                      onChanged: bloc.unitChanged,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                      errorText: snapshot.error,
                       suffixIcon: Icon(Icons.format_underlined,color:Colors.green),
                       contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                       hintText: 'Units',
                       
                     ),
-                  ),
-                  
-                   Divider(
-                       
-                       
-                     ),
-                    new DateTimePickerFormField(
+                  ),),
+                   Divider(),
+                    StreamBuilder<String>(
+                      stream: bloc.startdateStream,
+                      builder:(context, snapshot)=>
+                    DateTimePickerFormField(
                     inputType: inputType,
                     format: formats[inputType],
                     editable: editable,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
+                      errorText: snapshot.error,
                     prefixIcon: const Icon(Icons.calendar_today, color: Colors.green), 
                     labelText: 'Start Date',hasFloatingPlaceholder: true
                     ), 
                     onChanged: (dt) => setState(()=> date = dt),
                    
-                    ),
+                    ),),
 
-                    new DateTimePickerFormField(
+                    StreamBuilder<String>(
+                      stream: bloc.enddateStream,
+                      builder:(context, snapshot)=>
+                    DateTimePickerFormField(
                     inputType: inputType,
                     format: formats[inputType],
                     editable: editable,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
+                      errorText: snapshot.error,
                     prefixIcon: const Icon(Icons.calendar_today, color: Colors.green), 
                     labelText: 'End Date',hasFloatingPlaceholder: true
                     ), 
                     onChanged: (dt) => setState(()=> date = dt),
                    
-                    ),
-                   Divider(), 
-
-                   
-                  new TextField(
-                    controller: _totalDaysController,
-                    onChanged: (value) => _totalDaysController.text = value,
+                    ),),
+                   Divider(),
+                  StreamBuilder<String>(
+                      stream: bloc.dosesStream,
+                      builder:(context, snapshot)=>
+                    TextField(
+                    onChanged: bloc.dosezChanged,
                     keyboardType: TextInputType.number,
-                      decoration: const InputDecoration(
+                    decoration: InputDecoration(
+                        errorText: snapshot.error,
                         suffixIcon: Icon(Icons.invert_colors,color:Colors.green),
                         contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-                        hintText: 'Dosage Per Day',
-                       
+                        hintText: 'Dosage Per Day',   
                       ),
-                    ) ,
+                    ),),
                    
-                    Divider(
-
-                  ), 
-                   Divider(
-                       
-                       
-                     ),
-                  
-                   new TextField(
+                    Divider(), 
+                   Divider(),
+                   StreamBuilder<String>(
+                      stream: bloc.remarksStream,
+                      builder:(context, snapshot)=>
+                      TextField(
+                      onChanged: bloc.remarksChanged,
                       autofocus: false,
                       keyboardType: TextInputType.multiline,
-                    decoration: InputDecoration(
+                      decoration: InputDecoration(
+                      errorText: snapshot.error,
                       suffixIcon: Icon(Icons.edit,color:Colors.green),
                       filled: true,
-                    hintText: 'Remark',
-                    contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 30.0, 60.0),
-                     border: OutlineInputBorder(
-                       borderRadius: BorderRadius.circular(20.0),
-                       
+                      hintText: 'Remark',
+                      contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 30.0, 60.0),
+                      border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
                      ) ) 
-                     ), 
+                     ),), 
                      
                      Divider(),  
                        
                     new Container(
                     child: new Padding(
                     padding: EdgeInsets.symmetric(vertical: 40.0),
-                    child: Material(
-                    borderRadius: BorderRadius.circular(30.0),
-                    shadowColor: Colors.lightBlueAccent.shade100,
-                    elevation: 6.0,
-                  child: MaterialButton(
-                  minWidth: 200.0,
-                  height: 47.0,
-                  onPressed: ()=> Navigator.push (
-                  context, MaterialPageRoute(builder: (context) => Chicktreat(),
+                    child: StreamBuilder<bool>(
+                      stream: bloc.subtrtbtn,
+                      builder:(context, snapshot)=>
+                      RaisedButton(
+                        color: Colors.amber,
+                        child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
+                  // minWidth: 200.0,
+                  // height: 47.0,
+                    onPressed: snapshot.hasData ? null:(){
+                      bloc.submit(); Navigator.push (
+                    context, MaterialPageRoute(builder: (context) => Chicktreat(),
+                    ),
+                    );
+                    },
                    ),
-                   ),
-                  color: Colors.amber,
-                  child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
-
-                   ) ,
                    ),
                      ),
                       ),

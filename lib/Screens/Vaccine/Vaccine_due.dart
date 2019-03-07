@@ -55,7 +55,7 @@ class _VaccineduePageState extends State<VaccineduePage> {
               child: new ListView(
                 padding: const EdgeInsets.all( 20.0),
                 children: <Widget>[
-                     new DateTimePickerFormField(
+                    new DateTimePickerFormField(
                     inputType: inputType,
                     format: formats[inputType],
                     editable: editable,
@@ -76,9 +76,7 @@ class _VaccineduePageState extends State<VaccineduePage> {
                     labelText: 'Upto Date',hasFloatingPlaceholder: true
                     ), 
                     onChanged: (dt) => setState(()=> date = dt),
-                   
                     ),
-
                     new Container(
                     child: new Padding(
                     padding: EdgeInsets.symmetric(vertical: 50.0),
@@ -87,13 +85,13 @@ class _VaccineduePageState extends State<VaccineduePage> {
                     shadowColor: Colors.lightBlueAccent.shade100,
                     elevation: 6.0,
                     child: MaterialButton(
-                  minWidth: 200.0,
-                  height: 47.0,
-                  onPressed: (){setState(() {
+                    minWidth: 200.0,
+                    height: 47.0,
+                    onPressed: (){setState(() {
                   //  count = count + 1;
                   //  new VaccinedueList(), 
-                  });
-                  },
+                    });
+                    },
                   // => Navigator.push( 
                   //    context, MaterialPageRoute(builder: (context) => VaccinedueList())),
                   color: Colors.amber,
@@ -103,16 +101,18 @@ class _VaccineduePageState extends State<VaccineduePage> {
                    ),
                      ),
                       ),
-                      new Container(      
-                        // padding: EdgeInsets.symmetric(vertical: 5.0),
-                        // margin: EdgeInsets.symmetric(vertical: 05.0),
-                        alignment: Alignment.topCenter,
+
+              // This comented code is for showing single listview 
+                      // new Container(      
+                      //   // padding: EdgeInsets.symmetric(vertical: 5.0),
+                      //   // margin: EdgeInsets.symmetric(vertical: 05.0),
+                      //   alignment: Alignment.topCenter,
                         
-                        height: 200.0,
-                        child:
-                        new VaccinedueList(),
+                      //   height: 200.0,
+                      //   child:
+                      //   new VaccinedueList(),
                       
-                      ),
+                      // ),
                     ],
                       ))),
                 );

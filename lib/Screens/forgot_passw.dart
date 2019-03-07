@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/Resourcefile/txtCss.dart';
 import 'package:flutter_app/Screens/Login_page.dart';
 import 'package:flutter_app/Screens/blocs/bloc.dart';
 import 'package:flutter_app/Screens/dialogs.dart';
@@ -10,16 +11,17 @@ class ForgotPass extends StatefulWidget{
       
    }
   
-  class _ForgotPageState extends State<ForgotPass> {
+  class _ForgotPageState extends State<ForgotPass> with TxtCss  {
   @override
   Widget build(BuildContext context) {
 
      final bloc = Bloc();
 
   final description =   Text("To use SMS verification, you need access to the verified, phone number and click to Continue.",
-                            style: TextStyle(color:
-                            Colors.black ,fontSize: 20.0,fontWeight: FontWeight.w400, fontFamily: "Titilium",),
-                        );
+                            style: 
+                            TextStyle(color:
+                            Colors.black ,fontSize: 20.0,fontWeight: FontWeight.w400,),
+                         );
   
   
     final phone =  StreamBuilder<String>(
@@ -57,7 +59,7 @@ class ForgotPass extends StatefulWidget{
             final action = await Dialogs.yesAbortDialog(context,'Verify OTP','OTP:');
            },
           color: Colors.amber,
-          child: Text('Continue',style:TextStyle(color:Colors.white,fontSize: 20.0)),
+          child: Text('Continue',style:TextStyle(color:Colors.white,fontSize: 25.0,)),
 
         ) ,
      ),
@@ -67,7 +69,7 @@ class ForgotPass extends StatefulWidget{
         primaryColor: Colors.green[450],
         accentColor: Colors.green,
         primarySwatch: Colors.green,
-     ),
+        ),
       home: new Scaffold(
       appBar: AppBar(
        title: Text('Recover Password'),

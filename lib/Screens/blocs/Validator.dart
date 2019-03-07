@@ -1,6 +1,6 @@
 import 'dart:async';
 
-mixin Validator{
+class Validator{
 
   var phoneValidator = StreamTransformer<String,String>.fromHandlers(
     handleData: (phone,sink){
@@ -48,9 +48,9 @@ mixin Validator{
     }
    );
       //Farm Profile
-   var farmNameValidator = StreamTransformer<String,String>.fromHandlers(
+   var notEmptyValidator = StreamTransformer<String,String>.fromHandlers(
     handleData: (farmname,sink){
-      if(farmname.length > 4){
+      if(farmname.isNotEmpty){
         sink.add(farmname);
         }else{
           sink.addError("Field is mandatory");
@@ -120,6 +120,32 @@ mixin Validator{
         }
     }
    );
+    final validatedropDown = StreamTransformer<String,String>.fromHandlers(
+  handleData: (dpvalue, sink) {
+   
+    if (dpvalue.isNotEmpty) 
+        {
+          sink.add(dpvalue);
+        }
+        else
+        {
+          sink.addError('Select Data !');
+        
+        }
+  });
+  final validatecalender = StreamTransformer<String,String>.fromHandlers(
+  handleData: (calendervalue, sink) {
+   
+    if (calendervalue.isNotEmpty) 
+        {
+          sink.add(calendervalue);
+        }
+        else
+        {
+          sink.addError('Select Date !');
+        
+        }
+  });
 
 
 }

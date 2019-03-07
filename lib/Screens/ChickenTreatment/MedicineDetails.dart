@@ -2,17 +2,18 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/Screens/Tabs/ChickenTreatmentTabs.dart';
+import 'package:flutter_app/Screens/blocs/chic_bloc_Treatment.dart';
 import 'package:intl/intl.dart';
 
 void main() => runApp(new Medicine());
 
 class Medicine extends StatelessWidget {
-    final String medicineName, purchasedDate, quantity, purchasedAmount;
-    const Medicine (
-  {
-    this.medicineName, this.purchasedDate, this.quantity, this.purchasedAmount
-  }
-);
+//     final String medicineName, purchasedDate, quantity, purchasedAmount;
+//     const Medicine (
+//   {
+//     this.medicineName, this.purchasedDate, this.quantity, this.purchasedAmount
+//   }
+// );
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +38,10 @@ class MedicinePage extends StatefulWidget {
 
 class _MedicinePageState extends State<MedicinePage> {
 
-  var _medicinenameController = new TextEditingController();
-  var _purchasedDateController = new TextEditingController();
-  var _quantityController = new TextEditingController();
-  var _purchasedAmountController = new TextEditingController();
+  // var _medicinenameController = new TextEditingController();
+  // var _purchasedDateController = new TextEditingController();
+  // var _quantityController = new TextEditingController();
+  // var _purchasedAmountController = new TextEditingController();
  
   
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
@@ -56,161 +57,186 @@ class _MedicinePageState extends State<MedicinePage> {
   
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text(widget.title),
-        centerTitle: true,
-       
-        backgroundColor: Colors.amber,
-        leading: IconButton(icon: Icon(Icons.arrow_back_ios),
-        onPressed: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => Chicktreat())),
-        
-
-        ),
-      ),
-      body: new SafeArea(
-          top: false,
-          bottom: false,
-          child: new Form(
-              key: _formKey,
-              autovalidate: true,
-              child: new ListView(
-                padding: const EdgeInsets.all( 20.0),
-                children: <Widget>[
-                   
-                  Divider(
-
-                  ),
-                  new TextField(
-                     controller: _medicinenameController,
-                     onChanged: (value) => _medicinenameController.text = value,
-                    keyboardType: TextInputType.text,
-                    decoration: const InputDecoration(
-                       suffixIcon: Icon(Icons.local_pharmacy,color:Colors.green),
-                        hintText: 'Medicine Name',
-                       
+    final bloc = TreatmentBloc();
+        return new Scaffold(
+          appBar: new AppBar(
+            title: new Text(widget.title),
+            centerTitle: true,
+           
+            backgroundColor: Colors.amber,
+            leading: IconButton(icon: Icon(Icons.arrow_back_ios),
+            onPressed: () => Navigator.push(
+                     context, MaterialPageRoute(builder: (context) => Chicktreat())),
+            
+    
+            ),
+          ),
+          body: new SafeArea(
+              top: false,
+              bottom: false,
+              child: new Form(
+                  key: _formKey,
+                  autovalidate: true,
+                  child: new ListView(
+                    padding: const EdgeInsets.all( 20.0),
+                    children: <Widget>[
+                      Divider(),
+                      StreamBuilder<String>(
+                      stream: bloc.medicnameStream,
+                      builder:(context, snapshot)=>
+                      TextField(
+                     onChanged: bloc.medicChanged,
+                     keyboardType: TextInputType.text,
+                     decoration: InputDecoration(
+                            errorText: snapshot.error,
+                            suffixIcon: Icon(Icons.local_pharmacy,color:Colors.green),
+                            hintText: 'Medicine Name',
                     ),
-                  ),
-                  Divider(
-
-                  ), 
-                  new TextFormField(
-                    decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.local_hospital,color:Colors.green),
-                        hintText: 'Medicine Type',
-                       
-                    ),
-                  ),
-                  Divider(
-
-                  ), 
-                  new TextFormField(
-                    keyboardType: TextInputType.text,
-                    decoration: const InputDecoration(
+                  ),),
+                  Divider(), 
+                  StreamBuilder<String>(
+                      stream: bloc.medictypeStream,
+                      builder:(context, snapshot)=>
+                      TextField(
+                        onChanged: bloc.meditypeChanged,
+                        decoration:  InputDecoration(
+                          errorText: snapshot.error,
+                        suffixIcon: Icon(Icons.local_hospital,color:Colors.green),
+                        hintText: 'Medicine Type',  
+                                       ),
+                                 ),),
+                  Divider(), 
+                 StreamBuilder<String>(
+                      stream: bloc.mediccompStream,
+                      builder:(context, snapshot)=>
+                    TextField(
+                      onChanged:bloc.medicompanyChanged,
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                      errorText: snapshot.error,
                       suffixIcon: Icon(Icons.location_city,color:Colors.green),
                       hintText: 'Medicine Company',
-                      
+                      ),
                     ),
                   ),
                   Divider(), 
-                   new DateTimePickerFormField(
+                   StreamBuilder<String>(
+                      stream: bloc.pdStream,
+                      builder:(context, snapshot)=> DateTimePickerFormField(
                     inputType: inputType,
                     format: formats[inputType],
                     editable: editable,
-                    decoration: const InputDecoration(
-                    prefixIcon: const Icon(Icons.calendar_today, color: Colors.green), 
-                    labelText: 'Purchase Date',hasFloatingPlaceholder: true
-                    ), 
-                    onChanged: (dt) => setState(()=> date = dt),
-                   
-                    ),
+                    decoration: InputDecoration(
+                      errorText: snapshot.error,
+                      prefixIcon: const Icon(Icons.calendar_today, color: Colors.green), 
+                      labelText: 'Purchase Date',hasFloatingPlaceholder: true
+                         ), 
+                      onChanged: (dt) => setState(()=> date = dt),
+                          ),
+                          ),
 
-                    new DateTimePickerFormField(
+                    StreamBuilder<String>(
+                      stream: bloc.edStream,
+                      builder:(context, snapshot)=>
+                    DateTimePickerFormField(
                     inputType: inputType,
                     format: formats[inputType],
                     editable: editable,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
+                    errorText: snapshot.error,
                     prefixIcon: const Icon(Icons.calendar_today, color: Colors.green), 
                     labelText: 'Expiry Date',hasFloatingPlaceholder: true
                     ), 
                     onChanged: (dt) => setState(()=> date = dt),
-                   
-                    ),
-            
-                  
-                   Divider(), 
-                   
-                  new TextFormField(
-                    keyboardType: TextInputType.text,
-                      decoration: const InputDecoration(
-                         suffixIcon: Icon(Icons.format_list_numbered_rtl,color:Colors.green),
-                        hintText: 'Batch Number',
-                       
                       ),
-                    ) ,
-                   
-                    Divider(
-
-                  ), 
-                    new TextFormField(
+                    ),
+                   Divider(), 
+                  StreamBuilder<String>(
+                      stream: bloc.batchStream,
+                      builder:(context, snapshot)=>
+                  TextField(
+                    onChanged: bloc.batchChanged,
                     keyboardType: TextInputType.text,
-                    decoration: const InputDecoration(
+                      decoration: InputDecoration(
+                        errorText: snapshot.error,
+                         suffixIcon: Icon(Icons.format_list_numbered_rtl,color:Colors.green),
+                          hintText: 'Batch Number',
+                      ),
+                      ),
+                    ),
+                    Divider(), 
+                    StreamBuilder<String>(
+                      stream: bloc.supplyStream,
+                      builder:(context, snapshot)=>
+                    TextField(
+                      onChanged: bloc.suplyChanged,
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                      errorText: snapshot.error,
                       suffixIcon: Icon(Icons.supervised_user_circle,color:Colors.green),
                         hintText: 'Supplied By',
-                       
-                    ),
-                  ),
-                  Divider(
-
-                  ), 
-                  new TextField(
-                    controller: _quantityController,
-                     onChanged: (value) => _quantityController.text = value,
+                          ),
+                          ),
+                        ),
+                  Divider(), 
+                  StreamBuilder<String>(
+                      stream: bloc.quantyStream,
+                      builder:(context, snapshot)=> 
+                    TextField(
+                     onChanged: bloc.quantiChanged,
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.widgets,color:Colors.green),
+                        suffixIcon: Icon(Icons.widgets,color:Colors.green),
                         hintText: 'Quantity',
-                       
-                    ),
-                  ),
-                   Divider(
-                       
-                       
-                     ),
-                       new TextFormField(
-                    keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.format_underlined,color:Colors.green),
-                        hintText: 'Unit',
-                       
-                    ),
-                  ),
-                  Divider(
-
-                  ), 
-                  new TextFormField(
-                    keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.monetization_on,color:Colors.green),
-                        hintText: 'Unit Price',
-                       
-                    ),
-                  ),
-                     InputDecorator(
+                          ),
+                          ),
+                        ),
+                   Divider(),
+                    StreamBuilder<String>(
+                      stream: bloc.unitStream,
+                      builder:(context, snapshot)=>
+                    TextField(
+                      onChanged: bloc.unitsChanged,
+                      keyboardType: TextInputType.number,
+                      decoration:  InputDecoration(
+                              errorText: snapshot.error,
+                              suffixIcon: Icon(Icons.format_underlined,color:Colors.green),
+                              hintText: 'Unit',
+                                 ),
+                              ),
+                           ),
+                  Divider(), 
+                  StreamBuilder<String>(
+                      stream: bloc.unipriceStream,
+                      builder:(context, snapshot)=>
+                    TextField(
+                      onChanged: bloc.upChanged,
+                      keyboardType: TextInputType.number,
                       decoration: InputDecoration(
+                        errorText: snapshot.error,
+                        suffixIcon: Icon(Icons.monetization_on,color:Colors.green),
+                        hintText: 'Unit Price',
+                      ),
+                    ),
+                  ),
+                     StreamBuilder<String>(
+                      stream: bloc.currencyStream,
+                      builder:(context, snapshot)=>
+                      InputDecorator(
+                      decoration: InputDecoration(
+                        errorText: snapshot.error,
                       // suffixIcon: Icon(Icons.space_bar,color: Colors.green,),
-                      labelText: 'Currency',
+                        labelText: 'Currency',
                             ),
                         child: DropdownButtonHideUnderline(
                         child: DropdownButton<String>(
                           value: currency ,
                           isDense: true,                
-                          onChanged: (String newValue) {
-                          setState(() {
-                        currency = newValue; 
-                       });
-                     },
+                    //       onChanged: (String newValue) {
+                    //       setState(() {
+                    //     currency = newValue; 
+                    //    });
+                    //  },
                      items: <String>['THB','USD','AUD','INR']
                     
                      .map<DropdownMenuItem<String>>((String value){
@@ -219,49 +245,52 @@ class _MedicinePageState extends State<MedicinePage> {
                        );
                       
                      }).toList(),
-                   ),
+                     onChanged: bloc.currencyChanged,
                         ),
                         ),
-                   
+                        ),
+                     ),
                    Divider(), 
-                   new TextField(
-                     controller: _purchasedAmountController,
-                      onChanged: (value) => _purchasedAmountController.text = value,
+                   StreamBuilder<String>(
+                      stream: bloc.amountStream,
+                      builder:(context, snapshot)=>
+                   TextField(
+                      onChanged: bloc.amountChanged,
                       autofocus: false,
                       keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      suffixIcon: Icon(Icons.attach_money,color:Colors.green),
-                      filled: true,
-                    hintText: 'Purchase Amount',
-                    contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 20.0, 40.0),
-                     border: OutlineInputBorder(
-                       borderRadius: BorderRadius.circular(20.0),
-                       
-                     ) ) 
-                     ), 
+                          decoration: InputDecoration(
+                              errorText: snapshot.error,
+                              suffixIcon: Icon(Icons.attach_money,color:Colors.green),
+                              filled: true,
+                              hintText: 'Purchase Amount',
+                              contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 20.0, 40.0),
+                              border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              ),
+                             ) ), 
+                             ), 
                     
                     new Container(
                     child: new Padding(
-                     padding: EdgeInsets.symmetric(vertical: 80.0),
-                    child: Material(
-                    borderRadius: BorderRadius.circular(30.0),
-                    shadowColor: Colors.lightBlueAccent.shade100,
-                   elevation: 6.0,
-                  child: MaterialButton(
+                    padding: EdgeInsets.symmetric(vertical: 40.0),
+                    child: StreamBuilder<String>(
+                      stream: bloc.unipriceStream,
+                      builder:(context, snapshot)=>
+                  MaterialButton(
                   minWidth: 200.0,
                   height: 47.0,
-                  onPressed: () => Navigator.push (
-                  context, MaterialPageRoute(builder: (context) => Chicktreat(),
-                   ),
-                   ),
                   color: Colors.amber,
                   child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
-
-                   ) ,
+                  onPressed:snapshot.hasData ? null:(){ Navigator.push (
+                  context, MaterialPageRoute(builder: (context) => Chicktreat(),
+                   ),
+                   );
+                  
+                   } ,
                    ),
                      ),
                       ),
-                    ],
+                     ), ],
                       ))),
                 );
               }

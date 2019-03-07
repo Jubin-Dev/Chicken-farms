@@ -30,12 +30,12 @@ class _LoginPageState extends State<LoginPage> {
        ),);
 
       final phone = StreamBuilder<String>(
-             stream: bloc.phoneStream,
-            builder:(context, snapshot)=>
+              stream: bloc.phoneStream,
+              builder:(context, snapshot)=>
         TextField(
         maxLength: 10,
         onChanged: bloc.phoneChanged,        
-        keyboardType: TextInputType.phone ,
+        keyboardType: TextInputType.phone,
         autofocus: false,
         decoration: InputDecoration(
           hintText: 'Mobile Number',
@@ -53,16 +53,16 @@ class _LoginPageState extends State<LoginPage> {
     //  initialValue: 'some password',
      obscureText: true,
      decoration: InputDecoration(
-         hintText: 'Password',
+      hintText: 'Password',
       errorText: snapshot.error,
-         suffixIcon: Icon(Icons.lock, color: Colors.green,),
-        contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
+      suffixIcon: Icon(Icons.lock, color: Colors.green,),
+      contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
         
      ),
     ), );
    
    final forgotLabel = Container(alignment:Alignment(1.0, 0.0),
-     padding: EdgeInsets.only(top:10.0,left: 20.0), 
+     padding: EdgeInsets.only(top:10.0,left: 10.0), 
      child:FlatButton(
      child: Text('Forgot password?',style:TextStyle(color:Colors.deepOrangeAccent,fontSize: 15.0)),
      onPressed: ()=> Navigator.push (
@@ -73,12 +73,12 @@ class _LoginPageState extends State<LoginPage> {
       );
    
    final loginButton = Padding(
-    padding: EdgeInsets.symmetric(vertical: 20.0),
+    padding: EdgeInsets.symmetric(vertical: 10.0),
      child:StreamBuilder<bool>(
             stream: bloc.submitcheck,
             builder:(context,snapshot)=>
-          RaisedButton(
-           highlightElevation: 20.0,
+        FlatButton(
+          //  highlightElevation: 20.0,
            color: Colors.amber,
           // minWidth: 200.0,
           // height: 47.0,
@@ -92,8 +92,8 @@ class _LoginPageState extends State<LoginPage> {
      );
 
     final newUser = FlatButton(
-     child: Text('New User?',style:TextStyle(color:Colors.deepOrange,fontSize: 15.0)),
-     onPressed: ()=> Navigator.push (
+      child: Text('New User?',style:TextStyle(color:Colors.deepOrange,fontSize: 15.0)),
+      onPressed: ()=> Navigator.push (
       context, MaterialPageRoute(builder: (context) => NewUser(),
       ) 
      ) 
@@ -105,10 +105,10 @@ class _LoginPageState extends State<LoginPage> {
         accentColor: Colors.green,
         primarySwatch: Colors.green,
      ),
-      home: Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-       child: ListView(
+        home: Scaffold(
+        backgroundColor: Colors.white,
+        body: Center(
+        child: ListView(
          shrinkWrap: true,
          padding: EdgeInsets.only(left: 25.0,right: 25.0),
         //  key: formKey,
@@ -122,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
            forgotLabel,       //flatbutton for forgotpage
            SizedBox(height: 10.5,),
             loginButton,
-           SizedBox(height: 5.0),
+           SizedBox(height: 1.0),
             newUser,           //flatebutton for newUserPage
          ],
        ),
