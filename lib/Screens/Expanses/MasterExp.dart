@@ -18,18 +18,16 @@ class MasterExp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       // title: 'Flutter Form Demo',
-      theme: new ThemeData(
+        theme: new ThemeData(
         primarySwatch: Colors.green,
       ),
       home: new MasterExpPage(title: 'Master Expanse Details'),
     );
   }
 }
-
 class MasterExpPage extends StatefulWidget {
   MasterExpPage({Key key, this.title}) : super(key: key);
   final String title;
-
   @override
   _MasterExpPageState createState() => new _MasterExpPageState();
 }
@@ -43,7 +41,8 @@ class _MasterExpPageState extends State<MasterExpPage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+      return new Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: new AppBar(
         title: new Text(widget.title),
         centerTitle: true,    
@@ -51,106 +50,78 @@ class _MasterExpPageState extends State<MasterExpPage> {
         leading: IconButton(icon: Icon(Icons.arrow_back_ios),
         onPressed: () => Navigator.push(
                  context, MaterialPageRoute(builder: (context) => ExpTab())),
-        
-      ),
-      ),
+                  ),
+                  ),
       body: new SafeArea(
-          top: false,
+          top:false,
           bottom: false,
           child: new Form(
-            
               autovalidate: true,
               child: new ListView(
-                padding: const EdgeInsets.all( 20.0),
+                padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 20.0),
                 children: <Widget>[
-                   
-                  Divider(
-
-                  ),
                   new TextField(
-                    controller: _expcodeController,
-                     onChanged: (value) => _expcodeController.text = value,
-                    keyboardType: TextInputType.text,
-                    decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.space_bar,color:Colors.green),
-                    hintText: 'Expense Code',
-                       
+                      controller: _expcodeController,
+                      onChanged: (value) => _expcodeController.text = value,
+                      keyboardType: TextInputType.text,
+                      decoration: const InputDecoration(
+                      icon: Icon(Icons.space_bar,color:Colors.green),
+                      labelText: 'Expense Code',
+                       ),
+                       ),
+                  Divider(), 
+                  new TextField(
+                      controller: _expnameController,
+                      onChanged: (value) => _expnameController.text = value,
+                      decoration: const InputDecoration(
+                      icon: Icon(Icons.explicit,color:Colors.green),
+                      labelText: 'Expense Name',
                     ),
                   ),
-                  Divider(
-
-                  ), 
-                  new TextField(
-                    controller: _expnameController,
-                     onChanged: (value) => _expnameController.text = value,
-                    decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.explicit,color:Colors.green),
-                        hintText: 'Expense Name',
-                       
-                    ),
-                  ),
-                  Divider(
-
-                  ), 
+                  Divider(), 
                   new TextFormField(
                     keyboardType: TextInputType.text,
                     decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.euro_symbol,color:Colors.green),
-                      hintText: 'Expense Type',
-                      
+                     icon: Icon(Icons.euro_symbol,color:Colors.green),
+                      labelText: 'Expense Type',
                     ),
                   ),
-                  Divider(
-
-                  ), 
-                  new Container(
-                    children:<Widget>[ 
-                      new Text('Service'),
-                      Center(
-                        child: Switch(
-                          onChanged: (bool value){
-                            setState(()=> this. switchval= value); 
-                              
-                            },
-                            value: this.switchval,
-                            )
-                          
-                        ),
-                     
-                       ],
-                      ),
-                      
-                   
-                        new Container(
-                        
+                  Divider(), 
+                  // new Container(
+                  //   children:<Widget>[ 
+                  //     new Text('Service'),
+                  //     Center(
+                  //       child: Switch(
+                  //         onChanged: (bool value){
+                  //           setState(()=> this. switchval= value); 
+                  //           },
+                  //           value: this.switchval,
+                  //           )
+                  //       ),
+                  //      ],
+                  //     ),
+                new Container(
                         child: new Padding(
-                        padding: EdgeInsets.symmetric(vertical: 80.0),
-                    
-                    child: Material(
-                    borderRadius: BorderRadius.circular(30.0),
-                    shadowColor: Colors.lightBlueAccent.shade100,
-                    elevation: 6.0,
-                  
-                    child: MaterialButton(
-                  
-                      minWidth: 200.0,
-                      height: 47.0,
-                  
-                  onPressed: ()=> Navigator.push( 
+                        padding: EdgeInsets.symmetric(vertical: 35.0),
+                        // child: Material(
+                        // borderRadius: BorderRadius.circular(30.0),
+                        // shadowColor: Colors.lightBlueAccent.shade100,
+                        // elevation: 6.0,
+                        child: RaisedButton(
+                        // minWidth: 200.0,
+                        // height: 47.0,
+                        onPressed: ()=> Navigator.push( 
                                   context, MaterialPageRoute(builder: (context) => ExpTab())),
-                  color: Colors.amber,
-                  child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
-
-                   ) ,
-                   ),
+                        color: Colors.amber,
+                        child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
+                    ),
+                    ),
                      ),
-                      ),
                     ],
                       ))),
-                );
-              }
-              }
-
+                    );
+                   }
+                   }
 
     class ExpList extends StatefulWidget{
 
@@ -161,13 +132,10 @@ class _MasterExpPageState extends State<MasterExpPage> {
       @override
         
       _ExpListPageState createState() => _ExpListPageState();
-         
           }
-  
-  class _ExpListPageState extends State<ExpList> {
+      class _ExpListPageState extends State<ExpList> {
     
     bool isPriority = false;
-    
     void _toggleFlag(){
     setState(() {
      if(isPriority) {
@@ -181,7 +149,6 @@ class _MasterExpPageState extends State<MasterExpPage> {
 
   @override
   Widget build(BuildContext context) {
-    
     return new  MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: new ThemeData(
@@ -190,6 +157,7 @@ class _MasterExpPageState extends State<MasterExpPage> {
       ),
       
       home:Scaffold(
+        resizeToAvoidBottomPadding: false,
         floatingActionButton: new FloatingActionButton(
             elevation: 20.0,
             highlightElevation: 20.0,
@@ -249,12 +217,9 @@ class _MasterExpPageState extends State<MasterExpPage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
-                    
                     new Text("Expenses Code: ${widget.value}"),
                     Divider(),
                     new Text("Expenses Name: ${widget.value}"),
-                    
-
                     Divider(color: Colors.teal,indent: 50.0,),
                     new IconButton(
                     icon: Icon(Icons.delete),

@@ -4,13 +4,13 @@ import 'package:flutter_app/Screens/Navigationdraw.dart';
 import 'package:flutter_app/Screens/New_User.dart';
 import 'package:flutter_app/Screens/blocs/bloc.dart';
 
-
 class LoginPage extends StatefulWidget{
   final String tag ='loginPage';
   @override
   _LoginPageState  createState() => new _LoginPageState();   
 }
 class _LoginPageState extends State<LoginPage> {
+  bool _remembermeFlag = false;
  
  changeThePage(BuildContext context){
    Navigator.of(context).push
@@ -19,9 +19,7 @@ class _LoginPageState extends State<LoginPage> {
 }
   @override
   Widget build(BuildContext context) {
-
   final bloc = Bloc();
-     
   final logo = Hero(tag: 'hero', 
        child: CircleAvatar(
          backgroundColor: Colors.yellow,
@@ -29,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
          child: Image.asset('lib/images/rooster.png'),
        ),);
 
-      final phone = StreamBuilder<String>(
+    final phone = StreamBuilder<String>(
               stream: bloc.phoneStream,
               builder:(context, snapshot)=>
         TextField(
@@ -60,29 +58,52 @@ class _LoginPageState extends State<LoginPage> {
         
      ),
     ), );
-   
-   final forgotLabel = Container(alignment:Alignment(1.0, 0.0),
-     padding: EdgeInsets.only(top:10.0,left: 10.0), 
-     child:FlatButton(
-     child: Text('Forgot password?',style:TextStyle(color:Colors.deepOrangeAccent,fontSize: 15.0)),
-     onPressed: ()=> Navigator.push (
+    final rememberMe = Container( 
+    //  padding: new EdgeInsets.symmetric(horizontal: 0.0),
+       child: new Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children:<Widget>[
+        Checkbox(
+          activeColor: Colors.green,
+        value: _remembermeFlag,
+        onChanged: (value)=> setState((){
+          _remembermeFlag = !_remembermeFlag;
+        }),
+        
+      ),
+      new Text("Remember me",style: new TextStyle(color: Colors.deepOrangeAccent,fontSize: 15.0),
+      ),
+      SizedBox(width: 30.0,),
+      new FlatButton(child: Text('Forgot Password ?',style:TextStyle(color:Colors.deepOrangeAccent,fontSize: 15.0)),
+      onPressed: ()=> Navigator.push (
       context, MaterialPageRoute(builder: (context) => ForgotPass(),
       ), 
-      ),
-      ), 
-      );
+      ),)
+         ],),
+    );
+   
+  //  final forgotLabel = Container(alignment:Alignment(1.0, 0.0),
+  //    padding: EdgeInsets.only(left: 10.0), 
+  //    child:FlatButton(
+  //    child: Text('Forgot Password ?',style:TextStyle(color:Colors.deepOrangeAccent,fontSize: 15.0)),
+  //    onPressed: ()=> Navigator.push (
+  //     context, MaterialPageRoute(builder: (context) => ForgotPass(),
+  //     ), 
+  //     ),
+  //     ), 
+  //     );
    
    final loginButton = Padding(
     padding: EdgeInsets.symmetric(vertical: 10.0),
      child:StreamBuilder<bool>(
             stream: bloc.submitcheck,
             builder:(context,snapshot)=>
-        FlatButton(
+        RaisedButton(
           //  highlightElevation: 20.0,
            color: Colors.amber,
           // minWidth: 200.0,
           // height: 47.0,
-          onPressed: snapshot.hasData ? () => changeThePage(context) : null,
+          onPressed: !snapshot.hasData ? () => changeThePage(context) : null,
       //     => Navigator.push (
       //     context, MaterialPageRoute(builder: (context) => MyNav(),
       // ) 
@@ -117,10 +138,12 @@ class _LoginPageState extends State<LoginPage> {
             logo,   
            SizedBox(height: 50.0),
             phone,
-           SizedBox(height: 15.0),
+           SizedBox(height: 10.0),
             password,
-           forgotLabel,       //flatbutton for forgotpage
-           SizedBox(height: 10.5,),
+            // SizedBox(height: 10.0),
+            rememberMe,
+            // forgotLabel,       //flatbutton for forgotpage
+          //  SizedBox(height: 10.0,),
             loginButton,
            SizedBox(height: 1.0),
             newUser,           //flatebutton for newUserPage

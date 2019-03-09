@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/Resourcefile/txtCss.dart';
 import 'package:flutter_app/Screens/Login_page.dart';
 import 'package:flutter_app/Screens/blocs/bloc.dart';
 import 'package:flutter_app/Screens/dialogs.dart';
@@ -9,7 +8,7 @@ class NewUser extends StatefulWidget{
   @override
  _NewUserPageState  createState() => new _NewUserPageState();    
   }
-  class _NewUserPageState extends State<NewUser> with TxtCss  {
+  class _NewUserPageState extends State<NewUser>   {
   @override
   Widget build(BuildContext context) {
         final bloc = Bloc();
@@ -27,8 +26,8 @@ class NewUser extends StatefulWidget{
           autofocus: false,
           onChanged: bloc.emailChanged,
           decoration: InputDecoration(
-          hintText: 'Email ID',
-          suffixIcon: Icon(Icons.email, color: Colors.green,),
+          labelText: 'Email ID',
+          icon: Icon(Icons.email, color: Colors.green,),
           contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
           // border: OutlineInputBorder(
           //   borderRadius: BorderRadius.circular(25.0), 
@@ -43,8 +42,8 @@ class NewUser extends StatefulWidget{
         autofocus: false,
         onChanged: bloc.nameChanged,
         decoration: InputDecoration(
-          hintText: 'Full Name',
-          suffixIcon: Icon(Icons.account_circle, color: Colors.green,),
+          labelText: 'Full Name',
+          icon: Icon(Icons.account_circle, color: Colors.green,),
           contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
           // border: OutlineInputBorder(
           //   borderRadius: BorderRadius.circular(25.0),
@@ -62,8 +61,8 @@ class NewUser extends StatefulWidget{
           maxLength: 10,
           onChanged: bloc.phoneChanged,
           decoration: InputDecoration(
-          hintText: 'Enter Your Mobile No.',
-          suffixIcon: Icon(Icons.phone_iphone, color: Colors.green,),
+          labelText: 'Enter Your Mobile No.',
+          icon: Icon(Icons.phone_iphone, color: Colors.green,),
           contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                 ),
             ),
@@ -76,8 +75,8 @@ class NewUser extends StatefulWidget{
             obscureText: true,
             onChanged: bloc.passwordChanged,  
             decoration: InputDecoration(
-            hintText: 'Password',
-            suffixIcon: Icon(Icons.lock_open, color: Colors.green,),
+            labelText: 'Password',
+            icon: Icon(Icons.lock_open, color: Colors.green,),
             contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
         //  border: OutlineInputBorder(
         //    borderRadius: BorderRadius.circular(25.0),
@@ -86,21 +85,21 @@ class NewUser extends StatefulWidget{
        ),
         );
    final rePassword = StreamBuilder<String>(
-            stream: bloc.passwordStream,
+            stream: bloc.repassStream,
             builder:(context, snapshot)=>
             TextField(
             autofocus: false,
             obscureText: true,
             onChanged: bloc.repassChanged,
             decoration: InputDecoration(
-            hintText: 'Confirmed Password',
-            suffixIcon: Icon(Icons.redo, color: Colors.green,),
+            labelText: 'Confirmed Password',
+            icon: Icon(Icons.redo, color: Colors.green,),
             contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
         //  border: OutlineInputBorder(
         //    borderRadius: BorderRadius.circular(25.0),
         //  )
      ),
-    )
+    ),
      );
    
    final loginButton = Padding(
@@ -126,7 +125,9 @@ class NewUser extends StatefulWidget{
         accentColor: Colors.green,
         primarySwatch: Colors.green,
      ),
-        home: Scaffold(
+        home:new Container(child:
+        Scaffold(
+        resizeToAvoidBottomPadding: false,
         appBar: AppBar(
         title: Text('Registration'),
         centerTitle: true,
@@ -167,7 +168,7 @@ class NewUser extends StatefulWidget{
     
      ),
     
-   );
+        ), );
   }
   }
     

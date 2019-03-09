@@ -76,7 +76,7 @@ class ProfileBloc extends Object with Validator {
 
   //chicken details screen
   Stream<String> get animalCodeStream => _animalCodeController.stream.transform(notEmptyValidator);
-  Stream<String> get  animalnameStream => _nameController.stream.transform(notEmptyValidator);
+  Stream<String> get animalnameStream => _nameController.stream.transform(notEmptyValidator);
   Stream<String> get symbolStream => _symbolController.stream.transform(notEmptyValidator);
   Stream<String> get animalStatusStream => _animalStatusController.stream.transform(validatedropDown);
   Stream<String> get dobStream => _dobController.stream.transform(validatecalender);
@@ -93,23 +93,23 @@ class ProfileBloc extends Object with Validator {
   Stream<String> get remarksStream => _remarksController.stream.transform(notEmptyValidator);
  
   //Submit Button
-  Stream<bool> get submitbutton => Observable.combineLatest8(
-    farmStream, farmAdressStream, mobileStream, alternumberStream, lineIdStream, anyWebStream, socialPageStream, aboutusStream,
-     (n,a,m,an,l,w,s,u) => true);
+  // Stream<bool> get submitedbutton => Observable.combineLatest8(
+  //   farmStream, farmAdressStream, mobileStream, alternumberStream, lineIdStream, anyWebStream, socialPageStream, aboutusStream,
+  //    (fs,fa,ms,an,li,aw,sp,au) => true);
 
-  Stream<bool> get submitdetails => Observable.combineLatest9(animalCodeStream,
-  animalStatusStream, dobStream, breedPageStream, sireCodeStream, breederCodeStream,
-  weightStream,currencyStream, weightTypeStream,(a,b,c,d,e,f,g,h,i)=>true);
+  // Stream<bool> get submiteddetails => Observable.combineLatest9(animalCodeStream,
+  // animalStatusStream, dobStream, breedPageStream, sireCodeStream, breederCodeStream,
+  // weightStream,currencyStream, weightTypeStream,(ac,s,d,bp,sc,bc,ws,cs,wt) => true);
 
  submit()
   {
-    final animalcode = _animalCodeController.value;
-    final animalname = _nameController.value;
-    final animalstatus = _animalStatusController.value;
+    // final animalcode = _animalCodeController.value;
+    // final animalname = _nameController.value;
+    // final animalstatus = _animalStatusController.value;
     
-    print('Animal Code : $animalcode');
-    print('Animal Name : $animalname');
-    print('Animal Status : $animalstatus');
+    // print('Animal Code : $animalcode');
+    // print('Animal Name : $animalname');
+    // print('Animal Status : $animalstatus');
    
   }
 
@@ -140,6 +140,7 @@ class ProfileBloc extends Object with Validator {
       _standerdPriceController?.close();
       _currencyController?.close();
       _remarksController?.close();
+      
 
 
   }

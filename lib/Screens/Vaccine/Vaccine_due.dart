@@ -40,7 +40,9 @@ class _VaccineduePageState extends State<VaccineduePage> {
   @override
   Widget build(BuildContext context) {
     // List <Widget> children = new List .generate(count,(int i)=> new VaccinedueList());
-    return new Scaffold(
+     return new Container(child:
+        Scaffold(
+          resizeToAvoidBottomPadding: false,
       // appBar: new AppBar(
       //   title: new Text(widget.title),
       //   centerTitle: true,
@@ -79,14 +81,14 @@ class _VaccineduePageState extends State<VaccineduePage> {
                     ),
                     new Container(
                     child: new Padding(
-                    padding: EdgeInsets.symmetric(vertical: 50.0),
-                    child: Material(
-                    borderRadius: BorderRadius.circular(30.0),
-                    shadowColor: Colors.lightBlueAccent.shade100,
-                    elevation: 6.0,
-                    child: MaterialButton(
-                    minWidth: 200.0,
-                    height: 47.0,
+                    padding: EdgeInsets.symmetric(vertical: 40.0),
+                    // child: Material(
+                    // borderRadius: BorderRadius.circular(30.0),
+                    // shadowColor: Colors.lightBlueAccent.shade100,
+                    // elevation: 6.0,
+                    child: RaisedButton(
+                    // minWidth: 200.0,
+                    // height: 47.0,
                     onPressed: (){setState(() {
                   //  count = count + 1;
                   //  new VaccinedueList(), 
@@ -100,7 +102,7 @@ class _VaccineduePageState extends State<VaccineduePage> {
                    ) ,
                    ),
                      ),
-                      ),
+                      
 
               // This comented code is for showing single listview 
                       // new Container(      
@@ -115,7 +117,7 @@ class _VaccineduePageState extends State<VaccineduePage> {
                       // ),
                     ],
                       ))),
-                );
+                ),);
               }
               }
                
@@ -160,6 +162,7 @@ class _VaccineduePageState extends State<VaccineduePage> {
       ),
       
       home:Scaffold(
+        resizeToAvoidBottomPadding: false,
         // floatingActionButton: new FloatingActionButton(
         //     elevation: 20.0,
         //     highlightElevation: 20.0,

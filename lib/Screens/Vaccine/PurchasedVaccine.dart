@@ -57,13 +57,15 @@ final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text(widget.title),
-        centerTitle: true,
-        backgroundColor: Colors.amber,
-        leading: IconButton(icon: Icon(Icons.arrow_back_ios),
-        onPressed: () => Navigator.push(
+     return new 
+        Scaffold(
+          resizeToAvoidBottomPadding:false ,
+          appBar: new AppBar(
+           title: new Text(widget.title),
+          centerTitle: true,
+          backgroundColor: Colors.amber,
+          leading: IconButton(icon: Icon(Icons.arrow_back_ios),
+          onPressed: () => Navigator.push(
                  context, MaterialPageRoute(builder: (context) => VaccineTab())),
         
       ),),
@@ -82,8 +84,8 @@ final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
                     controller: _vaccinenameController,
                     onChanged: (value) => _vaccinenameController.text = value,
                     decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.description,color:Colors.green),
-                        hintText: 'Vaccine Name',                       
+                      icon: Icon(Icons.description,color:Colors.green),
+                        labelText: 'Vaccine Name',                       
                     ),
                   ),
                   Divider(
@@ -93,8 +95,8 @@ final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
                     controller: _vaccinetypeController,
                     onChanged: (value) => _vaccinetypeController.text = value,
                     decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.colorize,color:Colors.green),
-                      hintText: 'Vaccine Type',                      
+                      icon: Icon(Icons.colorize,color:Colors.green),
+                      labelText: 'Vaccine Type',                      
                     ),
                   ),
                   Divider(
@@ -102,8 +104,8 @@ final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
 
                   new TextFormField(
                     decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.location_city,color:Colors.green),
-                      hintText: 'Vaccine Company',
+                    icon: Icon(Icons.location_city,color:Colors.green),
+                    labelText: 'Vaccine Company',
                       
                     ),
                   ),
@@ -116,7 +118,7 @@ final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
                     format: formats[inputType],
                     editable: editable,
                     decoration: const InputDecoration(
-                    prefixIcon: const Icon(Icons.calendar_today, color: Colors.green), 
+                    icon: Icon(Icons.calendar_today, color: Colors.green), 
                     labelText: 'Purchase Date',hasFloatingPlaceholder: true
                     ), 
                     onChanged: (dt) => setState(()=> date = dt),
@@ -128,7 +130,7 @@ final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
                     format: formats[inputType],
                     editable: editable,
                     decoration: const InputDecoration(
-                    prefixIcon: const Icon(Icons.calendar_today, color: Colors.green), 
+                    icon: Icon(Icons.calendar_today, color: Colors.green), 
                     labelText: 'Expiry Date',hasFloatingPlaceholder: true
                     ), 
                     onChanged: (dt) => setState(()=> date = dt),
@@ -139,8 +141,8 @@ final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
                   
                   new TextFormField(
                     decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.format_list_numbered_rtl,color:Colors.green),
-                     hintText: 'Batch Number',
+                      icon: Icon(Icons.format_list_numbered_rtl,color:Colors.green),
+                      labelText: 'Batch Number',
                      
                     ),
                     keyboardType: TextInputType.text,
@@ -151,8 +153,8 @@ final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
                   ), 
                   new TextField(
                       decoration: const InputDecoration(
-                        suffixIcon: Icon(Icons.supervised_user_circle,color:Colors.green),
-                        hintText: 'Supplied By',
+                        icon: Icon(Icons.supervised_user_circle,color:Colors.green),
+                        labelText: 'Supplied By',
                        
                       ),
                     ) ,
@@ -165,8 +167,8 @@ final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
                     onChanged: (value) => _quantityController.text = value,
                      keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.widgets,color:Colors.green),
-                      hintText:    'Quantity',
+                      icon: Icon(Icons.widgets,color:Colors.green),
+                      labelText:    'Quantity',
                       
                     ),
                     
@@ -176,8 +178,8 @@ final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
                   ), 
                   new TextField(
                       decoration: const InputDecoration(
-                        suffixIcon: Icon(Icons.format_underlined,color:Colors.green),
-                        hintText: 'Unit',
+                        icon: Icon(Icons.format_underlined,color:Colors.green),
+                        labelText: 'Unit',
                       
                       ),
                     ) ,
@@ -188,15 +190,15 @@ final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
                       keyboardType: TextInputType.number,
                     
                       decoration: const InputDecoration(
-                        suffixIcon: Icon(Icons.monetization_on,color:Colors.green),
-                        hintText: 'Unit Price',
+                        icon: Icon(Icons.monetization_on,color:Colors.green),
+                        labelText: 'Unit Price',
                         
                       
                       ),
                     ) ,
                   InputDecorator(
                       decoration: InputDecoration(
-                      // suffixIcon: Icon(Icons.space_bar,color: Colors.green,),
+                     icon: Icon(Icons.space_bar,color: Colors.green,),
                       labelText: 'Currency',
                             ),
                         child: DropdownButtonHideUnderline(
@@ -227,9 +229,9 @@ final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
                     onChanged: (value) => _purchaseamountController.text = value,
                     autofocus: false,
                     decoration: InputDecoration(
-                    suffixIcon: Icon(Icons.local_atm,color:Colors.green),
+                    icon: Icon(Icons.local_atm,color:Colors.green),
                     filled: true,
-                    hintText: 'Purchased Amount',
+                    labelText: 'Purchased Amount',
                     contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 10.0, 15.0),
                     border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -241,25 +243,25 @@ final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
                     new Container(
                     child: new Padding(
                     padding: EdgeInsets.symmetric(vertical: 40.0),
-                    child: Material(
-                    borderRadius: BorderRadius.circular(30.0),
-                    shadowColor: Colors.lightBlueAccent.shade100,
-                    elevation: 6.0,
-                    child: MaterialButton(
-                    minWidth: 200.0,
-                    height: 47.0,
+                    // child: Material(
+                    // borderRadius: BorderRadius.circular(30.0),
+                    // shadowColor: Colors.lightBlueAccent.shade100,
+                    // elevation: 6.0,
+                    child: RaisedButton(
+                    // minWidth: 200.0,
+                    // height: 47.0,
                     onPressed: ()=> Navigator.push( 
-                     context, MaterialPageRoute(builder: (context) => VaccineTab())),
+                    context, MaterialPageRoute(builder: (context) => VaccineTab())),
                     color: Colors.amber,
                     child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
 
                    ) ,
                    ),
                      ),
-                      ),
+                      
                     ],
                       ))),
-                );
+       );
               }
               }
               
@@ -299,6 +301,7 @@ final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
       ),
       
       home:Scaffold(
+        resizeToAvoidBottomPadding: false,
         floatingActionButton: new FloatingActionButton(
             elevation: 20.0,
             highlightElevation: 20.0,
@@ -347,8 +350,8 @@ final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
                   child: CircleAvatar(
                     // backgroundColor: Colors.green,
                     
-                    backgroundImage: NetworkImage
-                    ("https://www.google.com/search?q=chicken+images&rlz=1C1CHBF_enIN815IN815&tbm=isch&source=iu&ictx=1&fir=pQab4VRy_gKVlM%253A%252Cn02ibD9yVjdVZM%252C_&usg=AI4_-kTMhWDVRKAs8u3ox2RVQjz7MFiaWQ&sa=X&ved=2ahUKEwies97Du7jgAhUHf30KHR75CFoQ9QEwCnoECAAQGA#imgrc=pQab4VRy_gKVlM:"),
+                    // backgroundImage: NetworkImage
+                    // ("https://www.google.com/search?q=chicken+images&rlz=1C1CHBF_enIN815IN815&tbm=isch&source=iu&ictx=1&fir=pQab4VRy_gKVlM%253A%252Cn02ibD9yVjdVZM%252C_&usg=AI4_-kTMhWDVRKAs8u3ox2RVQjz7MFiaWQ&sa=X&ved=2ahUKEwies97Du7jgAhUHf30KHR75CFoQ9QEwCnoECAAQGA#imgrc=pQab4VRy_gKVlM:"),
                     
                     ),
                   

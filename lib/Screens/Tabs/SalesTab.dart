@@ -32,8 +32,8 @@ class SalesTab extends StatefulWidget {
   Widget build(BuildContext context) {
    return MaterialApp(
      debugShowCheckedModeBanner: false,
-     home: Scaffold(
-      body: NestedScrollView(
+     home: Container(
+      child: NestedScrollView(
       controller: scrollController,
       headerSliverBuilder: (BuildContext context, bool boxIsScrolled){
         return<Widget>[
@@ -63,16 +63,16 @@ class SalesTab extends StatefulWidget {
               unselectedLabelColor: Colors.white54,
               tabs: <Widget>[
                 Tab(
-                  icon: Icon(Icons.filter_list, color: Colors.white,size: 40.0,),
+                  icon: Icon(Icons.filter_list, color: Colors.white,size:36.0,),
                   text: "Price List",
                 ),
                 Tab(
-                  icon: Icon(Icons.pets, color: Colors.white,size: 40.0,),
+                  icon: Icon(Icons.pets, color: Colors.white,size:36.0,),
                   text: "AnimalSale",
                 ),
                 Tab(
                   text: "Sale Entry",
-                  icon: Icon(Icons.event_note, color: Colors.white,size: 40.0,),
+                  icon: Icon(Icons.event_note, color: Colors.white,size:36.0,),
                   
                 )
               ],

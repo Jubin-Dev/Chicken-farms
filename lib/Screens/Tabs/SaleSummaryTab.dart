@@ -29,8 +29,8 @@ class SaleSummaryTab extends StatefulWidget {
   Widget build(BuildContext context) {
    return MaterialApp(
      debugShowCheckedModeBanner: false,
-     home: Scaffold(
-      body: NestedScrollView(
+     home: Container(
+      child: NestedScrollView(
       controller: scrollController,
       headerSliverBuilder: (BuildContext context, bool boxIsScrolled){
         return<Widget>[
@@ -61,12 +61,12 @@ class SaleSummaryTab extends StatefulWidget {
               tabs: <Widget>[
                 Tab(
                   text: "Sales Report",
-                   icon: Icon(Icons.line_style, color: Colors.white,size: 40.0,),
+                   icon: Icon(Icons.line_style, color: Colors.white,size: 36.0,),
                    
                 ),
                 Tab(
                   text: "Sale  Summary",
-                   icon: Icon(Icons.library_books, color: Colors.white,size:40.0),
+                   icon: Icon(Icons.library_books, color: Colors.white,size:36.0),
                 )
                 
               ],

@@ -18,7 +18,7 @@ class GiveVaccine extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       // title: 'Flutter Form Demo',
-      theme: new ThemeData(
+        theme: new ThemeData(
         primarySwatch: Colors.green,
       ),
       home: new GiveVaccinePage(title: 'Give Vaccine'),
@@ -49,8 +49,10 @@ class _GiveVaccinePageState extends State<GiveVaccinePage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
+     return new Container(child:
+        Scaffold(
+        resizeToAvoidBottomPadding: false,
+        appBar: new AppBar(
         title: new Text(widget.title),
         centerTitle: true,
         backgroundColor: Colors.amber,
@@ -61,8 +63,8 @@ class _GiveVaccinePageState extends State<GiveVaccinePage> {
       ),
       ),
       body: new SafeArea(
-          top: false,
-          bottom: false,
+          top: true,
+          bottom: true,
           child: new Form(
               key: _formKey,
               autovalidate: true,
@@ -71,7 +73,7 @@ class _GiveVaccinePageState extends State<GiveVaccinePage> {
                 children: <Widget>[
                   InputDecorator(
                       decoration: InputDecoration(
-                      // suffixIcon: Icon(Icons.space_bar,color: Colors.green,),
+                      icon: Icon(Icons.space_bar,color: Colors.green,),
                       labelText: 'Animal Code',
                             ),
                         child: DropdownButtonHideUnderline(
@@ -79,8 +81,8 @@ class _GiveVaccinePageState extends State<GiveVaccinePage> {
                           value: code ,
                           isDense: true,                
                           onChanged: (String newValue) {
-                        setState(() {
-                       code  = newValue; 
+                          setState(() {
+                          code  = newValue; 
                        });
                      },
                      items: <String>['123', '111', '347', '921']
@@ -98,12 +100,12 @@ class _GiveVaccinePageState extends State<GiveVaccinePage> {
 
                   ),
                   new TextField(
-                     controller: _animalageController,
-                     onChanged: (value) => _animalageController.text = value,
-                    keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.content_paste,color:Colors.green),
-                        hintText: 'Animal Age',
+                      controller: _animalageController,
+                      onChanged: (value) => _animalageController.text = value,
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                      icon: Icon(Icons.content_paste,color:Colors.green),
+                        labelText: 'Animal Age',
                        
                     ),
                   ),
@@ -111,11 +113,11 @@ class _GiveVaccinePageState extends State<GiveVaccinePage> {
 
                   ), 
                   new TextField(
-                     controller: _vaccinenameController,
-                    onChanged: (value) => _vaccinenameController.text = value,
-                    decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.description,color:Colors.green),
-                        hintText: 'Vaccine Name',
+                      controller: _vaccinenameController,
+                      onChanged: (value) => _vaccinenameController.text = value,
+                      decoration: const InputDecoration(
+                      icon: Icon(Icons.description,color:Colors.green),
+                      labelText: 'Vaccine Name',
                        
                     ),
                   ),
@@ -123,11 +125,11 @@ class _GiveVaccinePageState extends State<GiveVaccinePage> {
                   Divider(),
                    
                   new TextField(
-                     controller: _vaccinetypeController,
-                    onChanged: (value) => _vaccinetypeController.text = value,
-                    decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.colorize,color:Colors.green),
-                      hintText: 'Vaccine Type',
+                      controller: _vaccinetypeController,
+                      onChanged: (value) => _vaccinetypeController.text = value,
+                      decoration: const InputDecoration(
+                      icon: Icon(Icons.colorize,color:Colors.green),
+                      labelText: 'Vaccine Type',
                       
                     ),
                   ),
@@ -137,23 +139,20 @@ class _GiveVaccinePageState extends State<GiveVaccinePage> {
                   new TextField(
                     
                     decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.location_city,color:Colors.green),
-                      hintText: 'Vaccine Company',
+                      icon: Icon(Icons.location_city,color:Colors.green),
+                      labelText: 'Vaccine Company',
                       
                     ),
                   ),
                   
-                                Divider(
-                       
-                       
-                     ),
+            Divider(),
                    
                   new TextField(
-                     controller: _vaccinemethodController,
-                    onChanged: (value) => _vaccinemethodController.text = value,
+                      controller: _vaccinemethodController,
+                      onChanged: (value) => _vaccinemethodController.text = value,
                       decoration: const InputDecoration(
-                        suffixIcon: Icon(Icons.local_pharmacy,color:Colors.green),
-                        hintText: 'Vaccine Method',
+                        icon: Icon(Icons.local_pharmacy,color:Colors.green),
+                        labelText: 'Vaccine Method',
                        
                       ),
                     ) ,
@@ -165,8 +164,8 @@ class _GiveVaccinePageState extends State<GiveVaccinePage> {
                     onChanged: (value) => _quantityController.text = value,
                      keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.widgets,color:Colors.green),
-                      hintText:    'Quantity',
+                    icon: Icon(Icons.widgets,color:Colors.green),
+                    labelText:    'Quantity',
                       
                     ),
                     
@@ -178,13 +177,13 @@ class _GiveVaccinePageState extends State<GiveVaccinePage> {
                    new TextField(
                       autofocus: false,
                       keyboardType: TextInputType.multiline,
-                    decoration: InputDecoration(
-                      suffixIcon: Icon(Icons.edit,color:Colors.green),
+                      decoration: InputDecoration(
+                      icon: Icon(Icons.edit,color:Colors.green),
                       filled: true,
-                    hintText: 'Remark',
-                    contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 30.0, 60.0),
-                     border: OutlineInputBorder(
-                       borderRadius: BorderRadius.circular(20.0),
+                      labelText: 'Remark',
+                      contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 30.0, 60.0),
+                      border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
                        
                      ) ) 
                      ), 
@@ -193,27 +192,27 @@ class _GiveVaccinePageState extends State<GiveVaccinePage> {
                  
                     new Container(
                     child: new Padding(
-                    padding: EdgeInsets.symmetric(vertical: 80.0),
-                    child: Material(
-                    borderRadius: BorderRadius.circular(30.0),
-                    shadowColor: Colors.lightBlueAccent.shade100,
-                    elevation: 6.0,
-                    child: MaterialButton(
-                    minWidth: 200.0,
-                    height: 47.0,
-                    onPressed: () => Navigator.push( 
-                     context, MaterialPageRoute(builder: (context) => VaccineTab())),
-                    color: Colors.amber,
-                    child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
+                    padding: EdgeInsets.symmetric(vertical: 35.0),
+                    // child: Material(
+                    // borderRadius: BorderRadius.circular(30.0),
+                    // shadowColor: Colors.lightBlueAccent.shade100,
+                    // elevation: 6.0,
+                    child: RaisedButton(
+                    // minWidth: 200.0,
+                    // height: 47.0,
+                      onPressed: () => Navigator.push( 
+                      context, MaterialPageRoute(builder: (context) => VaccineTab())),
+                      color: Colors.amber,
+                      child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
 
                    ) ,
                    ),
                      ),
-                      ),
+                     
                     ],
                       ))),
-                );
-              }
+       ),  );
+       }
               }
               
     class GivenVaccineList extends StatefulWidget{
@@ -254,6 +253,7 @@ class _GiveVaccinePageState extends State<GiveVaccinePage> {
       ),
       
       home:Scaffold(
+        resizeToAvoidBottomPadding: false,
         floatingActionButton: new FloatingActionButton(
             elevation: 20.0,
             highlightElevation: 20.0,
@@ -263,7 +263,7 @@ class _GiveVaccinePageState extends State<GiveVaccinePage> {
                  context, MaterialPageRoute(builder: (context) => GiveVaccine())),
           ), 
      
-     body:ListView.builder( itemCount: 20,
+     body:ListView.builder( itemCount: 10,
          
         shrinkWrap: true,
         itemBuilder: (BuildContext context,int index) => Container(
@@ -302,8 +302,8 @@ class _GiveVaccinePageState extends State<GiveVaccinePage> {
                   child: CircleAvatar(
                     // backgroundColor: Colors.green,
                     
-                    backgroundImage: NetworkImage
-                    ("https://www.google.com/search?q=chicken+images&rlz=1C1CHBF_enIN815IN815&tbm=isch&source=iu&ictx=1&fir=pQab4VRy_gKVlM%253A%252Cn02ibD9yVjdVZM%252C_&usg=AI4_-kTMhWDVRKAs8u3ox2RVQjz7MFiaWQ&sa=X&ved=2ahUKEwies97Du7jgAhUHf30KHR75CFoQ9QEwCnoECAAQGA#imgrc=pQab4VRy_gKVlM:"),
+                    // backgroundImage: NetworkImage
+                    // ("https://www.google.com/search?q=chicken+images&rlz=1C1CHBF_enIN815IN815&tbm=isch&source=iu&ictx=1&fir=pQab4VRy_gKVlM%253A%252Cn02ibD9yVjdVZM%252C_&usg=AI4_-kTMhWDVRKAs8u3ox2RVQjz7MFiaWQ&sa=X&ved=2ahUKEwies97Du7jgAhUHf30KHR75CFoQ9QEwCnoECAAQGA#imgrc=pQab4VRy_gKVlM:"),
                     
                     ),
                   

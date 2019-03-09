@@ -30,8 +30,6 @@ class TreatmentBloc extends Object with Validator {
     final _currenciesController = BehaviorSubject<String>();
     final _amountController = BehaviorSubject<String>();
    
-
-
     //Stream data to variable
    // Change Data (chicken treatment page)
   Function(String) get anicodeChanged => _animalCodeController.sink.add;
@@ -45,7 +43,7 @@ class TreatmentBloc extends Object with Validator {
   Function(String) get remarksChanged => _remarksController.sink.add;
 
   // Change Data (purchase medicines Details page)
-  Function(String) get medinameChanged => _medicinenameController.sink.add;
+  Function(String) get medinameChanged => _medicnameController.sink.add;
   Function(String) get meditypeChanged => _medictypeController.sink.add;
   Function(String) get medicompanyChanged => _mediccompanyController.sink.add;
   Function(String) get pdChanged => _purchdateController.sink.add;
@@ -71,7 +69,7 @@ class TreatmentBloc extends Object with Validator {
   Stream<String> get remarksStream => _remarksController.stream.transform(notEmptyValidator);
 
   //purchased details of medicines
-  Stream<String> get medicnameStream => _medicinenameController.stream.transform(notEmptyValidator);
+  Stream<String> get medicnameStream => _medicnameController.stream.transform(notEmptyValidator);
   Stream<String> get medictypeStream => _medictypeController.stream.transform(notEmptyValidator);
   Stream<String> get mediccompStream => _mediccompanyController.stream.transform(notEmptyValidator);
   Stream<String> get pdStream => _purchdateController.stream.transform(notEmptyValidator);
@@ -85,14 +83,13 @@ class TreatmentBloc extends Object with Validator {
   Stream<String> get amountStream => _amountController.stream.transform(notEmptyValidator);
   
   //Submit Button
-  Stream<bool> get subtrtbtn => Observable.combineLatest9(
-    anicodeStream, medinameStream, reasonStream, quantityStream, unitsStream, startdateStream, enddateStream, dosesStream,remarksStream,
-     (ac,mn,r,q,u,sd,ed,dp,re) => true);
+  // Stream<bool> get subtrtbtn => Observable.combineLatest9(
+  //   anicodeStream, medinameStream, reasonStream, quantityStream, unitsStream, startdateStream, enddateStream, dosesStream,remarksStream,
+  //    (acs,mn,rs,qs,us,sd,ed,dp,re) => true);
 
-  Stream<bool> get submitdetails => Observable.combineLatest9(medicnameStream,medictypeStream,mediccompStream,batchStream,
-  supplyStream,quantityStream,unitStream,currencyStream,amountStream,
-    
-  (a,b,c,d,e,f,g,h,i) => true);
+  // Stream<bool> get submitdetail => Observable.combineLatest9(medicnameStream,medictypeStream,mediccompStream,batchStream,
+  // supplyStream,quantityStream,unitStream,currencyStream,amountStream,
+  // (ms,mt,mc,bs,ss,q,u,c,am) => true);
 
  submit()
   {
@@ -131,9 +128,6 @@ class TreatmentBloc extends Object with Validator {
       _unitpriceController?.close();
       _currenciesController?.close();
       _amountController?.close();
-     
-     
-
-
+    
   }
 }

@@ -19,19 +19,16 @@ class ExpenseDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      
-      theme: new ThemeData(
+        theme: new ThemeData(
         primarySwatch: Colors.green,
       ),
       home: new ExpenseDetails(title: 'Expense Entry Details', ),
     );
   }
 }
-
 class ExpenseDetails extends StatefulWidget {
   ExpenseDetails({Key key, this.title}) : super(key: key);
   final String title;
-
   @override
   _ExpenseDetailState createState() => new _ExpenseDetailState();
 }
@@ -47,8 +44,6 @@ class _ExpenseDetailState extends State<ExpenseDetails> {
   // List<String> _colors = <String>['', 'Vaccine', 'Medicines',];
   String expname = 'Vaccine';
   String currency = 'THB';
-  
-
   final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
   };
   InputType inputType = InputType.date;
@@ -58,15 +53,14 @@ class _ExpenseDetailState extends State<ExpenseDetails> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
+        resizeToAvoidBottomPadding: false,
+        appBar: new AppBar(
         title: new Text(widget.title),
         centerTitle: true,
-       
         backgroundColor: Colors.amber,
         leading: IconButton(icon: Icon(Icons.arrow_back_ios),
         onPressed: () => Navigator.push(
                  context, MaterialPageRoute(builder: (context) => ExpTab())),
-        
       ),
       ),
       body: new SafeArea(
@@ -78,13 +72,12 @@ class _ExpenseDetailState extends State<ExpenseDetails> {
               child: new ListView(
                 padding: const EdgeInsets.all( 20.0),
                 children: <Widget>[
-            
                    new DateTimePickerFormField(
                     inputType: inputType,
                     format: formats[inputType],
                     editable: editable,
-                    decoration: const InputDecoration(
-                    prefixIcon: const Icon(Icons.calendar_today, color: Colors.green), 
+                    decoration: InputDecoration(
+                    icon: Icon(Icons.calendar_today, color: Colors.green), 
                     labelText: 'Purchase Date',hasFloatingPlaceholder: true
                     ), 
                     onChanged: (dt) => setState(()=> date = dt),
@@ -92,7 +85,7 @@ class _ExpenseDetailState extends State<ExpenseDetails> {
                     ),
                    InputDecorator(
                       decoration: InputDecoration(
-                      // suffixIcon: Icon(Icons.space_bar,color: Colors.green,),
+                      icon: Icon(Icons.multiline_chart,color: Colors.green,),
                       labelText: 'Expense Name',
                             ),
                         child: DropdownButtonHideUnderline(
@@ -101,11 +94,10 @@ class _ExpenseDetailState extends State<ExpenseDetails> {
                           isDense: true,                
                           onChanged: (String newValue) {
                         setState(() {
-                       expname  = newValue; 
-                       });
-                     },
-                     items: <String>['Vaccine', 'Medicines']
-                    
+                        expname  = newValue; 
+                         });
+                        },
+                      items: <String>['Vaccine', 'Medicines']
                      .map<DropdownMenuItem<String>>((String value){
                        return DropdownMenuItem<String>(value: value,
                        child: Text(value),
@@ -121,52 +113,44 @@ class _ExpenseDetailState extends State<ExpenseDetails> {
                   new TextField(
                       controller: _vendornameController,
                       onChanged: (value) => _vendornameController.text = value,
-                    
-                    keyboardType: TextInputType.text,
-                    decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.perm_contact_calendar,color:Colors.green),
-                        hintText: 'Vendor Name',
-                       
+                      keyboardType: TextInputType.text,
+                      decoration: const InputDecoration(
+                        icon: Icon(Icons.perm_contact_calendar,color:Colors.green),
+                        labelText: 'Vendor Name',
                     ),
                   ),
                   Divider(), 
                   new TextField(
-                    controller: _vendordetailController,
-                     onChanged: (value) => _vendordetailController.text = value,
+                      controller: _vendordetailController,
+                      onChanged: (value) => _vendordetailController.text = value,
                       autofocus: false,
-                      keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      suffixIcon: Icon(Icons.home,color:Colors.green),
+                      keyboardType: TextInputType.multiline,
+                      decoration: InputDecoration(
+                      icon: Icon(Icons.home,color:Colors.green),
                       filled: true,
-                    hintText: 'Vendor Adress/ Contact Details',
+                    labelText: 'Vendor Adress/ Contact Details',
                     contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 20.0, 60.0),
-                     border: OutlineInputBorder(
-                       borderRadius: BorderRadius.circular(20.0),
-                       
+                    border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0),
                      ) ) 
                      ), 
                      Divider(),
-                              
-                       new TextFormField(
+                    new TextFormField(
                     keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.local_atm,color:Colors.green),
-                        hintText: 'Amount',
-                       
+                    decoration: InputDecoration(
+                      icon: Icon(Icons.local_atm,color:Colors.green),
+                      labelText: 'Amount',
                     ),
                   ),
-                  Divider(
-
-                  ), 
-                  
+                  Divider(), 
                      InputDecorator(
                       decoration: InputDecoration(
-                      // suffixIcon: Icon(Icons.space_bar,color: Colors.green,),
+                     icon: Icon(Icons.monetization_on,color: Colors.green,),
                       labelText: 'Currency',
                             ),
                         child: DropdownButtonHideUnderline(
                         child: DropdownButton<String>(
-                          value: currency ,
+                          value: currency,
                           isDense: true,                
                           onChanged: (String newValue) {
                           setState(() {
@@ -174,12 +158,10 @@ class _ExpenseDetailState extends State<ExpenseDetails> {
                        });
                      },
                      items: <String>['THB','USD','AUD','INR']
-                    
                      .map<DropdownMenuItem<String>>((String value){
                        return DropdownMenuItem<String>(value: value,
                        child: Text(value),
                        );
-                      
                      }).toList(),
                    ),
                         ),
@@ -190,38 +172,36 @@ class _ExpenseDetailState extends State<ExpenseDetails> {
                       autofocus: false,
                       keyboardType: TextInputType.multiline,
                       decoration: InputDecoration(
-                        suffixIcon: Icon(Icons.edit,color:Colors.green),
+                      icon: Icon(Icons.edit,color:Colors.green),
                       filled: true,
-                      hintText: 'Remarks',
+                      labelText: 'Remarks',
                       contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 20.0, 60.0),
                       border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
-                       
                      ) ) 
                      ), 
                     
                     new Container(
                     child: new Padding(
                     padding: EdgeInsets.symmetric(vertical: 40.0),
-                    child: Material(
-                    borderRadius: BorderRadius.circular(30.0),
-                    shadowColor: Colors.lightBlueAccent.shade100,
-                    elevation: 6.0,
-                  child: MaterialButton(
-                  minWidth: 200.0,
-                  height: 47.0,
+                    // child: Material(
+                    // borderRadius: BorderRadius.circular(30.0),
+                    // shadowColor: Colors.lightBlueAccent.shade100,
+                    // elevation: 6.0,
+                  child: RaisedButton(
+                  // minWidth: 200.0,
+                  // height: 47.0,
                   onPressed: ()=> Navigator.push(
                   context, MaterialPageRoute(builder: (context) => ExpTab())),
                   color: Colors.amber,
                   child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
-
                    ) ,
                    ),
                      ),
-                      ),
+                      
                     ],
                       ))),
-                );
+              );
               }
               }
 
@@ -254,7 +234,6 @@ class _ExpenseDetailState extends State<ExpenseDetails> {
 
   @override
   Widget build(BuildContext context) {
-    
     return new  MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: new ThemeData(
@@ -263,6 +242,7 @@ class _ExpenseDetailState extends State<ExpenseDetails> {
       ),
       
       home:Scaffold(
+        resizeToAvoidBottomPadding: false,
         floatingActionButton: new FloatingActionButton(
             elevation: 20.0,
             highlightElevation: 20.0,
@@ -271,36 +251,25 @@ class _ExpenseDetailState extends State<ExpenseDetails> {
             onPressed: () => Navigator.push(
                  context, MaterialPageRoute(builder: (context) => ExpenseDetail())),
           ), 
-     
-     body:ListView.builder( itemCount: 10,
-         
+        body:ListView.builder( itemCount: 10,
         shrinkWrap: true,
         itemBuilder: (BuildContext context,int index) => Container(
         //width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.symmetric(vertical: 10.0),
-       
           child: Card(
-        
           margin: EdgeInsets.only(left: 10.0,right: 10.0),
           elevation: 10.0,
           shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(3.5)
          ),
           color: Colors.white70,
-          
           child: Container(decoration: BoxDecoration(
-            color: Colors.transparent,
-            
+          color: Colors.transparent,
           ),
-          
-       
         //width: MediaQuery.of(context).size.width,
         margin: EdgeInsets.symmetric(horizontal: 10.0,vertical: 30.0),
         padding: EdgeInsets.only(right: 80.0),
-
-        
         child: 
-       
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -322,7 +291,6 @@ class _ExpenseDetailState extends State<ExpenseDetails> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
-                    
                     new Text("Expenses Name: ${widget.value}"),
                     Divider(),
                     new Text("Expenses Date: ${widget.value}"),
@@ -330,8 +298,6 @@ class _ExpenseDetailState extends State<ExpenseDetails> {
                     new Text("Vendor Name: ${widget.value}"),
                     Divider(),
                     new Text("Vendor Detail: ${widget.value}"),
-                    
-
                     Divider(color: Colors.teal,indent: 50.0,),
                     // new IconButton(
                     // icon: Icon(Icons.delete),
@@ -339,18 +305,12 @@ class _ExpenseDetailState extends State<ExpenseDetails> {
                     // color:(isPriority)? Colors.red : Colors.green,
                     // onPressed: _toggleFlag,
                     //  ),
-
                     ],
-                 
                 ),
-              
           ],
         ),
-        
           ),
-         
     ),
-   
      ),
       )
       ),

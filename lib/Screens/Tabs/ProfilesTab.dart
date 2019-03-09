@@ -59,12 +59,12 @@ class Profile extends StatefulWidget {
               tabs: <Widget>[
                 Tab(
                   text: "Farm Profile",
-                   icon: Icon(Icons.person_pin, color: Colors.white,size: 40.0,),
+                   icon: Icon(Icons.person_pin, color: Colors.white,size: 36.0,),
                    
                 ),
                 Tab(
                   text: "Chicken Profile",
-                   icon: Icon(Icons.copyright, color: Colors.white,size:40.0),
+                   icon: Icon(Icons.copyright, color: Colors.white,size: 36.0),
                 )
                 
               ],

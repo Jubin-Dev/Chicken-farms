@@ -36,6 +36,7 @@ class Bloc extends Object with Validator{
   //New Registration
   Stream<String> get fullnameStream => _fullnameContorller.stream.transform(fullnameValidator);
   Stream<String> get emailStream => _emailController.stream.transform(emailValidator);
+  
   Stream<String> get repassStream => _repassController.stream.transform(repassValidator).doOnData((String r){
    if (0 != _passwordController.value.compareTo(r)){
         // If they do not match, add an error
@@ -50,8 +51,8 @@ class Bloc extends Object with Validator{
   
   
   submit(){
-    print("${_phoneController}");
-    print("${_passwordController}");
+    // print("${_phoneController}");
+    // print("${_passwordController}");
   }
 
   

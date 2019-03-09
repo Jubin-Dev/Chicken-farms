@@ -5,13 +5,13 @@ import 'package:flutter_app/Screens/Tabs/VaccineTab.dart';
 void main() => runApp(new Vaccine());
 
 class Vaccine extends StatelessWidget {
-  final String vaccineName, animalAge;
+//   final String vaccineName, animalAge;
 
-const Vaccine(
-  {
-    this.vaccineName, this.animalAge
-  }
-);
+// const Vaccine(
+//   {
+//     this.vaccineName, this.animalAge
+//   }
+// );
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -38,8 +38,10 @@ class _VaccinePageState extends State<VaccinePage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
+     return new 
+        Scaffold(
+          resizeToAvoidBottomPadding: false,
+        appBar: new AppBar(
         title: new Text(widget.title),
         centerTitle: true,
         backgroundColor: Colors.amber,
@@ -52,7 +54,6 @@ class _VaccinePageState extends State<VaccinePage> {
           top: false,
           bottom: false,
           child: new Form(
-            
               autovalidate: true,
               child: new ListView(
               padding: const EdgeInsets.all(20.0),
@@ -62,9 +63,8 @@ class _VaccinePageState extends State<VaccinePage> {
                     onChanged: (value) => _animalAgeController.text = value,
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.assignment,color:Colors.green),
-                        hintText: 'Animal Age',
-                       
+                      icon: Icon(Icons.assignment,color:Colors.green),
+                      labelText: 'Animal Age',
                     ),
                   ),
 
@@ -74,8 +74,8 @@ class _VaccinePageState extends State<VaccinePage> {
                     onChanged: (value) => _vaccinenameController.text = value,
                     keyboardType: TextInputType.text,
                     decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.local_hospital,color:Colors.green),
-                      hintText: 'Vaccine Name',
+                      icon: Icon(Icons.local_hospital,color:Colors.green),
+                      labelText: 'Vaccine Name',
                       
                     ),
                   ),
@@ -83,8 +83,8 @@ class _VaccinePageState extends State<VaccinePage> {
                   Divider(),
                   new TextFormField(
                     decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.colorize,color:Colors.green),
-                      hintText: 'Vaccine Type',
+                      icon: Icon(Icons.colorize,color:Colors.green),
+                      labelText: 'Vaccine Type',
                       
                     ),
                   ),
@@ -92,8 +92,8 @@ class _VaccinePageState extends State<VaccinePage> {
 
                    new TextFormField(
                     decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.location_city,color:Colors.green),
-                      hintText: 'Vaccine Company',
+                      icon: Icon(Icons.location_city,color:Colors.green),
+                      labelText: 'Vaccine Company',
                       
                     ),
                   ),
@@ -102,8 +102,8 @@ class _VaccinePageState extends State<VaccinePage> {
 
                   new TextFormField(
                     decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.mode_edit,color:Colors.green),
-                      hintText: 'Remarks',
+                      icon: Icon(Icons.mode_edit,color:Colors.green),
+                      labelText: 'Remarks',
                       
                     ),
                     keyboardType: TextInputType.multiline,
@@ -111,14 +111,14 @@ class _VaccinePageState extends State<VaccinePage> {
                  
                     new Container(
                     child: new Padding(
-                    padding: EdgeInsets.symmetric(vertical: 80.0),
-                    child: Material(
-                    borderRadius: BorderRadius.circular(30.0),
-                    shadowColor: Colors.lightBlueAccent.shade100,
-                    elevation: 6.0,
-                    child: MaterialButton(
-                    minWidth: 200.0,
-                    height: 47.0,
+                    padding: EdgeInsets.symmetric(vertical: 40.0),
+                    // child: Material(
+                    // borderRadius: BorderRadius.circular(30.0),
+                    // shadowColor: Colors.lightBlueAccent.shade100,
+                    // elevation: 6.0,
+                    child: RaisedButton(
+                    // minWidth: 200.0,
+                    // height: 47.0,
                     onPressed: ()=> Navigator.push(
                     context, MaterialPageRoute(builder: (context) => VaccineTab())),
            
@@ -128,10 +128,10 @@ class _VaccinePageState extends State<VaccinePage> {
                    ) ,
                    ),
                      ),
-                      ),
+                      
                     ],
                       ))),
-                );
+       );
               }
               }
     
@@ -167,6 +167,7 @@ class _VaccinePageState extends State<VaccinePage> {
       ),
       
       home:Scaffold(
+        resizeToAvoidBottomPadding: false,
         floatingActionButton: new FloatingActionButton(
             elevation: 20.0,
             highlightElevation: 20.0,

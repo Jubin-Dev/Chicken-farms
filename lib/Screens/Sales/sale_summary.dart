@@ -18,7 +18,6 @@ final String animalcode,animalAge,animalType,breedercode,talents,fighting,weight
   Widget build(BuildContext context) {
     return new MaterialApp(
       debugShowCheckedModeBanner: false,
-      
         theme: new ThemeData(
         primarySwatch: Colors.green,
       ),
@@ -30,13 +29,10 @@ final String animalcode,animalAge,animalType,breedercode,talents,fighting,weight
 class _SaleDetail extends StatefulWidget {
   _SaleDetail({Key key, this.title}) : super(key: key);
   final String title;
-
   @override
   SellingPageState createState() => new SellingPageState();
 }
-
 class SellingPageState extends State<_SaleDetail> {
-
   var _animalcodeController = new TextEditingController();
   var _animalageController = new TextEditingController();
  String dropdownValue = 'January';
@@ -44,7 +40,8 @@ class SellingPageState extends State<_SaleDetail> {
 @override
   Widget build(BuildContext context) {
     
-        return new Scaffold(
+  return new Scaffold(
+          resizeToAvoidBottomPadding: false,
           // appBar: new AppBar(
           //   title: new Text(widget.title),
           //   centerTitle: true,
@@ -62,13 +59,11 @@ class SellingPageState extends State<_SaleDetail> {
               child: new Form(
                  autovalidate: true,
                   child: new ListView(
-                    
                     padding: const EdgeInsets.all(25.0),
-     
                     children: <Widget>[
                       InputDecorator(
                       decoration: InputDecoration(
-                      suffixIcon: Icon(Icons.calendar_today,color: Colors.green,),
+                      icon: Icon(Icons.calendar_today,color: Colors.green,),
                       labelText: 'Months',
                             ),
                         child: DropdownButtonHideUnderline(
@@ -82,20 +77,17 @@ class SellingPageState extends State<_SaleDetail> {
                      },
                      items: <String>['January','February','march','April','May',
                      'June','July','August','September','October','November','December']
-                    
                      .map<DropdownMenuItem<String>>((String value){
                        return DropdownMenuItem<String>(value: value,
                        child: Text(value),
                        );
-                      
                      }).toList(),
                    ),
                         ),
                         ),
-
                         InputDecorator(
                       decoration: InputDecoration(
-                      suffixIcon: Icon(Icons.calendar_today,color: Colors.green,),
+                      icon: Icon(Icons.calendar_today,color: Colors.green,),
                       labelText: 'Years',
                             ),
                         child: DropdownButtonHideUnderline(
@@ -119,22 +111,16 @@ class SellingPageState extends State<_SaleDetail> {
                    ),
                         ),
                         ),
-                    
-                        
-                  
-            
-                  // Divider(),
-                
                   new Container(
                       child: new Padding(
                       padding: EdgeInsets.symmetric(vertical: 40.0),
-                      child: Material(
-                      borderRadius: BorderRadius.circular(30.0),
-                      shadowColor: Colors.lightBlueAccent.shade100,
-                      elevation: 6.0,
-                  child: MaterialButton(
-                    minWidth: 200.0,
-                    height: 47.0,
+                      // child: Material(
+                      // borderRadius: BorderRadius.circular(30.0),
+                      // shadowColor: Colors.lightBlueAccent.shade100,
+                      // elevation: 6.0,
+                  child: RaisedButton(
+                    // minWidth: 200.0,
+                    // height: 47.0,
                     onPressed: (){},
                     // => Navigator.push( 
                     //                 context, MaterialPageRoute(builder: (context) => SalesTab())),
@@ -144,7 +130,7 @@ class SellingPageState extends State<_SaleDetail> {
                    ) ,
                    ),
                      ),
-                      ),
+                    
                     
                     ],))),
                     );
@@ -189,6 +175,7 @@ class SellingPageState extends State<_SaleDetail> {
       ),
       
       home:Scaffold(
+        resizeToAvoidBottomPadding: false,
         floatingActionButton: new FloatingActionButton(
             elevation: 20.0,
             highlightElevation: 20.0,

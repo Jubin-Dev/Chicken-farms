@@ -42,8 +42,6 @@ class _TreatmentPageState extends State<TreatmentPage> {
   InputType inputType = InputType.date;
   bool editable = true;
   DateTime date;
-
-  
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   // List<String> _codes = <String>['', '123', '111', '347', '921'];
   String code = '123';
@@ -51,7 +49,9 @@ class _TreatmentPageState extends State<TreatmentPage> {
   @override
   Widget build(BuildContext context) {
     final bloc = TreatmentBloc();
-        return new Scaffold(
+        return new 
+           Scaffold(
+          resizeToAvoidBottomPadding: false,
           appBar: new AppBar(
             title: new Text(widget.title),
             centerTitle: true,
@@ -72,34 +72,32 @@ class _TreatmentPageState extends State<TreatmentPage> {
                     padding: const EdgeInsets.all( 20.0),
                     children: <Widget>[
                       StreamBuilder<String>(
-                          stream: bloc.anicodeStream,
+                      stream: bloc.anicodeStream,
                       builder:(context, snapshot)=>
                   InputDecorator(
                       decoration: InputDecoration(
-                        errorText: snapshot.error,
-                      // suffixIcon: Icon(Icons.space_bar,color: Colors.green,),
+                      errorText: snapshot.error,
+                      icon: Icon(Icons.space_bar,color: Colors.green,),
                       labelText: 'Animal Code',
                             ),
                         child: DropdownButtonHideUnderline(
                         child: DropdownButton<String>(
                           value: code ,
                           isDense: true,                
-                    //       onChanged: (String newValue) {
-                    //     setState(() {
-                    //    code  = newValue; 
-                    //    });
-                    //  },
+                          onChanged: (String newValue) {
+                          setState(() {
+                          code  = newValue; 
+                       });
+                     },
                      items: <String>['123', '111', '347', '921']
-                    
                      .map<DropdownMenuItem<String>>((String value){
                        return DropdownMenuItem<String>(value: value,
                        child: Text(value),
                        );
-                      
                      }).toList(),
-                     onChanged: bloc.anicodeChanged,
+                    //  onChanged: bloc.anicodeChanged,
                     //  value:snapshot.data,
-                   ),
+                       ),
                         ),
                        ), ),
                   Divider(),
@@ -111,14 +109,12 @@ class _TreatmentPageState extends State<TreatmentPage> {
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       errorText: snapshot.error,
-                      suffixIcon: Icon(Icons.control_point_duplicate,color:Colors.green),
-                        hintText: 'Medicine Name',
+                      icon: Icon(Icons.control_point_duplicate,color:Colors.green),
+                       labelText: 'Medicine Name',
                        
                     ),
                    ), ),
-                  Divider(
-
-                  ), 
+                  Divider(), 
                   StreamBuilder<String>(
                       stream: bloc.reasonStream,
                       builder:(context, snapshot)=>
@@ -126,9 +122,9 @@ class _TreatmentPageState extends State<TreatmentPage> {
                       onChanged: bloc.reasonChanged,
                       decoration: InputDecoration(
                       errorText: snapshot.error,
-                      suffixIcon: Icon(Icons.help_outline,color:Colors.green),
+                      icon: Icon(Icons.help_outline,color:Colors.green),
                       contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-                      hintText: 'Reason',
+                      labelText: 'Reason',
                        
                     ),
                   ),),
@@ -136,14 +132,14 @@ class _TreatmentPageState extends State<TreatmentPage> {
                   StreamBuilder<String>(
                       stream: bloc.quantityStream,
                       builder:(context, snapshot)=>
-                      TextField(
+                    TextField(
                     onChanged: bloc.quantityChanged,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       errorText: snapshot.error,
-                      suffixIcon: Icon(Icons.widgets,color:Colors.green),
+                      icon: Icon(Icons.widgets,color:Colors.green),
                       contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-                      hintText: 'Quantity',
+                      labelText: 'Quantity',
                       
                     ),
                   ),),
@@ -156,9 +152,9 @@ class _TreatmentPageState extends State<TreatmentPage> {
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                       errorText: snapshot.error,
-                      suffixIcon: Icon(Icons.format_underlined,color:Colors.green),
+                      icon: Icon(Icons.format_underlined,color:Colors.green),
                       contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-                      hintText: 'Units',
+                      labelText: 'Units',
                       
                     ),
                   ),),
@@ -172,9 +168,9 @@ class _TreatmentPageState extends State<TreatmentPage> {
                     editable: editable,
                     decoration: InputDecoration(
                       errorText: snapshot.error,
-                    prefixIcon: const Icon(Icons.calendar_today, color: Colors.green), 
-                    labelText: 'Start Date',hasFloatingPlaceholder: true
-                    ), 
+                      icon:Icon(Icons.calendar_today, color: Colors.green), 
+                      labelText: 'Start Date',hasFloatingPlaceholder: true
+                       ), 
                     onChanged: (dt) => setState(()=> date = dt),
                    
                     ),),
@@ -188,7 +184,7 @@ class _TreatmentPageState extends State<TreatmentPage> {
                     editable: editable,
                     decoration: InputDecoration(
                       errorText: snapshot.error,
-                    prefixIcon: const Icon(Icons.calendar_today, color: Colors.green), 
+                    icon: Icon(Icons.calendar_today, color: Colors.green), 
                     labelText: 'End Date',hasFloatingPlaceholder: true
                     ), 
                     onChanged: (dt) => setState(()=> date = dt),
@@ -203,14 +199,14 @@ class _TreatmentPageState extends State<TreatmentPage> {
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                         errorText: snapshot.error,
-                        suffixIcon: Icon(Icons.invert_colors,color:Colors.green),
+                        icon: Icon(Icons.invert_colors,color:Colors.green),
                         contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-                        hintText: 'Dosage Per Day',   
+                        labelText: 'Dosage Per Day',   
                       ),
                     ),),
                    
                     Divider(), 
-                   Divider(),
+                    Divider(),
                    StreamBuilder<String>(
                       stream: bloc.remarksStream,
                       builder:(context, snapshot)=>
@@ -218,24 +214,23 @@ class _TreatmentPageState extends State<TreatmentPage> {
                       onChanged: bloc.remarksChanged,
                       autofocus: false,
                       keyboardType: TextInputType.multiline,
+                      maxLines: 3,
                       decoration: InputDecoration(
                       errorText: snapshot.error,
-                      suffixIcon: Icon(Icons.edit,color:Colors.green),
+                      icon: Icon(Icons.edit,color:Colors.green),
                       filled: true,
-                      hintText: 'Remark',
+                      labelText: 'Remark',
                       contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 30.0, 60.0),
                       border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
                      ) ) 
                      ),), 
-                     
-                     Divider(),  
-                       
+                    Divider(),  
                     new Container(
                     child: new Padding(
                     padding: EdgeInsets.symmetric(vertical: 40.0),
                     child: StreamBuilder<bool>(
-                      stream: bloc.subtrtbtn,
+                      // stream: bloc.subtrtbtn,
                       builder:(context, snapshot)=>
                       RaisedButton(
                         color: Colors.amber,
@@ -254,7 +249,7 @@ class _TreatmentPageState extends State<TreatmentPage> {
                       ),
                     ],
                       ))),
-                );
+          );
               }
               }
              
@@ -276,12 +271,9 @@ class _TreatmentPageState extends State<TreatmentPage> {
        isPriority = true;
      }
     });
-
   }
-
   @override
   Widget build(BuildContext context) {
-    
     return new  MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: new ThemeData(
@@ -290,6 +282,7 @@ class _TreatmentPageState extends State<TreatmentPage> {
       ),
       
       home:Scaffold(
+        resizeToAvoidBottomPadding: false,
         floatingActionButton: new FloatingActionButton(
             elevation: 20.0,
             highlightElevation: 20.0,
@@ -298,36 +291,26 @@ class _TreatmentPageState extends State<TreatmentPage> {
             onPressed: () => Navigator.push(
                  context, MaterialPageRoute(builder: (context) => Treatment())),
           ), 
-     body:
-         ListView.builder(itemCount: 20,
-         
-        shrinkWrap: true,
-        itemBuilder: (BuildContext context,int index) => Container(
+      
+      body:ListView.builder(itemCount: 20,
+          shrinkWrap: true,
+          itemBuilder: (BuildContext context,int index) => Container(
         //width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.symmetric(vertical: 10.0),
-       
         child: Card(
-        
           margin: EdgeInsets.only(left: 10.0,right: 10.0),
           elevation: 10.0,
           shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(3.5)
-         ),
-          color: Colors.white70,
-          
-          child: Container(decoration: BoxDecoration(
-            color: Colors.transparent,
-            
           ),
-          
-       
+          color: Colors.white70,
+          child: Container(decoration: BoxDecoration(
+          color: Colors.transparent,
+          ),
         //width: MediaQuery.of(context).size.width,
         margin: EdgeInsets.symmetric(horizontal: 10.0,vertical: 30.0),
         padding: EdgeInsets.only(right: 80.0),
-
-        
         child: 
-       
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -337,18 +320,15 @@ class _TreatmentPageState extends State<TreatmentPage> {
                   color: Colors.white70,
                   child: CircleAvatar(
                     // backgroundColor: Colors.green,
-                    
-                    backgroundImage: NetworkImage
-                    ("https://www.google.com/search?q=chicken+images&rlz=1C1CHBF_enIN815IN815&tbm=isch&source=iu&ictx=1&fir=pQab4VRy_gKVlM%253A%252Cn02ibD9yVjdVZM%252C_&usg=AI4_-kTMhWDVRKAs8u3ox2RVQjz7MFiaWQ&sa=X&ved=2ahUKEwies97Du7jgAhUHf30KHR75CFoQ9QEwCnoECAAQGA#imgrc=pQab4VRy_gKVlM:"),
+                    // backgroundImage: NetworkImage
+                    // ("https://www.google.com/search?q=chicken+images&rlz=1C1CHBF_enIN815IN815&tbm=isch&source=iu&ictx=1&fir=pQab4VRy_gKVlM%253A%252Cn02ibD9yVjdVZM%252C_&usg=AI4_-kTMhWDVRKAs8u3ox2RVQjz7MFiaWQ&sa=X&ved=2ahUKEwies97Du7jgAhUHf30KHR75CFoQ9QEwCnoECAAQGA#imgrc=pQab4VRy_gKVlM:"),
                   ),
-                  
                 ),
                 SizedBox(width: 20.0,),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
-
                   new Text("Animal Code: ${widget.value}"),
                     Divider(),
                     new Text("Medicine Name: ${widget.value}"),
@@ -356,7 +336,6 @@ class _TreatmentPageState extends State<TreatmentPage> {
                     new Text("Quantity: ${widget.value}"),
                      Divider(),
                     new Text("TotalDays: ${widget.value}"),
-
                     Divider(color: Colors.teal,indent: 50.0,),
                     // new IconButton(
                     // icon: Icon(Icons.delete),
@@ -366,16 +345,11 @@ class _TreatmentPageState extends State<TreatmentPage> {
                     //  ),
 
                     ],
-                 
                 ),
-              
           ],
         ),
-        
           ),
-         
     ),
-   
      ),
       )
       ),

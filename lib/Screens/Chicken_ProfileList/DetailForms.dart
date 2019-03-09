@@ -5,18 +5,11 @@ import 'package:flutter_app/Screens/Tabs/ProfilesTab.dart';
 import 'package:flutter_app/Screens/blocs/profilebloc.dart';
 import 'package:intl/intl.dart';
 
+
 void main() => runApp(new DetailApp());
 
 class DetailApp extends StatelessWidget {
  
-  final String animalcode, animalname, animalstatus, age, breed, imgeurl;
-
-const DetailApp (
-  {
-    this.animalcode, this.animalname, this.animalstatus, this.age, this.breed, this.imgeurl,
-  }
-);
-
  @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -29,7 +22,6 @@ const DetailApp (
     );
   }
 }
-
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
   final String title;
@@ -56,7 +48,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final bloc = ProfileBloc();
-        return new Container(child: Scaffold(
+        
+        return new Container(
+          child: Scaffold(
+            resizeToAvoidBottomPadding: false,
           appBar: new AppBar(
             title: new Text(widget.title),
             centerTitle: true,
@@ -66,17 +61,18 @@ class _MyHomePageState extends State<MyHomePage> {
               context,MaterialPageRoute(builder: (context) => Profile(),
             ),
             ),
-           ), 
+           ),
             backgroundColor: Colors.amber,
-          ),
-          body: new SafeArea(
+          ),    
+    body: new SafeArea(
               top: true,
               bottom: true,
-              child: new Container(
+              child: new Form(
                     key: _formKey,
                     child: new ListView( 
                     padding: const EdgeInsets.all( 20.0),
                     children: <Widget>[
+                      // final logo = 
                       Hero(tag: 'hero', 
                         child: CircleAvatar(
                           backgroundColor: Colors.yellow,
@@ -84,6 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Image.asset('lib/images/photo.png'),
                         ),
                       ),
+                      // final animalcode = 
                       StreamBuilder<String>(
                       stream: bloc.animalCodeStream,
                       builder:(context, snapshot)=>
@@ -91,11 +88,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     onChanged: bloc.animalCodeChanged,
                     decoration: InputDecoration(
                     errorText: snapshot.error,
-                    suffixIcon: Icon(Icons.code,color:Colors.green),
+                    icon: Icon(Icons.code,color:Colors.green),
                     hintText: 'Animal Code',
+                    labelText: 'Animal Code',
                     contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),      
                     ),
                   ),),
+                     // final animalname = 
                   StreamBuilder<String>(
                       stream: bloc.animalnameStream,
                       builder:(context, snapshot)=>
@@ -103,52 +102,58 @@ class _MyHomePageState extends State<MyHomePage> {
                     onChanged: bloc.animalNameChanged,
                     decoration: InputDecoration(
                     errorText: snapshot.error,
-                    suffixIcon: Icon(Icons.perm_identity,color:Colors.green),
-                    hintText: 'Name',
+                    icon: Icon(Icons.perm_identity,color:Colors.green),
+                    // hintText: 'Name',
+                    labelText: 'Name',
                     contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                     ),
                   ),),
+                  // final animalsymbol = 
                   StreamBuilder<String>(
                       stream: bloc.symbolStream,
                       builder:(context, snapshot)=>
                      TextField(
                         onChanged: bloc.symbolChanged,
                         decoration:  InputDecoration(
-                      errorText: snapshot.error,
-                      suffixIcon: Icon(Icons.pets,color:Colors.green),
-                      hintText: 'Symbol',
-                      contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
+                        errorText: snapshot.error,
+                        icon: Icon(Icons.pets,color:Colors.green),
+                        // hintText: 'Symbol',
+                        labelText: 'Symbol',
+                        contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                     ),
                   ),),
+                      // final animalsatus=
                       StreamBuilder<String>(
                       stream: bloc.animalStatusStream,
                       builder:(context, snapshot)=>
                       InputDecorator(
                         decoration: InputDecoration(
                         errorText: snapshot.error,
+                        icon: Icon(Icons.query_builder,color:Colors.green),
                         labelText: 'Animal Status',
                         ),
                         child: DropdownButtonHideUnderline(
                         child: DropdownButton<String>(
                           value: dropcodedownValue ,
                           isDense: true,                
-                          // onChanged: (String newValue) {
-                          // setState(() {
-                          // dropcodedownValue  = newValue; 
-                          // });
-                          // },
-                     items: <String>['Dead on Farm', 'Born On Farm', 'Purchased', 'Sold']
+                          onChanged: (String newValue) {
+                          setState(() {
+                          dropcodedownValue  = newValue; 
+                          });
+                          },
+                     items: <String>['Dead on Farm','Born On Farm','Purchased','Sold']
                      .map<DropdownMenuItem<String>>((String value){
                        return DropdownMenuItem<String>(value: value,
-                       child: Text(dropcodedownValue),
+                       child: Text(value),
                        );
                        },).toList(),
-                       onChanged:bloc.animalStatusChanged,
+                      //  onChanged:bloc.animalStatusChanged,
                       //  value:snapshot.data,
                         )
                         ),
-                        ),
-                      ),
+                        )),
+                      
+                  // final dob = 
                   StreamBuilder<String>(
                       stream: bloc.dobStream,
                       builder:(context, snapshot)=>
@@ -158,30 +163,32 @@ class _MyHomePageState extends State<MyHomePage> {
                     editable: editable,
                     decoration: InputDecoration(
                     errorText: snapshot.error,
-                    prefixIcon: const Icon(Icons.calendar_today, color: Colors.green), 
+                    icon:Icon(Icons.calendar_today, color: Colors.green), 
                     labelText: 'DOB',hasFloatingPlaceholder: true
                     ), 
                     onChanged: (dt) => setState(()=> date = dt),
                     ),
-                  ),
-                  StreamBuilder<String>(
+                  ), 
+                
+                  // final genders =
+                   StreamBuilder<String>(
                       stream: bloc.dobStream,
                       builder:(context, snapshot)=>
                       InputDecorator(
                       decoration: InputDecoration(
                       errorText: snapshot.error,
-                      // suffixIcon: Icon(Icons.space_bar,color: Colors.green,),
+                      icon: Icon(Icons.sentiment_very_satisfied,color: Colors.green,),
                       labelText: 'Gender',
                             ),
                         child: DropdownButtonHideUnderline(
                         child: DropdownButton<String>(
                           value: gender ,
                           isDense: true,                
-                          // onChanged: (String newValue) {
-                          // setState(() {
-                          // gender  = newValue; 
-                          // });
-                          // },
+                          onChanged: (String newValue) {
+                          setState(() {
+                          gender  = newValue; 
+                          });
+                          },
                      items: <String>['Male','Female','Other']
                     
                      .map<DropdownMenuItem<String>>((String value){
@@ -190,30 +197,31 @@ class _MyHomePageState extends State<MyHomePage> {
                        );
                       
                      }).toList(),
-                      onChanged:bloc.animalStatusChanged,
+                      // onChanged:bloc.animalStatusChanged,
                       //  value:snapshot.data,
                    ),
                         ),
                         ),
                   ),
+                  // final breeder = 
                   StreamBuilder<String>(
                       stream: bloc.dobStream,
                       builder:(context, snapshot)=>
                       InputDecorator(
                       decoration: InputDecoration(
                         errorText: snapshot.error,
-                      // suffixIcon: Icon(Icons.space_bar,color: Colors.green,),
+                      icon: Icon(Icons.beenhere,color: Colors.green,),
                       labelText: 'Breed',
                             ),
                         child: DropdownButtonHideUnderline(
                         child: DropdownButton<String>(
-                          value: breed,
-                          isDense: true,                
-                    //       onChanged: (String newValue) {
-                    //     setState(() {
-                    //     breed  = newValue; 
-                    //    });
-                    //  },
+                        value: breed,
+                        isDense: true,                
+                        onChanged: (String newValue) {
+                        setState(() {
+                        breed  = newValue; 
+                       });
+                     },
                      items: <String>['None', 'Sire', 'Breeder']
                     
                      .map<DropdownMenuItem<String>>((String value){
@@ -222,13 +230,14 @@ class _MyHomePageState extends State<MyHomePage> {
                        );
                       
                      }).toList(),
-                     onChanged: bloc.breedChanged,
+                    //  onChanged: bloc.breedChanged,
                     //  value:snapshot.data  
                    ),
                         ),
                         ),
                   ),
-                  Divider(),
+                 
+                  // final sire = 
                   StreamBuilder<String>(
                       stream: bloc.sireCodeStream,
                       builder:(context, snapshot)=>
@@ -237,14 +246,16 @@ class _MyHomePageState extends State<MyHomePage> {
                       autofocus: false,
                       decoration: InputDecoration(
                         errorText: snapshot.error,
-                        suffixIcon: Icon(Icons.space_bar,color:Colors.green),
-                      hintText: 'Sire Code',
+                      icon: Icon(Icons.space_bar,color:Colors.green),
+                      // hintText: 'Sire Code',
+                      labelText: 'Sire Code',
                       contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 10.0, 15.0),
                       border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
                      ) ) 
                      ),),
-                      Divider(),
+                      
+                      // final breedcode = 
                       StreamBuilder<String>(
                       stream: bloc.breederCodeStream,
                       builder:(context, snapshot)=>
@@ -253,23 +264,26 @@ class _MyHomePageState extends State<MyHomePage> {
                       autofocus: false,
                       decoration: InputDecoration(
                       errorText: snapshot.error,
-                      suffixIcon: Icon(Icons.space_bar,color:Colors.green),
-                      hintText: 'Breeder Code',
+                      icon: Icon(Icons.space_bar,color:Colors.green),
+                      // hintText: 'Breeder Code',
+                      labelText: 'Breeder Code',
                       contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 10.0, 15.0),
                       border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
                      ) ) 
                      ),),
-                     Divider(),
-                      StreamBuilder<String>(
+                    //  Divider(),
+                      // final talents =
+                       StreamBuilder<String>(
                       stream: bloc.talentsStream,
                       builder:(context, snapshot)=> 
                       TextField(
                       onChanged: bloc.talentsChanged,
                       decoration: InputDecoration(
                       errorText: snapshot.error,
-                      suffixIcon: Icon(Icons.streetview,color:Colors.green),
-                      hintText: 'Talents',
+                      icon: Icon(Icons.streetview,color:Colors.green),
+                      // hintText: 'Talents',
+                      labelText: 'Talents',
                       contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),                    
                        ),
                       keyboardType: TextInputType.text,                  
@@ -282,56 +296,61 @@ class _MyHomePageState extends State<MyHomePage> {
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                       errorText: snapshot.error,
-                      suffixIcon: Icon(Icons.line_weight,color:Colors.green),
-                      hintText: 'Weight',
+                      icon: Icon(Icons.line_weight,color:Colors.green),
+                      labelText: 'Weight',
                       contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                       ),
                       ) ,
                     ),
-                  StreamBuilder<String>(
+                  // final wt =
+                   StreamBuilder<String>(
                       stream: bloc.weightTypeStream,
                       builder:(context, snapshot)=>
                       InputDecorator(
                       decoration: InputDecoration(
                       errorText: snapshot.error,
-                      // suffixIcon: Icon(Icons.space_bar,color: Colors.green,),
+                      icon: Icon(Icons.group_work,color: Colors.green,),
                       labelText: 'Weight type',
                         ),
                       child: DropdownButtonHideUnderline(
                       child: DropdownButton<String>(
                           value: weight ,
                           isDense: true,                
-                    //       onChanged: (String newValue) {
-                    //     setState(() {
-                    //    weight  = newValue; 
-                    //    });
-                    //  },
+                          onChanged: (String newValue) {
+                        setState(() {
+                       weight  = newValue; 
+                       });
+                     },
                      items: <String>['Grams','Kilograms']
                      .map<DropdownMenuItem<String>>((String value){
                        return DropdownMenuItem<String>(value: value,
                        child: Text(value),
                        );
                      }).toList(),
-                     onChanged: bloc.weightTypeChanged,
+                    //  onChanged: bloc.weightTypeChanged,
                     //  value:snapshot.data
                    ),
                         ),
                         ),),
-                    StreamBuilder<String>(
+                    
+                   
+                  //  final fr = 
+                   StreamBuilder<String>(
                       stream: bloc.fightingRecordStream,
                       builder:(context, snapshot)=>
                       TextField(
                       onChanged: bloc.fightingRecordsChanged,
                     decoration: InputDecoration(
                       errorText: snapshot.error,
-                      suffixIcon: Icon(Icons.format_align_right,color:Colors.green),
-                      hintText:   'Fighting Records',
+                      icon: Icon(Icons.format_align_right,color:Colors.green),
+                      // hintText:   'Fighting Records',
                       labelText:  'Fighting Records',
                       contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                     ),
                     keyboardType: TextInputType.text,
                       ),
                     ),
+                //  final sp =
                   StreamBuilder<String>(
                       stream: bloc.standardPriceStream,
                       builder:(context, snapshot)=>
@@ -339,76 +358,152 @@ class _MyHomePageState extends State<MyHomePage> {
                         onChanged: bloc.standerdPriceChanged,
                         decoration:InputDecoration(
                         errorText: snapshot.error,
-                        suffixIcon: Icon(Icons.attach_money,color:Colors.green),
+                        icon: Icon(Icons.local_offer,color:Colors.green),
                         labelText:  'Standerd Price',
-                        hintText:   'Standerd Price',
+                        // hintText:   'Standerd Price',
                         contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                       ),
                     ) ,),
-                      StreamBuilder<String>(
+                      // final currency =
+                       StreamBuilder<String>(
                       stream: bloc.currencyStream,
                       builder:(context, snapshot)=>
                       InputDecorator(
                       decoration: InputDecoration(
                       errorText: snapshot.error,
-                      // suffixIcon: Icon(Icons.space_bar,color: Colors.green,),
+                      icon: Icon(Icons.monetization_on,color: Colors.green,),
                       labelText: 'Currency',
                             ),
                         child: DropdownButtonHideUnderline(
                         child: DropdownButton<String>(
                           value: currencys ,
                           isDense: true,                
-                    //       onChanged: (String newValue) {
-                    //       setState(() {
-                    //     currencys  = newValue; 
-                    //    });
-                    //  },
+                          onChanged: (String newValue) {
+                          setState(() {
+                        currencys  = newValue; 
+                       });
+                     },
                      items: <String>['THB','USD','AUD','INR']
                      .map<DropdownMenuItem<String>>((String value){
                        return DropdownMenuItem<String>(value: value,
                        child: Text(value),
                        );
                      }).toList(),
-                     onChanged: bloc.currencyChanged,
+                    //  onChanged: bloc.currencyChanged,
                     //  value:snapshot.data,
                    ),
                         ),
                         ),),
-                   StreamBuilder<String>(
+                  // final remarks = 
+                  StreamBuilder<String>(
                       stream: bloc.remarksStream,
                       builder:(context, snapshot)=>
                       TextField(
                       onChanged: bloc.remarksChanged,
                       decoration: InputDecoration(
                       errorText: snapshot.error,
-                      suffixIcon: Icon(Icons.mode_edit,color:Colors.green),
-                      hintText:   'Remarks',
+                      icon: Icon(Icons.mode_edit,color:Colors.green),
+                      // hintText:   'Remarks',
                       labelText:  'Remarks',
                       contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                       ),
                       keyboardType: TextInputType.multiline,
                       ), ),    
-                  new Container(
+                //  final btn =
+                  Container(
                     child: new Padding(
                     padding: EdgeInsets.symmetric(vertical: 40.0),
                     child: StreamBuilder<bool>(
-                    stream: bloc.submitdetails,
+                    // stream: bloc.submiteddetails,
                     builder:(context,snapshot)=>
                     RaisedButton(
                     color: Colors.amber,
                     child: Text('Submit',style:TextStyle(color:Colors.white,fontSize: 20.0)),
-                    onPressed: snapshot.hasData? null:(){
-                      bloc.submit();
+                    onPressed: snapshot.hasData ? null: () {
+                    bloc.submit();
                     Navigator.push(context,  MaterialPageRoute(
                       builder:  (context) => Profile())
                        ); }
                          ) ), 
-                        ) )],
-                        ))),
-                        ),);
-                        }
-                      }
+                        ) 
+                        // ],
+                        // // ))),
+                        // ));
+      // return Scaffold(
+      //       resizeToAvoidBottomPadding: false,
+      //       appBar: new AppBar(
+      //       title: new Text(widget.title),
+      //       centerTitle: true,
+      //       leading: IconButton(
+      //         icon: Icon(Icons.arrow_back_ios),
+      //         onPressed: () => Navigator.push(
+      //         context,MaterialPageRoute(builder: (context) => Profile(),
+      //       ),
+      //       ),
+      //      ), 
+      //       backgroundColor: Colors.amber,
+      //     ),
+    //   body:MaterialApp(
+    //   theme: ThemeData(
+    //     primaryColor: Colors.green[450],
+    //     accentColor: Colors.green,
+    //     primarySwatch: Colors.green,
+    //     ),
+    //   debugShowCheckedModeBanner: false,
+    //   home: Container(
+    // //  backgroundColor: Colors.white,
+    //   child: Padding(
+    //      padding: EdgeInsets.only(left: 25.0,right: 25.0),
+    //      child: new Row(
+    //      children: <Widget>[ 
+    //        Flexible(
+    //          flex: 1,
+    //          child: new ListView(
+    //           children: <Widget>[
+    //        SizedBox(height: 8.0),
+    //        logo,
+    //        SizedBox(height: 10.0),
+    //        animalcode,
+    //        SizedBox(height: 10.0),
+    //        animalname,
+    //        SizedBox(height: 10.0),
+    //        animalsymbol,
+    //        SizedBox(height: 10.0),
+    //        animalsatus,
+    //        SizedBox(height: 10.0),
+    //        dob,
+    //        SizedBox(height: 10.0),
+    //        genders,
+    //        SizedBox(height: 10.0),
+    //        breeder,
+    //        SizedBox(height: 10.0),
+    //        sire,
+    //        SizedBox(height: 10.0,),
+    //        breedcode,
+    //        SizedBox(height: 10.0),
+    //        talents,
+    //        SizedBox(height: 10.0),
+    //        wt,
+    //        SizedBox(height: 10.0),
+    //        fr,
+    //        SizedBox(height: 10.0,),
+    //        sp,
+    //        SizedBox(height: 10.0),
+    //        currency,
+    //        SizedBox(height: 10.0,),
+    //        remarks,
+    //        SizedBox(height: 1.0,),
+    //        btn,
 
+    //      ],
+    //    ),
+    //  ),
+    //      ],
+                   )
+
+                    ]) ))));
+                      }
+}
     
 class NextPage extends StatefulWidget{
 
@@ -446,6 +541,7 @@ _NextPageState createState() => _NextPageState();
       ),
       
       home:Scaffold(
+        resizeToAvoidBottomPadding: false,
         floatingActionButton: new FloatingActionButton(
             elevation: 20.0,
             highlightElevation: 20.0,
@@ -487,10 +583,10 @@ _NextPageState createState() => _NextPageState();
                   height: 80.0,
                   color: Colors.white70,
                   child: CircleAvatar(
-                    // backgroundColor: Colors.green,
+                    // // backgroundColor: Colors.green,
                     
-                    backgroundImage: NetworkImage
-                    ("https://www.google.com/search?q=chicken+images&rlz=1C1CHBF_enIN815IN815&tbm=isch&source=iu&ictx=1&fir=pQab4VRy_gKVlM%253A%252Cn02ibD9yVjdVZM%252C_&usg=AI4_-kTMhWDVRKAs8u3ox2RVQjz7MFiaWQ&sa=X&ved=2ahUKEwies97Du7jgAhUHf30KHR75CFoQ9QEwCnoECAAQGA#imgrc=pQab4VRy_gKVlM:"),
+                    // backgroundImage: NetworkImage
+                    // ("https://www.google.com/search?q=chicken+images&rlz=1C1CHBF_enIN815IN815&tbm=isch&source=iu&ictx=1&fir=pQab4VRy_gKVlM%253A%252Cn02ibD9yVjdVZM%252C_&usg=AI4_-kTMhWDVRKAs8u3ox2RVQjz7MFiaWQ&sa=X&ved=2ahUKEwies97Du7jgAhUHf30KHR75CFoQ9QEwCnoECAAQGA#imgrc=pQab4VRy_gKVlM:"),
                   ),
                   
                 ),

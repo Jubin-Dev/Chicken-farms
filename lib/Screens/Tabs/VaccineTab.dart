@@ -32,8 +32,8 @@ class VaccineTab extends StatefulWidget {
   Widget build(BuildContext context) {
    return MaterialApp(
      debugShowCheckedModeBanner: false,
-     home: Scaffold(
-      body: NestedScrollView(
+    home: Container(
+      child: NestedScrollView(
       controller: scrollController,
       headerSliverBuilder: (BuildContext context, bool boxIsScrolled){
         return<Widget>[
@@ -64,19 +64,19 @@ class VaccineTab extends StatefulWidget {
               tabs: <Widget>[
                 Tab(
                   text: "Vaccine Schedule",
-                  icon: Icon(Icons.event_available, color: Colors.white,size: 40.0,),
+                  icon: Icon(Icons.event_available, color: Colors.white,size: 36.0,),
                 ),
                 Tab(
                   text: "Purchased Vaccine",
-                  icon: Icon(Icons.local_offer, color: Colors.white,size: 40.0,),
+                  icon: Icon(Icons.local_offer, color: Colors.white,size: 36.0,),
                 ),
                 Tab(
                   text: "Give Vaccine",
-                  icon: Icon(Icons.colorize, color: Colors.white,size: 40.0,),
+                  icon: Icon(Icons.colorize, color: Colors.white,size: 36.0,),
                 ),
                 Tab(
                   text: "Vaccine Due",
-                  icon: Icon(Icons.event_busy, color: Colors.white,size: 40.0,),
+                  icon: Icon(Icons.event_busy, color: Colors.white,size: 36.0,),
                   
                 )
               ],

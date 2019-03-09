@@ -8,12 +8,7 @@ import 'package:intl/intl.dart';
 void main() => runApp(new Medicine());
 
 class Medicine extends StatelessWidget {
-//     final String medicineName, purchasedDate, quantity, purchasedAmount;
-//     const Medicine (
-//   {
-//     this.medicineName, this.purchasedDate, this.quantity, this.purchasedAmount
-//   }
-// );
+
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +22,6 @@ class Medicine extends StatelessWidget {
     );
   }
 }
-
 class MedicinePage extends StatefulWidget {
   MedicinePage({Key key, this.title}) : super(key: key);
   final String title;
@@ -38,16 +32,9 @@ class MedicinePage extends StatefulWidget {
 
 class _MedicinePageState extends State<MedicinePage> {
 
-  // var _medicinenameController = new TextEditingController();
-  // var _purchasedDateController = new TextEditingController();
-  // var _quantityController = new TextEditingController();
-  // var _purchasedAmountController = new TextEditingController();
- 
-  
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   // List<String> _colors = <String>['', 'THB', 'INR', 'AUD', 'USD'];
   String currency = 'THB';
-
 
   final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
   };
@@ -58,25 +45,26 @@ class _MedicinePageState extends State<MedicinePage> {
   @override
   Widget build(BuildContext context) {
     final bloc = TreatmentBloc();
-        return new Scaffold(
-          appBar: new AppBar(
+        
+        return
+            new Scaffold(
+            resizeToAvoidBottomPadding: false,
+            appBar: new AppBar(
             title: new Text(widget.title),
             centerTitle: true,
-           
             backgroundColor: Colors.amber,
             leading: IconButton(icon: Icon(Icons.arrow_back_ios),
             onPressed: () => Navigator.push(
-                     context, MaterialPageRoute(builder: (context) => Chicktreat())),
-            
-    
-            ),
-          ),
+                      context, MaterialPageRoute(builder: (context) =>
+                      Chicktreat())),
+                  ),
+                  ),
           body: new SafeArea(
-              top: false,
-              bottom: false,
+              top: true,
+              bottom: true,
               child: new Form(
                   key: _formKey,
-                  autovalidate: true,
+                  // autovalidate: true,
                   child: new ListView(
                     padding: const EdgeInsets.all( 20.0),
                     children: <Widget>[
@@ -85,12 +73,12 @@ class _MedicinePageState extends State<MedicinePage> {
                       stream: bloc.medicnameStream,
                       builder:(context, snapshot)=>
                       TextField(
-                     onChanged: bloc.medicChanged,
+                     onChanged: bloc.medinameChanged,
                      keyboardType: TextInputType.text,
                      decoration: InputDecoration(
                             errorText: snapshot.error,
-                            suffixIcon: Icon(Icons.local_pharmacy,color:Colors.green),
-                            hintText: 'Medicine Name',
+                            icon: Icon(Icons.local_pharmacy,color:Colors.green),
+                            labelText: 'Medicine Name',
                     ),
                   ),),
                   Divider(), 
@@ -100,9 +88,9 @@ class _MedicinePageState extends State<MedicinePage> {
                       TextField(
                         onChanged: bloc.meditypeChanged,
                         decoration:  InputDecoration(
-                          errorText: snapshot.error,
-                        suffixIcon: Icon(Icons.local_hospital,color:Colors.green),
-                        hintText: 'Medicine Type',  
+                        errorText: snapshot.error,
+                        icon: Icon(Icons.local_hospital,color:Colors.green),
+                        labelText: 'Medicine Type',  
                                        ),
                                  ),),
                   Divider(), 
@@ -114,8 +102,8 @@ class _MedicinePageState extends State<MedicinePage> {
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
                       errorText: snapshot.error,
-                      suffixIcon: Icon(Icons.location_city,color:Colors.green),
-                      hintText: 'Medicine Company',
+                      icon: Icon(Icons.location_city,color:Colors.green),
+                      labelText: 'Medicine Company',
                       ),
                     ),
                   ),
@@ -128,7 +116,7 @@ class _MedicinePageState extends State<MedicinePage> {
                     editable: editable,
                     decoration: InputDecoration(
                       errorText: snapshot.error,
-                      prefixIcon: const Icon(Icons.calendar_today, color: Colors.green), 
+                      icon: Icon(Icons.calendar_today, color: Colors.green), 
                       labelText: 'Purchase Date',hasFloatingPlaceholder: true
                          ), 
                       onChanged: (dt) => setState(()=> date = dt),
@@ -144,7 +132,7 @@ class _MedicinePageState extends State<MedicinePage> {
                     editable: editable,
                     decoration: InputDecoration(
                     errorText: snapshot.error,
-                    prefixIcon: const Icon(Icons.calendar_today, color: Colors.green), 
+                    icon: const Icon(Icons.calendar_today, color: Colors.green), 
                     labelText: 'Expiry Date',hasFloatingPlaceholder: true
                     ), 
                     onChanged: (dt) => setState(()=> date = dt),
@@ -159,8 +147,8 @@ class _MedicinePageState extends State<MedicinePage> {
                     keyboardType: TextInputType.text,
                       decoration: InputDecoration(
                         errorText: snapshot.error,
-                         suffixIcon: Icon(Icons.format_list_numbered_rtl,color:Colors.green),
-                          hintText: 'Batch Number',
+                         icon: Icon(Icons.format_list_numbered_rtl,color:Colors.green),
+                          labelText: 'Batch Number',
                       ),
                       ),
                     ),
@@ -173,8 +161,8 @@ class _MedicinePageState extends State<MedicinePage> {
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
                       errorText: snapshot.error,
-                      suffixIcon: Icon(Icons.supervised_user_circle,color:Colors.green),
-                        hintText: 'Supplied By',
+                      icon: Icon(Icons.supervised_user_circle,color:Colors.green),
+                        labelText: 'Supplied By',
                           ),
                           ),
                         ),
@@ -186,8 +174,8 @@ class _MedicinePageState extends State<MedicinePage> {
                      onChanged: bloc.quantiChanged,
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
-                        suffixIcon: Icon(Icons.widgets,color:Colors.green),
-                        hintText: 'Quantity',
+                        icon: Icon(Icons.widgets,color:Colors.green),
+                        labelText: 'Quantity',
                           ),
                           ),
                         ),
@@ -200,8 +188,8 @@ class _MedicinePageState extends State<MedicinePage> {
                       keyboardType: TextInputType.number,
                       decoration:  InputDecoration(
                               errorText: snapshot.error,
-                              suffixIcon: Icon(Icons.format_underlined,color:Colors.green),
-                              hintText: 'Unit',
+                              icon: Icon(Icons.format_underlined,color:Colors.green),
+                              labelText: 'Unit',
                                  ),
                               ),
                            ),
@@ -214,8 +202,8 @@ class _MedicinePageState extends State<MedicinePage> {
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         errorText: snapshot.error,
-                        suffixIcon: Icon(Icons.monetization_on,color:Colors.green),
-                        hintText: 'Unit Price',
+                        icon: Icon(Icons.monetization_on,color:Colors.green),
+                        labelText: 'Unit Price',
                       ),
                     ),
                   ),
@@ -225,18 +213,18 @@ class _MedicinePageState extends State<MedicinePage> {
                       InputDecorator(
                       decoration: InputDecoration(
                         errorText: snapshot.error,
-                      // suffixIcon: Icon(Icons.space_bar,color: Colors.green,),
+                        icon: Icon(Icons.monetization_on,color: Colors.green,),
                         labelText: 'Currency',
                             ),
                         child: DropdownButtonHideUnderline(
                         child: DropdownButton<String>(
                           value: currency ,
                           isDense: true,                
-                    //       onChanged: (String newValue) {
-                    //       setState(() {
-                    //     currency = newValue; 
-                    //    });
-                    //  },
+                          onChanged: (String newValue) {
+                          setState(() {
+                        currency = newValue; 
+                       });
+                     },
                      items: <String>['THB','USD','AUD','INR']
                     
                      .map<DropdownMenuItem<String>>((String value){
@@ -245,7 +233,7 @@ class _MedicinePageState extends State<MedicinePage> {
                        );
                       
                      }).toList(),
-                     onChanged: bloc.currencyChanged,
+                    //  onChanged: bloc.currencyChanged,
                         ),
                         ),
                         ),
@@ -260,9 +248,9 @@ class _MedicinePageState extends State<MedicinePage> {
                       keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                               errorText: snapshot.error,
-                              suffixIcon: Icon(Icons.attach_money,color:Colors.green),
+                              icon: Icon(Icons.attach_money,color:Colors.green),
                               filled: true,
-                              hintText: 'Purchase Amount',
+                              labelText: 'Purchase Amount',
                               contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 20.0, 40.0),
                               border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20.0),
@@ -273,12 +261,12 @@ class _MedicinePageState extends State<MedicinePage> {
                     new Container(
                     child: new Padding(
                     padding: EdgeInsets.symmetric(vertical: 40.0),
-                    child: StreamBuilder<String>(
-                      stream: bloc.unipriceStream,
+                    child: StreamBuilder<bool>(
+                      // stream: bloc.submitdetail,
                       builder:(context, snapshot)=>
-                  MaterialButton(
-                  minWidth: 200.0,
-                  height: 47.0,
+                  RaisedButton(
+                  // minWidth: 200.0,
+                  // height: 47.0,
                   color: Colors.amber,
                   child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
                   onPressed:snapshot.hasData ? null:(){ Navigator.push (
@@ -292,7 +280,7 @@ class _MedicinePageState extends State<MedicinePage> {
                       ),
                      ), ],
                       ))),
-                );
+          );
               }
               }
 
@@ -325,8 +313,8 @@ class _MedicinePageState extends State<MedicinePage> {
         brightness: Brightness.light,
       ) ,
       home: Scaffold(
-   
-     floatingActionButton: new FloatingActionButton(
+        resizeToAvoidBottomPadding: false,
+        floatingActionButton: new FloatingActionButton(
             elevation: 20.0,
             highlightElevation: 20.0,
             isExtended: true,
@@ -334,36 +322,26 @@ class _MedicinePageState extends State<MedicinePage> {
             onPressed: () => Navigator.push(
                  context, MaterialPageRoute(builder: (context) => Medicine())),
           ),
-
           body:
-              
           ListView.builder(itemCount: 10,
-         
            shrinkWrap: true,
            itemBuilder: (BuildContext context,int index) => Container(
         //width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.symmetric(vertical: 10.0),
-       
         child: Card(
-        
           margin: EdgeInsets.only(left: 10.0,right: 10.0),
           elevation: 10.0,
           shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(3.5)
          ),
           color: Colors.white70,
-          
           child: Container(decoration: BoxDecoration(
             color: Colors.transparent,
-            
           ),
-          
-       
         //width: MediaQuery.of(context).size.width,
         margin: EdgeInsets.symmetric(horizontal: 10.0,vertical: 30.0),
         padding: EdgeInsets.only(right: 80.0),
         child: 
-       
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -373,17 +351,15 @@ class _MedicinePageState extends State<MedicinePage> {
                   color: Colors.white70,
                   child: CircleAvatar(
                     // backgroundColor: Colors.green,
-                    backgroundImage: NetworkImage
-                    ("https://www.google.com/search?q=chicken+images&rlz=1C1CHBF_enIN815IN815&tbm=isch&source=iu&ictx=1&fir=pQab4VRy_gKVlM%253A%252Cn02ibD9yVjdVZM%252C_&usg=AI4_-kTMhWDVRKAs8u3ox2RVQjz7MFiaWQ&sa=X&ved=2ahUKEwies97Du7jgAhUHf30KHR75CFoQ9QEwCnoECAAQGA#imgrc=pQab4VRy_gKVlM:"),
+                    // backgroundImage: NetworkImage
+                    // ("https://www.google.com/search?q=chicken+images&rlz=1C1CHBF_enIN815IN815&tbm=isch&source=iu&ictx=1&fir=pQab4VRy_gKVlM%253A%252Cn02ibD9yVjdVZM%252C_&usg=AI4_-kTMhWDVRKAs8u3ox2RVQjz7MFiaWQ&sa=X&ved=2ahUKEwies97Du7jgAhUHf30KHR75CFoQ9QEwCnoECAAQGA#imgrc=pQab4VRy_gKVlM:"),
                   ),
-                  
                 ),
                 SizedBox(width: 20.0,),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
-                  
                     new Text("Medicine Name: ${Widget.value}"),
                     Divider(),
                     new Text("Purchased Date: ${Widget.value}"),

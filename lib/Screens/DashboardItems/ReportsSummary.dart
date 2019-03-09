@@ -37,6 +37,7 @@ class _ReportSummaryPageState extends State<ReportSummaryPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: new AppBar(
         title: new Text(widget.title),
         centerTitle: true,
@@ -51,58 +52,47 @@ class _ReportSummaryPageState extends State<ReportSummaryPage> {
           top: false,
           bottom: false,
           child: new Form(
-              
               autovalidate: true,
               child: new ListView (
                 padding: const EdgeInsets.all( 20.0),
                 children: <Widget>[
-
                   new DateTimePickerFormField(
                     inputType: inputType,
                     format: formats[inputType],
                     editable: editable,
                     decoration: const InputDecoration(
-                    prefixIcon: const Icon(Icons.calendar_today, color: Colors.green), 
+                    icon: const Icon(Icons.calendar_today, color: Colors.green), 
                     labelText: 'From Date',hasFloatingPlaceholder: true
                     ), 
                     onChanged: (dt) => setState(()=> date = dt),
-                   
                     ),
-                    
-                   
                    Divider(),
-
                    new DateTimePickerFormField(
                     inputType: inputType,
                     format: formats[inputType],
                     editable: editable,
                     decoration: const InputDecoration(
-                    prefixIcon: const Icon(Icons.calendar_today, color: Colors.green), 
+                    icon: const Icon(Icons.calendar_today, color: Colors.green), 
                     labelText: 'To Date',hasFloatingPlaceholder: true
                     ), 
                     onChanged: (dt) => setState(()=> date = dt),
                     ),
-
-
                    new Container(
                       child: new Padding(
                       padding: EdgeInsets.symmetric(vertical: 40.0),
-                      child: Material(
-                      borderRadius: BorderRadius.circular(30.0),
-                      shadowColor: Colors.lightBlueAccent.shade100,
-                      elevation: 6.0,
-                  child: MaterialButton(
-                    minWidth: 200.0,
-                    height: 47.0,
+                      // child: Material(
+                      // borderRadius: BorderRadius.circular(30.0),
+                      // shadowColor: Colors.lightBlueAccent.shade100,
+                      // elevation: 6.0,
+                  child: RaisedButton(
+                    // minWidth: 200.0,
+                    // height: 47.0,
                     onPressed: (){},
                     color: Colors.amber,
                     child: Text('Search',style:TextStyle(color:Colors.white,fontSize: 20.0)),
-
                    ) ,
                    ),
                      ),
-                      ),
-                    
                              ],
                       ))),
                 );

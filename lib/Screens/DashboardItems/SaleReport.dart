@@ -42,6 +42,7 @@ class _ReportSalePageState extends State<ReportSalePage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      resizeToAvoidBottomPadding: false,
       // appBar: new AppBar(
       //   title: new Text(widget.title),
       //   centerTitle: true,
@@ -67,31 +68,26 @@ class _ReportSalePageState extends State<ReportSalePage> {
                     format: formats[inputType],
                     editable: editable,
                     decoration: const InputDecoration(
-                    prefixIcon: const Icon(Icons.calendar_today, color: Colors.green), 
+                    icon: const Icon(Icons.calendar_today, color: Colors.green), 
                     labelText: 'From Date',hasFloatingPlaceholder: true
                     ), 
                     onChanged: (dt) => setState(()=> date = dt),
-                   
                     ),
-          
-                   
-                   Divider(),
+                    Divider(),
                     new DateTimePickerFormField(
                     inputType: inputType,
                     format: formats[inputType],
                     editable: editable,
                     decoration: const InputDecoration(
-                    prefixIcon: const Icon(Icons.calendar_today, color: Colors.green), 
+                    icon: const Icon(Icons.calendar_today, color: Colors.green), 
                     labelText: 'To Date',hasFloatingPlaceholder: true
                     ), 
                     onChanged: (dt) => setState(()=> date = dt),
-                   
                     ),
-                  
                    Divider(),
                      InputDecorator(
                       decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.space_bar,color: Colors.green,),
+                      icon: Icon(Icons.space_bar,color: Colors.green,),
                       labelText: 'Sire Code',
                             ),
                         child: DropdownButtonHideUnderline(
@@ -104,7 +100,6 @@ class _ReportSalePageState extends State<ReportSalePage> {
                        });
                      },
                      items: <String>['100', '101', '102', '103']
-                    
                      .map<DropdownMenuItem<String>>((String value){
                        return DropdownMenuItem<String>(value: value,
                        child: Text(value),
@@ -115,10 +110,9 @@ class _ReportSalePageState extends State<ReportSalePage> {
                         ),
                         ),
                   Divider(),
-                   
                      InputDecorator(
                       decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.space_bar,color: Colors.green,),
+                      icon: Icon(Icons.space_bar,color: Colors.green,),
                       labelText: 'Breeder Code',
                             ),
                         child: DropdownButtonHideUnderline(
@@ -131,14 +125,12 @@ class _ReportSalePageState extends State<ReportSalePage> {
                        });
                      },
                      items: <String>['100', '101', '102', '103']
-                    
                      .map<DropdownMenuItem<String>>((String value){
                        return DropdownMenuItem<String>(value: value,
                        child: Text(value),
                        );
-                      
                      }).toList(),
-                   ),
+                       ),
                         ),
                         ),
                   
@@ -146,13 +138,13 @@ class _ReportSalePageState extends State<ReportSalePage> {
                 new Container(
                     child: new Padding(
                     padding: EdgeInsets.symmetric(vertical: 40.0),
-                    child: Material(
-                    borderRadius: BorderRadius.circular(30.0),
-                    shadowColor: Colors.lightBlueAccent.shade100,
-                   elevation: 6.0,
-                  child: MaterialButton(
-                    minWidth: 200.0,
-                  height: 47.0,
+                    // child: Material(
+                    // borderRadius: BorderRadius.circular(30.0),
+                    // shadowColor: Colors.lightBlueAccent.shade100,
+                    // elevation: 6.0,
+                    child: RaisedButton(
+                    // minWidth: 200.0,
+                    // height: 47.0,
                   onPressed: (){},
                   color: Colors.amber,
                   child: Text('Search',style:TextStyle(color:Colors.white,fontSize: 20.0)),
@@ -160,7 +152,6 @@ class _ReportSalePageState extends State<ReportSalePage> {
                    ) ,
                    ),
                      ),
-                      ),
                     ],
                       ))),
                 );

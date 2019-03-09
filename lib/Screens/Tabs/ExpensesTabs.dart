@@ -30,8 +30,8 @@ class ExpTab extends StatefulWidget {
   Widget build(BuildContext context) {
    return MaterialApp(
      debugShowCheckedModeBanner: false,
-     home: Scaffold(
-      body: NestedScrollView(
+     home: Container(
+      child: NestedScrollView(
       controller: scrollController,
       headerSliverBuilder: (BuildContext context, bool boxIsScrolled){
         return<Widget>[
@@ -62,11 +62,11 @@ class ExpTab extends StatefulWidget {
               tabs: <Widget>[
                 Tab(
                   text: "Master Expense",
-                   icon: Icon(Icons.equalizer, color: Colors.white,size: 40.0,),
+                   icon: Icon(Icons.equalizer, color: Colors.white,size: 36.0,),
                 ),
                 Tab(
                   text: "Expense Entry",
-                   icon: Icon(Icons.event_note, color: Colors.white,size: 40.0,),
+                   icon: Icon(Icons.event_note, color: Colors.white,size: 36.0,),
                 )
               ],
               controller: tabController,

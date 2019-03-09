@@ -17,9 +17,8 @@ class PriceDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      
       theme: new ThemeData(
-        primarySwatch: Colors.green,
+      primarySwatch: Colors.green,
       ),
       home: new _PriceDetail(title: 'Price Details',),
     );
@@ -29,36 +28,27 @@ class PriceDetail extends StatelessWidget {
 class _PriceDetail extends StatefulWidget {
   _PriceDetail({Key key, this.title}) : super(key: key);
   final String title;
-
   @override
   SalePageState createState() => new SalePageState();
 }
-
 class SalePageState extends State<_PriceDetail> {
-
   var _sirecodeController = new TextEditingController();
   var _priceController = new TextEditingController();
   var _breedercodeController = new TextEditingController();
-  
- 
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-  
   // List<String> _colors = <String>[' ', 'THB', 'USD', 'INR', 'AUD'];
-  
   String currency = 'THB';
-
 @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
+     return new Scaffold(
+        resizeToAvoidBottomPadding: false, 
+        appBar: new AppBar(
         title: new Text(widget.title),
         centerTitle: true,
-       
         backgroundColor: Colors.amber,
         leading: IconButton(icon: Icon(Icons.arrow_back_ios),
         onPressed: () => Navigator.push(
                  context, MaterialPageRoute(builder: (context) => SalesTab())),
-        
       ),
       ),
       body: new SafeArea(
@@ -68,63 +58,53 @@ class SalePageState extends State<_PriceDetail> {
               key: _formKey,
               autovalidate: true,
               child: new ListView(
-                
                 padding: const EdgeInsets.all(25.0),
- 
                 children: <Widget>[
-                          
                        new TextField(
                           controller: _sirecodeController,
                           onChanged: (value) => _sirecodeController.text = value,
                       keyboardType: TextInputType.number ,
                       autofocus: false,
                       decoration: InputDecoration(
-                        suffixIcon: Icon(Icons.space_bar,color:Colors.green),
+                      icon: Icon(Icons.space_bar,color:Colors.green),
                         filled: true,
-                        hintText: 'Sire Code',
+                        labelText: 'Sire Code',
                         contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                          
+                        borderRadius: BorderRadius.circular(20.0),
                         )
                       ),
-                    
                     ),
-                    Divider(
-
-                    ),
+                    Divider(),
                  new TextField(
                    controller: _breedercodeController,
                      onChanged: (value) => _breedercodeController.text = value,
                      keyboardType: TextInputType.number ,
                       decoration: InputDecoration(
-                        suffixIcon: Icon(Icons.space_bar,color:Colors.green),
+                       icon: Icon(Icons.space_bar,color:Colors.green),
                         filled: true,
-                        hintText: 'Breeder Code',
+                        labelText: 'Breeder Code',
                         contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
                         border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
-                
                         ) 
                     ),
-                      
                   ),
                   Divider(),
-
                     new TextField(
                       controller: _priceController,
                       onChanged: (value) => _priceController.text = value,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
-                        suffixIcon: Icon(Icons.local_atm,color:Colors.green),
-                      hintText: 'Price',
+                      icon: Icon(Icons.local_atm,color:Colors.green),
+                      labelText: 'Price',
                       // labelText: 'Symbol',
                     ),
                   ),
 
                    InputDecorator(
                       decoration: InputDecoration(
-                      // suffixIcon: Icon(Icons.space_bar,color: Colors.green,),
+                      icon: Icon(Icons.space_bar,color: Colors.green,),
                       labelText: 'Currency',
                             ),
                         child: DropdownButtonHideUnderline(
@@ -151,26 +131,24 @@ class SalePageState extends State<_PriceDetail> {
                     new Container(
                     child: new Padding(
                     padding: EdgeInsets.symmetric(vertical: 40.0),
-                    child: Material(
-                    borderRadius: BorderRadius.circular(30.0),
-                    shadowColor: Colors.lightBlueAccent.shade100,
-                    elevation: 6.0,
-                    child: MaterialButton(
-                    minWidth: 200.0,
-                  height: 47.0,
+                    // child: Material(
+                    // borderRadius: BorderRadius.circular(30.0),
+                    // shadowColor: Colors.lightBlueAccent.shade100,
+                    // elevation: 6.0,
+                    child: RaisedButton(
+                    // minWidth: 200.0,
+                    // height: 47.0,
                   onPressed: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => SalesTab())),
+                  context, MaterialPageRoute(builder: (context) => SalesTab())),
                   color: Colors.amber,
                   child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
-
                    ) ,
                    ),
                      ),
-                      ),
                     ],
                       ))),
                 );
-              }
+                }
               }
 
     class PriceDetailList extends StatefulWidget{
@@ -186,9 +164,7 @@ class SalePageState extends State<_PriceDetail> {
           }
   
   class _PriceDetailListPageState extends State<PriceDetailList> {
-    
     bool isPriority = false;
-    
     void _toggleFlag(){
     setState(() {
      if(isPriority) {
@@ -197,9 +173,7 @@ class SalePageState extends State<_PriceDetail> {
        isPriority = true;
      }
     });
-
   }
-
   @override
   Widget build(BuildContext context) {
     
@@ -211,6 +185,7 @@ class SalePageState extends State<_PriceDetail> {
       ),
       
       home:Scaffold(
+        resizeToAvoidBottomPadding: false,
         floatingActionButton: new FloatingActionButton(
             elevation: 20.0,
             highlightElevation: 20.0,
@@ -219,36 +194,25 @@ class SalePageState extends State<_PriceDetail> {
             onPressed: () => Navigator.push(
                  context, MaterialPageRoute(builder: (context) => PriceDetail())),
           ), 
-     
      body:ListView.builder( itemCount: 20,
-         
         shrinkWrap: true,
         itemBuilder: (BuildContext context,int index) => Container(
         //width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.symmetric(vertical: 10.0),
-       
           child: Card(
-        
           margin: EdgeInsets.only(left: 10.0,right: 10.0),
           elevation: 10.0,
           shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(3.5)
          ),
           color: Colors.white70,
-          
           child: Container(decoration: BoxDecoration(
             color: Colors.transparent,
-            
           ),
-          
-       
         //width: MediaQuery.of(context).size.width,
         margin: EdgeInsets.symmetric(horizontal: 10.0,vertical: 30.0),
         padding: EdgeInsets.only(right: 80.0),
-
-        
         child: 
-       
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -270,14 +234,11 @@ class SalePageState extends State<_PriceDetail> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
-                    
                     new Text("Sire Code: ${widget.value}"),
                     Divider(),
                     new Text("Breeder Code: ${widget.value}"),
                     Divider(),
                     new Text("Price: ${widget.value}"),
-                    
-
                     Divider(color: Colors.teal,indent: 50.0,),
                     // new IconButton(
                     // icon: Icon(Icons.delete),
@@ -285,18 +246,12 @@ class SalePageState extends State<_PriceDetail> {
                     // color:(isPriority)? Colors.red : Colors.green,
                     // onPressed: _toggleFlag,
                     //  ),
-
                     ],
-                 
                 ),
-              
           ],
         ),
-        
           ),
-         
     ),
-   
      ),
       )
       ),

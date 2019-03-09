@@ -66,11 +66,11 @@ class Chicktreat extends StatefulWidget {
               tabs: <Widget>[
                 Tab(
                   text: "Chicken Treatment",
-                  icon: Icon(Icons.local_hospital, color: Colors.white,size: 40.0,),
+                  icon: Icon(Icons.local_hospital, color: Colors.white,size: 36.0,),
                 ),
                 Tab(
                   text: "Purchased Medicine",
-                  icon: Icon(Icons.local_pharmacy, color: Colors.white,size:40.0,),
+                  icon: Icon(Icons.local_pharmacy, color: Colors.white,size: 36.0,),
                 )
               ],
               controller: tabController,

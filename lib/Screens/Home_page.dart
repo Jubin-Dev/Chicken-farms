@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_app/Screens/Breed/breed_list.dart';
 import 'package:flutter_app/Screens/DashboardItems/ReportsSummary.dart';
-import 'package:flutter_app/Screens/DashboardItems/SaleReport.dart';
+import 'package:flutter_app/Screens/Login_page.dart';
 import 'package:flutter_app/Screens/Navigationdraw.dart';
 import 'package:flutter_app/Screens/Tabs/ChickenTreatmentTabs.dart';
 import 'package:flutter_app/Screens/Tabs/ExpensesTabs.dart';
@@ -39,6 +40,7 @@ class MyHomes extends StatelessWidget {
   Widget build(BuildContext context) {
   
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       drawer: new DrawerOnly(),
       
         appBar: AppBar(
@@ -46,51 +48,47 @@ class MyHomes extends StatelessWidget {
           centerTitle: true,
           actions: <Widget>[
            new IconButton(icon: Icon(Icons.search),color: Colors.black,
-           onPressed: () {},
+           onPressed: ()
+           => Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => LoginPage())),
             )
           ],
         ),
           body: Column(
             children: <Widget>[
               Container(
-                padding: EdgeInsets.only(top: 70.0),
+                padding: EdgeInsets.symmetric(vertical: 50.0),
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height/2,
                 decoration: BoxDecoration(
                   color: Colors.amber,
                   boxShadow: <BoxShadow>[
-                BoxShadow(
+                  BoxShadow(
                   color: Colors.black45,
                   offset: Offset(1.0, 5.0),
                   blurRadius: 20.0,
-                ),
-              ],
+                    ),
+                    ],
                   
                   borderRadius: BorderRadius.only(
-                    bottomRight:Radius.circular(20), 
-                    bottomLeft:Radius.circular(20),
-                    
+                    bottomRight:Radius.circular(25), 
+                    bottomLeft:Radius.circular(25), 
                   )
-
                 ),
                 child: Column(
                   children: <Widget>[
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        
-                         Padding(
-                           
-                      padding:const EdgeInsets.only(top: 5.0,left: 115.0 ),
-                      
-                        child: CircleAvatar(    
+                      children: <Widget>[ 
+                      Padding(           
+                      padding:const EdgeInsets.only(left: 125.0,),
+                      child: CircleAvatar(  
                       backgroundColor: Colors.white54,
                       radius: 70.0,
-                    
-                     child: Image.asset('lib/images/rooster.png'),
-                    ),
+                      child: Image.asset('lib/images/rooster.png'),
+                       ),
                         
-                         )  
+                       )  
                       ],
 
                     ),
@@ -105,9 +103,8 @@ class MyHomes extends StatelessWidget {
                   //  ),
                   //  ),
                   //    ),
-                    
                      Padding(
-                       padding: const EdgeInsets.only(top: 15,bottom: 32),
+                       padding: const EdgeInsets.only(top: 20,),
                      
                      child:Row(
                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -118,7 +115,7 @@ class MyHomes extends StatelessWidget {
                              IconButton(icon: Icon(Icons.assessment, color: Colors.white, ),
                              iconSize: 66.0,
                              onPressed: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => SaleSummaryTab())),
+                      context, MaterialPageRoute(builder: (context) => SaleSummaryTab())),
                              )
                            ],
                          ),
@@ -128,7 +125,7 @@ class MyHomes extends StatelessWidget {
                              IconButton(icon: Icon(Icons.monetization_on, color: Colors.white,  ),
                              iconSize: 66.0,
                              onPressed: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => ExpSummaryTab())), 
+                      context, MaterialPageRoute(builder: (context) => ExpSummaryTab())), 
                              )
                            ],
                          ),
@@ -158,7 +155,7 @@ class MyHomes extends StatelessWidget {
                 ),
      ),
      Container(
-       padding: EdgeInsets.all(20.0),
+       padding: EdgeInsets.only(bottom:8.0,top: 5.0),
        child: Column(
          mainAxisAlignment: MainAxisAlignment.spaceAround,
          children: <Widget>[
