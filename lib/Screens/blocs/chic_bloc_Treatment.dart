@@ -82,14 +82,14 @@ class TreatmentBloc extends Object with Validator {
   Stream<String> get currencyStream => _currenciesController.stream.transform(validatedropDown);
   Stream<String> get amountStream => _amountController.stream.transform(notEmptyValidator);
   
-  //Submit Button
-  // Stream<bool> get subtrtbtn => Observable.combineLatest9(
-  //   anicodeStream, medinameStream, reasonStream, quantityStream, unitsStream, startdateStream, enddateStream, dosesStream,remarksStream,
-  //    (acs,mn,rs,qs,us,sd,ed,dp,re) => true);
+  // Submit Button
+  Stream<bool> get subtrtbtn => Observable.combineLatest9(
+    anicodeStream, medinameStream, reasonStream, quantityStream, unitsStream, startdateStream, enddateStream, dosesStream,remarksStream,
+     (acs,mn,rs,qs,us,sd,ed,dp,re) => true);
 
-  // Stream<bool> get submitdetail => Observable.combineLatest9(medicnameStream,medictypeStream,mediccompStream,batchStream,
-  // supplyStream,quantityStream,unitStream,currencyStream,amountStream,
-  // (ms,mt,mc,bs,ss,q,u,c,am) => true);
+  Stream<bool> get submitdetail => Observable.combineLatest9(medicnameStream,medictypeStream,mediccompStream,batchStream,
+  supplyStream,quantityStream,unitStream,currencyStream,amountStream,
+  (ms,mt,mc,bs,ss,q,u,c,am) => true);
 
  submit()
   {

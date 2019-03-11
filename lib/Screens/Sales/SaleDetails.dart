@@ -13,7 +13,6 @@ final String animalcode,animalAge,animalType,breedercode,talents,fighting,weight
     this.animalcode,this.status, this.breedercode, this.animalAge,this.fighting, this.talents, this.animalType, this.weight
   }
 );
-
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(

@@ -414,7 +414,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: new Padding(
                     padding: EdgeInsets.symmetric(vertical: 40.0),
                     child: StreamBuilder<bool>(
-                    // stream: bloc.submiteddetails,
+                    stream: bloc.submiteddetails,
                     builder:(context,snapshot)=>
                     RaisedButton(
                     color: Colors.amber,

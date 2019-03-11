@@ -183,7 +183,7 @@ class _TreatmentPageState extends State<TreatmentPage> {
                     format: formats[inputType],
                     editable: editable,
                     decoration: InputDecoration(
-                      errorText: snapshot.error,
+                    errorText: snapshot.error,
                     icon: Icon(Icons.calendar_today, color: Colors.green), 
                     labelText: 'End Date',hasFloatingPlaceholder: true
                     ), 
@@ -230,7 +230,7 @@ class _TreatmentPageState extends State<TreatmentPage> {
                     child: new Padding(
                     padding: EdgeInsets.symmetric(vertical: 40.0),
                     child: StreamBuilder<bool>(
-                      // stream: bloc.subtrtbtn,
+                      stream: bloc.subtrtbtn,
                       builder:(context, snapshot)=>
                       RaisedButton(
                         color: Colors.amber,

@@ -262,8 +262,8 @@ class _MedicinePageState extends State<MedicinePage> {
                     child: new Padding(
                     padding: EdgeInsets.symmetric(vertical: 40.0),
                     child: StreamBuilder<bool>(
-                      // stream: bloc.submitdetail,
-                      builder:(context, snapshot)=>
+                    stream: bloc.submitdetail,
+                    builder:(context, snapshot)=>
                   RaisedButton(
                   // minWidth: 200.0,
                   // height: 47.0,

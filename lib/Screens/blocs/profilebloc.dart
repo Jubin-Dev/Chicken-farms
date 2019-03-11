@@ -67,11 +67,11 @@ class ProfileBloc extends Object with Validator {
   //farm profile Screen
   Stream<String> get farmStream => _farmNameController.stream.transform(notEmptyValidator);
   Stream<String> get farmAdressStream => _farmAdressController.stream.transform(notEmptyValidator);
-  Stream<String> get mobileStream => _mobileController.stream.transform(mobileValidator);
-  Stream<String> get alternumberStream => _alternumberController.stream.transform(alternatemobileValidator);
-  Stream<String> get lineIdStream => _lineidController.stream.transform(lineIdValidator);
-  Stream<String> get anyWebStream => _anyWebController.stream.transform(anyWebValidator);
-  Stream<String> get socialPageStream => _socialPageController.stream.transform(socialValidator);
+  Stream<String> get mobileStream => _mobileController.stream.transform(notEmptyValidator);
+  Stream<String> get alternumberStream => _alternumberController.stream.transform(notEmptyValidator);
+  Stream<String> get lineIdStream => _lineidController.stream.transform(notEmptyValidator);
+  Stream<String> get anyWebStream => _anyWebController.stream.transform(notEmptyValidator);
+  Stream<String> get socialPageStream => _socialPageController.stream.transform(notEmptyValidator);
   Stream<String> get aboutusStream => _aboutusController.stream.transform(notEmptyValidator);
 
   //chicken details screen
@@ -93,13 +93,13 @@ class ProfileBloc extends Object with Validator {
   Stream<String> get remarksStream => _remarksController.stream.transform(notEmptyValidator);
  
   //Submit Button
-  // Stream<bool> get submitedbutton => Observable.combineLatest8(
-  //   farmStream, farmAdressStream, mobileStream, alternumberStream, lineIdStream, anyWebStream, socialPageStream, aboutusStream,
-  //    (fs,fa,ms,an,li,aw,sp,au) => true);
+  Stream<bool> get submitedbutton => Observable.combineLatest8(
+    farmStream, farmAdressStream, mobileStream, alternumberStream, lineIdStream, anyWebStream, socialPageStream, aboutusStream,
+     (fs,fa,ms,an,li,aw,sp,au) => true);
 
-  // Stream<bool> get submiteddetails => Observable.combineLatest9(animalCodeStream,
-  // animalStatusStream, dobStream, breedPageStream, sireCodeStream, breederCodeStream,
-  // weightStream,currencyStream, weightTypeStream,(ac,s,d,bp,sc,bc,ws,cs,wt) => true);
+  Stream<bool> get submiteddetails => Observable.combineLatest9(animalCodeStream,
+  animalStatusStream, dobStream, breedPageStream, sireCodeStream, breederCodeStream,
+  weightStream,currencyStream, weightTypeStream,(ac,s,d,bp,sc,bc,ws,cs,wt) => true);
 
  submit()
   {

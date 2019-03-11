@@ -141,7 +141,7 @@ class FarmProfile extends StatefulWidget{
    final submitButton = Padding(
           padding: EdgeInsets.symmetric(vertical: 50.0),
           child:StreamBuilder<bool>(
-            // stream: bloc.submitedbutton ,
+            stream: bloc.submitedbutton ,
             builder:(context, snapshot)=>
             RaisedButton(
             onPressed: (){},
