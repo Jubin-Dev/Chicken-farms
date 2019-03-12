@@ -5,6 +5,7 @@ import 'package:rxdart/rxdart.dart';
 class TreatmentBloc extends Object with Validator {
 
    //chicken treatment form
+    
     final _animalCodeController = BehaviorSubject<String>();
     final _medicinenameController = BehaviorSubject<String>();
     final _reasonController = BehaviorSubject<String>();
@@ -82,13 +83,13 @@ class TreatmentBloc extends Object with Validator {
   Stream<String> get currencyStream => _currenciesController.stream.transform(validatedropDown);
   Stream<String> get amountStream => _amountController.stream.transform(notEmptyValidator);
   
-  // Submit Button
+  // Submit Buttons
   Stream<bool> get subtrtbtn => Observable.combineLatest9(
     anicodeStream, medinameStream, reasonStream, quantityStream, unitsStream, startdateStream, enddateStream, dosesStream,remarksStream,
      (acs,mn,rs,qs,us,sd,ed,dp,re) => true);
 
   Stream<bool> get submitdetail => Observable.combineLatest9(medicnameStream,medictypeStream,mediccompStream,batchStream,
-  supplyStream,quantityStream,unitStream,currencyStream,amountStream,
+  supplyStream,quantyStream,unitStream,currencyStream,amountStream,
   (ms,mt,mc,bs,ss,q,u,c,am) => true);
 
  submit()
@@ -104,30 +105,32 @@ class TreatmentBloc extends Object with Validator {
   }
 
 
-  void dispose() {
-      _animalCodeController?.close();
-      _medicinenameController?.close();
-      _reasonController?.close();
-      _quantityController?.close();
-      _unitsController?.close();
-      _startdateController?.close();
-      _enddateController?.close();
-      _doseperdayController?.close();
-      _remarksController?.close();
+  dispose() {
+      _animalCodeController.close();
+      _medicinenameController.close();
+      _reasonController.close();
+      _quantityController.close();
+      _unitsController.close();
+      _startdateController.close();
+      _enddateController.close();
+      _doseperdayController.close();
+      _remarksController.close();
+      
       //----------------------//
      
-      _medicnameController?.close();
-      _medictypeController?.close();
-      _mediccompanyController?.close();
-      _startdateController?.close();
-      _expirydateController?.close();
-      _batchnumController?.close();
-      _supplyController?.close();
-      _quantityController?.close();
-      _unitController?.close();
-      _unitpriceController?.close();
-      _currenciesController?.close();
-      _amountController?.close();
+      _medicnameController.close();
+      _medictypeController.close();
+      _mediccompanyController.close();
+      _startdateController.close();
+      _expirydateController.close();
+      _batchnumController.close();
+      _supplyController.close();
+      _purchdateController.close();
+      _quantitiController.close();
+      _unitController.close();
+      _unitpriceController.close();
+      _currenciesController.close();
+      _amountController.close();
     
   }
 }

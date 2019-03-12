@@ -45,7 +45,7 @@ class Bloc extends Object with Validator{
   });
   
   //loginPage
-  Stream<bool> get submitcheck => Observable.combineLatest2(phoneStream, passwordStream, (p, h) => true);
+  Stream<bool> get logincheck => Observable.combineLatest2(phoneStream, passwordStream, (p, h) => true);
   //newUserPage
   Stream<bool> get signupcheck => Observable.combineLatest5(phoneStream, passwordStream, fullnameStream, emailStream,repassStream,(p,h,n,e,r)=>(0 == p.compareTo(r)));
   
@@ -56,12 +56,12 @@ class Bloc extends Object with Validator{
   }
 
   
-  void dispose() {
-      _phoneController?.close();
-      _passwordController?.close();
-      _fullnameContorller?.close();
-      _emailController?.close();
-      _repassController?.close();
+  dispose() {
+      _phoneController.close();
+      _passwordController.close();
+      _fullnameContorller.close();
+      _emailController.close();
+      _repassController.close();
   }
 }
 

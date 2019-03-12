@@ -15,72 +15,77 @@ class _LoginPageState extends State<LoginPage> {
  changeThePage(BuildContext context){
    Navigator.of(context).push
           ( MaterialPageRoute(builder: (context) => MyNav(),
-    ) ); 
-}
+      ) ); 
+    }
   @override
   Widget build(BuildContext context) {
   final bloc = Bloc();
-  final logo = Hero(tag: 'hero', 
-       child: CircleAvatar(
-         backgroundColor: Colors.yellow,
-         radius: 60.0,
-         child: Image.asset('lib/images/rooster.png'),
-       ),);
 
-    final phone = StreamBuilder<String>(
-              stream: bloc.phoneStream,
-              builder:(context, snapshot)=>
-        TextField(
-        maxLength: 10,
-        onChanged: bloc.phoneChanged,        
-        keyboardType: TextInputType.phone,
-        autofocus: false,
-        decoration: InputDecoration(
-          hintText: 'Mobile Number',
-          errorText: snapshot.error,
-          suffixIcon: Icon(Icons.phone_iphone, color: Colors.green,),
-          contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0), 
-        ),
-        ),
-        );
-   final password =  StreamBuilder<String>(
-            stream: bloc.passwordStream,
-            builder:(context, snapshot)=>TextField(
-     onChanged: bloc.passwordChanged,  
-     autofocus: false,
-    //  initialValue: 'some password',
-     obscureText: true,
-     decoration: InputDecoration(
-      hintText: 'Password',
-      errorText: snapshot.error,
-      suffixIcon: Icon(Icons.lock, color: Colors.green,),
-      contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-        
-     ),
-    ), );
+    Widget logo(){
+      return Hero(tag: 'hero', 
+        child: CircleAvatar(
+          backgroundColor: Colors.yellow,
+          radius: 60.0,
+          child: Image.asset('lib/images/rooster.png'),
+        ),);
+        }
+    Widget phone() {
+      return StreamBuilder<String>(
+                stream: bloc.phoneStream,
+                builder:(context, snapshot){
+                    return TextField(
+                        maxLength: 10,
+                        onChanged: bloc.phoneChanged,        
+                        keyboardType: TextInputType.phone,
+                        autofocus: false,
+                          decoration: InputDecoration(
+                              hintText: 'Mobile Number',
+                              errorText: snapshot.error,
+                              suffixIcon: Icon(Icons.phone_iphone, color: Colors.green,),
+                              contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0), 
+                        ),
+                  );}
+                );
+              }
+      Widget password(){ 
+        return StreamBuilder<String>(
+              stream: bloc.passwordStream,
+              builder:(context, snapshot){
+                return TextField(
+                  onChanged: bloc.passwordChanged,  
+                  autofocus: false,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                      hintText: 'Password',
+                      errorText: snapshot.error,
+                      suffixIcon: Icon(Icons.lock, color: Colors.green,),
+                      contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
+                    ),
+                 );} 
+              );
+        }
     final rememberMe = Container( 
     //  padding: new EdgeInsets.symmetric(horizontal: 0.0),
        child: new Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children:<Widget>[
-        Checkbox(
+        Checkbox( 
           activeColor: Colors.green,
-        value: _remembermeFlag,
-        onChanged: (value)=> setState((){
+          value: _remembermeFlag,
+          onChanged: (value)=> setState((){
           _remembermeFlag = !_remembermeFlag;
-        }),
-        
-      ),
+          }),
+          ),
       new Text("Remember me",style: new TextStyle(color: Colors.deepOrangeAccent,fontSize: 15.0),
       ),
       SizedBox(width: 30.0,),
       new FlatButton(child: Text('Forgot Password ?',style:TextStyle(color:Colors.deepOrangeAccent,fontSize: 15.0)),
       onPressed: ()=> Navigator.push (
       context, MaterialPageRoute(builder: (context) => ForgotPass(),
-      ), 
-      ),)
+          ), 
+          ),)
          ],),
-    );
+         );
    
   //  final forgotLabel = Container(alignment:Alignment(1.0, 0.0),
   //    padding: EdgeInsets.only(left: 10.0), 
@@ -93,65 +98,58 @@ class _LoginPageState extends State<LoginPage> {
   //     ), 
   //     );
    
-   final loginButton = Padding(
-    padding: EdgeInsets.symmetric(vertical: 10.0),
-     child:StreamBuilder<bool>(
-            stream: bloc.submitcheck,
-            builder:(context,snapshot)=>
-        RaisedButton(
-          //  highlightElevation: 20.0,
-           color: Colors.amber,
-          // minWidth: 200.0,
-          // height: 47.0,
-          onPressed: !snapshot.hasData ? () => changeThePage(context) : null,
-      //     => Navigator.push (
-      //     context, MaterialPageRoute(builder: (context) => MyNav(),
-      // ) 
-          child: Text("Login",style:TextStyle(color:Colors.white,fontSize: 20.0)),
-
-          ),  ) ,
-     );
-
+   Widget loginButton (){
+  //  Padding(
+  //       padding: EdgeInsets.symmetric(vertical: 10.0),
+        return StreamBuilder<bool>(
+            stream: bloc.logincheck,
+            builder:(context,snapshot){
+              return RaisedButton(
+                  color: Colors.amber,
+                  child: Text("Login",style:TextStyle(color:Colors.white,fontSize: 20.0)),
+                  onPressed: snapshot.hasData ? null : () => changeThePage(context) 
+                   );
+                 }
+              );
+           }
     final newUser = FlatButton(
       child: Text('New User?',style:TextStyle(color:Colors.deepOrange,fontSize: 15.0)),
       onPressed: ()=> Navigator.push (
       context, MaterialPageRoute(builder: (context) => NewUser(),
-      ) 
-     ) 
-     );
-
+            ) 
+          ) 
+        );
    return MaterialApp(
      theme: ThemeData(
         primaryColor: Colors.green[450],
         accentColor: Colors.green,
         primarySwatch: Colors.green,
-     ),
+          ),
         home: Scaffold(
-        backgroundColor: Colors.white,
-        body: Center(
-        child: ListView(
-         shrinkWrap: true,
-         padding: EdgeInsets.only(left: 25.0,right: 25.0),
-        //  key: formKey,
-        //  autovalidate: _autoValidate,
-         children: <Widget>[
-            logo,   
-           SizedBox(height: 50.0),
-            phone,
-           SizedBox(height: 10.0),
-            password,
-            // SizedBox(height: 10.0),
-            rememberMe,
-            // forgotLabel,       //flatbutton for forgotpage
-          //  SizedBox(height: 10.0,),
-            loginButton,
-           SizedBox(height: 1.0),
-            newUser,           //flatebutton for newUserPage
-         ],
-       ),
-      ),
-      ),
-     );
-     }
-}
+            resizeToAvoidBottomPadding: false,
+            backgroundColor: Colors.white,
+            body: Center(
+              child: ListView(
+                shrinkWrap: true,
+                padding: EdgeInsets.only(left: 25.0,right: 25.0),
+                children: <Widget>[
+                        logo(),   
+                      SizedBox(height: 50.0),
+                        phone(),
+                      SizedBox(height: 10.0),
+                        password(),
+                        // SizedBox(height: 10.0),
+                        rememberMe,
+                        // forgotLabel,       //flatbutton for forgotpage
+                      //  SizedBox(height: 10.0,),
+                        loginButton(),
+                        SizedBox(height: 1.0),
+                        newUser,           //flatebutton for newUserPage
+                ],
+              ),
+              ),
+              ),
+            );
+            }
+        }
   

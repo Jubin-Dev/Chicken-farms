@@ -48,8 +48,15 @@ class _VaccinePageState extends State<VaccinePage> {
         leading: IconButton(icon: Icon(Icons.arrow_back_ios), 
         onPressed: () => Navigator.push(
                  context, MaterialPageRoute(builder: (context) => VaccineTab())),
-        
-       ) ),
+       ),
+       actions: <Widget>[
+              new IconButton(icon: Icon(Icons.rotate_right,size: 35.0,),color: Colors.white,
+              onPressed: () {}
+              )
+            ],
+        ),
+
+
       body: new SafeArea(
           top: false,
           bottom: false,

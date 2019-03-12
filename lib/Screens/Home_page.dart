@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_app/Screens/Breed/breed_list.dart';
 import 'package:flutter_app/Screens/DashboardItems/ReportsSummary.dart';
 import 'package:flutter_app/Screens/Login_page.dart';
@@ -11,14 +10,10 @@ import 'package:flutter_app/Screens/Tabs/SaleSummaryTab.dart';
 import 'package:flutter_app/Screens/Tabs/SalesTab.dart';
 import 'package:flutter_app/Screens/Tabs/VaccineTab.dart';
 import 'package:flutter_app/Screens/Tabs/expSummaryTab.dart';
-
-
 void main() => runApp(MyHomes());
-
 class MyHomes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    
     return MaterialApp(
        theme: new ThemeData(
         primarySwatch: Colors.amber,
@@ -28,67 +23,60 @@ class MyHomes extends StatelessWidget {
           );
         }
       }
-      
-      class MyHomePage extends StatefulWidget {
-  @override
+class MyHomePage extends StatefulWidget {
+@override
   _MyhomePageState createState() => _MyhomePageState();
-        }
-  
-  class _MyhomePageState extends State<MyHomePage> {
-   
-  @override
+    }
+class _MyhomePageState extends State<MyHomePage> {
+@override
   Widget build(BuildContext context) {
-  
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       drawer: new DrawerOnly(),
-      
-        appBar: AppBar(
+      appBar: AppBar(
           title: Text('Home'),
           centerTitle: true,
           actions: <Widget>[
-           new IconButton(icon: Icon(Icons.search),color: Colors.black,
-           onPressed: ()
-           => Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => LoginPage())),
-            )
-          ],
-        ),
-          body: Column(
+              new IconButton(icon: Icon(Icons.search),color: Colors.black,
+              onPressed: () => Navigator.push(context, MaterialPageRoute(builder:
+               (context) => LoginPage())),
+              )
+            ],
+          ),
+          
+      body: Column(
             children: <Widget>[
-              Container(
+                Container(
                 padding: EdgeInsets.symmetric(vertical: 50.0),
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height/2,
                 decoration: BoxDecoration(
                   color: Colors.amber,
                   boxShadow: <BoxShadow>[
-                  BoxShadow(
-                  color: Colors.black45,
-                  offset: Offset(1.0, 5.0),
-                  blurRadius: 20.0,
-                    ),
+                    BoxShadow(
+                      color: Colors.black45,
+                      offset: Offset(1.0, 5.0),
+                      blurRadius: 20.0,
+                        ),
                     ],
-                  
-                  borderRadius: BorderRadius.only(
+                    borderRadius: BorderRadius.only(
                     bottomRight:Radius.circular(25), 
                     bottomLeft:Radius.circular(25), 
                   )
                 ),
-                child: Column(
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[ 
-                      Padding(           
-                      padding:const EdgeInsets.only(left: 125.0,),
-                      child: CircleAvatar(  
-                      backgroundColor: Colors.white54,
-                      radius: 70.0,
-                      child: Image.asset('lib/images/rooster.png'),
-                       ),
-                        
-                       )  
+                  child: Column(
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[ 
+                          Padding(           
+                            padding:const EdgeInsets.only(left: 125.0,),
+                            child: CircleAvatar(  
+                                backgroundColor: Colors.white54,
+                                radius: 70.0,
+                                child: Image.asset('lib/images/rooster.png'),
+                                ),
+                        )  
                       ],
 
                     ),
@@ -159,96 +147,80 @@ class MyHomes extends StatelessWidget {
        child: Column(
          mainAxisAlignment: MainAxisAlignment.spaceAround,
          children: <Widget>[
-           Row(
+          Row(
              mainAxisAlignment: MainAxisAlignment.spaceBetween,
              children: <Widget>[
-               
-                Column(
-            children: <Widget>[
-                 Text('Profiles',style: TextStyle(fontSize: 16.0),),
-              IconButton(icon: Icon(Icons.account_circle, color: Colors.green, ),      
-                             iconSize: 66.0,
-                             onPressed: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => Profile())),
-                
+              Column(
+                  children: <Widget>[
+                    Text('Profiles',style: TextStyle(fontSize: 16.0),),
+                    IconButton(icon: Icon(Icons.account_circle, color: Colors.green,),      
+                    iconSize: 66.0,
+                    onPressed: () => Navigator.push(
+                                    context, MaterialPageRoute(builder: (context) => Profile())),
                              )
-            ],
-               ),
-            Column(
-            children: <Widget>[
-                Text('Treatment',style: TextStyle(fontSize: 16.0),),
-              IconButton(icon: Icon(Icons.local_hospital, color: Colors.green, ),      
-                             iconSize: 66.0,
-                             onPressed: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => Chicktreat())),        
+                          ],
+                 ),
+              Column(
+                  children: <Widget>[
+                    Text('Treatment',style: TextStyle(fontSize: 16.0),),
+                    IconButton(icon: Icon(Icons.local_hospital, color: Colors.green, ),      
+                    iconSize: 66.0,
+                    onPressed: () => Navigator.push(
+                                    context, MaterialPageRoute(builder: (context) => Chicktreat())),        
                              ),
-                             
-              
-            ],
-               ),
-               Column(
+                        ],
+                  ),
+              Column(
+                  children: <Widget>[
+                      Text('Vaccine',style: TextStyle(fontSize: 16.0),),
+                      IconButton(icon: Icon(Icons.business_center, color: Colors.green, ),      
+                      iconSize: 66.0,
+                      onPressed: () => Navigator.push(
+                                      context, MaterialPageRoute(builder: (context) => VaccineTab())),        
+                                ),
+                           ],
+                      )
+                ],
+            ),
+        Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-               Text('Vaccine',style: TextStyle(fontSize: 16.0),),
-              IconButton(icon: Icon(Icons.business_center, color: Colors.green, ),      
-                             iconSize: 66.0,
-                             onPressed: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => VaccineTab())),        
-                             ),
-                             
-
-             ],
-           )
-         ],
-
+              Column(
+                children: <Widget>[
+                  Text('Expenses',style: TextStyle(fontSize: 16.0),),
+                  IconButton(icon: Icon(Icons.monetization_on, color: Colors.green, ),      
+                  iconSize: 66.0,
+                  onPressed: () => Navigator.push(
+                                context, MaterialPageRoute(builder: (context) => ExpTab())),        
+                                   )
+                          ],
+                    ),
+              Column(
+                children: <Widget>[
+                  Text('Sales',style: TextStyle(fontSize: 16.0),),
+                  IconButton(icon: Icon(Icons.assessment, color: Colors.green, ),      
+                  iconSize: 66.0,
+                  onPressed: () => Navigator.push(
+                                  context, MaterialPageRoute(builder: (context) => SalesTab())),        
+                                      )
+                               ],
+                      ),
+              Column(
+                children: <Widget>[
+                  Text('Breed List',style: TextStyle(fontSize: 16.0),),
+                  IconButton(icon: Icon(Icons.assignment, color: Colors.green,),      
+                  iconSize: 66.0,
+                  onPressed: () => Navigator.push(
+                                  context, MaterialPageRoute(builder: (context) => BreedEntrydetail())),        
+                                 ),
+                          ],
+                  ),
+            ],
        ),
-       Row(
-         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-         children: <Widget>[
-           Column(
-            children: <Widget>[
-               Text('Expenses',style: TextStyle(fontSize: 16.0),),
-              IconButton(icon: Icon(Icons.monetization_on, color: Colors.green, ),      
-                             iconSize: 66.0,
-                             onPressed: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => ExpTab())),        
-                             )
-            ],
-               ),
-                Column(
-            children: <Widget>[
-               Text('Sales',style: TextStyle(fontSize: 16.0),),
-              IconButton(icon: Icon(Icons.assessment, color: Colors.green, ),      
-                             iconSize: 66.0,
-                             onPressed: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => SalesTab())),        
-                             )
-            ],
-               ),
-                Column(
-            children: <Widget>[
-              Text('Breed List',style: TextStyle(fontSize: 16.0),),
-              IconButton(icon: Icon(Icons.assignment, color: Colors.green,),      
-                             iconSize: 66.0,
-                             onPressed: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => BreedEntrydetail())),        
-                             ),
-                             
-              
-            ],
-               ),
-               
-
-         ],
-
-       ),
-
-         ]),
-
+      ]),
      )],
-          ),
+    ),
     );
-
-  
   }
 }
     

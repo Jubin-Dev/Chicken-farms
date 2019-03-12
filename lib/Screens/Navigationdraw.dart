@@ -29,8 +29,6 @@ class MyNav extends StatelessWidget {
           ),
       ),
       home: new NavPage(),
-    
-      
           );
         }
       }
@@ -38,7 +36,6 @@ class MyNav extends StatelessWidget {
 class DrawerOnly extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    
     return  new Drawer(
           child: new ListView(
             children: <Widget>[
@@ -54,10 +51,7 @@ class DrawerOnly extends StatelessWidget{
                   backgroundColor: Colors.white,
                   child: new Text("S"),
                 ),
-
                 ],
-
-
               ),
               new ListTile(
                 title: new Text("Profile"),
@@ -158,13 +152,10 @@ class DrawerOnly extends StatelessWidget{
           )
       );
   }
-
 }
-      
   class NavPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    
     return new Scaffold(
       // appBar: new AppBar(
       //   title: new Text('Home'),
@@ -178,15 +169,10 @@ class DrawerOnly extends StatelessWidget{
       // ),
       body: new Container(
         child:new Center(
-           
-        child:
-          new MyHomes(),
+        child:new MyHomes(),
         ),
-          
         ),
-
       );
-    
   }
   
 }

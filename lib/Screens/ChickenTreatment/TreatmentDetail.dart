@@ -6,251 +6,259 @@ import 'package:flutter_app/Screens/blocs/chic_bloc_Treatment.dart';
 import 'package:intl/intl.dart';
 
 void main() => runApp(new Treatment());
-
 class Treatment extends StatelessWidget {
-  //  final String animalcode, medicineName, quantity, totalDays;
-
-// const Treatment(
-//   {
-//     this.animalcode, this.medicineName, this.quantity, this.totalDays
-//   }
-// );
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      // title: 'Flutter Form Demo',
-      theme: new ThemeData(
-        primarySwatch: Colors.green,
-      ),
-      home: new TreatmentPage(title: 'Treatment Details'),
-    );
+    return new TreatmentPage(title: 'Treatment Details');
   }
 }
-
 class TreatmentPage extends StatefulWidget {
   TreatmentPage({Key key, this.title}) : super(key: key);
   final String title;
-
   @override
   _TreatmentPageState createState() => new _TreatmentPageState();
 }
-
 class _TreatmentPageState extends State<TreatmentPage> {
-  
   final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
   };
   InputType inputType = InputType.date;
   bool editable = true;
   DateTime date;
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-  // List<String> _codes = <String>['', '123', '111', '347', '921'];
   String code = '123';
-
   @override
   Widget build(BuildContext context) {
     final bloc = TreatmentBloc();
-        return new 
-           Scaffold(
-          resizeToAvoidBottomPadding: false,
-          appBar: new AppBar(
-            title: new Text(widget.title),
-            centerTitle: true,
-            backgroundColor: Colors.amber,
-            leading: IconButton(icon: Icon(Icons.arrow_back_ios),
-            onPressed: () => Navigator.push(
-                     context, MaterialPageRoute(builder: (context) => Chicktreat())),
-            
-          ),
-          ),
-          body: new SafeArea(
-              top: false,
-              bottom: false,
-              child: new Form(
-                  key: _formKey,
-                  autovalidate: true,
-                  child: new ListView(
-                    padding: const EdgeInsets.all( 20.0),
-                    children: <Widget>[
-                      StreamBuilder<String>(
-                      stream: bloc.anicodeStream,
-                      builder:(context, snapshot)=>
-                  InputDecorator(
-                      decoration: InputDecoration(
-                      errorText: snapshot.error,
-                      icon: Icon(Icons.space_bar,color: Colors.green,),
-                      labelText: 'Animal Code',
-                            ),
-                        child: DropdownButtonHideUnderline(
-                        child: DropdownButton<String>(
-                          value: code ,
-                          isDense: true,                
-                          onChanged: (String newValue) {
-                          setState(() {
-                          code  = newValue; 
-                       });
-                     },
-                     items: <String>['123', '111', '347', '921']
-                     .map<DropdownMenuItem<String>>((String value){
-                       return DropdownMenuItem<String>(value: value,
-                       child: Text(value),
-                       );
-                     }).toList(),
-                    //  onChanged: bloc.anicodeChanged,
-                    //  value:snapshot.data,
-                       ),
-                        ),
-                       ), ),
-                  Divider(),
-                  StreamBuilder<String>(
+  
+            Widget animalcode() {
+                        return StreamBuilder<String>(
+                          stream: bloc.anicodeStream,
+                          builder:(context, snapshot){
+                            return InputDecorator(
+                            decoration: InputDecoration(
+                                errorText: snapshot.error,
+                                icon: Icon(Icons.space_bar,color: Colors.green,),
+                                labelText: 'Animal Codes',
+                                ),
+                                child: DropdownButtonHideUnderline(
+                                child: DropdownButton<String>(
+                                  value: code ,
+                                  isDense: true,                
+                                  onChanged: (String newValue) {
+                                  setState(() {
+                                  code  = newValue; 
+                                  });
+                                  },
+                                items: <String>['123', '111', '347', '921']
+                                .map<DropdownMenuItem<String>>((String value){
+                                  return DropdownMenuItem<String>(value: value,
+                                  child: Text(value),
+                                  );
+                                            }).toList(),
+                                //  onChanged: bloc.anicodeChanged,
+                                //  value:snapshot.data,
+                                  ),
+                                    ),
+                                  );} );}
+                              
+              Widget mediName() {
+                   return StreamBuilder<String>(
                       stream: bloc.medinameStream,
-                      builder:(context, snapshot)=>
-                    TextField(
-                    onChanged: bloc.medicChanged,
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      errorText: snapshot.error,
-                      icon: Icon(Icons.control_point_duplicate,color:Colors.green),
-                       labelText: 'Medicine Name',
-                       
-                    ),
-                   ), ),
-                  Divider(), 
-                  StreamBuilder<String>(
-                      stream: bloc.reasonStream,
-                      builder:(context, snapshot)=>
-                    TextField(
-                      onChanged: bloc.reasonChanged,
-                      decoration: InputDecoration(
-                      errorText: snapshot.error,
-                      icon: Icon(Icons.help_outline,color:Colors.green),
-                      contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-                      labelText: 'Reason',
-                       
-                    ),
-                  ),),
-                  Divider(), 
-                  StreamBuilder<String>(
-                      stream: bloc.quantityStream,
-                      builder:(context, snapshot)=>
-                    TextField(
-                    onChanged: bloc.quantityChanged,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      errorText: snapshot.error,
-                      icon: Icon(Icons.widgets,color:Colors.green),
-                      contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-                      labelText: 'Quantity',
-                      
-                    ),
-                  ),),
-                  Divider(), 
-                  StreamBuilder<String>(
+                      builder:(context, snapshot){
+                            return TextField(
+                                onChanged: bloc.medicChanged,
+                                keyboardType: TextInputType.text,
+                                decoration: InputDecoration(
+                                    errorText: snapshot.error,
+                                    icon: Icon(Icons.control_point_duplicate,color:Colors.green),
+                                    labelText: 'Medicine Name',
+                                        ),
+                                  );} );}
+                  
+            Widget reason(){
+                      return StreamBuilder<String>(  
+                        stream: bloc.reasonStream,
+                        builder:(context, snapshot){
+                          return TextField(
+                              onChanged: bloc.reasonChanged,
+                              decoration: InputDecoration(
+                                  errorText: snapshot.error,
+                                  icon: Icon(Icons.help_outline,color:Colors.green),
+                                  contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
+                                  labelText: 'Reason',
+                                        ),
+                               );});}
+                  
+            Widget quantity(){
+                      return StreamBuilder<String>(
+                        stream: bloc.quantityStream,
+                        builder:(context, snapshot){
+                          return TextField(
+                            onChanged: bloc.quantityChanged,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                                errorText: snapshot.error,
+                                icon: Icon(Icons.widgets,color:Colors.green),
+                                contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
+                                labelText: 'Quantity',
+                                      ),
+                               );});}
+                 
+            Widget units(){
+                    return StreamBuilder<String>(
                       stream: bloc.unitsStream,
-                      builder:(context, snapshot)=>
-                      TextField(
-                      onChanged: bloc.unitChanged,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                      errorText: snapshot.error,
-                      icon: Icon(Icons.format_underlined,color:Colors.green),
-                      contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-                      labelText: 'Units',
-                      
-                    ),
-                  ),),
-                   Divider(),
-                    StreamBuilder<String>(
-                      stream: bloc.startdateStream,
-                      builder:(context, snapshot)=>
-                    DateTimePickerFormField(
-                    inputType: inputType,
-                    format: formats[inputType],
-                    editable: editable,
-                    decoration: InputDecoration(
-                      errorText: snapshot.error,
-                      icon:Icon(Icons.calendar_today, color: Colors.green), 
-                      labelText: 'Start Date',hasFloatingPlaceholder: true
-                       ), 
-                    onChanged: (dt) => setState(()=> date = dt),
-                   
-                    ),),
+                      builder:(context, snapshot){
+                      return TextField(
+                        onChanged: bloc.unitChanged,
+                        keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                                errorText: snapshot.error,
+                                icon: Icon(Icons.format_underlined,color:Colors.green),
+                                contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
+                                labelText: 'Units',
+                                      ),
+                                  );});}
+                    
+              Widget sd(){
+                     return StreamBuilder<String>(
+                          stream: bloc.startdateStream,
+                          builder:(context, snapshot){
+                            return DateTimePickerFormField(
+                                inputType: inputType,
+                                format: formats[inputType],
+                                editable: editable,
+                                    decoration: InputDecoration(
+                                          errorText: snapshot.error,
+                                          icon:Icon(Icons.calendar_today, color: Colors.green), 
+                                          labelText: 'Start Date',hasFloatingPlaceholder: true
+                                            ), 
+                                          onChanged: (dt) => setState(()=> date = dt),
+                                      );});}
 
-                    StreamBuilder<String>(
-                      stream: bloc.enddateStream,
-                      builder:(context, snapshot)=>
-                    DateTimePickerFormField(
-                    inputType: inputType,
-                    format: formats[inputType],
-                    editable: editable,
-                    decoration: InputDecoration(
-                    errorText: snapshot.error,
-                    icon: Icon(Icons.calendar_today, color: Colors.green), 
-                    labelText: 'End Date',hasFloatingPlaceholder: true
-                    ), 
-                    onChanged: (dt) => setState(()=> date = dt),
+                Widget ed() {
+                     return StreamBuilder<String>(
+                            stream: bloc.enddateStream,
+                            builder:(context, snapshot){
+                              return DateTimePickerFormField(
+                                  inputType: inputType,
+                                  format: formats[inputType],
+                                  editable: editable,
+                                  decoration: InputDecoration(
+                                      errorText: snapshot.error,
+                                      icon: Icon(Icons.calendar_today, color: Colors.green), 
+                                      labelText: 'End Date',hasFloatingPlaceholder: true
+                                      ), 
+                                      onChanged: (dt) => setState(()=> date = dt),
+                                    );});}
+                  
+              Widget dose(){
+                    return StreamBuilder<String>(
+                          stream: bloc.dosesStream,
+                          builder:(context, snapshot){
+                            return TextField(
+                                onChanged: bloc.dosezChanged,
+                                keyboardType: TextInputType.number,
+                                decoration: InputDecoration(
+                                    errorText: snapshot.error,
+                                    icon: Icon(Icons.invert_colors,color:Colors.green),
+                                    contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
+                                    labelText: 'Dosage Per Day',   
+                                    ),
+                                    );});}
                    
-                    ),),
-                   Divider(),
-                  StreamBuilder<String>(
-                      stream: bloc.dosesStream,
-                      builder:(context, snapshot)=>
-                    TextField(
-                    onChanged: bloc.dosezChanged,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                        errorText: snapshot.error,
-                        icon: Icon(Icons.invert_colors,color:Colors.green),
-                        contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-                        labelText: 'Dosage Per Day',   
+                  
+             Widget remark(){
+                    return StreamBuilder<String>(
+                        stream: bloc.remarksStream,
+                        builder:(context, snapshot){
+                            return TextField(
+                            onChanged: bloc.remarksChanged,
+                            autofocus: false,
+                            keyboardType: TextInputType.multiline,
+                            maxLines: 3,
+                            decoration: InputDecoration(
+                                errorText: snapshot.error,
+                                icon: Icon(Icons.edit,color:Colors.green),
+                                filled: true,
+                                labelText: 'Remark',
+                                contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 30.0, 60.0),
+                                border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                                        ) ) 
+                                );});} 
+                      
+               Widget btn() {
+                      return StreamBuilder<bool>(
+                        stream: bloc.subtrtbtn,
+                        builder:(context, snapshot){
+                          return RaisedButton(
+                              color: Colors.amber,
+                              child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
+                              onPressed: snapshot.hasData ? null:() {
+                                bloc.submit(); 
+                                  Navigator.push (
+                                    context, MaterialPageRoute(builder: (context) => Chicktreat(),
+                                    ),
+                                );
+                              },
+                   );}
+                   );}
+            
+            return MaterialApp(
+                  theme: ThemeData(
+                      primaryColor: Colors.green[450],
+                      accentColor: Colors.green,
+                      primarySwatch: Colors.green,
                       ),
-                    ),),
-                   
-                    Divider(), 
-                    Divider(),
-                   StreamBuilder<String>(
-                      stream: bloc.remarksStream,
-                      builder:(context, snapshot)=>
-                      TextField(
-                      onChanged: bloc.remarksChanged,
-                      autofocus: false,
-                      keyboardType: TextInputType.multiline,
-                      maxLines: 3,
-                      decoration: InputDecoration(
-                      errorText: snapshot.error,
-                      icon: Icon(Icons.edit,color:Colors.green),
-                      filled: true,
-                      labelText: 'Remark',
-                      contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 30.0, 60.0),
-                      border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                     ) ) 
-                     ),), 
-                    Divider(),  
-                    new Container(
-                    child: new Padding(
-                    padding: EdgeInsets.symmetric(vertical: 40.0),
-                    child: StreamBuilder<bool>(
-                      stream: bloc.subtrtbtn,
-                      builder:(context, snapshot)=>
-                      RaisedButton(
-                        color: Colors.amber,
-                        child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
-                  // minWidth: 200.0,
-                  // height: 47.0,
-                    onPressed: snapshot.hasData ? null:(){
-                      bloc.submit(); Navigator.push (
-                    context, MaterialPageRoute(builder: (context) => Chicktreat(),
-                    ),
-                    );
-                    },
-                   ),
-                   ),
-                     ),
+            home: new Scaffold(
+                    resizeToAvoidBottomPadding: false,
+                    appBar: new AppBar(
+                        title: new Text(widget.title),
+                        centerTitle: true,
+                        backgroundColor: Colors.amber,
+                        leading: IconButton(icon: Icon(Icons.arrow_back_ios),
+                        onPressed: () => Navigator.push(
+                                    context, MaterialPageRoute(builder: (context) => Chicktreat())),
+                              ),
+                       actions: <Widget>[
+                      new IconButton(icon: Icon(Icons.rotate_right,size: 35.0,),color: Colors.white,
+                      onPressed: () {}
+              )
+            ],
+                          ),
+              body: new SafeArea(
+                    top: false,
+                    bottom: false,
+                    child:new Form(
+                    child: new ListView( 
+                      padding: EdgeInsets.all(20.0),
+                      children: <Widget>[
+                              SizedBox(height: 10.0),
+                              animalcode(),
+                              SizedBox(height: 10.0),
+                              mediName(),
+                              SizedBox(height: 10.0),
+                              reason(),
+                              SizedBox(height: 10.0),
+                              quantity(),
+                              SizedBox(height:10.0,),
+                              units(),
+                              SizedBox(height: 10.0),
+                              sd(),
+                              SizedBox(height: 10.0),
+                              ed(),
+                              SizedBox(height: 10.0),
+                              dose(),
+                              SizedBox(height: 10.0),
+                              remark(),
+                              SizedBox(height: 20.0),
+                              btn(),
+                            ],
+                          ),
+                       ),
                       ),
-                    ],
-                      ))),
-          );
-              }
+                   ));
+                  }
               }
              
    class Treatmentlist extends StatefulWidget{

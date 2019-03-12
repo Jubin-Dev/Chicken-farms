@@ -50,7 +50,12 @@ class SalePageState extends State<_PriceDetail> {
         onPressed: () => Navigator.push(
                  context, MaterialPageRoute(builder: (context) => SalesTab())),
       ),
-      ),
+    actions: <Widget>[
+             new IconButton(icon: Icon(Icons.rotate_right,size: 35.0,),color: Colors.white,
+             onPressed: () {}
+              )
+        ],
+     ),
       body: new SafeArea(
           top: false,
           bottom: false,

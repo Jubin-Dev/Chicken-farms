@@ -35,17 +35,13 @@ class ForgotPass extends StatefulWidget{
                               hintText: 'Enter Your Mobile No.',
                               suffixIcon: Icon(Icons.phone_iphone, color: Colors.green,),
                               contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-          // border: OutlineInputBorder(
-          //   borderRadius: BorderRadius.circular(25.0),
-            
-          // )
-        ),
-     ),
-      );
+                                ),
+                            ),
+                              );
   final continueButton = Padding(
                         padding: EdgeInsets.symmetric(vertical: 40.0),
                         child:  StreamBuilder<bool>(
-                        stream: bloc.submitcheck,
+                        // stream: bloc.submitcheck,
                         builder:(context,snapshot)=>
         //  Material(
         //         borderRadius: BorderRadius.circular(40.0),

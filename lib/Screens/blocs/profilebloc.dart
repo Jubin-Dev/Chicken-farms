@@ -112,36 +112,34 @@ class ProfileBloc extends Object with Validator {
     // print('Animal Status : $animalstatus');
    
   }
-
-
-  void dispose() {
-      _farmNameController?.close();
-      _farmAdressController?.close();
-      _mobileController?.close();
-      _alternumberController?.close();
-      _lineidController?.close();
-      _anyWebController?.close();
-      _socialPageController?.close();
-      _aboutusController?.close();
-      //----------------------//
-      _animalCodeController?.close();
-      _nameController?.close();
-      _symbolController?.close();
-      _animalStatusController?.close();
-      _dobController?.close();
-      _genderController?.close();
-      _breedController?.close();
-      _sirecodeController?.close();
-      _breederCodeController?.close();
-      _talentsController?.close();
-      _weightController?.close();
-      _weightTypeController?.close();
-      _fightRecordController?.close();
-      _standerdPriceController?.close();
-      _currencyController?.close();
-      _remarksController?.close();
+  dispose() {
+      _farmNameController.close();
+      _farmAdressController.close();
+      _mobileController.close();
+      _alternumberController.close();
+      _lineidController.close();
+      _anyWebController.close();
+      _socialPageController.close();
+      _aboutusController.close();
       
-
+      //----------------------//
+      
+      _animalCodeController.close();
+      _nameController.close();
+      _symbolController.close();
+      _animalStatusController.close();
+      _dobController.close();
+      _genderController.close();
+      _breedController.close();
+      _sirecodeController.close();
+      _breederCodeController.close();
+      _talentsController.close();
+      _weightController.close();
+      _weightTypeController.close();
+      _fightRecordController.close();
+      _standerdPriceController.close();
+      _currencyController.close();
+      _remarksController.close();
 
   }
 }

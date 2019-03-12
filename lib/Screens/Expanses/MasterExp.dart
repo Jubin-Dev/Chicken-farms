@@ -51,7 +51,12 @@ class _MasterExpPageState extends State<MasterExpPage> {
         onPressed: () => Navigator.push(
                  context, MaterialPageRoute(builder: (context) => ExpTab())),
                   ),
-                  ),
+        actions: <Widget>[
+              new IconButton(icon: Icon(Icons.rotate_right,size: 35.0,),color: Colors.white,
+              onPressed: () {}
+              )
+            ],
+         ),
       body: new SafeArea(
           top:false,
           bottom: false,
