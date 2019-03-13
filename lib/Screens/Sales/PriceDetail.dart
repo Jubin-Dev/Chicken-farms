@@ -1,30 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/Screens/Tabs/SalesTab.dart';
-
+import 'package:flutter_app/Screens/blocs/salesbloc.dart';
 void main() => runApp(new PriceDetail());
-
 class PriceDetail extends StatelessWidget {
-
   final String sirecode,breedercode,price; 
- 
  const PriceDetail(
  {
     this.sirecode, this.breedercode, this.price
   }
 );
-
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      theme: new ThemeData(
-      primarySwatch: Colors.green,
-      ),
-      home: new _PriceDetail(title: 'Price Details',),
-    );
+    return new _PriceDetail(title: 'Price Details',);
   }
 }
-
 class _PriceDetail extends StatefulWidget {
   _PriceDetail({Key key, this.title}) : super(key: key);
   final String title;
@@ -32,30 +22,129 @@ class _PriceDetail extends StatefulWidget {
   SalePageState createState() => new SalePageState();
 }
 class SalePageState extends State<_PriceDetail> {
-  var _sirecodeController = new TextEditingController();
-  var _priceController = new TextEditingController();
-  var _breedercodeController = new TextEditingController();
-  final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-  // List<String> _colors = <String>[' ', 'THB', 'USD', 'INR', 'AUD'];
+final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   String currency = 'THB';
 @override
   Widget build(BuildContext context) {
-     return new Scaffold(
-        resizeToAvoidBottomPadding: false, 
-        appBar: new AppBar(
-        title: new Text(widget.title),
-        centerTitle: true,
-        backgroundColor: Colors.amber,
-        leading: IconButton(icon: Icon(Icons.arrow_back_ios),
-        onPressed: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => SalesTab())),
-      ),
-    actions: <Widget>[
-             new IconButton(icon: Icon(Icons.rotate_right,size: 35.0,),color: Colors.white,
-             onPressed: () {}
+      
+      final bloc = SalesBloc();
+       
+       Widget sireCode(){
+                return StreamBuilder<String>(
+                      stream: bloc.sirecodeStream,
+                      builder:(context, snapshot){
+                       return new TextField(
+                        onChanged:bloc.sirecodeChanged,
+                        keyboardType: TextInputType.number ,
+                        autofocus: false,
+                        decoration: InputDecoration(
+                          errorText: snapshot.error,
+                          icon: Icon(Icons.space_bar,color:Colors.green),
+                          filled: true,
+                            labelText: 'Sire Code',
+                            contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+                            border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          )
+                        ),
+                    );}
+                   );}
+        Widget breederCode(){
+              return StreamBuilder<String>(
+                      stream: bloc.breedercodeStream,
+                      builder:(context, snapshot){       
+                        return TextField(
+                          onChanged:bloc.breedercodeChanged,
+                          keyboardType: TextInputType.number ,
+                          decoration: InputDecoration(
+                              errorText: snapshot.error,
+                              icon: Icon(Icons.space_bar,color:Colors.green),
+                              filled: true,
+                              labelText: 'Breeder Code',
+                              contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+                              border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ) 
+                        ),
+                   );}
+                 );}
+       Widget price(){
+              return StreamBuilder<String>(
+                      stream: bloc.priceStream,
+                      builder:(context, snapshot){ 
+                      return TextField(
+                      onChanged: bloc.priceChanged,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        errorText: snapshot.error,
+                        icon: Icon(Icons.local_atm,color:Colors.green),
+                        labelText: 'Price',
+                          ),
+                      );}
+                );}
+         Widget currencyType(){
+              return StreamBuilder<String>(
+                      stream: bloc.currencytypeStream,
+                      builder:(context, snapshot){ 
+                        return InputDecorator(
+                          decoration: InputDecoration(
+                              icon: Icon(Icons.space_bar,color: Colors.green,),
+                              labelText: 'Currency',
+                                ),
+                              child: DropdownButtonHideUnderline(
+                              child: DropdownButton<String>(
+                                value: currency ,
+                                isDense: true,                
+                                onChanged: (String newValue) {
+                                setState(() {
+                                 currency = newValue; 
+                                 });
+                              },
+                            items: <String>['THB','USD','AUD','INR']
+                            .map<DropdownMenuItem<String>>((String value){
+                            return DropdownMenuItem<String>(value: value,
+                            child: Text(value),
+                            );
+                            }).toList(),
+                            ),
+                          ),
+                          );}
+                        );}
+                 
+        Widget subbtn(){
+              return StreamBuilder<bool>(
+                      stream: bloc.addbtn,
+                      builder:(context, snapshot){ 
+                      return RaisedButton(
+                        color: Colors.amber,
+                        child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
+                        onPressed: () => Navigator.push(
+                                    context, MaterialPageRoute(builder: (context) => SalesTab())),
+                         );}
+                   );}
+    return MaterialApp(
+          theme: ThemeData(
+            primaryColor: Colors.green[450],
+            accentColor: Colors.green,
+            primarySwatch: Colors.green,
+              ), 
+     home: new Scaffold(
+           resizeToAvoidBottomPadding: false, 
+           appBar: new AppBar(
+              title: new Text(widget.title),
+              centerTitle: true,
+              backgroundColor: Colors.amber,
+              leading: IconButton(icon: Icon(Icons.arrow_back_ios),
+              onPressed: () => Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => SalesTab())),
+                      ),
+              actions: <Widget>[
+              new IconButton(icon: Icon(Icons.rotate_right,size: 35.0,),color: Colors.white,
+              onPressed: () {}
               )
-        ],
-     ),
+            ],
+         ),    
+      
       body: new SafeArea(
           top: false,
           bottom: false,
@@ -63,112 +152,33 @@ class SalePageState extends State<_PriceDetail> {
               key: _formKey,
               autovalidate: true,
               child: new ListView(
-                padding: const EdgeInsets.all(25.0),
-                children: <Widget>[
-                       new TextField(
-                          controller: _sirecodeController,
-                          onChanged: (value) => _sirecodeController.text = value,
-                      keyboardType: TextInputType.number ,
-                      autofocus: false,
-                      decoration: InputDecoration(
-                      icon: Icon(Icons.space_bar,color:Colors.green),
-                        filled: true,
-                        labelText: 'Sire Code',
-                        contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-                        border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                        )
-                      ),
-                    ),
-                    Divider(),
-                 new TextField(
-                   controller: _breedercodeController,
-                     onChanged: (value) => _breedercodeController.text = value,
-                     keyboardType: TextInputType.number ,
-                      decoration: InputDecoration(
-                       icon: Icon(Icons.space_bar,color:Colors.green),
-                        filled: true,
-                        labelText: 'Breeder Code',
-                        contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-                        border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                        ) 
-                    ),
-                  ),
-                  Divider(),
-                    new TextField(
-                      controller: _priceController,
-                      onChanged: (value) => _priceController.text = value,
-                      keyboardType: TextInputType.number,
-                      decoration: const InputDecoration(
-                      icon: Icon(Icons.local_atm,color:Colors.green),
-                      labelText: 'Price',
-                      // labelText: 'Symbol',
-                    ),
-                  ),
-
-                   InputDecorator(
-                      decoration: InputDecoration(
-                      icon: Icon(Icons.space_bar,color: Colors.green,),
-                      labelText: 'Currency',
-                            ),
-                        child: DropdownButtonHideUnderline(
-                        child: DropdownButton<String>(
-                          value: currency ,
-                          isDense: true,                
-                          onChanged: (String newValue) {
-                          setState(() {
-                        currency = newValue; 
-                       });
-                     },
-                     items: <String>['THB','USD','AUD','INR']
-                    
-                     .map<DropdownMenuItem<String>>((String value){
-                       return DropdownMenuItem<String>(value: value,
-                       child: Text(value),
-                       );
-                      
-                     }).toList(),
-                   ),
-                        ),
-                        ),
-                 
-                    new Container(
-                    child: new Padding(
-                    padding: EdgeInsets.symmetric(vertical: 40.0),
-                    // child: Material(
-                    // borderRadius: BorderRadius.circular(30.0),
-                    // shadowColor: Colors.lightBlueAccent.shade100,
-                    // elevation: 6.0,
-                    child: RaisedButton(
-                    // minWidth: 200.0,
-                    // height: 47.0,
-                  onPressed: () => Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => SalesTab())),
-                  color: Colors.amber,
-                  child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
-                   ) ,
-                   ),
-                     ),
-                    ],
-                      ))),
-                );
-                }
-              }
+                shrinkWrap: true,
+                padding: EdgeInsets.only(left:20.0 , right:20.0,top: 30.0),
+                children: <Widget>[      
+                              SizedBox(height: 2.0),
+                              sireCode(),
+                              SizedBox(height: 10.0),
+                              breederCode(),
+                              SizedBox(height: 10.0),
+                              price(),
+                              SizedBox(height: 20.0),
+                              currencyType(),
+                              SizedBox(height:10.0),
+                              subbtn(),
+                              ]
+                            )
+                          )
+                  ) ) );  
+             }
+          }
 
     class PriceDetailList extends StatefulWidget{
-
     final String value;
-    
     PriceDetailList({Key key,this.value}): super(key:key);
-    
       @override
-        
       _PriceDetailListPageState createState() => _PriceDetailListPageState();
-         
           }
-  
-  class _PriceDetailListPageState extends State<PriceDetailList> {
+    class _PriceDetailListPageState extends State<PriceDetailList> {
     bool isPriority = false;
     void _toggleFlag(){
     setState(() {
@@ -176,8 +186,8 @@ class SalePageState extends State<_PriceDetail> {
        isPriority = false;
      }else{
        isPriority = true;
-     }
-    });
+          }
+      });
   }
   @override
   Widget build(BuildContext context) {

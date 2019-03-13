@@ -27,14 +27,11 @@ class Breedlist extends StatelessWidget {
 class _Breedlist extends StatefulWidget {
   _Breedlist({Key key, this.title}) : super(key: key);
   final String title;
-
   @override
   BreedlistPageState createState() => new BreedlistPageState();
 }
   class BreedlistPageState extends State<_Breedlist> {
-
   var _breedController = new TextEditingController();
- 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -91,23 +88,14 @@ class _Breedlist extends StatefulWidget {
                      );
                     }
                   }
-    
     class BreedEntrydetail extends StatefulWidget{
-
     final String value;
-    
     BreedEntrydetail({Key key,this.value}): super(key:key);
-    
       @override
-        
       _BreedEntryPageState createState() => _BreedEntryPageState();
-         
           }
-  
   class _BreedEntryPageState extends State<BreedEntrydetail> {
-    
     bool isPriority = false;
-    
     void _toggleFlag(){
     setState(() {
      if(isPriority) {
@@ -116,20 +104,15 @@ class _Breedlist extends StatefulWidget {
        isPriority = true;
      }
     });
-
   }
-
   @override
   Widget build(BuildContext context) {
-    
     return new  MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: new ThemeData(
-        
         accentColor: Colors.amber,
         brightness: Brightness.light,
       ),
-      
       home:Scaffold(
         resizeToAvoidBottomPadding: false,
         appBar: new AppBar(

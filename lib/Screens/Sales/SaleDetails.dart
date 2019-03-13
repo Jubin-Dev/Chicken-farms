@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/Screens/Tabs/SalesTab.dart';
+import 'package:flutter_app/Screens/blocs/salesbloc.dart';
 
 void main() => runApp(new SaleDetail());
 
@@ -31,36 +32,281 @@ class _SaleDetail extends StatefulWidget {
   SellingPageState createState() => new SellingPageState();
 }
 class SellingPageState extends State<_SaleDetail> {
-  var _animalcodeController = new TextEditingController();
-  var _animalageController = new TextEditingController();
-  var _typeController = new TextEditingController();
-  var _expnameController = new TextEditingController();
-  var _breedercodeController = new TextEditingController();
-  var _talentsController = new TextEditingController();
-  var _fightingController = new TextEditingController();
-  var _weightController = new TextEditingController();
-  var _statusController = new TextEditingController();
-  bool _switchval = true;
-  
+  String breed;
+  bool serviceVal = false;
 @override
   Widget build(BuildContext context) {
-    return new
-          Scaffold(
-          resizeToAvoidBottomPadding: false,
-          appBar: new AppBar(
-          title: new Text(widget.title),
-          centerTitle: true,
-          backgroundColor: Colors.amber,
-          leading: IconButton(icon: Icon(Icons.arrow_back_ios),
-          onPressed: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => SalesTab())),
-                ),
-          actions: <Widget>[
+
+    final bloc = SalesBloc();
+  
+      Widget animCode(){
+                
+                return StreamBuilder<String>(
+                      stream: bloc.animCodeStream,
+                      builder:(context, snapshot){
+                          return new TextField(
+                            onChanged: bloc.animCodeChanged,
+                            keyboardType: TextInputType.text,
+                            autofocus: false,
+                              decoration: InputDecoration(
+                                errorText: snapshot.error,
+                                icon: Icon(Icons.branding_watermark,color:Colors.green),
+                                labelText: 'Animal Code',
+                               ),
+                              );}
+                          );
+                          }
+          Widget animAge(){
+                return StreamBuilder<String>(
+                      stream: bloc.animAgeStream,
+                      builder:(context, snapshot){      
+                      return new TextField(
+                      onChanged: bloc.animAgeChanged,
+                       keyboardType: TextInputType.text ,
+                        decoration: InputDecoration(
+                        errorText: snapshot.error,
+                        icon: Icon(Icons.pets,color:Colors.green),
+                        labelText: 'Animal Age',
+                       ),
+                  );}
+                 );}
+        Widget animType(){
+                return StreamBuilder<String>(
+                      stream: bloc.animaTypeStream,
+                      builder:(context, snapshot){
+                        return TextField(
+                          onChanged: bloc.animTypeChanged,
+                          keyboardType: TextInputType.text ,
+                          decoration: InputDecoration(
+                              icon: Icon(Icons.format_list_numbered,color:Colors.green),
+                              labelText: 'Type',
+                                ),   
+                          );}
+                  );}
+          Widget addBlood(){
+                return ExpansionTile(
+                    title: Text(
+                      'Blood Percentage',
+                        style: TextStyle(
+                          fontWeight: FontWeight.normal, fontSize: 18.0,color: Colors.black45)),
+                          leading: IconButton(
+                          icon: Icon(Icons.backspace,color: Colors.green,),
+                          onPressed: () {},
+                        ),
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                            SizedBox(
+                            width: 150.0,
+                            child:StreamBuilder<String>(
+                            stream: bloc.breedTypeStream,
+                            builder:(context, snapshot){
+                            return InputDecorator(
+                                decoration: InputDecoration(
+                                  errorText: snapshot.error,
+                                  icon: Icon(Icons.beenhere,color: Colors.green,),
+                                  labelText: 'Breed',
+                                ),
+                              child: DropdownButtonHideUnderline(
+                              child: DropdownButton<String>(
+                              value: breed,
+                              isDense: true,                
+                              onChanged: (String newValue) {
+                              setState(() {
+                              breed  = newValue; 
+                          });
+                         },
+                     items: <String>['None', 'Sire', 'Breeder']
+                     .map<DropdownMenuItem<String>>((String value){
+                       return DropdownMenuItem<String>(value: value,
+                       child: Text(value),
+                       );
+                      }).toList(),
+                    //  onChanged: bloc.breedChanged,
+                    //  value:snapshot.data  
+                                    ),
+                                 ),
+                            );}
+                            ),
+                              ),
+                          SizedBox(width: 50.0),
+                          SizedBox(
+                            width: 100.0,
+                            child: TextField(
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                labelText: 'Blood %',
+                                border: new OutlineInputBorder(
+                                  borderRadius: new BorderRadius.circular(4.0),
+                                  borderSide: new BorderSide(),
+                                ),
+                              ),
+                            ),
+                          ),
+                          ],
+                          ),
+                          ]
+                          );}
+          Widget codeSire(){
+                return StreamBuilder<String>(
+                      stream: bloc.codeSireStream,
+                      builder:(context, snapshot){
+                        return TextField(
+                          onChanged: bloc.codeSireChanged,
+                            keyboardType: TextInputType.number,
+                            autofocus: false,
+                              decoration: InputDecoration(
+                                errorText: snapshot.error,
+                                icon: Icon(Icons.space_bar,color:Colors.green),
+                                    filled: true,
+                                    labelText: 'Sire Code',
+                                        contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+                                        border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(20.0),
+                                  )
+                                ),
+                              );}
+                          );}
+          Widget codebreeder(){
+                return StreamBuilder<String>(
+                      stream: bloc.codeBreederStream,
+                      builder:(context, snapshot){     
+                      return TextField(
+                          onChanged:bloc.codebreederChanged,
+                          keyboardType: TextInputType.number ,
+                           decoration: InputDecoration(
+                                errorText: snapshot.error,
+                                icon: Icon(Icons.space_bar,color:Colors.green),
+                                filled: true,
+                                labelText: 'Breeder Code',
+                                contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+                                border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                            ) 
+                        ),
+                       );}
+                );}
+          Widget talents(){
+                     return StreamBuilder<String>(
+                      stream: bloc.talentsStream,
+                      builder:(context, snapshot){     
+                      return TextField(
+                          onChanged: bloc.talentsChanged,
+                          keyboardType: TextInputType.text ,
+                          autofocus: false,
+                          decoration: InputDecoration(
+                            errorText:snapshot.error,
+                            icon: Icon(Icons.streetview,color:Colors.green),
+                          labelText: 'Talents',
+                            ),
+                        );}
+                     );}
+          Widget records(){
+                     return StreamBuilder<String>(
+                      stream: bloc.fightingStream,
+                      builder:(context, snapshot){
+                      return TextField(
+                        onChanged: bloc.fightingChanged,
+                        keyboardType: TextInputType.number ,
+                        autofocus: false,
+                        decoration: InputDecoration(
+                          icon: Icon(Icons.receipt,color:Colors.green),
+                          labelText: 'Fighting Records',
+                            ),
+                          );}
+                     );}
+           
+            Widget weight(){
+                     return StreamBuilder<String>(
+                        stream: bloc.weigthStream,
+                        builder:(context, snapshot){
+                        return TextField(
+                          onChanged: bloc.weightChanged,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            errorText: snapshot.error,
+                            icon: Icon(Icons.line_weight,color:Colors.green),
+                            labelText: 'Weight',
+                             ),
+                        );}
+                     );}
+              Widget checkbox(){
+                          return Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                          Column(
+                              children: <Widget>[
+                              Text("Standard Price(Show/Hide)"),
+                                Checkbox(
+                                value: serviceVal,
+                                onChanged: (bool value) {
+                                setState(() {
+                                serviceVal = value;
+                                  });
+                                },
+                            ),
+                          ],
+                          )]);
+                  }
+            Widget price(){
+                return StreamBuilder<String>(
+                      stream: bloc.priceStream,
+                      builder:(context, snapshot){ 
+                      return TextField(
+                      onChanged: bloc.priceChanged,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        errorText: snapshot.error,
+                        icon: Icon(Icons.local_atm,color:Colors.green),
+                        labelText: 'Price',
+                          ),
+                      );}
+                );}
+
+        Widget status(){
+            return StreamBuilder<String>(
+            stream: bloc.statusStream,
+            builder:(context, snapshot){
+                        return TextField(
+                           onChanged: bloc.statusChanged,
+                           keyboardType: TextInputType.multiline,
+                            decoration: const InputDecoration(
+                            icon: Icon(Icons.note_add,color:Colors.green),
+                            labelText: 'Status',
+                          ),
+                         );}
+                     );}
+
+          Widget clickbtn(){
+                  return StreamBuilder<bool>(
+                  stream: bloc.clickbtn,
+                  builder:(context, snapshot){
+                        return RaisedButton(
+                          color: Colors.amber,
+                          child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
+                            onPressed: ()=> Navigator.push( 
+                                      context, MaterialPageRoute(builder: (context) => SalesTab())),
+                             );}
+                          );}
+
+      return new Scaffold(
+            resizeToAvoidBottomPadding: false,
+               appBar: new AppBar(
+               title: new Text(widget.title),
+                centerTitle: true,
+                backgroundColor: Colors.amber,
+                leading: IconButton(icon: Icon(Icons.arrow_back_ios),
+                onPressed: () => Navigator.push(
+                              context, MaterialPageRoute(builder: (context) => SalesTab())),
+                            ),
+                actions: <Widget>[
                 new IconButton(icon: Icon(Icons.rotate_right,size: 35.0,),color: Colors.white,
                 onPressed: () {}
-              )
-            ],
-      ),
+                 )
+             ],
+           ),
       body: new SafeArea(
           top: false,
           bottom: false,
@@ -69,209 +315,44 @@ class SellingPageState extends State<_SaleDetail> {
               child: new ListView(
                 padding: const EdgeInsets.all(25.0),
                 children: <Widget>[
-                  new TextField(
-                    controller: _animalcodeController,
-                     onChanged: (value) => _animalcodeController.text = value,
-                      keyboardType: TextInputType.text ,
-                      autofocus: false,
-                      decoration: InputDecoration(
-                        icon: Icon(Icons.branding_watermark,color:Colors.green),
-                        // filled: true,
-                        labelText: 'Animal Code',
-                        // contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-                        // border: OutlineInputBorder(
-                        //   borderRadius: BorderRadius.circular(20.0),
-                          
-                        // )
-                      ),
-                    ),
-                    Divider(),
-                 new TextField(
-                      controller: _animalageController,
-                      onChanged: (value) => _animalageController.text = value,
-                       keyboardType: TextInputType.text ,
-                        decoration: InputDecoration(
-                        icon: Icon(Icons.pets,color:Colors.green),
-                        // filled: true,
-                        labelText: 'Animal Age',
-                        // contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-                        // border: OutlineInputBorder(
-                        //   borderRadius: BorderRadius.circular(20.0),
-                
-                        // ) 
-                    ),
-                      
-                  ),
-                  Divider(),
-                 new TextField(
-                   controller: _typeController,
-                     onChanged: (value) => _typeController.text = value,
-                     keyboardType: TextInputType.text ,
-                      decoration: InputDecoration(
-                        icon: Icon(Icons.format_list_numbered,color:Colors.green),
-                        // filled: true,
-                        labelText: 'Type',
-                        // contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-                        // border: OutlineInputBorder(
-                        //   borderRadius: BorderRadius.circular(20.0),
-                        // ) 
-                    ),   
-                  ),
-                  Divider(),
-                        new TextFormField(
-                        keyboardType: TextInputType.number ,
-                        autofocus: false,
-                        decoration: InputDecoration(
-                        icon: Icon(Icons.space_bar,color:Colors.green),
-                        filled: true,
-                        labelText: 'Sire Code',
-                        contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-                        border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                          
-                        )
-                      ),
-                    ),
-                    Divider(),
-                 new TextField(
-                   controller: _breedercodeController,
-                     onChanged: (value) => _breedercodeController.text = value,
-                     keyboardType: TextInputType.number ,
-                      decoration: InputDecoration(
-                       icon: Icon(Icons.space_bar,color:Colors.green),
-                        filled: true,
-                        labelText: 'Breeder Code',
-                        contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-                        border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                        ) 
-                    ),
-                  ),
-                  Divider(),
-                       new TextField(
-                          controller: _talentsController,
-                          onChanged: (value) => _talentsController.text = value,
-                          keyboardType: TextInputType.text ,
-                          autofocus: false,
-                          decoration: InputDecoration(
-                          icon: Icon(Icons.streetview,color:Colors.green),
-                        // filled: true,
-                          labelText: 'Talents',
-                        // contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-                        // border: OutlineInputBorder(
-                        // borderRadius: BorderRadius.circular(20.0),
-                        // )
-                      ),
-                    ),
-                    Divider(),
-                       new TextField(
-                            controller: _fightingController,
-                            onChanged: (value) => _fightingController.text = value,
-                      keyboardType: TextInputType.number ,
-                      autofocus: false,
-                      decoration: InputDecoration(
-                      icon: Icon(Icons.receipt,color:Colors.green),
-                        // filled: true,
-                      labelText: 'Fighting Records',
-                        // contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-                        // border: OutlineInputBorder(
-                        //   borderRadius: BorderRadius.circular(20.0),
-                        // )
-                      ),
-                    ),
-                    Divider(),
-                    new TextField(
-                        controller: _weightController,
-                        onChanged: (value) => _weightController.text = value,
-                        keyboardType: TextInputType.number,
-                        decoration: const InputDecoration(
-                        icon: Icon(Icons.line_weight,color:Colors.green),
-                        labelText: 'Weight',
-                      // labelText: 'Symbol',
-                    ),
-                  ),
-                  Divider(),
-                    new TextField(
-                      controller: _statusController,
-                      onChanged: (value) => _statusController.text = value,
-                        keyboardType: TextInputType.multiline,
-                        decoration: const InputDecoration(
-                        icon: Icon(Icons.note_add,color:Colors.green),
-                        labelText: 'Status',
-                      // labelText: 'Symbol',
-                    ),
-                  ),
-                  // new Container(
-                  //   children: <Widget>[
-                  //     Card(
-                  //       shape: RoundedRectangleBorder(
-                  //         borderRadius: BorderRadius.circular(20.0),
-                  //       ),
-                  //       color: Colors.lightGreen,
-                  //       elevation: 15.0,
-                  //       child: Container(
-                  //         height: 100.0,
-                  //         width: 50.0,
-                  //         child: Row(
-                  //           children: <Widget>[
-                           
-                  //          new Text('Standard Price Show/Hide'),
-                            
-                  //           Center(child: Switch(
-                  //             onChanged: (bool value){
-                  //             setState(() => this._switchval = value);
-                  //           },
-                  //           value: this._switchval,
-                  //           ),
-                  //           ),
-                                
-                  //            ],
-
-                  //           )
-                  //         ),
-               
-                  // ),
-
-                  new Container(
-                      child: new Padding(
-                      padding: EdgeInsets.symmetric(vertical: 40.0),
-                      // child: Material(
-                      // borderRadius: BorderRadius.circular(30.0),
-                      // shadowColor: Colors.lightBlueAccent.shade100,
-                      // elevation: 6.0,
-                  child: RaisedButton(
-                    // minWidth: 200.0,
-                    // height: 47.0,
-                    onPressed: ()=> Navigator.push( 
-                                    context, MaterialPageRoute(builder: (context) => SalesTab())),
-                    color: Colors.amber,
-                    child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
-
-                   ) ,
-                   ),
-                     ),
-                    ],
-                      ))),
-                       );
+                           SizedBox(height: 2.0),
+                            animCode(),
+                            SizedBox(height: 10.0),
+                            animAge(),
+                            SizedBox(height: 10.0),
+                            animType(),
+                            SizedBox(height: 10.0),
+                            addBlood(),
+                            SizedBox(height:10.0),
+                            codeSire(),
+                            SizedBox(height: 10.0),
+                            codebreeder(),
+                            SizedBox(height: 10.0),
+                            talents(),
+                            SizedBox(height: 10.0),
+                            records(),
+                            SizedBox(height: 10.0),
+                            weight(),
+                            SizedBox(height: 8.0),
+                            price(),
+                            checkbox(),
+                            status(),
+                            SizedBox(height: 15.0),
+                            clickbtn(),
+                                  ]
+                            )
+                          )));
                    }
                   }
     
-    class AnimalSaleList extends StatefulWidget{
-
-    final String value;
-    
-    AnimalSaleList({Key key,this.value}): super(key:key);
-    
+  class AnimalSaleList extends StatefulWidget{
+  final String value;
+  AnimalSaleList({Key key,this.value}): super(key:key);
       @override
-        
       _AnimalSalePageState createState() => _AnimalSalePageState();
-         
           }
-  
-  class _AnimalSalePageState extends State<AnimalSaleList> {
-    
+    class _AnimalSalePageState extends State<AnimalSaleList> {
     bool isPriority = false;
-    
     void _toggleFlag(){
     setState(() {
      if(isPriority) {
@@ -280,19 +361,15 @@ class SellingPageState extends State<_SaleDetail> {
        isPriority = true;
      }
     });
-
   }
-
   @override
   Widget build(BuildContext context) {
-    
     return new  MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: new ThemeData(
         accentColor: Colors.amber,
         brightness: Brightness.light,
       ),
-      
       home:Scaffold(
         resizeToAvoidBottomPadding:false ,
         floatingActionButton: new FloatingActionButton(
@@ -305,34 +382,24 @@ class SellingPageState extends State<_SaleDetail> {
           ), 
      
         body:ListView.builder( itemCount: 10,
-         
         shrinkWrap: true,
         itemBuilder: (BuildContext context,int index) => Container(
         //width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.symmetric(vertical: 10.0),
-       
-          child: Card(
-        
+        child: Card(
           margin: EdgeInsets.only(left: 10.0,right: 10.0),
           elevation: 10.0,
           shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(3.5)
           ),
           color: Colors.white70,
-          
           child: Container(decoration: BoxDecoration(
             color: Colors.transparent,
-            
           ),
-          
-       
         //width: MediaQuery.of(context).size.width,
         margin: EdgeInsets.symmetric(horizontal: 10.0,vertical: 30.0),
         padding: EdgeInsets.only(right: 80.0),
-
-        
         child: 
-       
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -353,9 +420,7 @@ class SellingPageState extends State<_SaleDetail> {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.end,
-                  
                   children: <Widget>[
-                    
                     new Text("AnimalCode: ${widget.value}"),
                     Divider(),
                     new Text("BreederCode: ${widget.value}"),
@@ -369,8 +434,6 @@ class SellingPageState extends State<_SaleDetail> {
                     new Text("Fight Records: ${widget.value}"),
                     Divider(),
                     new Text("Status: ${widget.value}"),
-                    
-
                     Divider(color: Colors.teal,indent: 50.0,),
                     // new IconButton(
                     // icon: Icon(Icons.delete),
@@ -378,18 +441,12 @@ class SellingPageState extends State<_SaleDetail> {
                     // color:(isPriority)? Colors.red : Colors.green,
                     // onPressed: _toggleFlag,
                     //  ),
-
                     ],
-                 
                 ),
-              
           ],
         ),
-        
           ),
-         
     ),
-   
      ),
       )
       ),

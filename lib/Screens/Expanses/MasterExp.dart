@@ -1,28 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/Screens/Tabs/ExpensesTabs.dart';
+import 'package:flutter_app/Screens/blocs/exp_bloc.dart';
 
 void main() => runApp(new MasterExp());
-
 class MasterExp extends StatelessWidget {
 
-  final String expensescode,expensesname; 
- 
- const MasterExp(
- {
-    this.expensesname, this.expensescode
-  }
-);
-
+  MasterExp();
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      // title: 'Flutter Form Demo',
-        theme: new ThemeData(
-        primarySwatch: Colors.green,
-      ),
-      home: new MasterExpPage(title: 'Master Expanse Details'),
-    );
+    return new MasterExpPage(title: 'Master Expanse Details');
   }
 }
 class MasterExpPage extends StatefulWidget {
@@ -31,115 +18,157 @@ class MasterExpPage extends StatefulWidget {
   @override
   _MasterExpPageState createState() => new _MasterExpPageState();
 }
-
 class _MasterExpPageState extends State<MasterExpPage> {
-
-  var _expcodeController = new TextEditingController();
-  var _expnameController = new TextEditingController();
-
-  bool switchval = true;
-
+  bool serviceVal = false;
+  bool productVal = false; 
   @override
   Widget build(BuildContext context) {
-      return new Scaffold(
-      resizeToAvoidBottomPadding: false,
-      appBar: new AppBar(
-        title: new Text(widget.title),
-        centerTitle: true,    
-        backgroundColor: Colors.amber,
-        leading: IconButton(icon: Icon(Icons.arrow_back_ios),
-        onPressed: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => ExpTab())),
-                  ),
-        actions: <Widget>[
-              new IconButton(icon: Icon(Icons.rotate_right,size: 35.0,),color: Colors.white,
-              onPressed: () {}
-              )
-            ],
-         ),
-      body: new SafeArea(
-          top:false,
-          bottom: false,
-          child: new Form(
-              autovalidate: true,
-              child: new ListView(
-                padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 20.0),
-                children: <Widget>[
-                  new TextField(
-                      controller: _expcodeController,
-                      onChanged: (value) => _expcodeController.text = value,
-                      keyboardType: TextInputType.text,
-                      decoration: const InputDecoration(
-                      icon: Icon(Icons.space_bar,color:Colors.green),
-                      labelText: 'Expense Code',
-                       ),
-                       ),
-                  Divider(), 
-                  new TextField(
-                      controller: _expnameController,
-                      onChanged: (value) => _expnameController.text = value,
-                      decoration: const InputDecoration(
-                      icon: Icon(Icons.explicit,color:Colors.green),
-                      labelText: 'Expense Name',
-                    ),
-                  ),
-                  Divider(), 
-                  new TextFormField(
-                    keyboardType: TextInputType.text,
-                    decoration: const InputDecoration(
-                     icon: Icon(Icons.euro_symbol,color:Colors.green),
-                      labelText: 'Expense Type',
-                    ),
-                  ),
-                  Divider(), 
-                  // new Container(
-                  //   children:<Widget>[ 
-                  //     new Text('Service'),
-                  //     Center(
-                  //       child: Switch(
-                  //         onChanged: (bool value){
-                  //           setState(()=> this. switchval= value); 
-                  //           },
-                  //           value: this.switchval,
-                  //           )
-                  //       ),
-                  //      ],
-                  //     ),
-                new Container(
-                        child: new Padding(
-                        padding: EdgeInsets.symmetric(vertical: 35.0),
-                        // child: Material(
-                        // borderRadius: BorderRadius.circular(30.0),
-                        // shadowColor: Colors.lightBlueAccent.shade100,
-                        // elevation: 6.0,
-                        child: RaisedButton(
-                        // minWidth: 200.0,
-                        // height: 47.0,
-                        onPressed: ()=> Navigator.push( 
-                                  context, MaterialPageRoute(builder: (context) => ExpTab())),
-                        color: Colors.amber,
-                        child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
-                    ),
-                    ),
-                     ),
+
+    final bloc = ExpensesBloc();
+            Widget expcode(){
+                    return StreamBuilder<String>(
+                      stream: bloc.expcodeStream,
+                      builder:(context, snapshot){
+                        return TextField(
+                          onChanged: bloc.expcodeChanged,
+                          keyboardType: TextInputType.text,
+                          decoration: InputDecoration(
+                            errorText: snapshot.error,
+                          icon: Icon(Icons.space_bar,color:Colors.green),
+                          labelText: 'Expense Code',
+                             ),
+                          );
+                        }
+                      );
+                    }
+            Widget expname(){
+                    return StreamBuilder<String>(
+                        stream: bloc.expnameStream,
+                        builder:(context, snapshot){
+                          return TextField(
+                            onChanged: bloc.expnameChanged,
+                              decoration: InputDecoration(
+                                 errorText: snapshot.error,
+                                  icon: Icon(Icons.explicit,color:Colors.green),
+                                  labelText: 'Expense Name',
+                                    ),
+                               );}
+                          );}
+              
+            Widget exptype(){
+                   return StreamBuilder<String>(
+                        stream: bloc.exptypeStream,
+                        builder:(context, snapshot){
+                          return TextField(
+                          onChanged: bloc.exptypeChanged,
+                          keyboardType: TextInputType.text,
+                          decoration: InputDecoration(
+                            errorText: snapshot.error,
+                            icon: Icon(Icons.euro_symbol,color:Colors.green),
+                            labelText: 'Expense Type',
+                              ),
+                          );}
+                   );
+                }
+             Widget checkbox(){
+                         return Row(
+                         mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                            Text("Service"),
+                                Checkbox(
+                                value: serviceVal,
+                                onChanged: (bool value) {
+                                setState(() {
+                                serviceVal = value;
+                                  });
+                                },
+                            ),
+                          ],
+                        ),
+                       
+                      SizedBox(width: 50.0,),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text("Product"),
+                          Checkbox(
+                            value: productVal,
+                            onChanged: (bool value) {
+                            setState(() {
+                            productVal = value;
+                          });
+                        },
+                      ),
                     ],
-                      ))),
-                    );
+                   ),
+               ],);
+            }              
+              Widget addbtn(){
+                    return StreamBuilder<bool>(
+                            stream: bloc.addbtn,
+                            builder:(context,snapshot){
+                              return RaisedButton(
+                                  color: Colors.amber,
+                                  child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
+                                  onPressed: ()=> Navigator.push( 
+                                  context, MaterialPageRoute(builder: (context) => ExpTab())),
+                             );}
+                          );}
+      return MaterialApp(
+          theme: ThemeData(
+            primaryColor: Colors.green[450],
+            accentColor: Colors.green,
+            primarySwatch: Colors.green,
+              ),
+            home: new Scaffold(
+              resizeToAvoidBottomPadding: false,
+              appBar: new AppBar(
+                title: new Text(widget.title),
+                centerTitle: true,    
+                backgroundColor: Colors.amber,
+                leading: IconButton(icon: Icon(Icons.arrow_back_ios),
+                onPressed: () => Navigator.push(
+                 context, MaterialPageRoute(builder: (context) => ExpTab())),
+                    ),
+                actions: <Widget>[
+                  new IconButton(icon: Icon(Icons.rotate_right,size: 35.0,),color: Colors.white,
+                  onPressed: () {}
+                    )
+                  ],
+              ),
+        body: new Center(
+                    child: new ListView( 
+                          shrinkWrap: true,
+                          padding: EdgeInsets.only(left:20.0 , right:20.0, bottom: 70.0),
+                          children: <Widget>[
+                              SizedBox(height: 2.0),
+                              expcode(),
+                              SizedBox(height: 10.0),
+                              expname(),
+                              SizedBox(height: 10.0),
+                              exptype(),
+                              SizedBox(height: 20.0),
+                              checkbox(),
+                              // SizedBox(height:10.0),
+                              // product(),
+                              SizedBox(height: 10.0),
+                              addbtn(),
+                                  ]
+                            )
+                          )
+                       ) );
+                    }
                    }
-                   }
-
     class ExpList extends StatefulWidget{
-
     final String value;
-    
     ExpList({Key key,this.value}): super(key:key);
-    
-      @override
-        
-      _ExpListPageState createState() => _ExpListPageState();
-          }
+    @override
+    _ExpListPageState createState() => _ExpListPageState();
+       }
       class _ExpListPageState extends State<ExpList> {
-    
     bool isPriority = false;
     void _toggleFlag(){
     setState(() {
@@ -149,9 +178,7 @@ class _MasterExpPageState extends State<MasterExpPage> {
        isPriority = true;
      }
     });
-
   }
-
   @override
   Widget build(BuildContext context) {
     return new  MaterialApp(
@@ -160,8 +187,7 @@ class _MasterExpPageState extends State<MasterExpPage> {
         accentColor: Colors.amber,
         brightness: Brightness.light,
       ),
-      
-      home:Scaffold(
+        home:Scaffold(
         resizeToAvoidBottomPadding: false,
         floatingActionButton: new FloatingActionButton(
             elevation: 20.0,
@@ -171,36 +197,25 @@ class _MasterExpPageState extends State<MasterExpPage> {
             onPressed: () => Navigator.push(
                  context, MaterialPageRoute(builder: (context) => MasterExp())),
           ), 
-     
      body:ListView.builder( itemCount: 20,
-         
         shrinkWrap: true,
         itemBuilder: (BuildContext context,int index) => Container(
         //width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.symmetric(vertical: 10.0),
-       
           child: Card(
-        
           margin: EdgeInsets.only(left: 10.0,right: 10.0),
           elevation: 10.0,
           shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(3.5)
          ),
           color: Colors.white70,
-          
           child: Container(decoration: BoxDecoration(
             color: Colors.transparent,
-            
           ),
-          
-       
         //width: MediaQuery.of(context).size.width,
         margin: EdgeInsets.symmetric(horizontal: 10.0,vertical: 30.0),
         padding: EdgeInsets.only(right: 80.0),
-
-        
         child: 
-       
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -232,21 +247,15 @@ class _MasterExpPageState extends State<MasterExpPage> {
                     color:(isPriority)? Colors.red : Colors.green,
                     onPressed: _toggleFlag,
                      ),
-
                     ],
-                 
                 ),
-              
-          ],
-        ),
-        
+                ],
+             ),
           ),
-         
-    ),
-   
-     ),
-      )
-      ),
+         ),
+        ),
+        )
+        ),
       );
     }
   }
