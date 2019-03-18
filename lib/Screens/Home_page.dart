@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Screens/Breed/breed_list.dart';
+import 'package:flutter_app/Screens/Cards/chickenlistcard.dart';
 import 'package:flutter_app/Screens/DashboardItems/ReportsSummary.dart';
 import 'package:flutter_app/Screens/Login_page.dart';
 import 'package:flutter_app/Screens/Navigationdraw.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_app/Screens/Tabs/SaleSummaryTab.dart';
 import 'package:flutter_app/Screens/Tabs/SalesTab.dart';
 import 'package:flutter_app/Screens/Tabs/VaccineTab.dart';
 import 'package:flutter_app/Screens/Tabs/expSummaryTab.dart';
+
 void main() => runApp(MyHomes());
 class MyHomes extends StatelessWidget {
   @override
@@ -38,8 +40,9 @@ class _MyhomePageState extends State<MyHomePage> {
           centerTitle: true,
           actions: <Widget>[
               new IconButton(icon: Icon(Icons.search),color: Colors.black,
-              onPressed: () => Navigator.push(context, MaterialPageRoute(builder:
-               (context) => LoginPage())),
+              onPressed: () {},
+              // => Navigator.push(context, MaterialPageRoute(builder:
+              //  (context) => Dashboard())),
               )
             ],
           ),

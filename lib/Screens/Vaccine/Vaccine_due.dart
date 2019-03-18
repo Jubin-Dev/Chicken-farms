@@ -2,7 +2,6 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-
 void main() => runApp(new Vaccinedue());
 
 class Vaccinedue extends StatelessWidget {
@@ -62,7 +61,7 @@ class _VaccineduePageState extends State<VaccineduePage> {
                     format: formats[inputType],
                     editable: editable,
                     decoration: const InputDecoration(
-                    prefixIcon: const Icon(Icons.calendar_today, color: Colors.green), 
+                    icon: const Icon(Icons.calendar_today, color: Colors.green), 
                     labelText: 'From Date',hasFloatingPlaceholder: true
                     ), 
                     onChanged: (dt) => setState(()=> date = dt),
@@ -74,7 +73,7 @@ class _VaccineduePageState extends State<VaccineduePage> {
                     format: formats[inputType],
                     editable: editable,
                     decoration: const InputDecoration(
-                    prefixIcon: const Icon(Icons.calendar_today, color: Colors.green), 
+                    icon: const Icon(Icons.calendar_today, color: Colors.green), 
                     labelText: 'Upto Date',hasFloatingPlaceholder: true
                     ), 
                     onChanged: (dt) => setState(()=> date = dt),

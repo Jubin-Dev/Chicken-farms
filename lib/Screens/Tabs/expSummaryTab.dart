@@ -36,7 +36,7 @@ class ExpSummaryTab extends StatefulWidget {
             backgroundColor: Colors.amber,
             elevation: 20.0,
             title: Text('Details'),
-            expandedHeight: 120.0,
+            expandedHeight: 80.0,
             leading: IconButton(
             icon: Icon(Icons.arrow_back_ios),
             onPressed: () => Navigator.push (
@@ -46,7 +46,7 @@ class ExpSummaryTab extends StatefulWidget {
        ),
             centerTitle: true,
             pinned: true,
-            floating: true,
+            floating: false,
             // forceElevated: boxIsScrolled,
             bottom: new TabBar(
             isScrollable: true,
@@ -57,17 +57,14 @@ class ExpSummaryTab extends StatefulWidget {
             labelStyle: TextStyle(fontSize: 20.0),
             unselectedLabelColor: Colors.white54,
             tabs: <Widget>[
-                
                 Tab(
                   text: "Expenses Report",
                   icon: Icon(Icons.line_style, color: Colors.white,size: 36.0),
-                   
                     ),
                 Tab(
                   text: "Expenses Summary",
                   icon: Icon(Icons.library_books, color: Colors.white,size: 36.0),
                 )
-                
               ],
               controller: tabController,
             ),

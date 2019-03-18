@@ -114,7 +114,8 @@ class NewUser extends StatefulWidget{
             return StreamBuilder<bool>(
             stream: bloc.signupcheck,
             builder:(context,snapshot){
-                return RaisedButton(
+                return MaterialButton(
+                  minWidth: 380.0,
                     highlightElevation: 20.0,
                     color: Colors.amber,
                     child: Text('Sign-Up',style:TextStyle(color:Colors.white,fontSize: 20.0)),
@@ -124,15 +125,17 @@ class NewUser extends StatefulWidget{
                   );}
                );
             }
-       return MaterialApp(
+            
+    return MaterialApp(
        theme: ThemeData(
           primaryColor: Colors.green[450],
           accentColor: Colors.green,
           primarySwatch: Colors.green,
          ),
-        home:new Scaffold(
-            resizeToAvoidBottomPadding: false,
-            appBar: AppBar(
+
+      home : new Scaffold(
+            //  resizeToAvoidBottomPadding: false,
+              appBar: AppBar(
               title: Text('Registration'),
               centerTitle: true,
               backgroundColor: Colors.amber,
@@ -145,32 +148,36 @@ class NewUser extends StatefulWidget{
            )
          ),
      backgroundColor: Colors.white,
-     body: Center(
-       child: ListView(
-         shrinkWrap: true,
-         padding: EdgeInsets.only(left: 25.0,right: 25.0),
-            children: <Widget>[ 
-              SizedBox(height: 20.0),
-              logo(),
-              SizedBox(height: 20.0),
-              name(),
-              SizedBox(height: 20.0),
-              email(),
-              SizedBox(height: 20.0),
-              phone(),
-              SizedBox(height: 10.0),
-              password(),
-              SizedBox(height: 20.0),
-              rePassword(),
-              SizedBox(height: 30.0,),
-              loginButton(),
-                ],
-              ),
-            ),
-            ),
-         );
-      }
-      }
+     body: new SingleChildScrollView(
+                    child: new Container( 
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 32.0),
+                    child: new Column(
+                         mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.max,
+                                children: <Widget>[ 
+                                  SizedBox(height: 10.0),
+                                  logo(),
+                                  SizedBox(height: 10.0),
+                                  name(),
+                                  SizedBox(height: 10.0),
+                                  email(),
+                                  SizedBox(height: 20.0),
+                                  phone(),
+                                  SizedBox(height: 10.0),
+                                  password(),
+                                  SizedBox(height: 10.0),
+                                  rePassword(),
+                                  SizedBox(height: 30.0,),
+                                  loginButton(),
+                                    ],
+                                  ),
+                                  ),
+                                ),
+                            ));
+                          }
+                        }
     
   
  

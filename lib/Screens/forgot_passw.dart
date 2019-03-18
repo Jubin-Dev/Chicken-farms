@@ -7,37 +7,31 @@ class ForgotPass extends StatefulWidget{
  static String tag ='Verification';
   @override
   _ForgotPageState  createState()=> new _ForgotPageState(); 
-      
    }
-  
   class _ForgotPageState extends State<ForgotPass>   {
   @override
   Widget build(BuildContext context) {
-
   final bloc = Bloc();
-
-  final description =   Text("To use SMS verification, you need access to the verified, phone number and click to Continue.",
+  final description = Text("To use SMS verification, you need access to the verified, phone number and click to Continue.",
                             style: 
                             TextStyle(color:
                             Colors.black ,fontSize: 20.0,fontWeight: FontWeight.w400,fontFamily: 'Roboto'),
-                         );
-  
-  
+                            );
  final phone =  StreamBuilder<String>(
-                              stream: bloc.phoneStream,
-                              builder:(context, snapshot)=>
+                        stream: bloc.phoneStream,
+                        builder:(context, snapshot)=>
                               TextField(
                               keyboardType: TextInputType.phone,
                               autofocus: true,
                               onChanged: bloc.phoneChanged,
                               maxLength: 10,
                               decoration: InputDecoration(
-                              hintText: 'Enter Your Mobile No.',
-                              suffixIcon: Icon(Icons.phone_iphone, color: Colors.green,),
-                              contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-                                ),
-                            ),
-                              );
+                                  labelText: 'Enter Your Mobile No.',
+                                  icon: Icon(Icons.phone_iphone, color: Colors.green,),
+                                  contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
+                                      ),
+                                  ),
+                               );
   final continueButton = Padding(
                         padding: EdgeInsets.symmetric(vertical: 40.0),
                         child:  StreamBuilder<bool>(
@@ -59,26 +53,26 @@ class ForgotPass extends StatefulWidget{
                           ) ,
                       ),
                     );
-                  return MaterialApp(
+            return MaterialApp(
                     theme: ThemeData(
                       primaryColor: Colors.green[450],
                       accentColor: Colors.green,
                       primarySwatch: Colors.green,
                       ),
-                  home: new Scaffold(
+            home: new Scaffold(
                   appBar: AppBar(
-                  title: Text('Recover Password'),
-                  centerTitle: true,
-                  backgroundColor: Colors.amber,
-                  leading: IconButton(
-                  icon: Icon(Icons.arrow_back_ios),
-                  onPressed: () => Navigator.pop (
-                  context, MaterialPageRoute(builder: (context) => LoginPage(),
-                  ),
-                  ),
-                  ),
-                ),
-                    backgroundColor: Colors.white,
+                      title: Text('Recover Password'),
+                      centerTitle: true,
+                       backgroundColor: Colors.amber,
+                        leading: IconButton(
+                            icon: Icon(Icons.arrow_back_ios),
+                            onPressed: () => Navigator.pop (
+                            context, MaterialPageRoute(builder: (context) => LoginPage(),
+                           ),
+                        ),
+                     ),
+                   ),
+                    // backgroundColor: Colors.white,
                     body: Center(
                     child: ListView(
                         shrinkWrap: true,

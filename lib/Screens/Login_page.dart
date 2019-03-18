@@ -39,14 +39,15 @@ class _LoginPageState extends State<LoginPage> {
                         keyboardType: TextInputType.phone,
                         autofocus: false,
                           decoration: InputDecoration(
-                              hintText: 'Mobile Number',
+                              labelText: 'Mobile Number',
                               errorText: snapshot.error,
-                              suffixIcon: Icon(Icons.phone_iphone, color: Colors.green,),
+                              icon: Icon(Icons.phone_iphone, color: Colors.green,),
                               contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0), 
-                        ),
-                  );}
-                );
-              }
+                              ),
+                          );
+                      }
+                    );
+                  }
       Widget password(){ 
         return StreamBuilder<String>(
               stream: bloc.passwordStream,
@@ -56,9 +57,9 @@ class _LoginPageState extends State<LoginPage> {
                   autofocus: false,
                   obscureText: true,
                   decoration: InputDecoration(
-                      hintText: 'Password',
+                      labelText: 'Password',
                       errorText: snapshot.error,
-                      suffixIcon: Icon(Icons.lock, color: Colors.green,),
+                      icon: Icon(Icons.lock, color: Colors.green,),
                       contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
                     ),
                  );} 
@@ -98,13 +99,14 @@ class _LoginPageState extends State<LoginPage> {
   //     ), 
   //     );
    
-   Widget loginButton (){
+   Widget loginButton(){
   //  Padding(
   //       padding: EdgeInsets.symmetric(vertical: 10.0),
         return StreamBuilder<bool>(
             stream: bloc.logincheck,
             builder:(context,snapshot){
-              return RaisedButton(
+              return MaterialButton(
+                  minWidth: 380.0,
                   color: Colors.amber,
                   child: Text("Login",style:TextStyle(color:Colors.white,fontSize: 20.0)),
                   onPressed: snapshot.hasData ? null : () => changeThePage(context) 
@@ -126,30 +128,36 @@ class _LoginPageState extends State<LoginPage> {
         primarySwatch: Colors.green,
           ),
         home: Scaffold(
-            resizeToAvoidBottomPadding: false,
+            // resizeToAvoidBottomPadding: false,
             backgroundColor: Colors.white,
-            body: Center(
-              child: ListView(
-                shrinkWrap: true,
-                padding: EdgeInsets.only(left: 25.0,right: 25.0),
-                children: <Widget>[
-                        logo(),   
-                      SizedBox(height: 50.0),
-                        phone(),
-                      SizedBox(height: 10.0),
-                        password(),
-                        // SizedBox(height: 10.0),
-                        rememberMe,
-                        // forgotLabel,       //flatbutton for forgotpage
-                      //  SizedBox(height: 10.0,),
-                        loginButton(),
+            body: new SingleChildScrollView(
+                  child: new Container(
+                     padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 32.0),
+                    child: new Column(
+                         mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                      //  padding: EdgeInsets.only(left: 25.0,right: 25.0),
+                          children: <Widget>[
+                                  SizedBox(height: 80.0),
+                                  logo(),   
+                                  SizedBox(height: 30.0),
+                                  phone(),
+                                  SizedBox(height: 10.0),
+                                  password(),
+                                    // SizedBox(height: 10.0),
+                                  rememberMe,
+                              // forgotLabel,       //flatbutton for forgotpage
+                               SizedBox(height: 10.0,),
+                                  loginButton(),
                         SizedBox(height: 1.0),
                         newUser,           //flatebutton for newUserPage
                 ],
               ),
               ),
               ),
-            );
+    ) );
             }
         }
   

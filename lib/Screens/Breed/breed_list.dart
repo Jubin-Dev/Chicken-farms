@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/Screens/Home_page.dart';
-
 void main() => runApp(new Breedlist());
 
 class Breedlist extends StatelessWidget {
@@ -23,13 +22,12 @@ class Breedlist extends StatelessWidget {
     );
   }
 }
-
 class _Breedlist extends StatefulWidget {
   _Breedlist({Key key, this.title}) : super(key: key);
   final String title;
   @override
   BreedlistPageState createState() => new BreedlistPageState();
-}
+    }
   class BreedlistPageState extends State<_Breedlist> {
   var _breedController = new TextEditingController();
   @override
@@ -88,16 +86,16 @@ class _Breedlist extends StatefulWidget {
                      );
                     }
                   }
-    class BreedEntrydetail extends StatefulWidget{
-    final String value;
-    BreedEntrydetail({Key key,this.value}): super(key:key);
-      @override
-      _BreedEntryPageState createState() => _BreedEntryPageState();
-          }
-  class _BreedEntryPageState extends State<BreedEntrydetail> {
+class BreedEntrydetail extends StatefulWidget{
+  final String value;
+BreedEntrydetail({Key key,this.value}): super(key:key);
+ @override
+_BreedEntryPageState createState() => _BreedEntryPageState();
+  }
+class _BreedEntryPageState extends State<BreedEntrydetail> {
     bool isPriority = false;
     void _toggleFlag(){
-    setState(() {
+  setState(() {
      if(isPriority) {
        isPriority = false;
      }else{
@@ -131,61 +129,65 @@ class _Breedlist extends StatefulWidget {
             child: new Icon(Icons.add, color: Colors.white),
             onPressed: () => Navigator.push(
             context, MaterialPageRoute(builder: (context) => Breedlist())),
-          ), 
-        body:ListView.builder( itemCount: 5,
-        shrinkWrap: true,
-        itemBuilder: (BuildContext context,int index) => Container(
+               ),
+
+      body:ListView.builder(itemCount: 10,
+          shrinkWrap: true,
+          itemBuilder: (BuildContext context,int index) => 
+            Container(
         //width: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.symmetric(vertical: 10.0),
-        child: Card(
-          margin: EdgeInsets.only(left: 10.0,right: 10.0),
-          elevation: 10.0,
-          shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(3.5)
-         ),
-          color: Colors.white70,
-          child: Container(decoration: BoxDecoration(
-          color: Colors.transparent,
-          ),
-        //width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.symmetric(horizontal: 10.0,vertical: 30.0),
-        padding: EdgeInsets.only(right: 80.0),
+              padding: EdgeInsets.symmetric(vertical: 10.0),
+              child: Card(
+                margin: EdgeInsets.only(left: 10.0,right: 10.0),
+                elevation: 10.0,
+                shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5.0)
+               ),
         child: 
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  width: 80.0,
-                  height: 80.0,
-                  color: Colors.white70,
-                  child: CircleAvatar(
-                    // backgroundColor: Colors.green,
-                    // backgroundImage: NetworkImage
-                    // ("https://www.google.com/search?q=chicken+images&rlz=1C1CHBF_enIN815IN815&tbm=isch&source=iu&ictx=1&fir=pQab4VRy_gKVlM%253A%252Cn02ibD9yVjdVZM%252C_&usg=AI4_-kTMhWDVRKAs8u3ox2RVQjz7MFiaWQ&sa=X&ved=2ahUKEwies97Du7jgAhUHf30KHR75CFoQ9QEwCnoECAAQGA#imgrc=pQab4VRy_gKVlM:"),
-                    ),
-                    ),
-                SizedBox(width: 20.0,),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: <Widget>[
-                    new Text("Breed Name: ${widget.value}"),
-                    Divider(color: Colors.teal,indent: 50.0,),
-                    // new IconButton(
-                    // icon: Icon(Icons.delete),
-                    // iconSize: 45.0,
-                    // color:(isPriority)? Colors.red : Colors.green,
-                    // onPressed: _toggleFlag,
-                    //  ),
+             Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                              ListTile(
+                                leading: CircleAvatar( backgroundColor: Colors.green,radius: 40.0,),
+                                trailing: new IconButton(
+                                  icon: Icon(Icons.delete),
+                                  iconSize: 25.0,
+                                    color:(isPriority)? Colors.green : Colors.redAccent,
+                                    onPressed: _toggleFlag,
+                                      ),
+                                  contentPadding: EdgeInsets.fromLTRB(10.0, 30.0, 20.0, 3.0),
+                                  title: Text('Breed'),
+                                  subtitle: Text('Details'),
+                                  ),
+              Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      new Text("Breed Name: ${widget.value}"),
+                      ]),
+
+            ButtonTheme.bar(
+                  // make buttons use the appropriate styles for cards
+                  child: ButtonBar(
+                    children: <Widget>[
+                      FlatButton(
+                        child: Text('Save',style: TextStyle(color: Colors.teal),),
+                        onPressed: () {/* ... */},
+                      ),
+                      FlatButton(
+                        child: Text('Edit',style: TextStyle(color: Colors.teal),),
+                        onPressed: () {/* ... */},
+                      ),
                     ],
+                  ),
                 ),
-          ],
-        ),
+              ],
+            ),
+            ),
           ),
-    ),
-     ),
-      )
-      ),
+        ),
+        ),
       );
     }
   }

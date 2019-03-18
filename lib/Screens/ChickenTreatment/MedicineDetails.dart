@@ -21,7 +21,7 @@ class MedicinePage extends StatefulWidget {
 class _MedicinePageState extends State<MedicinePage> {
 
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-  // List<String> _colors = <String>['', 'THB', 'INR', 'AUD', 'USD'];
+ 
   String currency = 'THB';
 
   final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
@@ -336,9 +336,7 @@ class _MedicinePageState extends State<MedicinePage> {
           }
   
   class _PurchMediListState extends State<PurchMedicineList> {
-  @override
-  Widget build(BuildContext context) {
-   
+  
   bool isPriority = false;
     void _toggleFlag(){
     setState(() {
@@ -349,6 +347,8 @@ class _MedicinePageState extends State<MedicinePage> {
      }
     });
     }
+    @override
+  Widget build(BuildContext context) {
     return new MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: new ThemeData(
@@ -368,66 +368,76 @@ class _MedicinePageState extends State<MedicinePage> {
           
       body: ListView.builder(itemCount: 10,
            shrinkWrap: true,
-           itemBuilder: (BuildContext context,int index) => Container(
+           itemBuilder: (BuildContext context,int index) => 
+           Container(
         //width: MediaQuery.of(context).size.width,
           padding: EdgeInsets.symmetric(vertical: 10.0),
           child: Card(
-          margin: EdgeInsets.only(left: 10.0,right: 10.0),
-          elevation: 10.0,
-          shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(3.5)
-          ),
-          color: Colors.white70,
-          child: Container(decoration: BoxDecoration(
-          color: Colors.transparent,
-          ),
-        //width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.symmetric(horizontal: 10.0,vertical: 30.0),
-        padding: EdgeInsets.only(right: 80.0),
-        child: 
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  width: 80.0,
-                  height: 80.0,
-                  color: Colors.white70,
-                  child: CircleAvatar(
-                    // backgroundColor: Colors.green,
-                    // backgroundImage: NetworkImage
-                    // ("https://www.google.com/search?q=chicken+images&rlz=1C1CHBF_enIN815IN815&tbm=isch&source=iu&ictx=1&fir=pQab4VRy_gKVlM%253A%252Cn02ibD9yVjdVZM%252C_&usg=AI4_-kTMhWDVRKAs8u3ox2RVQjz7MFiaWQ&sa=X&ved=2ahUKEwies97Du7jgAhUHf30KHR75CFoQ9QEwCnoECAAQGA#imgrc=pQab4VRy_gKVlM:"),
+            margin: EdgeInsets.only(left: 10.0,right: 10.0),
+            elevation: 10.0,
+               shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5.0)
+            ),
+        //   color: Colors.white70,
+        //   child: Container(decoration: BoxDecoration(
+        //   color: Colors.transparent,
+        //   ),
+        // //width: MediaQuery.of(context).size.width,
+        // margin: EdgeInsets.symmetric(horizontal: 10.0,vertical: 30.0),
+        // padding: EdgeInsets.only(right: 80.0),
+         child: 
+             Column(
+                     mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: <Widget>[
+                              ListTile(
+                                leading: CircleAvatar( backgroundColor: Colors.green,radius: 40.0,),
+                                trailing: new IconButton(
+                                  icon: Icon(Icons.delete),
+                                  iconSize: 25.0,
+                                    color:(isPriority)? Colors.green : Colors.redAccent,
+                                    onPressed: _toggleFlag,
+                                      ),
+                          contentPadding: EdgeInsets.fromLTRB(10.0, 30.0, 20.0, 3.0),
+                          title: Text('Purchased Medicines'),
+                          subtitle: Text('Details'),
+                           ),
+               
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+
+                    new Text("Medicine Name: ${widget.value}"),
+                    Divider(),
+                    new Text("Purchased Date: ${widget.value}"),
+                    Divider(),
+                    new Text("Quantity: ${widget.value}"),
+                    Divider(),
+                    new Text("Amount: ${widget.value}"),
+                  ]),
+                   
+                   ButtonTheme.bar(
+                  // make buttons use the appropriate styles for cards
+                  child: ButtonBar(
+                    children: <Widget>[
+                      // FlatButton(
+                      //   child: Text('Save',style: TextStyle(color: Colors.teal),),
+                      //   onPressed: () {/* ... */},
+                      // ),
+                      FlatButton(
+                        child: Text('Edit',style: TextStyle(color: Colors.teal),),
+                        onPressed: () {/* ... */},
+                      ),
+                    ],
                   ),
                 ),
-                SizedBox(width: 20.0,),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: <Widget>[
-                    new Text("Medicine Name: ${Widget.value}"),
-                    Divider(),
-                    new Text("Purchased Date: ${Widget.value}"),
-                    Divider(),
-                    new Text("Amount: ${Widget.value}"),
-                     Divider(),
-                    new Text("Quantity: ${Widget.value}"),
-
-                    Divider(color: Colors.teal,indent: 50.0,),
-                    // new IconButton(
-                    // icon: Icon(Icons.delete),
-                    // iconSize: 45.0,
-                    // color:(isPriority)? Colors.red : Colors.green,
-                    // onPressed: _toggleFlag,
-                    //  ),
-
-                    ],
-                 
+                ],
                 ),
-               
-          ],
-        ),
+            ),
           ),
-    ),
-     ),
-      ) ,
-     ) );
-     }}
+        ),
+       ),
+    );
+  }
+}

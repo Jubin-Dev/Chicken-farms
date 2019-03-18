@@ -17,7 +17,7 @@ class SalesTab extends StatefulWidget {
   TabController tabController;
   ScrollController scrollController;
   @override
-  void initState(){
+    void initState(){
     super.initState();
     tabController = TabController(length:3, vsync: this);
     scrollController = ScrollController();

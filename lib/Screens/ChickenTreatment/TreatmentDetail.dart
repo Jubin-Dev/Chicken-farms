@@ -5,6 +5,7 @@ import 'package:flutter_app/Screens/Tabs/ChickenTreatmentTabs.dart';
 import 'package:flutter_app/Screens/blocs/chic_bloc_Treatment.dart';
 import 'package:intl/intl.dart';
 
+
 void main() => runApp(new Treatment());
 class Treatment extends StatelessWidget {
   @override
@@ -28,9 +29,11 @@ class _TreatmentPageState extends State<TreatmentPage> {
   String code = '123';
   @override
   Widget build(BuildContext context) {
+    assert(debugCheckHasMediaQuery(context));
+   
     final bloc = TreatmentBloc();
   
-            Widget animalcode() {
+            Widget animalcode(){
                         return StreamBuilder<String>(
                           stream: bloc.anicodeStream,
                           builder:(context, snapshot){
@@ -209,9 +212,10 @@ class _TreatmentPageState extends State<TreatmentPage> {
                       primaryColor: Colors.green[450],
                       accentColor: Colors.green,
                       primarySwatch: Colors.green,
+                       brightness: Brightness.light,
                       ),
             home: new Scaffold(
-                    resizeToAvoidBottomPadding: false,
+                    resizeToAvoidBottomPadding : false,
                     appBar: new AppBar(
                         title: new Text(widget.title),
                         centerTitle: true,
@@ -219,19 +223,20 @@ class _TreatmentPageState extends State<TreatmentPage> {
                         leading: IconButton(icon: Icon(Icons.arrow_back_ios),
                         onPressed: () => Navigator.push(
                                     context, MaterialPageRoute(builder: (context) => Chicktreat())),
+                                  ),
+                          actions: <Widget>[
+                                new IconButton(icon: Icon(Icons.rotate_right,size: 35.0,),color: Colors.white,
+                                onPressed: () {}
+                                ),
+                               ],
                               ),
-                       actions: <Widget>[
-                      new IconButton(icon: Icon(Icons.rotate_right,size: 35.0,),color: Colors.white,
-                      onPressed: () {}
-              )
-            ],
-                          ),
               body: new SafeArea(
-                    top: false,
-                    bottom: false,
+                    top: true,
+                    bottom: true,
+                    minimum: EdgeInsets.all(16.0),
                     child:new Form(
                     child: new ListView( 
-                      padding: EdgeInsets.all(20.0),
+                     
                       children: <Widget>[
                               SizedBox(height: 10.0),
                               animalcode(),
@@ -261,14 +266,12 @@ class _TreatmentPageState extends State<TreatmentPage> {
                   }
               }
              
-   class Treatmentlist extends StatefulWidget{
-
-    final String value;
-    Treatmentlist({Key key,this.value}): super(key:key);
-      @override
-        _TreatmentlistPageState createState() => _TreatmentlistPageState();
+class Treatmentlist extends StatefulWidget{
+  final String value;
+  Treatmentlist({Key key,this.value}): super(key:key);
+  @override
+   _TreatmentlistPageState createState() => _TreatmentlistPageState();
           }
-  
   class _TreatmentlistPageState extends State<Treatmentlist> {
     bool isPriority = false;
     void _toggleFlag(){
@@ -290,8 +293,8 @@ class _TreatmentPageState extends State<TreatmentPage> {
       ),
       
       home:Scaffold(
-        resizeToAvoidBottomPadding: false,
-        floatingActionButton: new FloatingActionButton(
+            resizeToAvoidBottomPadding: false,
+            floatingActionButton: new FloatingActionButton(
             elevation: 20.0,
             highlightElevation: 20.0,
             isExtended: true,
@@ -300,67 +303,77 @@ class _TreatmentPageState extends State<TreatmentPage> {
                  context, MaterialPageRoute(builder: (context) => Treatment())),
           ), 
       
-      body:ListView.builder(itemCount: 20,
+      body:ListView.builder(itemCount: 10,
           shrinkWrap: true,
-          itemBuilder: (BuildContext context,int index) => Container(
+          itemBuilder: (BuildContext context,int index) =>
+           Container(
         //width: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.symmetric(vertical: 10.0),
-        child: Card(
-          margin: EdgeInsets.only(left: 10.0,right: 10.0),
-          elevation: 10.0,
-          shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(3.5)
-          ),
-          color: Colors.white70,
-          child: Container(decoration: BoxDecoration(
-          color: Colors.transparent,
-          ),
-        //width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.symmetric(horizontal: 10.0,vertical: 30.0),
-        padding: EdgeInsets.only(right: 80.0),
-        child: 
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  width: 80.0,
-                  height: 80.0,
-                  color: Colors.white70,
-                  child: CircleAvatar(
-                    // backgroundColor: Colors.green,
-                    // backgroundImage: NetworkImage
-                    // ("https://www.google.com/search?q=chicken+images&rlz=1C1CHBF_enIN815IN815&tbm=isch&source=iu&ictx=1&fir=pQab4VRy_gKVlM%253A%252Cn02ibD9yVjdVZM%252C_&usg=AI4_-kTMhWDVRKAs8u3ox2RVQjz7MFiaWQ&sa=X&ved=2ahUKEwies97Du7jgAhUHf30KHR75CFoQ9QEwCnoECAAQGA#imgrc=pQab4VRy_gKVlM:"),
-                  ),
-                ),
-                SizedBox(width: 20.0,),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.end,
+            padding: EdgeInsets.symmetric(vertical: 10.0),
+            child: Card(
+                margin: EdgeInsets.only(left: 10.0,right: 10.0),
+                elevation: 10.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0)
+                    ),
+        //   color: Colors.white70,
+        //   child: Container(decoration: BoxDecoration(
+        //   color: Colors.transparent,
+        //   ),
+        // //width: MediaQuery.of(context).size.width,
+        // margin: EdgeInsets.symmetric(horizontal: 10.0,vertical: 30.0),
+        // padding: EdgeInsets.only(right: 80.0),
+              child: 
+                  Column(
+                     mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: <Widget>[
+                              ListTile(
+                                leading: CircleAvatar( backgroundColor: Colors.green,radius: 40.0,),
+                                trailing: new IconButton(
+                                  icon: Icon(Icons.delete),
+                                  iconSize: 25.0,
+                                    color:(isPriority)? Colors.green : Colors.redAccent,
+                                    onPressed: _toggleFlag,
+                                      ),
+                                      contentPadding: EdgeInsets.fromLTRB(10.0, 30.0, 20.0, 3.0),
+                                      title: Text('Treatment'),
+                                      subtitle: Text('Details'),
+                                    ),
+                
+            Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                  new Text("Animal Code: ${widget.value}"),
+                    new Text("Animal Code: ${widget.value}"),
                     Divider(),
                     new Text("Medicine Name: ${widget.value}"),
                     Divider(),
                     new Text("Quantity: ${widget.value}"),
-                     Divider(),
+                    Divider(),
                     new Text("TotalDays: ${widget.value}"),
-                    Divider(color: Colors.teal,indent: 50.0,),
-                    // new IconButton(
-                    // icon: Icon(Icons.delete),
-                    // iconSize: 45.0,
-                    // color:(isPriority)? Colors.red : Colors.green,
-                    // onPressed: _toggleFlag,
-                    //  ),
-
+                  ]),
+                    
+            ButtonTheme.bar(
+                  // make buttons use the appropriate styles for cards
+                  child: ButtonBar(
+                    children: <Widget>[
+                      // FlatButton(
+                      //   child: Text('Save',style: TextStyle(color: Colors.teal),),
+                      //   onPressed: () {/* ... */},
+                      // ),
+                      FlatButton(
+                        child: Text('Edit',style: TextStyle(color: Colors.teal),),
+                        onPressed: () {/* ... */},
+                      ),
                     ],
+                  ),
                 ),
-          ],
-        ),
+               ],
+              ),
+              ),
           ),
-    ),
+        ),
      ),
-      )
-      ),
-      );
-    }
+    );
   }
+}

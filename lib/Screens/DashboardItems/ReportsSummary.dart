@@ -18,17 +18,13 @@ class ReportSummary extends StatelessWidget {
     );
   }
 }
-
 class ReportSummaryPage extends StatefulWidget {
   ReportSummaryPage({Key key, this.title}) : super(key: key);
   final String title;
-
   @override
   _ReportSummaryPageState createState() => new _ReportSummaryPageState();
 }
-
 class _ReportSummaryPageState extends State<ReportSummaryPage> {
-  
   final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
   };
  InputType inputType = InputType.date;
@@ -41,7 +37,6 @@ class _ReportSummaryPageState extends State<ReportSummaryPage> {
       appBar: new AppBar(
         title: new Text(widget.title),
         centerTitle: true,
-        
         backgroundColor: Colors.amber,
         leading: IconButton(icon: Icon(Icons.arrow_back_ios),
         onPressed: () => Navigator.push(
@@ -89,17 +84,17 @@ class _ReportSummaryPageState extends State<ReportSummaryPage> {
                       // borderRadius: BorderRadius.circular(30.0),
                       // shadowColor: Colors.lightBlueAccent.shade100,
                       // elevation: 6.0,
-                  child: RaisedButton(
+                      child: RaisedButton(
                     // minWidth: 200.0,
                     // height: 47.0,
-                    onPressed: (){},
-                    color: Colors.amber,
-                    child: Text('Search',style:TextStyle(color:Colors.white,fontSize: 20.0)),
+                      onPressed: (){},
+                      color: Colors.amber,
+                      child: Text('Search',style:TextStyle(color:Colors.white,fontSize: 20.0)),
                    ) ,
                    ),
                      ),
-                             ],
-                      ))),
+                     ],
+                  ))),
                 );
               }
-              }
+            }

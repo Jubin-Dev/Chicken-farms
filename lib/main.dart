@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
         fontFamily: 'TitilliumWeb',
         textTheme: TextTheme(
-          headline: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+          headline: TextStyle(fontSize: 50.0, fontWeight: FontWeight.bold),
           title: TextStyle(fontSize: 36.0, fontStyle: FontStyle.normal,color: Colors.white,fontFamily: 'TitilliumWeb'),
           body1: TextStyle(fontSize: 15.0,),
           ),
@@ -73,7 +73,7 @@ class SplashScreen extends StatefulWidget{
                           padding: EdgeInsets.only(top:50.0),
                             ),
                         Text("CHICKEN FARM",style: TextStyle(color:
-                        Colors.teal,fontSize: 25.0,fontWeight: FontWeight.w500,fontFamily: 'Roboto'),
+                        Colors.teal,fontSize: 25.0,fontWeight: FontWeight.w500,fontFamily: 'TitilliumWeb'),
                         ),
                       ],
                     ),
@@ -90,7 +90,7 @@ class SplashScreen extends StatefulWidget{
                         padding: EdgeInsets.only(top: 50.0),
                       ),
                       Text("Smart Care For Chickens",
-                      style: TextStyle(color: Colors.teal,fontSize: 18.0,fontWeight: FontWeight.w400,fontFamily: 'Roboto'),
+                      style: TextStyle(color: Colors.teal,fontSize: 18.0,fontWeight: FontWeight.w400,fontFamily: 'TitilliumWeb'),
                       )
                     ],
 
