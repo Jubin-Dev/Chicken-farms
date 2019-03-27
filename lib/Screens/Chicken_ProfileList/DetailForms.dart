@@ -4,18 +4,21 @@ import 'package:flutter/services.dart';
 import 'package:flutter_app/Screens/Tabs/ProfilesTab.dart';
 import 'package:flutter_app/Screens/blocs/profilebloc.dart';
 import 'package:intl/intl.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => new _MyHomePageState();
   }
-class _MyHomePageState extends State<MyHomePage> {
+  class _MyHomePageState extends State<MyHomePage> {
+  Future<File> imageFile;
    final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
       };
   InputType inputType = InputType.date;
   bool editable = true;
   DateTime date;
-  final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+  // final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
     String dropcodedownValue = 'Dead on Farm';
     String gender = 'Male';
     String breed = 'None';
@@ -24,16 +27,49 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
       final bloc = ProfileBloc();
+      pickImageFromGallery(ImageSource source) {
+      setState(() {
+      imageFile = ImagePicker.pickImage(source: source);
+    });
+  }
               
               Widget logo(){
-                      return Hero(tag: 'hero', 
-                        child: CircleAvatar(
-                          backgroundColor: Colors.yellow,
+                      return FutureBuilder<File>(future: imageFile,
+     builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
+       if (snapshot.connectionState == ConnectionState.done &&
+            snapshot.data != null) {
+            return Row(mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+                  new CircleAvatar(
+                      radius: 50.0,
+                      backgroundColor: Colors.teal,
+                      child:ClipOval(
+                        child:Image.file(
+                            snapshot.data,
+                            fit: BoxFit.cover,
+                            width: 90.0,
+                            height: 90.0,
+                             ),),),
+                                ],);
+                                }
+        else if (snapshot.error != null) {
+          return const Text(
+            'Error Picking Image',
+              textAlign: TextAlign.center,
+              );
+            }else {
+              return  CircleAvatar(
+                          backgroundColor: Colors.teal,
                           radius: 45.0,
-                          child: Image.asset('lib/images/photo.png'),
-                         ),
-                        );
-                      }
+                          child:IconButton(icon:Icon(Icons.image),tooltip:'Upload Photos',iconSize: 50.0,onPressed:(){
+                          pickImageFromGallery(ImageSource.gallery);
+                },)
+             
+          );
+        }
+      },
+    );
+  }
               Widget animalcode(){
                             return StreamBuilder<String>(
                             stream: bloc.animalCodeStream,
@@ -163,38 +199,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       );
                       }
                   
-              // Widget breeder(){
-              //      return StreamBuilder<String>(
-              //         stream: bloc.dobStream,
-              //         builder:(context, snapshot){
-              //          return InputDecorator(
-              //             decoration: InputDecoration(
-              //               errorText: snapshot.error,
-              //               icon: Icon(Icons.beenhere,color: Colors.green,),
-              //               labelText: 'Breed',
-              //                 ),
-              //           child: DropdownButtonHideUnderline(
-              //           child: DropdownButton<String>(
-              //               value: breed,
-              //               isDense: true,                
-              //           onChanged: (String newValue) {
-              //           setState(() {
-              //           breed  = newValue; 
-              //          });
-              //        },
-              //        items: <String>['None', 'Sire', 'Breeder']
-              //        .map<DropdownMenuItem<String>>((String value){
-              //          return DropdownMenuItem<String>(value: value,
-              //          child: Text(value),
-              //          );
-              //         }).toList(),
-              //       //  onChanged: bloc.breedChanged,
-              //       //  value:snapshot.data  
-              //           ),
-              //           ),
-              //           );}
-              //        );}
-                    // Divider();
+           
                  
               Widget sire(){
               return StreamBuilder<String>(
@@ -467,8 +472,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Text('Submit',style:TextStyle(color:Colors.white,fontSize: 20.0)),
                           onPressed: snapshot.hasData ? null: () {
                           bloc.submit();
-                          Navigator.push(context,  MaterialPageRoute(
-                          builder:  (context) => Profile()) );
+                          // Navigator.push(context,  MaterialPageRoute(
+                          // builder:  (context) => Profile()) );
                          },
                          );} 
                          );
@@ -479,7 +484,7 @@ class _MyHomePageState extends State<MyHomePage> {
           accentColor: Colors.green,
           primarySwatch: Colors.green,
          ),
-          home : Scaffold(
+          home: new Scaffold(
                 resizeToAvoidBottomPadding: false,
                   appBar: new AppBar(
                   title: new Text('Chicken Details'),
@@ -487,22 +492,29 @@ class _MyHomePageState extends State<MyHomePage> {
                     backgroundColor: Colors.amber,
                     leading: IconButton(
                         icon: Icon(Icons.arrow_back_ios),
-                        onPressed: () => Navigator.push(
-                        context,MaterialPageRoute(builder: (context) => Profile(),
-                            ),
+                        onPressed: () {Navigator.pop(context);
+                          }
                         ),
-                      ),
+                      
                       actions: <Widget>[
-                      new IconButton(icon: Icon(Icons.rotate_right,size: 35.0,),color: Colors.white,
+                      new IconButton(icon: Icon(Icons.rotate_right),color: Colors.white,
                       onPressed: () {}
-              )
-            ],
-                  ),    
-              body: new Center(
-                          child: new ListView( 
-                            shrinkWrap: true,
-                            padding: EdgeInsets.only(left:20.0 , right:20.0),
-                              children: <Widget>[
+                    )
+                  ],
+                  ),  
+          body: new SingleChildScrollView(
+            child :new Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 32.0),
+                    child: new Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisSize: MainAxisSize.max,
+                    children: <Widget>[ 
+              // new Center(
+              //             child: new ListView( 
+              //               shrinkWrap: true,
+              //               padding: EdgeInsets.only(left:20.0 , right:20.0),
+              //                 children: <Widget>[
                               SizedBox(height: 8.0),
                               logo(),
                               SizedBox(height: 10.0),
@@ -537,23 +549,21 @@ class _MyHomePageState extends State<MyHomePage> {
                               currency(),
                               SizedBox(height: 10.0),
                               remarks(),
-                              SizedBox(height: 25.0,),
+                              SizedBox(height: 30.0,),
                               submit(),
                             ],
                           ),
                        ),
-                  ),
+                     ),
+                  ), 
                 );
               }
             }
     
 class NextPage extends StatefulWidget{
-
 final String value;
 NextPage({Key key,this.value}): super(key:key);
-
 @override
-
 _NextPageState createState() => _NextPageState();
       }
   class _NextPageState extends State<NextPage> {
@@ -567,34 +577,28 @@ _NextPageState createState() => _NextPageState();
        isPriority = true;
           }
       });
-
     }
-
   @override
   Widget build(BuildContext context) {
-    return new  MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: new ThemeData(
-        accentColor: Colors.amber,
-        brightness: Brightness.light,
-      ),
-      home:Scaffold(
-            resizeToAvoidBottomPadding: false,
+    return new 
+      Scaffold(
+            // resizeToAvoidBottomPadding: false,
             floatingActionButton: new FloatingActionButton(
+            backgroundColor: Colors.amber,
             elevation: 20.0,
             highlightElevation: 20.0,
             isExtended: true,
             child: new Icon(Icons.add, color: Colors.white),
-            onPressed: () => Navigator.push(
+            onPressed: () =>
+              Navigator.push(
                  context, MaterialPageRoute(builder: (context) => MyHomePage()),
-                 ),
-          ),
-
+                  ),
+                  ),
       body:ListView.builder(itemCount: 10,
           shrinkWrap: true,
           itemBuilder: (BuildContext context,int index) =>
            Container(
-        //width: MediaQuery.of(context).size.width,
+          width: MediaQuery.of(context).size.width,
           padding: EdgeInsets.symmetric(vertical: 10.0),
           child: Card(
               margin: EdgeInsets.only(left: 10.0,right: 10.0),
@@ -659,7 +663,7 @@ _NextPageState createState() => _NextPageState();
                  ),
                ),
             ),
-           ),
+          
       );
     }
   }

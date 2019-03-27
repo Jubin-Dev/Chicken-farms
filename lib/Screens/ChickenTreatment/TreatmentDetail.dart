@@ -5,31 +5,135 @@ import 'package:flutter_app/Screens/Tabs/ChickenTreatmentTabs.dart';
 import 'package:flutter_app/Screens/blocs/chic_bloc_Treatment.dart';
 import 'package:intl/intl.dart';
 
-
-void main() => runApp(new Treatment());
-class Treatment extends StatelessWidget {
+class Treatmentlist extends StatefulWidget{
+  final String value;
+  Treatmentlist({Key key,this.value}): super(key:key);
+  @override
+   _TreatmentlistPageState createState() => _TreatmentlistPageState();
+          }
+  class _TreatmentlistPageState extends State<Treatmentlist> {
+    bool isPriority = false;
+    void _toggleFlag(){
+    setState(() {
+     if(isPriority) {
+       isPriority = false;
+     }else{
+       isPriority = true;
+     }
+    });
+  }
   @override
   Widget build(BuildContext context) {
-    return new TreatmentPage(title: 'Treatment Details');
+    return 
+    // new  MaterialApp(
+    //   debugShowCheckedModeBanner: false,
+    //   theme: new ThemeData(
+    //     accentColor: Colors.amber,
+    //     brightness: Brightness.light,
+    //   ),
+      
+     Scaffold(
+            // resizeToAvoidBottomPadding: false,
+            floatingActionButton: new FloatingActionButton(
+            backgroundColor: Colors.amber,
+            elevation: 20.0,
+            highlightElevation: 20.0,
+            isExtended: true,
+            child: new Icon(Icons.add, color: Colors.white),
+            onPressed: () {
+                  Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Treatment()));
+            }
+          ), 
+      
+      body:ListView.builder(itemCount: 10,
+          shrinkWrap: true,
+          itemBuilder: (BuildContext context,int index) =>
+           Container(
+        //width: MediaQuery.of(context).size.width,
+            padding: EdgeInsets.symmetric(vertical: 10.0),
+            child: Card(
+                margin: EdgeInsets.only(left: 10.0,right: 10.0),
+                elevation: 10.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0)
+                    ),
+        //   color: Colors.white70,
+        //   child: Container(decoration: BoxDecoration(
+        //   color: Colors.transparent,
+        //   ),
+        // //width: MediaQuery.of(context).size.width,
+        // margin: EdgeInsets.symmetric(horizontal: 10.0,vertical: 30.0),
+        // padding: EdgeInsets.only(right: 80.0),
+              child: 
+                  Column(
+                     mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: <Widget>[
+                              ListTile(
+                                leading: CircleAvatar( backgroundColor: Colors.green,radius: 40.0,),
+                                trailing: new IconButton(
+                                  icon: Icon(Icons.delete),
+                                  iconSize: 25.0,
+                                    color:(isPriority)? Colors.green : Colors.redAccent,
+                                    onPressed: _toggleFlag,
+                                      ),
+                                      contentPadding: EdgeInsets.fromLTRB(10.0, 30.0, 20.0, 3.0),
+                                      title: Text('Treatment'),
+                                      subtitle: Text('Details'),
+                                    ),
+                
+            Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    new Text("Animal Code: ${widget.value}"),
+                    Divider(),
+                    new Text("Medicine Name: ${widget.value}"),
+                    Divider(),
+                    new Text("Quantity: ${widget.value}"),
+                    Divider(),
+                    new Text("TotalDays: ${widget.value}"),
+                  ]),
+                    
+            ButtonTheme.bar(
+                  // make buttons use the appropriate styles for cards
+                  child: ButtonBar(
+                    children: <Widget>[
+                      // FlatButton(
+                      //   child: Text('Save',style: TextStyle(color: Colors.teal),),
+                      //   onPressed: () {/* ... */},
+                      // ),
+                      FlatButton(
+                        child: Text('Edit',style: TextStyle(color: Colors.teal),),
+                        onPressed: () {/* ... */},
+                      ),
+                    ],
+                  ),
+                ),
+               ],
+              ),
+              ),
+          ),
+        ),
+     
+    );
   }
 }
-class TreatmentPage extends StatefulWidget {
-  TreatmentPage({Key key, this.title}) : super(key: key);
-  final String title;
+
+class Treatment extends StatefulWidget {
   @override
-  _TreatmentPageState createState() => new _TreatmentPageState();
-}
-class _TreatmentPageState extends State<TreatmentPage> {
-  final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
+  State<StatefulWidget> createState() => new _TreatmentPageState(); 
+    }
+  class _TreatmentPageState extends State<Treatment>{
+    final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
   };
   InputType inputType = InputType.date;
   bool editable = true;
   DateTime date;
-  final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   String code = '123';
   @override
   Widget build(BuildContext context) {
-    assert(debugCheckHasMediaQuery(context));
    
     final bloc = TreatmentBloc();
   
@@ -207,17 +311,19 @@ class _TreatmentPageState extends State<TreatmentPage> {
                    );}
                    );}
             
-            return MaterialApp(
+            return 
+            MaterialApp(
                   theme: ThemeData(
                       primaryColor: Colors.green[450],
                       accentColor: Colors.green,
                       primarySwatch: Colors.green,
                        brightness: Brightness.light,
                       ),
-            home: new Scaffold(
+           
+             home:new Scaffold(
                     resizeToAvoidBottomPadding : false,
                     appBar: new AppBar(
-                        title: new Text(widget.title),
+                        title: new Text('Treatment'),
                         centerTitle: true,
                         backgroundColor: Colors.amber,
                         leading: IconButton(icon: Icon(Icons.arrow_back_ios),
@@ -225,19 +331,19 @@ class _TreatmentPageState extends State<TreatmentPage> {
                                     context, MaterialPageRoute(builder: (context) => Chicktreat())),
                                   ),
                           actions: <Widget>[
-                                new IconButton(icon: Icon(Icons.rotate_right,size: 35.0,),color: Colors.white,
+                                new IconButton(icon: Icon(Icons.rotate_right,),color: Colors.white,
                                 onPressed: () {}
                                 ),
                                ],
                               ),
-              body: new SafeArea(
-                    top: true,
-                    bottom: true,
-                    minimum: EdgeInsets.all(16.0),
-                    child:new Form(
-                    child: new ListView( 
-                     
-                      children: <Widget>[
+                      body:new SingleChildScrollView(
+                      child: new Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 32.0),
+                    child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisSize: MainAxisSize.max,
+                    children: <Widget>[ 
                               SizedBox(height: 10.0),
                               animalcode(),
                               SizedBox(height: 10.0),
@@ -246,7 +352,7 @@ class _TreatmentPageState extends State<TreatmentPage> {
                               reason(),
                               SizedBox(height: 10.0),
                               quantity(),
-                              SizedBox(height:10.0,),
+                              SizedBox(height: 10.0,),
                               units(),
                               SizedBox(height: 10.0),
                               sd(),
@@ -256,124 +362,16 @@ class _TreatmentPageState extends State<TreatmentPage> {
                               dose(),
                               SizedBox(height: 10.0),
                               remark(),
-                              SizedBox(height: 20.0),
+                              SizedBox(height: 30.0),
                               btn(),
                             ],
                           ),
-                       ),
-                      ),
-                   ));
-                  }
+                   ),
+                   )
+                  ), 
+                );
               }
+            }
+
+
              
-class Treatmentlist extends StatefulWidget{
-  final String value;
-  Treatmentlist({Key key,this.value}): super(key:key);
-  @override
-   _TreatmentlistPageState createState() => _TreatmentlistPageState();
-          }
-  class _TreatmentlistPageState extends State<Treatmentlist> {
-    bool isPriority = false;
-    void _toggleFlag(){
-    setState(() {
-     if(isPriority) {
-       isPriority = false;
-     }else{
-       isPriority = true;
-     }
-    });
-  }
-  @override
-  Widget build(BuildContext context) {
-    return new  MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: new ThemeData(
-        accentColor: Colors.amber,
-        brightness: Brightness.light,
-      ),
-      
-      home:Scaffold(
-            resizeToAvoidBottomPadding: false,
-            floatingActionButton: new FloatingActionButton(
-            elevation: 20.0,
-            highlightElevation: 20.0,
-            isExtended: true,
-            child: new Icon(Icons.add, color: Colors.white),
-            onPressed: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => Treatment())),
-          ), 
-      
-      body:ListView.builder(itemCount: 10,
-          shrinkWrap: true,
-          itemBuilder: (BuildContext context,int index) =>
-           Container(
-        //width: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.symmetric(vertical: 10.0),
-            child: Card(
-                margin: EdgeInsets.only(left: 10.0,right: 10.0),
-                elevation: 10.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0)
-                    ),
-        //   color: Colors.white70,
-        //   child: Container(decoration: BoxDecoration(
-        //   color: Colors.transparent,
-        //   ),
-        // //width: MediaQuery.of(context).size.width,
-        // margin: EdgeInsets.symmetric(horizontal: 10.0,vertical: 30.0),
-        // padding: EdgeInsets.only(right: 80.0),
-              child: 
-                  Column(
-                     mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: <Widget>[
-                              ListTile(
-                                leading: CircleAvatar( backgroundColor: Colors.green,radius: 40.0,),
-                                trailing: new IconButton(
-                                  icon: Icon(Icons.delete),
-                                  iconSize: 25.0,
-                                    color:(isPriority)? Colors.green : Colors.redAccent,
-                                    onPressed: _toggleFlag,
-                                      ),
-                                      contentPadding: EdgeInsets.fromLTRB(10.0, 30.0, 20.0, 3.0),
-                                      title: Text('Treatment'),
-                                      subtitle: Text('Details'),
-                                    ),
-                
-            Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    new Text("Animal Code: ${widget.value}"),
-                    Divider(),
-                    new Text("Medicine Name: ${widget.value}"),
-                    Divider(),
-                    new Text("Quantity: ${widget.value}"),
-                    Divider(),
-                    new Text("TotalDays: ${widget.value}"),
-                  ]),
-                    
-            ButtonTheme.bar(
-                  // make buttons use the appropriate styles for cards
-                  child: ButtonBar(
-                    children: <Widget>[
-                      // FlatButton(
-                      //   child: Text('Save',style: TextStyle(color: Colors.teal),),
-                      //   onPressed: () {/* ... */},
-                      // ),
-                      FlatButton(
-                        child: Text('Edit',style: TextStyle(color: Colors.teal),),
-                        onPressed: () {/* ... */},
-                      ),
-                    ],
-                  ),
-                ),
-               ],
-              ),
-              ),
-          ),
-        ),
-     ),
-    );
-  }
-}

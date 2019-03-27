@@ -41,14 +41,14 @@ class VaccineTab extends StatefulWidget {
             backgroundColor: Colors.amber,
             elevation: 20.0,
             title: Text('VACCINE'),
-            expandedHeight: 160.0,
-            leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios),
-            onPressed: () => Navigator.push (
-            context, MaterialPageRoute(builder: (context) => NavPage(),
-             ),
-     ),
-       ),
+            expandedHeight: 100.0,
+            // leading: IconButton(
+            // icon: Icon(Icons.arrow_back_ios),
+            // onPressed: () => Navigator.push (
+            // context, MaterialPageRoute(builder: (context) => NavPage(),
+            //  ),
+            // ),
+            // ),
             centerTitle: true,
             pinned: true,
             floating: false,
@@ -86,27 +86,20 @@ class VaccineTab extends StatefulWidget {
         ];
       },
       body: TabBarView(children: <Widget>[
-          new Container(
-          child:
+          
           new VaccineSched(),
-        ),
-          new Container(
-          child:
+      
           new PurchVaccineList(),
-        ),
-          new Container(
-          child:
+      
           new GivenVaccineList(),
-        ),
-          new Container(
-          child:
+       
           new Vaccinedue(),
-        ),
-    ],
-        controller: tabController,
-    ),
-    )
-
-    ) );
+           
+          ],
+          controller: tabController,
+          ),
+        )
+      ) 
+    );
   }
 }

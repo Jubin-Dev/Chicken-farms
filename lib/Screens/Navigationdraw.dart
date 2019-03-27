@@ -28,7 +28,7 @@ class MyNav extends StatelessWidget {
           ),
           ),
       ),
-      home: new NavPage(),
+      // home: new NavPage(),
           );
         }
       }
@@ -60,7 +60,7 @@ class DrawerOnly extends StatelessWidget{
                 onTap: () { Navigator.pop(context);
                Navigator.push(
                  context, MaterialPageRoute(builder: (context) => Profile()));
-                 },
+                    },
                   ),
               // new ListTile(
               //   title: new Text("Farm Profile"),
@@ -81,21 +81,20 @@ class DrawerOnly extends StatelessWidget{
                 leading: new Icon(Icons.local_hospital, color: Colors.green),
                 trailing: new Icon(Icons.arrow_right,color: Colors.amber),
                  onTap: () { Navigator.pop(context);
-                   Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => Chicktreat()));
-                 }
-              
-              ),
-               new ListTile(
-                title: new Text("Vaccine"),
-              leading: new Icon(Icons.business_center, color: Colors.green),
-              trailing: new Icon(Icons.arrow_right,color: Colors.amber),
-               onTap: () { 
-                 Navigator.pop(context);
-                 Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => VaccineTab()));
-               }
-              ),
+                    Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Chicktreat()));
+                     }
+                 ),
+              new ListTile(
+                  title: new Text("Vaccine"),
+                  leading: new Icon(Icons.business_center, color: Colors.green),
+                  trailing: new Icon(Icons.arrow_right,color: Colors.amber),
+                     onTap: () { 
+                        Navigator.pop(context);
+                        Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => VaccineTab()));
+                              }
+                          ),
               new ListTile(
                 title: new Text("Breed List"),
                 leading: new Icon(Icons.assignment, color: Colors.green),
@@ -104,8 +103,8 @@ class DrawerOnly extends StatelessWidget{
                   Navigator.pop(context);
                   Navigator.push(
                 context, MaterialPageRoute(builder: (context) => BreedEntrydetail()));
-                 }
-              ),
+                      }
+                  ),
               
               new Divider(color: Colors.yellow,
 
@@ -118,8 +117,8 @@ class DrawerOnly extends StatelessWidget{
                  onTap: () {
                     Navigator.pop(context);
                     Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => ExpTab()));
-            } ),
+                    context, MaterialPageRoute(builder: (context) => ExpTab()));
+                    } ),
               new ListTile(
                 title: new Text("Sales"),
                 leading: new Icon(Icons.assessment, color: Colors.green),
@@ -127,8 +126,7 @@ class DrawerOnly extends StatelessWidget{
                  onTap: () {
                     Navigator.pop(context);
                     Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => SalesTab()));
-                 
+                    context, MaterialPageRoute(builder: (context) => SalesTab()));
                   } ),
               new ListTile(
                 title: new Text("Stock out"),
@@ -137,7 +135,7 @@ class DrawerOnly extends StatelessWidget{
                  onTap: () { 
                    Navigator.pop(context);
                    Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => Chicktreat()));
+                  context, MaterialPageRoute(builder: (context) => Chicktreat()));
                   } ),
               new ListTile(
                 title: new Text("Logout"),
@@ -146,36 +144,36 @@ class DrawerOnly extends StatelessWidget{
                 onTap: () {
                    Navigator.pop(context);
                    Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => Chicktreat()));
+                    context, MaterialPageRoute(builder: (context) => Chicktreat()));
                 }),
             ],
           )
       );
   }
 }
-  class NavPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-      // appBar: new AppBar(
-      //   title: new Text('Home'),
-      //   centerTitle: true,
-      //    actions: <Widget>[
-      //      new IconButton(icon: Icon(Icons.search),
-      //     onPressed: () {},
-      //       )
-      //     ],
-      //   // elevation: defaultTargetPlatform == TargetPlatform.android ? 5.0 : 0.0 ,
-      // ),
-      body: new Container(
-        child:new Center(
-        child:new MyHomes(),
-        ),
-        ),
-      );
-  }
+//   class NavPage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return new Scaffold(
+//       // appBar: new AppBar(
+//       //   title: new Text('Home'),
+//       //   centerTitle: true,
+//       //    actions: <Widget>[
+//       //      new IconButton(icon: Icon(Icons.search),
+//       //     onPressed: () {},
+//       //       )
+//       //     ],
+//       //   // elevation: defaultTargetPlatform == TargetPlatform.android ? 5.0 : 0.0 ,
+//       // ),
+//       body: new Container(
+//         child:new Center(
+//         child:new MyHomes(),
+//         ),
+//         ),
+//       );
+//   }
   
-}
+// }
 
 
 

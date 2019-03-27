@@ -40,13 +40,13 @@ class ExpTab extends StatefulWidget {
             elevation: 15.0,
             title: Text('EXPENSES'),
             expandedHeight: 160.0,
-            leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios),
-            onPressed: () => Navigator.push (
-            context, MaterialPageRoute(builder: (context) => NavPage(),
-             ),
-     ),
-       ),
+    //         leading: IconButton(
+    //         icon: Icon(Icons.arrow_back_ios),
+    //         onPressed: () => Navigator.push (
+    //         context, MaterialPageRoute(builder: (context) => NavPage(),
+    //          ),
+    //  ),
+    //    ),
             centerTitle: true,
             pinned: true,
             floating: true,
@@ -75,14 +75,11 @@ class ExpTab extends StatefulWidget {
         ];
       },
       body: TabBarView(children: <Widget>[
-          new Container(
-          child:
+          
           new ExpList(),
-        ),
-          new Container(
-          child:
+       
           new ExpEntryList(),
-        ),
+       
     ],
         controller: tabController,
     ),

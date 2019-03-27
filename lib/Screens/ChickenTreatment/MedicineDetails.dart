@@ -243,8 +243,8 @@ class _MedicinePageState extends State<MedicinePage> {
                              ) );}
                              );} 
                     
-                    Widget addbtn(){
-                      return StreamBuilder<bool>(
+                Widget addbtn(){
+                    return StreamBuilder<bool>(
                     stream: bloc.submitdetail,
                     builder:(context, snapshot){
                       return RaisedButton(
@@ -265,7 +265,8 @@ class _MedicinePageState extends State<MedicinePage> {
                     primarySwatch: Colors.green,
                       ),
                       
-      home: new Scaffold(
+      home: 
+      new Scaffold(
             resizeToAvoidBottomPadding: false,
             appBar: new AppBar(
             title: new Text(widget.title),
@@ -283,15 +284,23 @@ class _MedicinePageState extends State<MedicinePage> {
             ],
           ),
 
-      body: new SafeArea(
-              top: false,
-              bottom: false,
-              child: new Form(
-                  key: _formKey,
-                  // autovalidate: true,
-                  child: new ListView(
-                    padding: const EdgeInsets.all( 20.0),
-                    children: <Widget>[
+      // body: new SafeArea(
+      //         top: false,
+      //         bottom: false,
+      //         child: new Form(
+      //             key: _formKey,
+      //             // autovalidate: true,
+      //             child: new ListView(
+      //               padding: const EdgeInsets.all( 20.0),
+      //               children: <Widget>[
+         body: new SingleChildScrollView(
+                child :new Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 32.0),
+                    child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                     mainAxisSize: MainAxisSize.max,
+                    children: <Widget>[ 
                               SizedBox(height: 10.0),
                               medicname(),
                               SizedBox(height: 10.0),
@@ -316,7 +325,7 @@ class _MedicinePageState extends State<MedicinePage> {
                               currencys(),
                               SizedBox(height: 10.0),
                               amount(),
-                              SizedBox(height: 20.0),
+                              SizedBox(height: 30.0),
                               addbtn(),
                             ],
                           ),
@@ -349,15 +358,18 @@ class _MedicinePageState extends State<MedicinePage> {
     }
     @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: new ThemeData(
-        accentColor: Colors.amber,
-        brightness: Brightness.light,
-        ),
-      home: Scaffold(
-          resizeToAvoidBottomPadding: false,
+    return 
+    // new MaterialApp(
+    //   debugShowCheckedModeBanner: false,
+    //   theme: new ThemeData(
+    //     accentColor: Colors.amber,
+    //     brightness: Brightness.light,
+    //     ),
+      // home:
+       Scaffold(
+          // resizeToAvoidBottomPadding: false,
           floatingActionButton: new FloatingActionButton(
+            backgroundColor: Colors.amber,
             elevation: 20.0,
             highlightElevation: 20.0,
             isExtended: true,
@@ -437,7 +449,7 @@ class _MedicinePageState extends State<MedicinePage> {
             ),
           ),
         ),
-       ),
+       
     );
   }
 }

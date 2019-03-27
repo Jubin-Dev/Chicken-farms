@@ -38,13 +38,13 @@ class SaleSummaryTab extends StatefulWidget {
             elevation: 20.0,
             title: Text('Details'),
             expandedHeight: 120.0,
-            leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios),
-            onPressed: () => Navigator.push (
-            context, MaterialPageRoute(builder: (context) => NavPage(),
-             ),
-     ),
-       ),
+    //         leading: IconButton(
+    //         icon: Icon(Icons.arrow_back_ios),
+    //         onPressed: () => Navigator.push (
+    //         context, MaterialPageRoute(builder: (context) => NavPage(),
+    //          ),
+    //  ),
+    //    ),
             centerTitle: true,
             pinned: true,
             floating: true,
@@ -75,14 +75,11 @@ class SaleSummaryTab extends StatefulWidget {
         ];
       },
       body: TabBarView(children: <Widget>[
-          new Container(
-          child:
+         
           new ReportSale(),
-        ),
-          new Container(
-          child:
+       
           new SaleSummary(),
-        ),
+       
          
     ],
         controller: tabController,

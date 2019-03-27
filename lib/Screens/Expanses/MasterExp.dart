@@ -139,11 +139,19 @@ class _MasterExpPageState extends State<MasterExpPage> {
                     )
                   ],
               ),
-        body: new Center(
-                    child: new ListView( 
-                          shrinkWrap: true,
-                          padding: EdgeInsets.only(left:20.0 , right:20.0, bottom: 70.0),
-                          children: <Widget>[
+        // body: new Center(
+        //             child: new ListView( 
+        //                   shrinkWrap: true,
+        //                   padding: EdgeInsets.only(left:20.0 , right:20.0, bottom: 70.0),
+        //                   children: <Widget>[
+           body:new SingleChildScrollView(
+                      child: new Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 32.0),
+                      child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[ 
                               SizedBox(height: 2.0),
                               expcode(),
                               SizedBox(height: 10.0),
@@ -159,7 +167,7 @@ class _MasterExpPageState extends State<MasterExpPage> {
                                   ]
                             )
                           )
-                       ) );
+                     ), ), );
                     }
                    }
     class ExpList extends StatefulWidget{

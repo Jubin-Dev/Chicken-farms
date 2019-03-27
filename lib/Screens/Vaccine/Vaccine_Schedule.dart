@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
 import 'package:flutter_app/Screens/Tabs/VaccineTab.dart';
 
 void main() => runApp(new Vaccine());
@@ -17,7 +17,10 @@ class Vaccine extends StatelessWidget {
     return new MaterialApp(
       // title: 'Flutter Form Demo',
       theme: new ThemeData(
-        primarySwatch: Colors.green,
+        primaryColor: Colors.green[450],
+                      accentColor: Colors.green,
+                      primarySwatch: Colors.green,
+                       brightness: Brightness.light,
       ),
       home: new VaccinePage(title: 'Vaccine Schedule'),
     );
@@ -57,14 +60,22 @@ class _VaccinePageState extends State<VaccinePage> {
         ),
 
 
-      body: new SafeArea(
-          top: false,
-          bottom: false,
-          child: new Form(
-              autovalidate: true,
-              child: new ListView(
-              padding: const EdgeInsets.all(20.0),
-              children: <Widget>[
+      // body: new SafeArea(
+      //     top: false,
+      //     bottom: false,
+      //     child: new Form(
+      //         autovalidate: true,
+      //         child: new ListView(
+      //         padding: const EdgeInsets.all(20.0),
+      //         children: <Widget>[
+         body:new SingleChildScrollView(
+                      child: new Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 32.0),
+                    child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[ 
                   new TextField(
                     controller: _animalAgeController,
                     onChanged: (value) => _animalAgeController.text = value,
@@ -131,18 +142,15 @@ class _VaccinePageState extends State<VaccinePage> {
            
                     color: Colors.amber,
                     child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
-
-                   ) ,
-                   ),
+                      ) ,
                      ),
-                      
+                     ),
                     ],
                       ))),
-       );
+                  );
+                }
               }
-              }
-    
-    class VaccineSched extends StatefulWidget{
+              class VaccineSched extends StatefulWidget{
 
     final String value;
     VaccineSched({Key key,this.value}): super(key:key);
@@ -166,16 +174,19 @@ class _VaccinePageState extends State<VaccinePage> {
 
   @override
   Widget build(BuildContext context) {  
-    return new  MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: new ThemeData(
-        accentColor: Colors.amber,
-        brightness: Brightness.light,
-      ),
+    return new 
+    //  MaterialApp(
+    //   debugShowCheckedModeBanner: false,
+    //   theme: new ThemeData(
+    //     accentColor: Colors.amber,
+    //     brightness: Brightness.light,
+    //   ),
       
-      home:Scaffold(
+      // home:
+      Scaffold(
         resizeToAvoidBottomPadding: false,
         floatingActionButton: new FloatingActionButton(
+          backgroundColor: Colors.amber,
             elevation: 20.0,
             highlightElevation: 20.0,
             isExtended: true,
@@ -184,11 +195,11 @@ class _VaccinePageState extends State<VaccinePage> {
                  context, MaterialPageRoute(builder: (context) => Vaccine())),
           ), 
      
-     body:ListView.builder(itemCount: 10,
+     body:ListView.builder(itemCount: 7,
         shrinkWrap: true,
         itemBuilder: (BuildContext context,int index) =>
          Container(
-        //width: MediaQuery.of(context).size.width,
+        // width: MediaQuery.of(context).size.width,
             padding: EdgeInsets.symmetric(vertical: 10.0),
             child: Card(
                 margin: EdgeInsets.only(left: 10.0,right: 10.0),
@@ -243,7 +254,8 @@ class _VaccinePageState extends State<VaccinePage> {
                 ),
             ),
         ),
-        ),
       );
     }
   }
+    
+    

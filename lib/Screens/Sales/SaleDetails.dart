@@ -307,14 +307,15 @@ class SellingPageState extends State<_SaleDetail> {
                  )
              ],
            ),
-      body: new SafeArea(
-          top: false,
-          bottom: false,
-          child: new Form(
-              autovalidate: true,
-              child: new ListView(
-                padding: const EdgeInsets.all(25.0),
-                children: <Widget>[
+     
+      body:new SingleChildScrollView(
+                      child: new Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 32.0),
+                    child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[ 
                            SizedBox(height: 2.0),
                             animCode(),
                             SizedBox(height: 10.0),

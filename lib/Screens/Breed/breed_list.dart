@@ -42,20 +42,28 @@ class _Breedlist extends StatefulWidget {
         onPressed: () => Navigator.push(
         context, MaterialPageRoute(builder: (context) => BreedEntrydetail())),
       ),
-    actions: <Widget>[
+      actions: <Widget>[
              new IconButton(icon: Icon(Icons.rotate_right,size: 35.0,),color: Colors.white,
              onPressed: () {}
-              )
+            )
           ],
-     ),
-     body: new SafeArea(
-          top: false,
-          bottom: false,
-          child: new Form(
-              autovalidate: true,
-              child: new ListView(
-                padding: const EdgeInsets.only(top: 40.0,left: 20.0,right: 20.0),
-                children: <Widget>[
+        ),
+    //  body: new SafeArea(
+    //       top: false,
+    //       bottom: false,
+    //       child: new Form(
+    //           autovalidate: true,
+    //           child: new ListView(
+    //             padding: const EdgeInsets.only(top: 40.0,left: 20.0,right: 20.0),
+    //             children: <Widget>[
+       body:new SingleChildScrollView(
+                      child: new Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 32.0),
+                    child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[ 
                  new TextField(
                   controller: _breedController,
                     onChanged: (value) => _breedController.text = value,

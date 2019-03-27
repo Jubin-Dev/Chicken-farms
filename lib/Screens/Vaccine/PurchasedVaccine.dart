@@ -74,16 +74,24 @@ final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
               )
             ],
       ),
-      body: new SafeArea(
-          top: false,
-          bottom: false,
-          child: new Form(
-              key: _formKey,
-              autovalidate: true,
-              child: new ListView(
-                padding: const EdgeInsets.all( 20.0),
+      // body: new SafeArea(
+      //     top: false,
+      //     bottom: false,
+      //     child: new Form(
+      //         key: _formKey,
+      //         autovalidate: true,
+      //         child: new ListView(
+      //           padding: const EdgeInsets.all( 20.0),
                 
-                children: <Widget>[
+      //           children: <Widget>[
+         body:new SingleChildScrollView(
+                      child: new Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 32.0),
+                    child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[ 
 
                   new TextField(
                     controller: _vaccinenameController,

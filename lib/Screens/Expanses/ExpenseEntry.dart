@@ -214,15 +214,15 @@ class _ExpenseDetailState extends State<ExpenseDetails> {
                         )
                   ],
               ),
-   body: new SafeArea(
-          top: false,
-          bottom: false,
-          child: new Form(
-              key: _formKey,
-              autovalidate: true,
-              child: new ListView(
-                  padding: EdgeInsets.all( 20.0),
-                  children: <Widget>[ 
+  //  
+   body:new SingleChildScrollView(
+                      child: new Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 32.0),
+                      child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[ 
                               SizedBox(height: 2.0),
                               expDate(),
                               SizedBox(height: 10.0),
@@ -237,7 +237,7 @@ class _ExpenseDetailState extends State<ExpenseDetails> {
                               currencyType(),
                               SizedBox(height: 10.0),
                               remarks(),
-                              SizedBox(height: 10.0),
+                              SizedBox(height: 20.0),
                               btn(),
                                   ]
                             )
