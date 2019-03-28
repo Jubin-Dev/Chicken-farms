@@ -67,8 +67,8 @@ class _MyhomePageState extends State<MyHomePage> {
                         ],
                       ),
           
-      body: Column(
-            children: <Widget>[
+          body: Column(
+              children: <Widget>[
                 Container(
                     padding: EdgeInsets.symmetric(vertical: 50.0),
                     width: MediaQuery.of(context).size.width,
@@ -85,19 +85,19 @@ class _MyhomePageState extends State<MyHomePage> {
                             borderRadius: BorderRadius.only(
                               bottomRight:Radius.circular(25), 
                               bottomLeft:Radius.circular(25), 
-                                      )
-                                  ),
-                  child: Column(
+                                )
+                              ),
+                child: Column(
                     children: <Widget>[
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[ 
-                          Padding(           
-                            padding:const EdgeInsets.only(left: 125.0,),
-                            child: CircleAvatar(  
-                                backgroundColor: Colors.white54,
-                                radius: 70.0,
-                                child: Image.asset('lib/images/rooster.png'),
+                            Padding(           
+                              padding:const EdgeInsets.only(left: 125.0,),
+                                child: CircleAvatar(  
+                                  backgroundColor: Colors.white54,
+                                  radius: 70.0,
+                                  child: Image.asset('lib/images/rooster.png'),
                                 ),
                               )  
                              ],
@@ -119,7 +119,7 @@ class _MyhomePageState extends State<MyHomePage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                               Column(
-                                    children: <Widget>[
+                                  children: <Widget>[
                                           Text('Sales',style: TextStyle(fontSize: 16.0),),
                                           IconButton(icon: Icon(Icons.assessment, color: Colors.white,),
                                           iconSize: 66.0,
@@ -153,8 +153,9 @@ class _MyhomePageState extends State<MyHomePage> {
                              Text('Stock',style: TextStyle(fontSize: 16.0),), 
                              IconButton(icon: Icon(Icons.multiline_chart, color: Colors.white, ),      
                              iconSize: 66.0,
-                             onPressed: () => Navigator.push(
-                                    context, MaterialPageRoute(builder: (context) => ReportSummary())),        
+                             onPressed: (){},
+                              // => Navigator.push(
+                              //       context, MaterialPageRoute(builder: (context) => ReportSummary())),        
                              )
                            ],
                          )

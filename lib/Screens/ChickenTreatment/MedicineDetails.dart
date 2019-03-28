@@ -46,7 +46,7 @@ class _MedicinePageState extends State<MedicinePage> {
                                 labelText: 'Medicine Name',
                           ),
                         );});
-              }
+                      }
                  
                Widget medicType(){
                         return StreamBuilder<String>(
@@ -265,25 +265,22 @@ class _MedicinePageState extends State<MedicinePage> {
                     primarySwatch: Colors.green,
                       ),
                       
-      home: 
-      new Scaffold(
+      home: new Scaffold(
             resizeToAvoidBottomPadding: false,
             appBar: new AppBar(
             title: new Text(widget.title),
             centerTitle: true,
             backgroundColor: Colors.amber,
             leading: IconButton(icon: Icon(Icons.arrow_back_ios),
-            onPressed: () => Navigator.push(
-                      context, MaterialPageRoute(builder: (context) =>
-                      Chicktreat())),
-                  ),
-            actions: <Widget>[
-               new IconButton(icon: Icon(Icons.rotate_right,size: 35.0,),color: Colors.white,
+            onPressed: () {Navigator.pop(context);
+              }
+            ),
+          actions: <Widget>[
+              new IconButton(icon: Icon(Icons.rotate_right,size: 35.0,),color: Colors.white,
               onPressed: () {}
               )
             ],
           ),
-
       // body: new SafeArea(
       //         top: false,
       //         bottom: false,

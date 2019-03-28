@@ -41,25 +41,23 @@ class FarmProfile extends StatefulWidget{
                         onLongPress: (){
                           Navigator.push(context, MaterialPageRoute(builder: (context){
                             return NewScreen();
-                                                      }));
-                            
-                                                    },       
-                                                  child:ClipOval(
-                                                    child:Image.file(
-                                                        snapshot.data,
-                                                        fit: BoxFit.cover,
-                                                        width: 90.0,
-                                                        height: 90.0,
-                                                        ),),),
-              ),  ),],);
-                                                          }
-                                                    else if (snapshot.error != null) {
-                                                      return const Text(
-                                                        'Error Picking Image',
-                                                          textAlign: TextAlign.center,
-                                                          );
-                                                        }else {
-                                                          return  CircleAvatar(
+                            }));
+                            },       
+                            child:ClipOval(
+                               child:Image.file(
+                                    snapshot.data,
+                                    fit: BoxFit.cover,
+                                    width: 90.0,
+                                    height: 90.0,
+                                  ),),),
+                                  ),),],);
+                                  }
+                                        else if (snapshot.error != null) {
+                                        return const Text('Error Picking Image',
+                                              textAlign: TextAlign.center,
+                                                     );
+                                               }else {
+                                                return  CircleAvatar(
                                                             backgroundColor: Colors.teal,
                                                             radius: 45.0,
                                                             child:IconButton(icon:Icon(Icons.image),tooltip:'Upload Photos',iconSize: 50.0,

@@ -130,9 +130,9 @@ class _MasterExpPageState extends State<MasterExpPage> {
                 centerTitle: true,    
                 backgroundColor: Colors.amber,
                 leading: IconButton(icon: Icon(Icons.arrow_back_ios),
-                onPressed: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => ExpTab())),
-                    ),
+                onPressed: () {Navigator.pop(context);
+                  }
+                ),
                 actions: <Widget>[
                   new IconButton(icon: Icon(Icons.rotate_right,size: 35.0,),color: Colors.white,
                   onPressed: () {}
@@ -170,13 +170,13 @@ class _MasterExpPageState extends State<MasterExpPage> {
                      ), ), );
                     }
                    }
-    class ExpList extends StatefulWidget{
-    final String value;
-    ExpList({Key key,this.value}): super(key:key);
+class ExpList extends StatefulWidget{
+  final String value;
+  ExpList({Key key,this.value}): super(key:key);
     @override
     _ExpListPageState createState() => _ExpListPageState();
        }
-      class _ExpListPageState extends State<ExpList> {
+class _ExpListPageState extends State<ExpList>{
     bool isPriority = false;
     void _toggleFlag(){
     setState(() {
@@ -188,14 +188,13 @@ class _MasterExpPageState extends State<MasterExpPage> {
     });
   }
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return new  MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: new ThemeData(
         accentColor: Colors.amber,
         brightness: Brightness.light,
-      ),
-
+        ),
         home:Scaffold(
         resizeToAvoidBottomPadding: false,
         floatingActionButton: new FloatingActionButton(
@@ -219,8 +218,7 @@ class _MasterExpPageState extends State<MasterExpPage> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5.0)
                  ),
-        child: 
-            Column(
+        child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.end,
                       children: <Widget>[
@@ -232,10 +230,10 @@ class _MasterExpPageState extends State<MasterExpPage> {
                                     color:(isPriority)? Colors.green : Colors.redAccent,
                                     onPressed: _toggleFlag,
                                       ),
-                          contentPadding: EdgeInsets.fromLTRB(10.0, 30.0, 20.0, 3.0),
-                          title: Text('Expenses'),
-                          subtitle: Text('Details'),
-                           ),
+                                  contentPadding: EdgeInsets.fromLTRB(10.0, 30.0, 20.0, 3.0),
+                                  title: Text('Expenses'),
+                                  subtitle: Text('Details'),
+                                ),
               
             Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -244,7 +242,8 @@ class _MasterExpPageState extends State<MasterExpPage> {
                         new Text("Expenses Code: ${widget.value}"),
                          Divider(),
                         new Text("Expenses Name: ${widget.value}"),
-                         ]),
+                         ]
+                    ),
 
               ButtonTheme.bar(
                   // make buttons use the appropriate styles for cards

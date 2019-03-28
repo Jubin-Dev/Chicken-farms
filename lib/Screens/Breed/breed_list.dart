@@ -39,9 +39,9 @@ class _Breedlist extends StatefulWidget {
         centerTitle: true,
         backgroundColor: Colors.amber,
         leading: IconButton(icon: Icon(Icons.arrow_back_ios),
-        onPressed: () => Navigator.push(
-        context, MaterialPageRoute(builder: (context) => BreedEntrydetail())),
-      ),
+        onPressed: () { Navigator.pop(context);
+        }
+         ),
       actions: <Widget>[
              new IconButton(icon: Icon(Icons.rotate_right,size: 35.0,),color: Colors.white,
              onPressed: () {}

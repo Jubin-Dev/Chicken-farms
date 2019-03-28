@@ -40,12 +40,10 @@ class Treatmentlist extends StatefulWidget{
             highlightElevation: 20.0,
             isExtended: true,
             child: new Icon(Icons.add, color: Colors.white),
-            onPressed: () {
-                  Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Treatment()));
-            }
-          ), 
-      
+            onPressed: () { Navigator.push(
+                            context, MaterialPageRoute(builder: (context) => Treatment()));
+                          }
+                          ), 
       body:ListView.builder(itemCount: 10,
           shrinkWrap: true,
           itemBuilder: (BuildContext context,int index) =>
@@ -327,23 +325,23 @@ class Treatment extends StatefulWidget {
                         centerTitle: true,
                         backgroundColor: Colors.amber,
                         leading: IconButton(icon: Icon(Icons.arrow_back_ios),
-                        onPressed: () => Navigator.push(
-                                    context, MaterialPageRoute(builder: (context) => Chicktreat())),
-                                  ),
+                        onPressed: () {Navigator.pop(context);
+                        }
+                        ),
                           actions: <Widget>[
                                 new IconButton(icon: Icon(Icons.rotate_right,),color: Colors.white,
                                 onPressed: () {}
                                 ),
                                ],
                               ),
-                      body:new SingleChildScrollView(
-                      child: new Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 32.0),
-                    child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    mainAxisSize: MainAxisSize.max,
-                    children: <Widget>[ 
+            body:new SingleChildScrollView(
+                  child: new Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 32.0),
+                        child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisSize: MainAxisSize.max,
+                        children: <Widget>[ 
                               SizedBox(height: 10.0),
                               animalcode(),
                               SizedBox(height: 10.0),

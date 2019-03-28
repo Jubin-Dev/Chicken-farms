@@ -36,6 +36,7 @@ class _ExpenseDetailState extends State<ExpenseDetails> {
   @override
   Widget build(BuildContext context) {
     final bloc = ExpensesBloc();
+
        Widget expDate(){
                 return StreamBuilder<String>(
                       stream: bloc.expDateStream,
@@ -183,7 +184,7 @@ class _ExpenseDetailState extends State<ExpenseDetails> {
               return StreamBuilder<String>(
                    stream: bloc.remarksStream,
                    builder:(context, snapshot){       
-                      return RaisedButton(
+                    return RaisedButton(
                         color: Colors.amber,
                         child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
                         onPressed: ()=> Navigator.push(
@@ -205,17 +206,16 @@ class _ExpenseDetailState extends State<ExpenseDetails> {
                 centerTitle: true,
                 backgroundColor: Colors.amber,
                 leading: IconButton(icon: Icon(Icons.arrow_back_ios),
-                  onPressed: () => Navigator.push(
-                              context, MaterialPageRoute(builder: (context) => ExpTab())),
-                         ),
-                      actions: <Widget>[
+                  onPressed: () { Navigator.pop(context);
+                      }
+                    ),
+                  actions: <Widget>[
                       new IconButton(icon: Icon(Icons.rotate_right,size: 35.0,),color: Colors.white,
                       onPressed: () {}
                         )
-                  ],
-              ),
-  //  
-   body:new SingleChildScrollView(
+                      ],
+                    ),
+      body:new SingleChildScrollView(
                       child: new Container(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 32.0),
                       child: Column(
@@ -239,29 +239,22 @@ class _ExpenseDetailState extends State<ExpenseDetails> {
                               remarks(),
                               SizedBox(height: 20.0),
                               btn(),
-                                  ]
+                                ]
+                              )
                             )
-                          )
-                        ) ) );    
+                         ),),
+                       );    
                     }
               }
 
-    class ExpEntryList extends StatefulWidget{
-
+class ExpEntryList extends StatefulWidget{
     final String value;
-    
-    ExpEntryList({Key key,this.value}): super(key:key);
-    
+  ExpEntryList({Key key,this.value}): super(key:key);
       @override
-        
       _ExpEntryListPageState createState() => _ExpEntryListPageState();
-         
-          }
-  
-  class _ExpEntryListPageState extends State<ExpEntryList> {
-    
+        }
+class _ExpEntryListPageState extends State<ExpEntryList> {
     bool isPriority = false;
-    
     void _toggleFlag(){
     setState(() {
      if(isPriority) {
@@ -270,11 +263,9 @@ class _ExpenseDetailState extends State<ExpenseDetails> {
        isPriority = true;
      }
     });
-
   }
-
   @override
-  Widget build(BuildContext context) {
+Widget build(BuildContext context) {
     return new  MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: new ThemeData(

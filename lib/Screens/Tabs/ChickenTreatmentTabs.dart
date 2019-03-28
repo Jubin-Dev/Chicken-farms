@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/Screens/ChickenTreatment/MedicineDetails.dart';
 import 'package:flutter_app/Screens/ChickenTreatment/TreatmentDetail.dart';
 // import 'package:flutter_app/Screens/ChickenTreatment/PurchasedMedicine.dart';
-
 void main() {
   runApp(TabBar(tabs: <Widget>[],));
 }
@@ -48,12 +47,12 @@ class Chicktreat extends StatefulWidget {
     //         elevation: 15.0,
     //         title: Text('TREATMENT DETAILS'),
     //         expandedHeight: 100.0,
-    home:new DefaultTabController(
+    home: new DefaultTabController(
               length: 2,
               child: Scaffold(
                 appBar: AppBar(
                   leading: IconButton(icon: Icon(Icons.arrow_back_ios,color: Colors.white,),
-                  onPressed: () {Navigator.pop(context);
+                    onPressed: () {Navigator.pop(context);
                    }
                  ),
             // centerTitle: true,
@@ -69,28 +68,27 @@ class Chicktreat extends StatefulWidget {
                 labelStyle: TextStyle(fontSize: 20.0),
                 unselectedLabelColor: Colors.white54,
                 tabs: <Widget>[
-                Tab(
-                  text: "Chicken Treatment",
-                  icon: Icon(Icons.local_hospital, color: Colors.white,size: 30.0,),
-                  ),
-                Tab(
-                  text: "Purchased Medicine",
-                  icon: Icon(Icons.local_pharmacy, color: Colors.white,size: 30.0,),
-                ),
-              ],
+                    Tab(
+                      text: "Chicken Treatment",
+                      icon: Icon(Icons.local_hospital, color: Colors.white,size: 30.0,),
+                      ),
+                    Tab(
+                      text: "Purchased Medicine",
+                      icon: Icon(Icons.local_pharmacy, color: Colors.white,size: 30.0,),
+                    ),
+                  ],
               // controller: tabController,
                 ),
                 ),
         
     body: TabBarView(children: <Widget>[
-          
           new Treatmentlist(),
           new PurchMedicineList(),
-    ],
+            ],
         // controller: tabController,
-    ),
-    )
-    )
+          ),
+        )
+      )
    );
   }
 }

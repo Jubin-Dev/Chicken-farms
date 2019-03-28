@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/Screens/Home_page.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:flutter_app/Screens/Home_page.dart';
 import 'package:intl/intl.dart';
 
 void main() => runApp(new ReportSummary());
@@ -38,16 +38,17 @@ class _ReportSummaryPageState extends State<ReportSummaryPage> {
         title: new Text(widget.title),
         centerTitle: true,
         backgroundColor: Colors.amber,
-        leading: IconButton(icon: Icon(Icons.arrow_back_ios),
-        onPressed: () => Navigator.push(
-                        context, MaterialPageRoute(builder: (context) => MyHomes())),
-        ),
-    actions: <Widget>[
+        leading: IconButton(icon: Icon(Icons.arrow_back_ios,color: Colors.white),
+        onPressed: () { Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => MyHomes()));
+                }
+            ),
+      actions: <Widget>[
               new IconButton(icon: Icon(Icons.rotate_right,size: 35.0,),color: Colors.white,
               onPressed: () {}
               )
             ],
-      ),
+         ),
       body: new SafeArea(
           top: false,
           bottom: false,
@@ -90,10 +91,10 @@ class _ReportSummaryPageState extends State<ReportSummaryPage> {
                       onPressed: (){},
                       color: Colors.amber,
                       child: Text('Search',style:TextStyle(color:Colors.white,fontSize: 20.0)),
-                   ) ,
-                   ),
-                     ),
-                     ],
+                          ),
+                         ),
+                        ),
+                      ],
                   ))),
                 );
               }
