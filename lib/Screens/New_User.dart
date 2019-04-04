@@ -17,14 +17,13 @@ final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
  PersonData person = PersonData();
  final _UsNumberTextInputFormatter _phoneNumberFormatter = _UsNumberTextInputFormatter();
  final GlobalKey<FormFieldState<String>> _passwordFieldKey = GlobalKey<FormFieldState<String>>();
-  bool _autovalidate = true;
-  bool _formWasEdited = false;
+ 
   bool _obscureText = true;
  
  void _handleSubmitted() {
      final FormState form = _formKey.currentState;
      if (!form.validate()) {
-       _autovalidate = true; // Start validating on every change.
+      //  _autovalidate = true; // Start validating on every change.
        showInSnackBar('Please fix the errors in red before submitting.');
            } else {
              form.save();
@@ -33,7 +32,7 @@ final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
          }
 
   String _validateName(String value) {
-    _formWasEdited = true;
+    // _formWasEdited = true;
     if (value.isEmpty)
       return 'Name is required.';
     final RegExp nameExp = RegExp(r'^[A-Za-z ]+$');
@@ -43,7 +42,7 @@ final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   }
 
   String _validatePhoneNumber(String value) {
-    _formWasEdited = true;
+    // _formWasEdited = true;
     final RegExp phoneExp = RegExp(r'^\(\d\d\d\) \d\d\d\-\d\d\d\d$');
     if (!phoneExp.hasMatch(value))
       return '(###) ###-#### - Enter a US phone number.';
@@ -51,7 +50,7 @@ final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   }
 
   String _validatePassword(String value) {
-    _formWasEdited = true;
+    // _formWasEdited = true;
     final FormFieldState<String> passwordField = _passwordFieldKey.currentState;
     if (passwordField.value == null || passwordField.value.isEmpty)
       return 'Please enter a password.';
@@ -259,7 +258,6 @@ void showInSnackBar(String value) {
      ));
      }    
    }
- 
  class PersonData {
   String name = '';
   String phoneNumber = '';

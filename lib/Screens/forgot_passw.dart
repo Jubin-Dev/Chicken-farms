@@ -77,7 +77,7 @@ class ForgotPass extends StatefulWidget{
                        ),
                      ),
                       // backgroundColor: Colors.white,
-                      body: Center(
+                body: Center(
                       child: ListView(
                           shrinkWrap: true,
                           padding: EdgeInsets.only(left: 25.0,right: 25.0),
@@ -88,9 +88,9 @@ class ForgotPass extends StatefulWidget{
                               phone,
                               SizedBox(height: 20.0,),
                               continueButton ,
-                          ],
+                              ],
+                            ),
                           ),
-                         ),
                         ),
                       );
                     }

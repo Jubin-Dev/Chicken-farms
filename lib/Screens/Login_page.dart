@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/Screens/Forgot_passw.dart';
 import 'package:flutter_app/Screens/Home_page.dart';
-import 'package:flutter_app/Screens/Navigationdraw.dart';
 import 'package:flutter_app/Screens/New_User.dart';
 import 'package:flutter_app/Screens/blocs/bloc.dart';
+import 'package:flutter_app/Screens/blocs/provider.dart';
 
 class LoginPage extends StatefulWidget{
   final String tag ='loginPage';
@@ -24,15 +24,17 @@ changeThePage(BuildContext context){
     @override
     Widget build(BuildContext context) {
     final bloc = Bloc();
+    var sizeHW = MediaQuery.of(context).size;
+
       Widget logo(){
         return Hero(tag: 'hero', 
           child: CircleAvatar(
             backgroundColor: Colors.yellow,
             radius: 60.0,
             child: Image.asset('lib/images/rooster.png'),
-          ),);
+            ),);
           }
-      Widget phone() {
+      Widget phone(Bloc bloc) {
         return StreamBuilder<String>(
                   stream: bloc.phoneStream,
                   builder:(context, snapshot){
@@ -57,7 +59,7 @@ changeThePage(BuildContext context){
                         }
                       );
                     }
-        Widget password(){ 
+        Widget password(Bloc bloc){ 
           return StreamBuilder<String>(
                 stream: bloc.passwordStream,
                 builder:(context, snapshot){
@@ -119,7 +121,7 @@ changeThePage(BuildContext context){
     //     ), 
     //     );
      
-     Widget loginButton(){
+     Widget loginButton(Bloc bloc){
     //  Padding(
     //       padding: EdgeInsets.symmetric(vertical: 10.0),
           return StreamBuilder<bool>(
@@ -142,8 +144,9 @@ changeThePage(BuildContext context){
             ) 
           );
     // Size screenSize = MediaQuery.of(context).size;
-     return MaterialApp(
-       theme: ThemeData(
+     return Provider(
+        child: MaterialApp(
+        theme: ThemeData(
           primaryColor: Colors.green[450],
           accentColor: Colors.green,
           primarySwatch: Colors.green,
@@ -153,6 +156,8 @@ changeThePage(BuildContext context){
               backgroundColor: Colors.white,
               body: new SingleChildScrollView(
                     child: new Container(
+                      width: ((100/100) * sizeHW.width),
+                      // height: ((180/200) * sizeHW.width),
                        padding: const EdgeInsets.symmetric(
                           horizontal: 16.0, vertical: 32.0),
                           child: new Column(
@@ -165,14 +170,14 @@ changeThePage(BuildContext context){
                                     SizedBox(height: 80.0),
                                     logo(),   
                                     SizedBox(height: 30.0),
-                                    phone(),
+                                    phone(bloc),
                                     SizedBox(height: 10.0),
-                                    password(),
-                                      // SizedBox(height: 10.0),
+                                    password(bloc),
+                                    // SizedBox(height: 10.0),
                                     rememberMe,
-                                // forgotLabel,       //flatbutton for forgotpage
+                                    // forgotLabel,       //flatbutton for forgotpage
                                     SizedBox(height: 10.0,),
-                                    loginButton(),
+                                    loginButton(bloc),
                                     SizedBox(height: 1.0),
                                     newUser,           //flatebutton for newUserPage
                                 ],
@@ -180,11 +185,12 @@ changeThePage(BuildContext context){
                             ),
                           ),
                         ) 
+                      )
                     );
                   }
               }
   
-  class _UsNumberTextInputFormatter extends TextInputFormatter {
+class _UsNumberTextInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
     TextEditingValue oldValue,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/Screens/Reset&forget/resetpass.dart';
+
 
 enum DialogAction{ yes , abort}
 class OTPDialogs{

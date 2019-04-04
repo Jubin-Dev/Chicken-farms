@@ -9,7 +9,6 @@ import 'package:flutter_app/Screens/Tabs/SaleSummaryTab.dart';
 import 'package:flutter_app/Screens/Tabs/SalesTab.dart';
 import 'package:flutter_app/Screens/Tabs/VaccineTab.dart';
 import 'package:flutter_app/Screens/Tabs/expSummaryTab.dart';
-import 'package:flutter_app/Screens/camera.dart';
 
 void main() => runApp(MyHomes());
 class MyHomes extends StatelessWidget {
@@ -60,9 +59,9 @@ class _MyhomePageState extends State<MyHomePage> {
               centerTitle: true,
               actions: <Widget>[
                   new IconButton(icon: Icon(Icons.search),color: Colors.black,
-                  onPressed: ()
-                        => Navigator.push(context, MaterialPageRoute(builder:
-                            (context) => PickImageDemo())),
+                  onPressed: (){},
+                        // => Navigator.push(context, MaterialPageRoute(builder:
+                        //     (context) => MultiImage())),
                           ),
                         ],
                       ),
@@ -155,7 +154,7 @@ class _MyhomePageState extends State<MyHomePage> {
                              iconSize: 66.0,
                              onPressed: (){},
                               // => Navigator.push(
-                              //       context, MaterialPageRoute(builder: (context) => ReportSummary())),        
+                              //     context, MaterialPageRoute(builder: (context) => ReportSummary())),        
                              )
                            ],
                          )
