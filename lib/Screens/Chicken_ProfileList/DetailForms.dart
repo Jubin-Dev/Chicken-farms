@@ -1,6 +1,9 @@
+import 'package:custom_multi_image_picker/asset.dart';
+import 'package:custom_multi_image_picker/picker.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app/Resourcefile/asset_view.dart';
 // import 'package:flutter_app/Screens/Tabs/ProfilesTab.dart';
 import 'package:flutter_app/Screens/blocs/profilebloc.dart';
 import 'package:intl/intl.dart';
@@ -12,6 +15,13 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => new _MyHomePageState();
   }
   class _MyHomePageState extends State<MyHomePage> {
+  List<Asset> images = List<Asset>();
+  String _error;
+   @override
+  void initState() {
+    super.initState();
+  }
+
   Future<File> imageFile;
    final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
       };
@@ -24,6 +34,7 @@ class MyHomePage extends StatefulWidget {
     String breed = 'None';
     String weight = 'Grams';
     String currencys = 'THB';
+
   @override
   Widget build(BuildContext context) {
       final bloc = ProfileBloc();
@@ -32,7 +43,44 @@ class MyHomePage extends StatefulWidget {
       imageFile = ImagePicker.pickImage(source: source);
     });
   }
-    Widget logo(){
+  Widget buildGridView(){
+    return GridView.count(
+      crossAxisCount: 3,
+      children: List.generate(images.length, (index) {
+        return AssetView(index, images[index]);
+      }),
+    );
+  }
+  Future<void> loadAssets() async {
+    setState(() {
+      images = List<Asset>();
+    });
+
+    List resultList;
+    String error;
+
+    try {
+      resultList = await MultiImagePicker.pickImages(
+        maxImages: 5,
+      );
+
+    } on PlatformException catch (e) {
+      error = e.message;
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    setState(() {
+      images = resultList;
+      // print(images[0].getPath) ; 
+      if (error == null) _error = 'No Error Dectected';
+    });
+  }
+
+  Widget logo(){
       return FutureBuilder<File>(future: imageFile,
       builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
        if (snapshot.connectionState == ConnectionState.done &&
@@ -84,29 +132,30 @@ class MyHomePage extends StatefulWidget {
                                         },
                                       );
                                     }
-                                          Widget animalcode(){
-                                                        return StreamBuilder<String>(
-                                                        stream: bloc.animalCodeStream,
-                                                        builder:(context, snapshot){
-                                                        return TextField(
-                                                          onChanged: bloc.animalCodeChanged,
-                                                            decoration: InputDecoration(
-                                                                errorText: snapshot.error,
-                                                                icon: Icon(Icons.code,color:Colors.green),
-                                                                hintText: 'Animal Code',
-                                                                labelText: 'Animal Code',
-                                                                contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),      
-                                                                ),
-                                                              );}
-                                                            );
-                                                        }
-                                          Widget animalname(){
-                                                      return StreamBuilder<String>(
-                                                      stream: bloc.animalnameStream,
-                                                      builder:(context, snapshot){
-                                                      return TextField(
-                                                          onChanged: bloc.animalNameChanged,
-                                                            decoration: InputDecoration(
+                      Widget animalcode(){
+                                return StreamBuilder<String>(
+                                stream: bloc.animalCodeStream,
+                                  builder:(context, snapshot){
+                                        return TextField(
+                                          onChanged: bloc.animalCodeChanged,
+                                              decoration: InputDecoration(
+                                                      errorText: snapshot.error,
+                                                      icon: Icon(Icons.code,color:Colors.green),
+                                                      hintText: 'Animal Code',
+                                                      labelText: 'Animal Code',
+                                                      contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),      
+                                                       ),
+                                                    );}
+                                                  );
+                                                }
+
+                              Widget animalname(){
+                                      return StreamBuilder<String>(
+                                                stream: bloc.animalnameStream,
+                                                builder:(context, snapshot){
+                                                    return TextField(
+                                                        onChanged: bloc.animalNameChanged,
+                                                          decoration: InputDecoration(
                                                             errorText: snapshot.error,
                                                             icon: Icon(Icons.perm_identity,color:Colors.green),
                                                             labelText: 'Name',
@@ -116,38 +165,39 @@ class MyHomePage extends StatefulWidget {
                                                         );
                                                       }
                                               
-                                          Widget animalsymbol(){
-                                                  return StreamBuilder<String>(
-                                                  stream: bloc.symbolStream,
-                                                  builder:(context, snapshot){
-                                                       return TextField(
-                                                          onChanged: bloc.symbolChanged,
-                                                          decoration:  InputDecoration(
-                                                          errorText: snapshot.error,
-                                                          icon: Icon(Icons.pets,color:Colors.green),
-                                                          labelText: 'Symbol',
-                                                          contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-                                                           ),
-                                                        );}
-                                                        );}
+                                  Widget animalsymbol(){
+                                        return StreamBuilder<String>(
+                                          stream: bloc.symbolStream,
+                                          builder:(context, snapshot){
+                                              return TextField(
+                                                  onChanged: bloc.symbolChanged,
+                                                    decoration:  InputDecoration(
+                                                        errorText: snapshot.error,
+                                                        icon: Icon(Icons.pets,color:Colors.green),
+                                                        labelText: 'Symbol',
+                                                        contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
+                                                      ),
+                                                    );
+                                                   }
+                                                );}
                                                   
-                                          Widget animalstatus(){
-                                                    return StreamBuilder<String>(
-                                                      stream: bloc.animalStatusStream,
-                                                      builder:(context, snapshot){
-                                                        return InputDecorator(
-                                                          decoration: InputDecoration(
+                                  Widget animalstatus(){
+                                        return StreamBuilder<String>(
+                                          stream: bloc.animalStatusStream,
+                                              builder:(context, snapshot){
+                                                 return InputDecorator(
+                                                    decoration: InputDecoration(
                                                           errorText: snapshot.error,
                                                           icon: Icon(Icons.query_builder,color:Colors.green),
                                                           labelText: 'Animal Status'),
-                                                          child: DropdownButtonHideUnderline(
-                                                          child: DropdownButton<String>(
-                                                            value: dropcodedownValue ,
-                                                            isDense: true,                
-                                                            onChanged: (String newValue) {
-                                                            setState(() {
-                                                            dropcodedownValue  = newValue; 
-                                                            });
+                                                            child: DropdownButtonHideUnderline(
+                                                            child: DropdownButton<String>(
+                                                              value: dropcodedownValue ,
+                                                              isDense: true,                
+                                                              onChanged: (String newValue) {
+                                                              setState(() {
+                                                              dropcodedownValue  = newValue; 
+                                                                });
                                                             },
                                                             items: <String>['Dead on Farm','Born On Farm','Purchased','Sold']
                                                             .map<DropdownMenuItem<String>>((String value){
@@ -336,7 +386,7 @@ class MyHomePage extends StatefulWidget {
                                                                 );}
                                                              );
                                                         }
-                                          Widget weight(){
+                                   Widget weight(){
                                           return StreamBuilder<String>(
                                               stream: bloc.weightStream,
                                               builder:(context, snapshot){
@@ -353,21 +403,21 @@ class MyHomePage extends StatefulWidget {
                                                   );
                                                 }
                                             
-                                          Widget weightType() {
-                                                 return StreamBuilder<String>(
-                                                  stream: bloc.weightTypeStream,
-                                                  builder:(context, snapshot){
-                                                  return InputDecorator(
-                                                  decoration: InputDecoration(
-                                                  errorText: snapshot.error,
-                                                  icon: Icon(Icons.group_work,color: Colors.green,),
-                                                  labelText: 'Weight type',
+                              Widget weightType() {
+                                    return StreamBuilder<String>(
+                                      stream: bloc.weightTypeStream,
+                                        builder:(context, snapshot){
+                                          return InputDecorator(
+                                              decoration: InputDecoration(
+                                                errorText: snapshot.error,
+                                                icon: Icon(Icons.group_work,color: Colors.green,),
+                                                labelText: 'Weight type',
                                                     ),
-                                                  child: DropdownButtonHideUnderline(
-                                                  child: DropdownButton<String>(
+                                                child: DropdownButtonHideUnderline(
+                                                    child: DropdownButton<String>(
                                                     //  value: weighing,
                                                       isDense: true,                
-                                                      onChanged: (String newValue) {
+                                                      onChanged: (String newValue){
                                                       setState(() {
                                                     //  weighing = newValue;
                                                       });
@@ -380,79 +430,80 @@ class MyHomePage extends StatefulWidget {
                                                  }).toList(),
                                                 //  onChanged: bloc.weightTypeChanged,
                                                 //  value:snapshot.data
-                                                          ),
-                                                        ),
-                                                       );}
-                                                    );
-                                                }
+                                                  ),
+                                                ),
+                                              );}
+                                            );
+                                          }
                                               
-                                          Widget fr(){
-                                          return StreamBuilder<String>(
-                                              stream: bloc.fightingRecordStream,
-                                              builder:(context, snapshot){
-                                                  return TextField(
-                                                      onChanged: bloc.fightingRecordsChanged,
-                                                      keyboardType: TextInputType.text,
-                                                      decoration: InputDecoration(
-                                                          errorText: snapshot.error,
-                                                          icon: Icon(Icons.format_align_right,color:Colors.green),
-                                                          labelText:  'Fighting Records',
-                                                          contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-                                                             ),
-                                                         );}
-                                                       );
-                                                 }
+                        Widget fr(){
+                                return StreamBuilder<String>(
+                                  stream: bloc.fightingRecordStream,
+                                   builder:(context, snapshot){
+                                    return TextField(
+                                        onChanged: bloc.fightingRecordsChanged,
+                                          keyboardType: TextInputType.text,
+                                           decoration: InputDecoration(
+                                            errorText: snapshot.error,
+                                            icon: Icon(Icons.format_align_right,color:Colors.green),
+                                            labelText:  'Fighting Records',
+                                            contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
+                                          ),
+                                        );}
+                                       );
+                                      }
                                            
-                                          Widget sp(){
-                                         return StreamBuilder<String>(
-                                             stream: bloc.standardPriceStream,
-                                             builder:(context, snapshot){
-                                                  return TextField(
-                                                    onChanged: bloc.standerdPriceChanged,
-                                                    keyboardType: TextInputType.number,
-                                                    decoration:InputDecoration(
-                                                    errorText: snapshot.error,
-                                                    icon: Icon(Icons.local_offer,color:Colors.green),
-                                                    labelText:  'Standerd Price',
-                                                    contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-                                                              ),
-                                                         );}
-                                                       );
-                                                     }
+                        Widget sp(){
+                                return StreamBuilder<String>(
+                                    stream: bloc.standardPriceStream,
+                                    builder:(context, snapshot){
+                                        return TextField(
+                                            onChanged: bloc.standerdPriceChanged,
+                                            keyboardType: TextInputType.number,
+                                              decoration:InputDecoration(
+                                              errorText: snapshot.error,
+                                                icon: Icon(Icons.local_offer,color:Colors.green),
+                                                labelText:  'Standerd Price',
+                                                contentPadding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
+                                                    ),
+                                                  );}
+                                               );
+                                            }
                                                 
-                                          Widget currency(){
-                                                return StreamBuilder<String>(
-                                                  stream: bloc.currencyStream,
-                                                  builder:(context, snapshot){
-                                                   return InputDecorator(
-                                                      decoration: InputDecoration(
-                                                      errorText: snapshot.error,
-                                                      icon: Icon(Icons.monetization_on,color: Colors.green,),
-                                                      labelText: 'Currency',
-                                                        ),
-                                                      child: DropdownButtonHideUnderline(
-                                                      child: DropdownButton<String>(
-                                                        value: currencys ,
-                                                        isDense: true,                
-                                                        onChanged: (String newValue) {
-                                                        setState(() {
-                                                        currencys  = newValue; 
-                                                        });
-                                                      },
-                                                 items: <String>['THB','USD','AUD','INR']
-                                                 .map<DropdownMenuItem<String>>((String value){
-                                                   return DropdownMenuItem<String>(value: value,
-                                                   child: Text(value),
+                        Widget currency(){
+                                return StreamBuilder<String>(
+                                  stream: bloc.currencyStream,
+                                  builder:(context, snapshot){
+                                      return InputDecorator(
+                                        decoration: InputDecoration(
+                                        errorText: snapshot.error,
+                                        icon: Icon(Icons.monetization_on,color: Colors.green,),
+                                        labelText: 'Currency',
+                                            ),
+                                          child: DropdownButtonHideUnderline(
+                                          child: DropdownButton<String>(
+                                            value: currencys ,
+                                            isDense: true,                
+                                            onChanged: (String newValue) {
+                                            setState(() {
+                                              currencys  = newValue; 
+                                                });
+                                              },
+                                              items: <String>['THB','USD','AUD','INR']
+                                              .map<DropdownMenuItem<String>>((String value){
+                                                return DropdownMenuItem<String>(value: value,
+                                                child: Text(value),
                                                     );
-                                                  }).toList(),
-                                                //  onChanged: bloc.currencyChanged,
+                                                  },).toList(),
+                                                  //  onChanged: bloc.currencyChanged,
                                                 //  value:snapshot.data,
-                                                            ),
-                                                          ),
-                                                      );}
-                                                    );
-                                                 }
-                                          Widget remarks(){
+                                                  ),
+                                                  
+                                                ),
+                                              );}
+                                            );
+                                         }
+                                      Widget remarks(){
                                               return StreamBuilder<String>(
                                                       stream: bloc.remarksStream,
                                                       builder:(context, snapshot){
@@ -468,7 +519,16 @@ class MyHomePage extends StatefulWidget {
                                                                  ),
                                                              );}
                                                         );
-                                                    }    
+                                                    } 
+                                            Widget addphotos(){
+                                              return FlatButton(
+                                                child: const Text('Add Photos',style:TextStyle(
+                                                              color: Colors.teal),),
+                                                              onPressed: loadAssets,
+                                                    );
+                                              } 
+                                              Expanded(child: buildGridView());
+                                             
                                             //  final btn =
                                               // Container(
                                               //   child: new Padding(
@@ -484,11 +544,11 @@ class MyHomePage extends StatefulWidget {
                                                       bloc.submit();
                                                       // Navigator.push(context,  MaterialPageRoute(
                                                       // builder:  (context) => Profile()) );
-                                                     },
+                                                        },
                                                      );} 
                                                      );
                                                   } 
-                                     return MaterialApp(
+                                  return MaterialApp(
                                       theme: ThemeData(
                                       primaryColor: Colors.green[450],
                                       accentColor: Colors.green,
@@ -505,15 +565,14 @@ class MyHomePage extends StatefulWidget {
                                                     onPressed: () {Navigator.pop(context);
                                                       }
                                                     ),
-                                                  
                                                   actions: <Widget>[
                                                   new IconButton(icon: Icon(Icons.rotate_right),color: Colors.white,
                                                   onPressed: () {}
-                                                )
-                                              ],
+                                                  )
+                                                ],
                                               ),  
                                       body: new SingleChildScrollView(
-                                        child :new Container(
+                                        child : new Container(
                                                 padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 32.0),
                                                 child: new Column(
                                                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -548,19 +607,24 @@ class MyHomePage extends StatefulWidget {
                                                           SizedBox(height: 10.0),
                                                           talent(),
                                                           SizedBox(height: 10.0),
-                                                          weight(),
-                                                          SizedBox(height: 10.0),
-                                                          weightType(),
+                                                          Row(children: <Widget>[
+                                                            Expanded(child: weight(),),
+                                                            SizedBox(width: 20.00),
+                                                            Expanded(child: weightType(),),]),
                                                           SizedBox(height: 10.0),
                                                           fr(),
                                                           SizedBox(height: 10.0),
-                                                          sp(),
-                                                          SizedBox(height: 10.0),
-                                                          currency(),
+                                                          Row(children: <Widget>[
+                                                            Expanded(child:sp()),
+                                                            SizedBox(width : 20.0),
+                                                            Expanded(child:currency()),]),
                                                           SizedBox(height: 10.0),
                                                           remarks(),
+                                                          SizedBox(height: 10.0),
+                                                          addphotos(),
                                                           SizedBox(height: 30.0,),
                                                           submit(),
+                                                          
                                                         ],
                                                       ),
                                                    ),
@@ -620,8 +684,8 @@ _NextPageState createState() => _NextPageState();
               Navigator.push(
                  context, MaterialPageRoute(builder: (context) => MyHomePage()),
                   ),
-                  ),
-      body:ListView.builder(itemCount: 10,
+                ),
+          body:ListView.builder(itemCount: 10,
           shrinkWrap: true,
           itemBuilder: (BuildContext context,int index) =>
            Container(

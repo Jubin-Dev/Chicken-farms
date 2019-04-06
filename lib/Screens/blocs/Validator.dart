@@ -35,8 +35,8 @@ class Validator{
         sink.add(email);
         }else{
           sink.addError("Enter a Valid Email Adress");
-        }
-    }
+          }
+      }
    );
     var repassValidator = StreamTransformer<String,String>.fromHandlers(
     handleData: (repass,sink){
@@ -44,9 +44,9 @@ class Validator{
         sink.add(repass);
         }else{
           sink.addError("Entered Password not matched");
-        }
-    }
-   );
+              }
+          }
+      );
       //Farm Profile
    var notEmptyValidator = StreamTransformer<String,String>.fromHandlers(
     handleData: (farmname,sink){
@@ -58,7 +58,7 @@ class Validator{
     }
    );
   
-    final validatedropDown = StreamTransformer<String,String>.fromHandlers(
+  final validatedropDown = StreamTransformer<String,String>.fromHandlers(
   handleData: (dpvalue, sink) {
    
     if (dpvalue.isNotEmpty) 

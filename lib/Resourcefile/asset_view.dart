@@ -1,48 +1,51 @@
-// import 'package:flutter/material.dart';
-// import 'package:multi_image_picker/asset.dart';
+import 'package:custom_multi_image_picker/asset.dart';
+import 'package:flutter/material.dart';
 
-// class AssetView extends StatefulWidget {
-//   final int _index;
-//   final Asset _asset;
 
-//   AssetView(this._index, this._asset);
+class AssetView extends StatefulWidget {
+  final int _index;
+  final Asset _asset;
 
-//   @override
-//   State<StatefulWidget> createState() => AssetState(this._index, this._asset);
-// }
+  AssetView(this._index, this._asset);
 
-// class AssetState extends State<AssetView> {
-//   int _index = 0;
-//   Asset _asset;
-//   AssetState(this._index, this._asset);
+  @override
+  State<StatefulWidget> createState() => AssetState(this._index, this._asset);
+}
 
-//   @override
-//   void initState() {
-//     super.initState();
-//     _loadImage();
-//   }
+class AssetState extends State<AssetView> {
+  int _index = 0;
+  Asset _asset;
+  AssetState(this._index, this._asset);
 
-//    void _loadImage() async {
-//     await this._asset.requestThumbnail(300, 300, quality: 50);
+  @override
+  void initState() {
+    super.initState();
+    _loadImage();
+  }
 
-//     if (this.mounted) {
-//       setState(() {});
-//     }
-//   }
+   void _loadImage() async {
+    await this._asset.requestThumbnail(350, 350,
+    //  quality: 50
+    );
 
-//   @override
-//   Widget build(BuildContext context) {
-//     if (null != this._asset.thumbData) {
-//       return Image.memory(
-//         this._asset.thumbData.buffer.asUint8List(),
-//         fit: BoxFit.cover,
-//         gaplessPlayback: true,
-//       );
-//     }
+    if (this.mounted) {
+      setState(() {});
+    }
+  }
 
-//     return Text(
-//       '${this._index}',
-//       style: Theme.of(context).textTheme.headline,
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    if (null != this._asset.thumbData) {
+      return Image.memory(
+        this._asset.thumbData.buffer.asUint8List(),
+        fit: BoxFit.cover,
+        gaplessPlayback: true,
+      );
+    }
+
+    return Text(
+      '${this._index}',
+      style: Theme.of(context).textTheme.headline,
+    );
+  }
+}

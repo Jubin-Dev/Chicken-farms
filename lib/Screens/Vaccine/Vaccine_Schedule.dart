@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Screens/Tabs/VaccineTab.dart';
+import 'package:flutter_app/Screens/blocs/vaccine_bloc.dart';
 void main() => runApp(new Vaccine());
 class Vaccine extends StatelessWidget {
 //   final String vaccineName, animalAge;
@@ -29,11 +30,92 @@ class VaccinePage extends StatefulWidget {
   _VaccinePageState createState() => new _VaccinePageState();
 }
 class _VaccinePageState extends State<VaccinePage> {
-  var _vaccinenameController = new TextEditingController();
-  var _animalAgeController = new TextEditingController();
+ 
   @override
   Widget build(BuildContext context) {
-     return new Scaffold(
+    final bloc = VaccineBloc();
+         
+            Widget animalAge(){
+                    return StreamBuilder<String>(
+                      stream: bloc.animalAgeStream,
+                      builder:(context,snapshot){
+                      return new TextField(
+                        onChanged: bloc.ageAnimalsChanged,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          errorText: snapshot.error,
+                          icon: Icon(Icons.assignment,color:Colors.green),
+                          labelText: 'Animal Age',
+                        ),
+                      );}
+                        );}
+            Widget vaccineName(){
+                  return StreamBuilder<String>(
+                    stream: bloc.vaccineNameStream,
+                    builder:(context,snapshot){
+                    return new TextField(
+                    onChanged: bloc.vaccineNameChanged,
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
+                      errorText: snapshot.error,
+                      icon: Icon(Icons.local_hospital,color:Colors.green),
+                      labelText: 'Vaccine Name',
+                    ),
+                  );}
+                  );}
+            Widget vaccineType(){
+                  return StreamBuilder<String>(
+                    stream: bloc.vaccinesTypeStream,
+                    builder:(context,snapshot){
+                  return new TextField(
+                    onChanged: bloc.vaccineTypeChanged,
+                    decoration: InputDecoration(
+                      errorText: snapshot.error,
+                      icon: Icon(Icons.colorize,color:Colors.green),
+                      labelText: 'Vaccine Type',
+                    ),
+                  );}
+                  );}
+            Widget vaccineCompany(){
+                  return StreamBuilder<String>(
+                    stream: bloc.companyVaccineStream,
+                    builder:(context,snapshot){
+                  return new TextField(
+                    onChanged: bloc.companyChanged,
+                    decoration: const InputDecoration(
+                      icon: Icon(Icons.location_city,color:Colors.green),
+                      labelText: 'Vaccine Company',
+                    ),
+                  );}
+                  );}
+                Widget vaccineRemarks(){
+                  return StreamBuilder<String>(
+                    stream: bloc.remarksStream,
+                    builder:(context,snapshot){  
+                    return new TextField(
+                    onChanged: bloc.remarksChanged,
+                    decoration: const InputDecoration(
+                      icon: Icon(Icons.mode_edit,color:Colors.green),
+                      labelText: 'Remarks',
+                        ),
+                      keyboardType: TextInputType.multiline,
+                    );}
+                  );}
+                Widget button(){
+                  return StreamBuilder<bool>(
+                  stream: bloc.submitedbutton,
+                  builder:(context, snapshot){ 
+                    return RaisedButton(
+                      color: Colors.amber,
+                      child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
+                    // minWidth: 200.0,
+                    // height: 47.0,
+                    onPressed: ()=> Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => VaccineTab())),
+                      );}
+                     );}
+
+          return new Scaffold(
           resizeToAvoidBottomPadding: false,
           appBar: new AppBar(
             title: new Text(widget.title),
@@ -49,83 +131,27 @@ class _VaccinePageState extends State<VaccinePage> {
               )
             ],
         ),
-      // body: new SafeArea(
-      //     top: false,
-      //     bottom: false,
-      //     child: new Form(
-      //         autovalidate: true,
-      //         child: new ListView(
-      //         padding: const EdgeInsets.all(20.0),
-      //         children: <Widget>[
-         body:new SingleChildScrollView(
+        body:new SingleChildScrollView(
                       child: new Container(
                           padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 32.0),
                           child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[ 
-                      new TextField(
-                        controller: _animalAgeController,
-                        onChanged: (value) => _animalAgeController.text = value,
-                        keyboardType: TextInputType.number,
-                        decoration: const InputDecoration(
-                          icon: Icon(Icons.assignment,color:Colors.green),
-                          labelText: 'Animal Age',
-                        ),
-                      ),
-
-                  Divider(),
-                  new TextField(
-                    controller: _vaccinenameController,
-                    onChanged: (value) => _vaccinenameController.text = value,
-                    keyboardType: TextInputType.text,
-                    decoration: const InputDecoration(
-                      icon: Icon(Icons.local_hospital,color:Colors.green),
-                      labelText: 'Vaccine Name',
-                    ),
-                  ),
-
-                  Divider(),
-                  new TextFormField(
-                    decoration: const InputDecoration(
-                      icon: Icon(Icons.colorize,color:Colors.green),
-                      labelText: 'Vaccine Type',
-                    ),
-                  ),
-                   Divider(),
-                  new TextFormField(
-                    decoration: const InputDecoration(
-                      icon: Icon(Icons.location_city,color:Colors.green),
-                      labelText: 'Vaccine Company',
-                    ),
-                  ),
-                   Divider(),
-                  new TextFormField(
-                    decoration: const InputDecoration(
-                      icon: Icon(Icons.mode_edit,color:Colors.green),
-                      labelText: 'Remarks',
-                    ),
-                      keyboardType: TextInputType.multiline,
-                    ),
-                  new Container(
-                    child: new Padding(
-                      padding: EdgeInsets.symmetric(vertical: 40.0),
-                    // child: Material(
-                    // borderRadius: BorderRadius.circular(30.0),
-                    // shadowColor: Colors.lightBlueAccent.shade100,
-                    // elevation: 6.0,
-                    child: RaisedButton(
-                    // minWidth: 200.0,
-                    // height: 47.0,
-                    onPressed: ()=> Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => VaccineTab())),
-                    color: Colors.amber,
-                    child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
-                      ) ,
-                     ),
-                     ),
-                    ],
+                          children: <Widget>[
+                            SizedBox(height: 2.0),
+                            animalAge(),
+                            SizedBox(height: 10.0),
+                            vaccineName(),
+                            SizedBox(height: 10.0),
+                            vaccineType(),
+                            SizedBox(height: 10.0),
+                            vaccineCompany(),
+                            SizedBox(height:10.0),
+                            vaccineRemarks(),
+                            SizedBox(height: 30.0),
+                            button(),
+                        ],
                     ))),
                   );
                 }

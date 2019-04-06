@@ -2,6 +2,7 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/Screens/Tabs/VaccineTab.dart';
+import 'package:flutter_app/Screens/blocs/vaccine_bloc.dart';
 import 'package:intl/intl.dart';
 
 void main() => runApp(new PurchVaccine());
@@ -57,23 +58,8 @@ final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
 
   @override
   Widget build(BuildContext context) {
-     return new 
-        Scaffold(
-          resizeToAvoidBottomPadding:false ,
-          appBar: new AppBar(
-           title: new Text(widget.title),
-          centerTitle: true,
-          backgroundColor: Colors.amber,
-          leading: IconButton(icon: Icon(Icons.arrow_back_ios),
-          onPressed: () => Navigator.push(
-                 context, MaterialPageRoute(builder: (context) => VaccineTab())),
-              ),
-          actions: <Widget>[
-                new IconButton(icon: Icon(Icons.rotate_right,size: 35.0,),color: Colors.white,
-                onPressed: () {}
-              )
-            ],
-      ),
+    final bloc = VaccineBloc();
+     
       // body: new SafeArea(
       //     top: false,
       //     bottom: false,
@@ -84,134 +70,154 @@ final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
       //           padding: const EdgeInsets.all( 20.0),
                 
       //           children: <Widget>[
-         body:new SingleChildScrollView(
-                      child: new Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 32.0),
-                    child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[ 
-
-                  new TextField(
-                    controller: _vaccinenameController,
-                    onChanged: (value) => _vaccinenameController.text = value,
-                    decoration: const InputDecoration(
+         
+          Widget vaccineName(){
+                    return StreamBuilder<String>(
+                      stream: bloc.nameVaccineStream,
+                      builder:(context,snapshot){
+                      return new TextField(
+                    onChanged: bloc.nameVaccineChanged,
+                    decoration: InputDecoration(
+                      errorText: snapshot.error,
                       icon: Icon(Icons.description,color:Colors.green),
                         labelText: 'Vaccine Name',                       
-                    ),
-                  ),
-                  Divider(
-                  ), 
-
-                  new TextField(
-                    controller: _vaccinetypeController,
-                    onChanged: (value) => _vaccinetypeController.text = value,
-                    decoration: const InputDecoration(
+                          ),
+                      );}
+                    );}
+          Widget vaccineType(){
+                    return StreamBuilder<String>(
+                      stream: bloc.typeVaccineStream,
+                      builder:(context,snapshot){        
+                      return new TextField(
+                    onChanged: bloc.typesVaccinesChanged,
+                    decoration: InputDecoration(
+                      errorText: snapshot.error,
                       icon: Icon(Icons.colorize,color:Colors.green),
                       labelText: 'Vaccine Type',                      
                     ),
-                  ),
-                  Divider(
-                  ),
-
-                  new TextFormField(
-                    decoration: const InputDecoration(
-                    icon: Icon(Icons.location_city,color:Colors.green),
-                    labelText: 'Vaccine Company',
-                      
+                  );}
+                    );}
+          Widget company(){
+                return StreamBuilder<String>(
+                  stream: bloc.vaccineCompanyStream,
+                  builder:(context,snapshot){ 
+                  return new TextField(
+                    onChanged: bloc.vaccineCompanyChanged,
+                    decoration: InputDecoration(
+                      errorText: snapshot.error,
+                      icon: Icon(Icons.location_city,color:Colors.green),
+                      labelText: 'Vaccine Company',
                     ),
-                  ),
-                  Divider(
-
-                  ), 
-                  
-                    new DateTimePickerFormField(
+                  );}
+                );}
+          Widget purchase(){
+                return StreamBuilder<String>(
+                  stream: bloc.purchaseDateStream,
+                  builder:(context,snapshot){
+                    return new DateTimePickerFormField(
                     inputType: inputType,
                     format: formats[inputType],
                     editable: editable,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
+                    errorText: snapshot.error,
                     icon: Icon(Icons.calendar_today, color: Colors.green), 
                     labelText: 'Purchase Date',hasFloatingPlaceholder: true
                     ), 
                     onChanged: (dt) => setState(()=> date = dt),
-                   
-                    ),
-
-                    new DateTimePickerFormField(
-                    inputType: inputType,
-                    format: formats[inputType],
-                    editable: editable,
-                    decoration: const InputDecoration(
-                    icon: Icon(Icons.calendar_today, color: Colors.green), 
-                    labelText: 'Expiry Date',hasFloatingPlaceholder: true
-                    ), 
+                    );}
+                    );}
+            Widget expireDate(){
+                return StreamBuilder<String>(
+                  stream: bloc.expDateStream,
+                  builder:(context,snapshot){
+                    return new DateTimePickerFormField(
+                      inputType: inputType,
+                      format: formats[inputType],
+                      editable: editable,
+                      decoration: InputDecoration(
+                        errorText: snapshot.error,
+                        icon: Icon(Icons.calendar_today, color: Colors.green), 
+                        labelText: 'Expiry Date',hasFloatingPlaceholder: true
+                      ), 
                     onChanged: (dt) => setState(()=> date = dt),
-                   
-                    ),
-                  
-                  Divider(height: 30.0,),
-                  
-                  new TextFormField(
-                    decoration: const InputDecoration(
+                    );}
+                    );}
+            Widget batchNum(){
+                return StreamBuilder<String>(
+                  stream: bloc.batchNumStream,
+                  builder:(context,snapshot){
+                  return new TextField(
+                    keyboardType: TextInputType.text,
+                    onChanged: bloc.batchNumChanged,
+                    decoration: InputDecoration(
+                      errorText: snapshot.error,
                       icon: Icon(Icons.format_list_numbered_rtl,color:Colors.green),
                       labelText: 'Batch Number',
-                     
                     ),
-                    keyboardType: TextInputType.text,
-                    
-                  ),
-                  Divider(
-
-                  ), 
-                  new TextField(
-                      decoration: const InputDecoration(
+                  );}
+                );}
+            Widget supplyBy(){
+                return StreamBuilder<String>(
+                  stream: bloc.supplyNumStream,
+                  builder:(context,snapshot){
+                  return new TextField(
+                    onChanged: bloc.supplyByChanged,
+                      decoration: InputDecoration(
+                        errorText: snapshot.error,
                         icon: Icon(Icons.supervised_user_circle,color:Colors.green),
                         labelText: 'Supplied By',
-                       
-                      ),
-                    ) ,
-                    Divider(
+                          ),
+                      );}
+                  );}
 
-                  ), 
-                     
-                  new TextField(
-                    controller: _quantityController,
-                    onChanged: (value) => _quantityController.text = value,
-                     keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
+            Widget quantity(){
+                return StreamBuilder<String>(
+                  stream: bloc.quantityStream,
+                  builder:(context,snapshot){
+                  return new TextField(
+                    onChanged: bloc.quantityVaccineChanged,
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
                       icon: Icon(Icons.widgets,color:Colors.green),
-                      labelText:    'Quantity',
-                      
-                    ),
-                    
-                    ),
-                    Divider(
-
-                  ), 
-                  new TextField(
+                      labelText: 'Quantity',
+                      ),
+                    );}
+                  );}
+            Widget unit(){
+                return StreamBuilder<String>(
+                  stream: bloc.unitsStream,
+                  builder:(context,snapshot){
+                  return new TextField(
+                      onChanged: bloc.unitChanged,
                       decoration: const InputDecoration(
                         icon: Icon(Icons.format_underlined,color:Colors.green),
                         labelText: 'Unit',
-                      
                       ),
-                    ) ,
-                    Divider(
+                      );}
+                );}
 
-                  ), 
-                    new TextField(
+            Widget unitprice(){
+                return StreamBuilder<String>(
+                  stream: bloc.unitPriceStream,
+                  builder:(context,snapshot){
+                    return new TextField(
+                      onChanged: bloc.unitPriceChanged,
                       keyboardType: TextInputType.number,
-                    
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
+                        errorText: snapshot.error,
                         icon: Icon(Icons.monetization_on,color:Colors.green),
                         labelText: 'Unit Price',
-                        
-                      
                       ),
-                    ) ,
-                  InputDecorator(
-                      decoration: InputDecoration(
-                     icon: Icon(Icons.space_bar,color: Colors.green,),
+                    );}
+                  );}
+            Widget currencys(){
+                return StreamBuilder<String>(
+                  stream: bloc.currencyStream,
+                  builder:(context,snapshot){
+                  return new InputDecorator(
+                    decoration: InputDecoration(
+                      errorText: snapshot.error,
+                      icon: Icon(Icons.space_bar,color: Colors.green,),
                       labelText: 'Currency',
                             ),
                         child: DropdownButtonHideUnderline(
@@ -229,54 +235,97 @@ final formats = { InputType.date: DateFormat('dd/MM/yyyy'),
                        return DropdownMenuItem<String>(value: value,
                        child: Text(value),
                        );
-                      
                      }).toList(),
-                   ),
-                        ),
-                        ),
-                  Divider(
-
-                  ),
-                    new TextField(
-                    controller: _purchaseamountController,
-                    onChanged: (value) => _purchaseamountController.text = value,
-                    autofocus: false,
-                    decoration: InputDecoration(
-                    icon: Icon(Icons.local_atm,color:Colors.green),
-                    filled: true,
-                    labelText: 'Purchased Amount',
-                    contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 10.0, 15.0),
-                    border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                     ) ) 
-                     ), 
-                     
-                     Divider(),  
-                 
-                    new Container(
-                    child: new Padding(
-                    padding: EdgeInsets.symmetric(vertical: 40.0),
-                    // child: Material(
-                    // borderRadius: BorderRadius.circular(30.0),
-                    // shadowColor: Colors.lightBlueAccent.shade100,
-                    // elevation: 6.0,
-                    child: RaisedButton(
+                    ),
+                      ),
+                    );}
+                );}
+            Widget amount(){
+                  return StreamBuilder<String>(
+                    stream: bloc.amountPurStream,
+                    builder:(context,snapshot){ 
+                    return new TextField(
+                      onChanged: bloc.pamountChanged, 
+                      autofocus: false,
+                      decoration: InputDecoration(
+                        errorText: snapshot.error,
+                        icon: Icon(Icons.local_atm,color:Colors.green),
+                        filled: true,
+                        labelText: 'Purchased Amount',
+                        contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 10.0, 15.0),
+                        border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                       ) ) 
+                     );}
+                  );}
+              Widget button(){
+                  return StreamBuilder<bool>(
+                  stream: bloc.submitedDetails,
+                  builder:(context, snapshot){ 
+                    return new RaisedButton(
+                    color: Colors.amber,
+                    child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
                     // minWidth: 200.0,
                     // height: 47.0,
                     onPressed: ()=> Navigator.push( 
                     context, MaterialPageRoute(builder: (context) => VaccineTab())),
-                    color: Colors.amber,
-                    child: Text('Add',style:TextStyle(color:Colors.white,fontSize: 20.0)),
-
-                   ) ,
-                   ),
-                     ),
-                      
-                    ],
-                      ))),
-       );
+                   );}
+                );}
+    return new Scaffold(
+          resizeToAvoidBottomPadding:false ,
+          appBar: new AppBar(
+           title: new Text(widget.title),
+          centerTitle: true,
+          backgroundColor: Colors.amber,
+          leading: IconButton(icon: Icon(Icons.arrow_back_ios),
+          onPressed: () => Navigator.push(
+                 context, MaterialPageRoute(builder: (context) => VaccineTab())),
+              ),
+          actions: <Widget>[
+                new IconButton(icon: Icon(Icons.rotate_right,size: 35.0,),color: Colors.white,
+                onPressed: () {}
+              )
+            ],
+          ),
+      body:new SingleChildScrollView(
+                    child: new Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 32.0),
+                    child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                            SizedBox(height: 2.0),
+                            vaccineName(),
+                            SizedBox(height: 10.0),
+                            vaccineType(),
+                            SizedBox(height: 10.0),
+                            company(),
+                            SizedBox(height: 10.0),
+                            purchase(),
+                            SizedBox(height:10.0),
+                            expireDate(),
+                            SizedBox(height: 10.0),
+                            batchNum(),
+                            SizedBox(height: 10.0),
+                            supplyBy(),
+                            SizedBox(height: 10.0),
+                            quantity(),
+                            SizedBox(height:10.0),
+                            unit(),
+                            SizedBox(height: 10.0),
+                            unitprice(),
+                            SizedBox(height: 10.0),
+                            currencys(),
+                            SizedBox(height: 10.0),
+                            amount(),
+                            SizedBox(height: 30.0),
+                            button(), 
+                        ],
+                  ))),
+                );
               }
-              }
+            }
               
     class PurchVaccineList extends StatefulWidget{
 
